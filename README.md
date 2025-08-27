@@ -1,6 +1,6 @@
 # 백재현 (Jae-Hyun Baek) - Portfolio Website
 
-> **Mathematics & AI Research Portfolio** | **EXAONE Lab Internship Application**
+> **Mathematics & AI Research Portfolio** 
 
 ## 🌟 Project Overview
 
@@ -9,7 +9,6 @@ This is the official portfolio website for Jae-Hyun Baek, showcasing research ac
 ### 🎯 Purpose
 - **Academic Portfolio**: Comprehensive showcase of research papers, publications, and conference presentations
 - **Professional Profile**: Highlighting expertise in AI/ML, Mathematics, and Software Development
-- **EXAONE Lab Application**: Tailored content demonstrating relevant experience and capabilities
 
 ## 🚀 Live Demo
 
@@ -126,33 +125,6 @@ npm run build
 npm start
 ```
 
-## 🚀 Railway Deployment Guide
-
-### Step 1: Prepare for Deployment
-```bash
-# Build the project locally to ensure everything works
-npm run build
-
-# Test the production build
-npm start
-```
-
-### Step 2: Deploy to Railway
-1. **Visit [Railway](https://railway.app)**
-2. **Create New Project** → **Deploy from GitHub**
-3. **Connect Repository**: `https://github.com/LeGenAI/jhbaek.git`
-4. **Configure Settings**:
-   - **Build Command**: `npm run build`
-   - **Start Command**: `npm start`
-   - **Node.js Version**: `18.x`
-
-### Step 3: Environment Variables (if needed)
-No environment variables required for this static portfolio.
-
-### Step 4: Custom Domain (Optional)
-- Configure custom domain in Railway dashboard
-- SSL certificate automatically provisioned
-
 ## 📊 Performance Optimization
 
 ### **Core Web Vitals**
@@ -212,7 +184,7 @@ module.exports = nextConfig
 
 **백재현 (Jae-Hyun Baek)**
 - 🎓 Sogang University, Department of Mathematics
-- 🚀 CTO at DeepFountain Inc.
+- 🚀 Team Leader at DeepFountain Inc.
 - 🔬 AI/ML Researcher & Developer
 - 📧 Email: [bjh3641@gmail.com](mailto:bjh3641@gmail.com)
 - 💼 LinkedIn: [재현-백](https://www.linkedin.com/in/재현-백-516899227)
