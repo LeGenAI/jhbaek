@@ -16,9 +16,9 @@ const nextConfig: NextConfig = {
     minimumCacheTTL: 60 * 60 * 24 * 7, // 1 week
   },
   // Performance optimizations
-  experimental: {
-    optimizeCss: true,
-  },
+  // experimental: {
+  //   optimizeCss: true, // Disabled due to critters dependency issue
+  // },
   // Railway specific headers for better performance
   async headers() {
     return [
