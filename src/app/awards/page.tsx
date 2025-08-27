@@ -32,7 +32,7 @@ export default function AwardsPage() {
           <div className="award-card award-shimmer certificate-border bg-white rounded-xl shadow-lg border border-yellow-200">
             <div className="relative overflow-hidden rounded-t-xl">
               <img 
-                src="/[서강대 백재현] 우수논문상.png" 
+                src="/award_kiis_2024.png" 
                 alt="KIIS 2024 Best Paper Award"
                 className="w-full h-64 object-contain bg-white p-4 hover:scale-105 transition-transform duration-300 certificate-glow"
               />
