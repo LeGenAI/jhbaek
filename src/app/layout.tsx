@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     alternateLocale: 'ko_KR',
-    url: 'https://jhbaek.up.railway.app',
+    url: 'https://jhbaek.deep-fountain.com',
     siteName: 'Jae-Hyun Baek Portfolio',
     title: 'Jae-Hyun Baek | AI Researcher & Mathematics Expert',
     description: 'AI/ML researcher specializing in Mathematics, Computer Vision, and AI Security. Expert in VLM, Multimodal AI, and Alignment Research.',
