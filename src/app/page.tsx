@@ -1,13 +1,71 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Github, Linkedin, MapPin, Mail } from 'lucide-react';
 import { Navigation } from '@/components/navigation';
 
 export default function Home() {
+  useEffect(() => {
+    // Dynamic SEO optimization for homepage
+    document.title = 'Jae-Hyun Baek | AI Researcher & Mathematics Expert';
+    
+    // Update meta description
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Portfolio of Jae-Hyun Baek, AI/ML researcher specializing in VLM, Multimodal AI, and Mathematics. Team Leader at DeepFountain Inc, EXAONE Lab applicant.');
+    }
+  }, []);
+
+  const personSchema = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Jae-Hyun Baek",
+    "alternateName": "백재현",
+    "jobTitle": ["AI Researcher", "CTO", "Mathematics Expert"],
+    "worksFor": [
+      {
+        "@type": "Organization",
+        "name": "DeepFountain Inc",
+        "url": "https://deep-fountain.com"
+      },
+      {
+        "@type": "Organization", 
+        "name": "Sogang University",
+        "url": "https://sogang.ac.kr"
+      }
+    ],
+    "alumniOf": {
+      "@type": "Organization",
+      "name": "Sogang University",
+      "department": "Department of Mathematics"
+    },
+    "knowsAbout": [
+      "Artificial Intelligence",
+      "Machine Learning", 
+      "Computer Vision",
+      "Mathematics",
+      "VLM (Vision Language Models)",
+      "Multimodal AI",
+      "AI Security",
+      "Deep Learning"
+    ],
+    "url": "https://jhbaek.up.railway.app",
+    "image": "https://jhbaek.up.railway.app/jhbaek_profile.jpg",
+    "sameAs": [
+      "https://github.com/LeGenAI",
+      "https://www.linkedin.com/in/재현-백-516899227"
+    ],
+    "email": "bjh3641@gmail.com"
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+      {/* Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+      />
       <Navigation />
 
       {/* Hero Section */}

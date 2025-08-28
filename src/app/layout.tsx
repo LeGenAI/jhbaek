@@ -14,8 +14,55 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Jae-Hyun Baek | Researcher & Team Leader',
-  description: 'Jae-Hyun Baek - Researcher, Educator, and CTO of DeepFountain Inc. Specializing in Mathematics, AI/ML, and AI Security.',
+  title: {
+    default: 'Jae-Hyun Baek | AI Researcher & Mathematics Expert',
+    template: '%s | Jae-Hyun Baek'
+  },
+  description: 'AI/ML researcher specializing in Mathematics, Computer Vision, and AI Security. CTO of DeepFountain Inc. Publications in IJFIS, JKIIS. Expert in VLM, Multimodal AI, and Alignment Research.',
+  keywords: ['AI researcher', 'Machine Learning', 'Mathematics', 'Computer Vision', 'AI Security', 'VLM', 'Multimodal AI', 'Deep Learning', 'Research', 'EXAONE', 'Sogang University'],
+  authors: [{ name: 'Jae-Hyun Baek', url: 'https://github.com/LeGenAI' }],
+  creator: 'Jae-Hyun Baek',
+  publisher: 'Jae-Hyun Baek',
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    alternateLocale: 'ko_KR',
+    url: 'https://jhbaek.up.railway.app',
+    siteName: 'Jae-Hyun Baek Portfolio',
+    title: 'Jae-Hyun Baek | AI Researcher & Mathematics Expert',
+    description: 'AI/ML researcher specializing in Mathematics, Computer Vision, and AI Security. Expert in VLM, Multimodal AI, and Alignment Research.',
+    images: [
+      {
+        url: '/jhbaek_profile.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Jae-Hyun Baek - AI Researcher and Mathematics Expert',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Jae-Hyun Baek | AI Researcher & Mathematics Expert',
+    description: 'AI/ML researcher specializing in Mathematics, Computer Vision, and AI Security. Expert in VLM, Multimodal AI, and Alignment Research.',
+    images: ['/jhbaek_profile.jpg'],
+    creator: '@jhbaek',
+  },
+  verification: {
+    google: 'verification-code-here', // Replace with actual Google Search Console verification code
+  },
+  category: 'Research',
+  classification: 'Academic Portfolio',
 };
 
 export default function RootLayout({
