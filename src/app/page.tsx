@@ -51,7 +51,7 @@ export default function Home() {
       "Deep Learning"
     ],
     "url": "https://jhbaek.up.railway.app",
-    "image": "https://jhbaek.up.railway.app/jhbaek_profile.jpg",
+    "image": "https://jhbaek.up.railway.app/background.jpg",
     "sameAs": [
       "https://github.com/LeGenAI",
       "https://www.linkedin.com/in/재현-백-516899227"

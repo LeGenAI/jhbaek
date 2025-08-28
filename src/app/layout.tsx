@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     description: 'AI/ML researcher specializing in Mathematics, Computer Vision, and AI Security. Expert in VLM, Multimodal AI, and Alignment Research.',
     images: [
       {
-        url: '/jhbaek_profile.jpg',
+        url: '/background.jpg',
         width: 1200,
         height: 630,
         alt: 'Jae-Hyun Baek - AI Researcher and Mathematics Expert',
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Jae-Hyun Baek | AI Researcher & Mathematics Expert',
     description: 'AI/ML researcher specializing in Mathematics, Computer Vision, and AI Security. Expert in VLM, Multimodal AI, and Alignment Research.',
-    images: ['/jhbaek_profile.jpg'],
+    images: ['/background.jpg'],
     creator: '@jhbaek',
   },
   verification: {
@@ -63,6 +63,11 @@ export const metadata: Metadata = {
   },
   category: 'Research',
   classification: 'Academic Portfolio',
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/jhbaek_profile.jpg',
+  },
 };
 
 export default function RootLayout({
