@@ -1,10 +1,20 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Navigation } from '@/components/navigation';
 import { Trophy, Award, GraduationCap, Sparkles } from 'lucide-react';
 
 export default function AwardsPage() {
+  useEffect(() => {
+    // SEO optimization for awards page
+    document.title = 'Awards & Recognition | Jae-Hyun Baek';
+    
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Academic awards and recognition of Jae-Hyun Baek including Best Paper Awards, Dean\'s List, and scholarship achievements in AI and Mathematics research.');
+    }
+  }, []);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       <Navigation />

@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Navigation } from '@/components/navigation';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -151,6 +151,16 @@ const teachingExperience = [
 ];
 
 export default function ResearchPage() {
+  useEffect(() => {
+    // SEO optimization for research page
+    document.title = 'Research & Publications | Jae-Hyun Baek';
+    
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Research publications and projects by Jae-Hyun Baek: VLM & Multimodal AI, Medical Image Analysis, AI Safety & Alignment, Mathematics research. Publications in IJFIS, JKIIS, Medical Image Analysis.');
+    }
+  }, []);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       <Navigation />
