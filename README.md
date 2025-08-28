@@ -12,7 +12,7 @@ This is the official portfolio website for Jae-Hyun Baek, showcasing research ac
 
 ## 🚀 Live Demo
 
-🔗 **[Visit Portfolio Website](https://jhbaek.up.railway.app)** *(Will be available after deployment)*
+🔗 **[Visit Portfolio Website](https://jhbaek.deep-fountain.com)** *(Custom Domain via DeepFountain Infrastructure)*
 
 ## 📋 Features
 
@@ -55,8 +55,10 @@ This is the official portfolio website for Jae-Hyun Baek, showcasing research ac
 - **Lucide React** - Beautiful icon library
 
 ### **Deployment & Hosting**
-- **Railway** - Modern deployment platform
-- **Vercel-compatible** - Alternative deployment options
+- **Railway** - Modern deployment platform with auto-deployment
+- **Custom Domain** - jhbaek.deep-fountain.com (DeepFountain infrastructure)
+- **SSL Certificate** - Automatic HTTPS with custom domain
+- **Vercel-compatible** - Alternative deployment options available
 
 ## 🏗️ Project Structure
 
@@ -179,6 +181,9 @@ module.exports = nextConfig
 - Open Graph social media optimization
 - Structured data for search engines
 - Automatic sitemap generation
+- Custom domain configuration (jhbaek.deep-fountain.com)
+- robots.txt optimization for search engine crawling
+- JSON-LD structured data with custom domain URLs
 
 ## 👨‍💻 Author
 

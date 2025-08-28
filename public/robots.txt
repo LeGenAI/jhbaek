@@ -21,7 +21,7 @@ Allow: /*.svg
 # Disallow: /private/
 
 # Sitemap location
-Sitemap: https://jhbaek.up.railway.app/sitemap.xml
+Sitemap: https://jhbaek.deep-fountain.com/sitemap.xml
 
 # Crawl-delay (optional, only if needed)
 # Crawl-delay: 1

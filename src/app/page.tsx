@@ -50,8 +50,8 @@ export default function Home() {
       "AI Security",
       "Deep Learning"
     ],
-    "url": "https://jhbaek.up.railway.app",
-    "image": "https://jhbaek.up.railway.app/background.jpg",
+    "url": "https://jhbaek.deep-fountain.com",
+    "image": "https://jhbaek.deep-fountain.com/background.jpg",
     "sameAs": [
       "https://github.com/LeGenAI",
       "https://www.linkedin.com/in/재현-백-516899227"
