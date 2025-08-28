@@ -14,6 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://jhbaek.deep-fountain.com'),
   title: {
     default: 'Jae-Hyun Baek | AI Researcher & Mathematics Expert',
     template: '%s | Jae-Hyun Baek'
@@ -67,6 +68,9 @@ export const metadata: Metadata = {
     icon: '/favicon.ico',
     shortcut: '/favicon.ico',
     apple: '/jhbaek_profile.jpg',
+  },
+  alternates: {
+    canonical: '/',
   },
 };
 
