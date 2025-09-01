@@ -81,6 +81,24 @@ export default function RootLayout({
 }>) {
   return (
     <html suppressHydrationWarning>
+      <head>
+        {/* DeepFountain Widget */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                const script = document.createElement('script');
+                script.src = 'https://saas.deep-fountain.com/widget/ai-agent-service/loader.js';
+                script.setAttribute('data-api-key', 'cb_7360d506ce2d702c7f6fd064337d8e31');
+                script.async = true;
+                script.defer = true;
+                document.head.appendChild(script);
+              })();
+            `,
+          }}
+        />
+        {/* End DeepFountain Widget */}
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
