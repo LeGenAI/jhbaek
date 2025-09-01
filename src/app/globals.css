@@ -228,27 +228,46 @@ html {
   animation-delay: 0.3s;
 }
 
-/* DeepFountain Widget iframe dark mode fix */
+/* 🚨 ULTIMATE DeepFountain Widget iframe transparency fix */
+iframe[id="deepfountain-widget"],
+iframe[src*="deep-fountain"],
+iframe[src*="saas.deep-fountain.com"] {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  background-attachment: initial !important;
+  background-origin: initial !important;
+  background-clip: initial !important;
+  background-repeat: initial !important;
+  background-size: initial !important;
+  background-position: initial !important;
+  -webkit-background-color: transparent !important;
+  color-scheme: none !important;
+}
+
+/* Force transparency in dark theme without color-scheme interference */
+.dark iframe[id="deepfountain-widget"],
+.dark iframe[src*="deep-fountain"],
+.dark iframe[src*="saas.deep-fountain.com"],
+html[data-theme="dark"] iframe[src*="deep-fountain"],
+html[style*="color-scheme: dark"] iframe[src*="deep-fountain"] {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  -webkit-background-color: transparent !important;
+  color-scheme: none !important;
+}
+
+/* All iframe general transparency (fallback) */
 iframe {
   background: transparent !important;
   background-color: transparent !important;
+  color-scheme: none !important;
 }
 
 .dark iframe {
   background: transparent !important;
   background-color: transparent !important;
-  color-scheme: dark;
-}
-
-/* Force iframe content to respect parent color scheme */
-iframe[src*="deep-fountain"] {
-  background: transparent !important;
-  background-color: transparent !important;
-}
-
-.dark iframe[src*="deep-fountain"] {
-  background: transparent !important;
-  background-color: transparent !important;
-  color-scheme: dark;
+  color-scheme: none !important;
 }
 }
