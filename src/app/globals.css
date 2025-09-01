@@ -227,4 +227,28 @@ html {
 .stagger-3 {
   animation-delay: 0.3s;
 }
+
+/* DeepFountain Widget iframe dark mode fix */
+iframe {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+.dark iframe {
+  background: transparent !important;
+  background-color: transparent !important;
+  color-scheme: dark;
+}
+
+/* Force iframe content to respect parent color scheme */
+iframe[src*="deep-fountain"] {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+.dark iframe[src*="deep-fountain"] {
+  background: transparent !important;
+  background-color: transparent !important;
+  color-scheme: dark;
+}
 }
