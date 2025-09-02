@@ -111,25 +111,29 @@ export default function ContactPage() {
               </CardHeader>
               <CardContent>
                 <div className="space-y-6">
-                  <div className="border-l-4 border-blue-500 pl-4 bg-blue-50 p-3 rounded-r-lg">
-                    <h4 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
-                      <span className="text-blue-600">🎆</span>
-                      EXAONE Lab 인턴십 지원 준비
+                  <div className="border-l-4 border-blue-500 pl-4 bg-blue-50 p-4 rounded-r-lg">
+                    <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                      <span className="text-blue-600">🛠️</span>
+                      Trillion Labs Product Engineer - Perfect Match
                     </h4>
-                    <p className="text-sm text-gray-600 mb-2">
-                      VLM 벤치마크 최적화 및 개발 역량 기반의 EXAONE VL 성능 개선 기여 목표
-                    </p>
-                    <div className="flex flex-wrap gap-1 text-xs">
-                      <span className="px-2 py-1 bg-blue-100 text-blue-700 rounded-full">VLM Expertise</span>
-                      <span className="px-2 py-1 bg-purple-100 text-purple-700 rounded-full">Full-Stack Dev</span>
-                      <span className="px-2 py-1 bg-green-100 text-green-700 rounded-full">Large-Scale Data</span>
+                    <div className="space-y-2 text-sm text-gray-600">
+                      <p><strong>"Swiss Army Knife"</strong>로서의 풀스택 역량: TypeScript/React, Python, Ruby on Rails</p>
+                      <p><strong>"Thrive in ambiguity"</strong>: 불확실성 속에서도 빠른 프로토타이핑과 반복 개발</p>
+                      <p><strong>"Novel AI UX"</strong>: AI 모델을 직관적이고 즐거운 인터페이스로 연결하는 경험</p>
+                      <p><strong>"Bridge research and product"</strong>: 수학 연구진과 제품팀 사이의 완벽한 가교 역할</p>
+                    </div>
+                    <div className="flex flex-wrap gap-1 text-xs mt-3">
+                      <span className="px-2 py-1 bg-blue-100 text-blue-700 rounded-full">Product Engineering</span>
+                      <span className="px-2 py-1 bg-purple-100 text-purple-700 rounded-full">AI UX Design</span>
+                      <span className="px-2 py-1 bg-green-100 text-green-700 rounded-full">Fast Iteration</span>
+                      <span className="px-2 py-1 bg-orange-100 text-orange-700 rounded-full">Research Bridge</span>
                     </div>
                   </div>
 
                   <div className="border-l-4 border-purple-500 pl-4">
-                    <h4 className="font-semibold text-gray-900 mb-2">VLM & Multimodal AI</h4>
+                    <h4 className="font-semibold text-gray-900 mb-2">AI & Machine Learning</h4>
                     <p className="text-sm text-gray-600">
-                      WSI Medical AI, Vision-Language Models, General VL Benchmark 최적화
+                      LLM API 연동, RAG 시스템, 멀티모달 AI, 오픈소스 모델 활용 경험
                     </p>
                   </div>
 
@@ -177,7 +181,7 @@ export default function ContactPage() {
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-sm font-medium text-gray-700">Current Focus</span>
-                    <span className="text-sm text-purple-600">EXAONE Lab 인턴십 준비</span>
+                    <span className="text-sm text-purple-600">Trillion Labs Product Engineer</span>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-sm font-medium text-gray-700">Response Time</span>
@@ -201,9 +205,9 @@ export default function ContactPage() {
             <div className="relative z-10">
               <h2 className="text-2xl font-bold mb-4">수학으로 세상을 이롭게 하는 Integrator</h2>
               <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
-                <strong>"3%나 된다"</strong>는 긍정적 사고로 불가능을 가능으로 만들어가는 인재입니다.  
-                <strong> VLM 벤치마크 최적화</strong>와 <strong>대규모 시스템 개발 경험</strong>을 바탕으로 
-                EXAONE의 다음 챕터에 기여하고 싶습니다.
+                <strong>"Move fast, write clean code"</strong> 철학으로 빠른 프로토타이핑과 제품화를 주도합니다.  
+                <strong>AI의 힘을 직관적이고 즐거운 UX로 연결</strong>하여 
+                Trillion Labs의 혁신적인 AI 인터페이스 구축에 기여하고자 합니다.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button asChild size="lg" variant="secondary">

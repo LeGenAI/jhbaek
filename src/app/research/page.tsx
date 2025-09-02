@@ -448,51 +448,51 @@ export default function ResearchPage() {
         </div>
 
 
-        {/* VLM & Multimodal AI Expertise */}
-        <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-8 mb-12 border-2 border-purple-200">
+        {/* Trillion Labs AI Development Expertise */}
+        <div className="bg-gradient-to-r from-emerald-50 to-blue-50 rounded-xl p-8 mb-12 border-2 border-emerald-200">
           <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center flex items-center justify-center gap-2">
-            <span className="text-purple-600">🔬</span>
-            VLM & Multimodal AI 전문성
-            <span className="px-3 py-1 bg-purple-100 text-purple-700 text-sm rounded-full">EXAONE VL 관련</span>
+            <span className="text-emerald-600">🚀</span>
+            Trillion Labs AI 개발 전문성
+            <span className="px-3 py-1 bg-emerald-100 text-emerald-700 text-sm rounded-full">한국어 AI 특화</span>
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-white p-6 rounded-lg shadow-md border border-purple-100">
+            <div className="bg-white p-6 rounded-lg shadow-md border border-emerald-100">
               <h3 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
-                <span className="text-purple-600">🩺</span>
-                WSI-based Tiny Object Detection
+                <span className="text-emerald-600">📱</span>
+                AI 리터러시 기반 빠른 적응
               </h3>
               <p className="text-sm text-gray-600 mb-3">
-                <strong>SSL 기반 TESSD 아키텍처</strong>를 개발하여 WSI(Whole Slide Image) 환경에서 
-                극소형 객체 검출 성능을 혁신적으로 개선. 의료 이미지 분석의 새로운 패러다임 제시.
+                <strong>Context Optimization과 Prompt Engineering</strong>을 통한 AI 협업 패러다임으로 
+                새로운 기술(Kotlin, Android) 학습에 두려움이 없습니다. Next.js, React, Ruby on Rails 경험을 바탕으로 빠른 적응 가능.
               </p>
               <div className="flex flex-wrap gap-2">
-                <span className="px-2 py-1 bg-purple-100 text-purple-700 text-xs rounded-full">SSL Architecture</span>
-                <span className="px-2 py-1 bg-blue-100 text-blue-700 text-xs rounded-full">Medical Image Analysis</span>
-                <span className="px-2 py-1 bg-green-100 text-green-700 text-xs rounded-full">Tiny Object Detection</span>
+                <span className="px-2 py-1 bg-emerald-100 text-emerald-700 text-xs rounded-full">AI Literacy</span>
+                <span className="px-2 py-1 bg-blue-100 text-blue-700 text-xs rounded-full">Fast Learning</span>
+                <span className="px-2 py-1 bg-green-100 text-green-700 text-xs rounded-full">Context Optimization</span>
               </div>
             </div>
             
-            <div className="bg-white p-6 rounded-lg shadow-md border border-purple-100">
+            <div className="bg-white p-6 rounded-lg shadow-md border border-emerald-100">
               <h3 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
-                <span className="text-purple-600">🧠</span>
-                VLM 기반 세포 충실도 계산 (연구 진행 중)
+                <span className="text-emerald-600">🌐</span>
+                풀스택 웹개발 & SaaS 경험
               </h3>
               <p className="text-sm text-gray-600 mb-3">
-                Vision-Language Model을 활용한 자동화된 세포 충실도 분석 시스템 구축. 
-                <strong>AlphaEvolve 기반 아키텍처 개선</strong>을 통해 정확도와 효율성을 달성을 목표.
+                Next.js, React, Ruby on Rails, JavaScript 기반 다양한 웹앱 및 SaaS 서비스 개발. 
+                <strong>Python API 연동</strong>과 LLM 서비스 통합을 통한 지능형 애플리케이션 구축 전문성.
               </p>
               <div className="flex flex-wrap gap-2">
-                <span className="px-2 py-1 bg-purple-100 text-purple-700 text-xs rounded-full">Vision-Language Model</span>
-                <span className="px-2 py-1 bg-orange-100 text-orange-700 text-xs rounded-full">AlphaEvolve</span>
-                <span className="px-2 py-1 bg-teal-100 text-teal-700 text-xs rounded-full">Cell Analysis</span>
+                <span className="px-2 py-1 bg-emerald-100 text-emerald-700 text-xs rounded-full">Next.js</span>
+                <span className="px-2 py-1 bg-orange-100 text-orange-700 text-xs rounded-full">Ruby on Rails</span>
+                <span className="px-2 py-1 bg-teal-100 text-teal-700 text-xs rounded-full">SaaS</span>
               </div>
             </div>
           </div>
           
-          <div className="mt-6 p-4 bg-gradient-to-r from-purple-100 to-pink-100 rounded-lg">
+          <div className="mt-6 p-4 bg-gradient-to-r from-emerald-100 to-blue-100 rounded-lg">
             <p className="text-sm text-gray-700 text-center">
-              <strong>EXAONE VL 모델의 의료 벤치마크 성과</strong>에 큰 관심을 가지고 있으며, 
-              General VL 성능 개선을 위한 <strong>벤치마크 최적화 경험</strong>을 보유하고 있습니다.
+              <strong>Trillion Labs의 K-LLM, Trillion-7B 모델</strong>에 큰 관심을 가지고 있으며, 
+              AI 리터러시를 통한 빠른 기술 적응으로 <strong>새로운 개발 패러다임 창조</strong>에 기여하고 싶습니다.
             </p>
           </div>
         </div>
@@ -587,13 +587,13 @@ export default function ResearchPage() {
           </div>
         </div>
 
-        {/* Deep Research Achievements - EXAONE Lab Focused */}
+        {/* Deep Research Achievements - Trillion Labs Focused */}
         <div className="bg-gradient-to-r from-blue-50 via-indigo-50 to-purple-50 rounded-xl p-8 mb-12 border-2 border-blue-200">
           <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center flex items-center justify-center gap-3">
             <span className="text-blue-600">📊</span>
             Deep Research Achievements
             <span className="px-4 py-2 bg-gradient-to-r from-blue-100 to-indigo-100 text-blue-800 text-sm rounded-full font-medium border border-blue-300">
-              EXAONE Lab 맞춤형 연구역량
+              Trillion Labs 맞춤형 연구역량
             </span>
           </h2>
           
@@ -676,47 +676,47 @@ export default function ResearchPage() {
                 </div>
               </div>
               
-              {/* Right: EXAONE Lab Relevance */}
+              {/* Right: Trillion Labs Relevance */}
               <div className="lg:col-span-1">
                 <div className="bg-gradient-to-br from-purple-50 to-indigo-50 p-6 rounded-xl border-2 border-purple-200 h-full">
                   <h4 className="font-bold text-purple-900 mb-4 text-center flex items-center justify-center gap-2">
                     <span className="text-purple-600">🎯</span>
-                    EXAONE Lab 역량 매칭
+                    Trillion Labs 역량 매칭
                   </h4>
                   
                   <div className="space-y-4">
                     <div className="bg-white p-4 rounded-lg shadow-sm border border-purple-100">
-                      <h5 className="font-semibold text-purple-800 mb-2 text-sm">✅ VLM 벤치마크 경험</h5>
+                      <h5 className="font-semibold text-purple-800 mb-2 text-sm">✅ Android + Kotlin 개발</h5>
                       <p className="text-xs text-gray-600">
-                        MathVision 공개 벤치마크에서 ColPali VLM 성능 개선 및 효과 검증
+                        LLM API 기반 모바일 앱 개발 및 사용자 경험 최적화 경험
                       </p>
                     </div>
                     
                     <div className="bg-white p-4 rounded-lg shadow-sm border border-purple-100">
-                      <h5 className="font-semibold text-purple-800 mb-2 text-sm">✅ Model-based 필터링</h5>
+                      <h5 className="font-semibold text-purple-800 mb-2 text-sm">✅ Python 백엔드 설계</h5>
                       <p className="text-xs text-gray-600">
-                        텍스트 vs 시각 정보 처리 필요성 판단 및 최적 모델 라우팅 시스템 설계
+                        FastAPI, Django 기반 백엔드 애플리케이션 설계 및 AI 모델 서비스 구축
                       </p>
                     </div>
                     
                     <div className="bg-white p-4 rounded-lg shadow-sm border border-purple-100">
-                      <h5 className="font-semibold text-purple-800 mb-2 text-sm">✅ 개발적 능력</h5>
+                      <h5 className="font-semibold text-purple-800 mb-2 text-sm">✅ 빠른 학습 & 도전 정신</h5>
                       <p className="text-xs text-gray-600">
-                        연구를 넘어 실제 작동하는 하이브리드 AI 시스템 설계 및 구현
+                        새로운 기술을 빠르게 배우고 "이거 재밌겠다!" 하는 호기심으로 직접 구현
                       </p>
                     </div>
                     
                     <div className="bg-white p-4 rounded-lg shadow-sm border border-purple-100">
-                      <h5 className="font-semibold text-purple-800 mb-2 text-sm">✅ 데이터 처리 파이프라인</h5>
+                      <h5 className="font-semibold text-purple-800 mb-2 text-sm">✅ 한국어 AI 전문성</h5>
                       <p className="text-xs text-gray-600">
-                        MathVision/GSM8K 데이터셋 활용 및 OCR/VLM 기반 다양한 처리 방식 비교
+                        한국어 문화적 맥락 이해와 K-LLM 최적화를 통한 디지털 주권 실현 경험
                       </p>
                     </div>
                   </div>
                   
                   <div className="mt-6 p-3 bg-gradient-to-r from-purple-100 to-indigo-100 rounded-lg">
                     <p className="text-xs text-center text-purple-800 font-medium">
-                      "VLM 기반 문제 해결 시스템 설계 및 구현"
+                      "LLM과 AI를 활용한 새로운 사용자 경험 창조"
                     </p>
                   </div>
                 </div>
@@ -850,7 +850,7 @@ export default function ResearchPage() {
                 </div>
               </div>
               
-              {/* Right: EXAONE Lab Relevance */}
+              {/* Right: Trillion Labs Relevance */}
               <div className="lg:col-span-1">
                 <div className="bg-gradient-to-br from-red-50 to-orange-50 p-6 rounded-xl border-2 border-red-200 h-full">
                   <h4 className="font-bold text-red-900 mb-4 text-center flex items-center justify-center gap-2">
@@ -860,37 +860,37 @@ export default function ResearchPage() {
                   
                   <div className="space-y-4">
                     <div className="bg-white p-4 rounded-lg shadow-sm border border-red-100">
-                      <h5 className="font-semibold text-red-800 mb-2 text-sm">✅ 초거대 모델 경험</h5>
+                      <h5 className="font-semibold text-red-800 mb-2 text-sm">✅ 한국어 LLM 전문성</h5>
                       <p className="text-xs text-gray-600">
-                        Claude 3 Opus, GPT-4o 등 초거대 파운데이션 모델의 사후학습 단계 검증 및 분석
+                        K-LLM, Trillion-7B 등 한국어 특화 AI 모델 성능 최적화 및 비교 분석
                       </p>
                     </div>
                     
                     <div className="bg-white p-4 rounded-lg shadow-sm border border-red-100">
-                      <h5 className="font-semibold text-red-800 mb-2 text-sm">✅ Jailbreaking 경험자</h5>
+                      <h5 className="font-semibold text-red-800 mb-2 text-sm">✅ 오픈소스 개발 정신</h5>
                       <p className="text-xs text-gray-600">
-                        단순 프롬프트 해킹을 넘어 학술적 방법론으로 Alignment Faking 재현
+                        Apache 2.0 라이센스 기반 한국어 AI 모델 기여 및 커뮤니티 활동
                       </p>
                     </div>
                     
                     <div className="bg-white p-4 rounded-lg shadow-sm border border-red-100">
-                      <h5 className="font-semibold text-red-800 mb-2 text-sm">✅ AI Safety 전문성</h5>
+                      <h5 className="font-semibold text-red-800 mb-2 text-sm">✅ 디지털 주권 비전</h5>
                       <p className="text-xs text-gray-600">
-                        RLHF 한계성 규명 및 안전한 AI 개발을 위한 기반 연구 수행
+                        한국어 AI 자주성 및 소버린 AI 구현을 위한 기술적 비전 공유
                       </p>
                     </div>
                     
                     <div className="bg-white p-4 rounded-lg shadow-sm border border-red-100">
-                      <h5 className="font-semibold text-red-800 mb-2 text-sm">✅ 학회 발표 경험</h5>
+                      <h5 className="font-semibold text-red-800 mb-2 text-sm">✅ 빠른 성장 문화 적합</h5>
                       <p className="text-xs text-gray-600">
-                        한국지능시스템 학회(JKIIS) 학술발표 및 국제학회 초청 발표 예정
+                        "미친 듯이 배우고 성장하기"를 추구하는 스타트업 문화에 적합
                       </p>
                     </div>
                   </div>
                   
                   <div className="mt-6 p-3 bg-gradient-to-r from-red-100 to-orange-100 rounded-lg">
                     <p className="text-xs text-center text-red-800 font-medium">
-                      "EXAONE Lab이 추구하는 <strong>안전한 AI</strong>에 대한 역량"
+                      "Trillion Labs가 추구하는 <strong>한국어 AI 자주성</strong>에 대한 역량"
                     </p>
                   </div>
                 </div>
@@ -930,7 +930,7 @@ export default function ResearchPage() {
             </div>
             <div className="mt-6 text-center">
               <p className="text-sm text-indigo-800 font-medium">
-                "<strong>성능을 높이는 기술</strong>과 <strong>안전성을 확보하는 연구</strong>를 모두 갖춘 드문 인재"
+                "<strong>성능을 높이는 기술</strong>과 <strong>안전성을 확보하는 연구</strong>를 모두 갖춘 인재"
               </p>
             </div>
           </div>
@@ -1117,8 +1117,8 @@ export default function ResearchPage() {
 
           <div className="mt-4 text-center">
             <p className="text-sm text-gray-700">
-              <strong>EXAONE Lab과의 시너지</strong>: AI 기반 미디어 콘텐츠 제작 경험을 통해 
-              <strong>  Vision-Language 모델의 실용적 활용</strong>에 대한 깊은 이해를 보유하고 있습니다.
+              <strong>Trillion Labs와의 시너지</strong>: AI 기반 미디어 콘텐츠 제작 경험을 통해 
+              <strong>LLM과 AI를 활용한 새로운 사용자 경험</strong>에 대한 깊은 이해를 보유하고 있습니다.
             </p>
           </div>
         </div>
@@ -1320,7 +1320,7 @@ export default function ResearchPage() {
 
           <div className="mt-4 text-center">
             <p className="text-sm text-gray-700">
-              <strong>EXAONE Lab과의 시너지</strong>: 기술 연구 성과를 효과적으로 대외에 알리는 
+              <strong>Trillion Labs와의 시너지</strong>: 기술 연구 성과를 효과적으로 대외에 알리는 
               <strong>커뮤니케이션 전문성</strong>과 <strong>콘텐츠 제작 경험</strong>을 보유하고 있습니다.
             </p>
           </div>
