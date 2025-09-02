@@ -19,8 +19,8 @@ export const metadata: Metadata = {
     default: 'Jae-Hyun Baek | AI Researcher & Mathematics Expert',
     template: '%s | Jae-Hyun Baek'
   },
-  description: 'AI/ML researcher specializing in Mathematics, Computer Vision, and AI Security. CTO of DeepFountain Inc. Publications in IJFIS, JKIIS. Expert in VLM, Multimodal AI, and Alignment Research.',
-  keywords: ['AI researcher', 'Machine Learning', 'Mathematics', 'Computer Vision', 'AI Security', 'VLM', 'Multimodal AI', 'Deep Learning', 'Research', 'EXAONE', 'Sogang University'],
+  description: 'AI/ML researcher specializing in Mathematics, Computer Vision, and AI Security. CTO of DeepFountain Inc. Publications in IJFIS, JKIIS. Expert in VLM, Multimodal AI, and Trillion Labs applicant.',
+  keywords: ['AI researcher', 'Machine Learning', 'Mathematics', 'Computer Vision', 'AI Security', 'VLM', 'Multimodal AI', 'Deep Learning', 'Research', 'Trillion Labs', 'Sogang University'],
   authors: [{ name: 'Jae-Hyun Baek', url: 'https://github.com/LeGenAI' }],
   creator: 'Jae-Hyun Baek',
   publisher: 'Jae-Hyun Baek',
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     url: 'https://jhbaek.deep-fountain.com',
     siteName: 'Jae-Hyun Baek Portfolio',
     title: 'Jae-Hyun Baek | AI Researcher & Mathematics Expert',
-    description: 'AI/ML researcher specializing in Mathematics, Computer Vision, and AI Security. Expert in VLM, Multimodal AI, and Alignment Research.',
+    description: 'AI/ML researcher specializing in Mathematics, Computer Vision, and AI Security. Expert in VLM, Multimodal AI, and Korean AI sovereignty through Trillion Labs.',
     images: [
       {
         url: '/background.jpg',
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Jae-Hyun Baek | AI Researcher & Mathematics Expert',
-    description: 'AI/ML researcher specializing in Mathematics, Computer Vision, and AI Security. Expert in VLM, Multimodal AI, and Alignment Research.',
+    description: 'AI/ML researcher specializing in Mathematics, Computer Vision, and AI Security. Expert in VLM, Multimodal AI, and Korean AI sovereignty through Trillion Labs.',
     images: ['/background.jpg'],
     creator: '@jhbaek',
   },

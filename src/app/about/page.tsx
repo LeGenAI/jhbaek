@@ -221,7 +221,7 @@ export default function AboutPage() {
                 <div className="bg-white p-4 rounded-lg shadow-sm border border-slate-100">
                   <p className="text-sm text-gray-700 leading-relaxed mb-4">
                     수학적 사고력과 최신 AI 기술에 대한 깊은 이해를 기반으로, 다양한 웹/앱 서비스와 
-                    <strong className="text-blue-600"> AI 기반 SaaS</strong>를 설계하고 구현해 왔습니다. 
+                    <strong className="text-blue-600"> <a href="https://saas.deep-fountain.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 underline">AI 기반 SaaS</a></strong>를 설계하고 구현해 왔습니다. 
                     Backend & Frontend 개발 역량, 머신러닝·딥러닝 전문성, 그리고 LLM 기반 프로젝트 경험을 통해 
                     복잡한 시스템을 안정적이고 확장 가능한 형태로 구현하는 데 강점을 가지고 있습니다.
                   </p>
@@ -231,12 +231,14 @@ export default function AboutPage() {
                   <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-4 rounded-lg border border-blue-200">
                     <h4 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
                       <span className="text-blue-600">⚡</span>
-                      Backend & Frontend Development
+                      Full-Stack Development (Trillion Labs Stack)
                     </h4>
                     <div className="text-sm text-gray-700 space-y-1">
-                      <div>• Python 기반 API 서버(FastAPI, Flask, Django)와 Next.js 기반 프론트엔드 개발</div>
-                      <div>• Synology NAS + Docker를 활용한 서비스 배포 및 운영 환경 최적화</div>
-                      <div>• DB 설계, 데이터 파이프라인, DevOps 워크플로우 구축 능력</div>
+                      <div>• <strong>TypeScript/React</strong>: Next.js 기반 프론트엔드, 컴포넌트 설계 및 상태 관리</div>
+                      <div>• <strong>Python APIs</strong>: FastAPI, Flask 기반 REST/gRPC API 서버 구축</div>
+                      <div>• <strong>Ruby on Rails</strong>: 빠른 프로토타이핑과 MVC 패턴 기반 웹서비스 개발</div>
+                      <div>• <strong>MCP (Model Context Protocol)</strong>: Toss Payments MCP 등 프로토콜 기반 시스템 통합</div>
+                      <div>• <strong>Mobile-Ready</strong>: 반응형 웹, PWA, Android/iOS 적응 학습 준비 완료</div>
                     </div>
                   </div>
 
@@ -270,7 +272,7 @@ export default function AboutPage() {
                     </h4>
                     <div className="text-sm text-gray-700 space-y-1">
                       <div>• 산학협력 프로젝트 리딩, 기술문서 및 논문 집필, 대외 협상 경험</div>
-                      <div>• <strong>SaaS 서비스 설계 → 운영 → 배포</strong>까지 전 주기 프로젝트 수행</div>
+                      <div>• <strong><a href="https://saas.deep-fountain.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 underline">SaaS 플랫폼 설계 → 운영 → 배포</a></strong>까지 전 주기 프로젝트 수행</div>
                     </div>
                   </div>
                 </div>
@@ -296,8 +298,8 @@ export default function AboutPage() {
                         개발자가 본질에 집중할 수 있는 경험을 제공합니다.
                       </p>
                       <p className="text-xs text-gray-600">
-                        특히, 기존의 Python 백엔드 경험과 결합하여 <strong>Rails + Python API</strong>의 
-                        하이브리드 아키텍처를 설계함으로써, <strong>RAG 기반 챗봇, ETF GNN 대시보드, 교육용 AI SaaS</strong>와 
+                        특히, 기존의 Python(langchain) 백엔드 경험과 결합하여 <strong>Rails + langchain (+ n8n)</strong>의 
+                        하이브리드 아키텍처를 설계함으로써, <strong>사용자 커스터마이징 AI Agent SaaS, <a href="https://saas.deep-fountain.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 underline">교육용 AI SaaS</a></strong>와 
                         같은 프로젝트를 구현하고 있습니다.
                       </p>
                     </div>
@@ -488,7 +490,7 @@ export default function AboutPage() {
                 </div>
 
                 <div className="bg-gradient-to-r from-green-100 to-emerald-100 p-4 rounded-lg">
-                  <h4 className="font-semibold text-gray-900 mb-2">EXAONE Lab 적합성 분석</h4>
+                  <h4 className="font-semibold text-gray-900 mb-2">Trillion Labs 적합성 분석</h4>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
                     <div className="flex items-center gap-2">
                       <span className="text-green-600">✓</span>
@@ -511,47 +513,164 @@ export default function AboutPage() {
 
                 <div className="text-center">
                   <span className="px-4 py-2 bg-green-600 text-white text-xs rounded-full font-medium">
-                    LG 그룹 인턴십 지원 포트폴리오
+                    Trillion Labs 인턴십 지원 포트폴리오
                   </span>
                 </div>
               </CardContent>
             </Card>
 
 
-            {/* EXAONE-Aligned Development Expertise */}
+            {/* Trillion Labs-Aligned Development Expertise */}
             <Card className="hover-card bg-gradient-to-br from-blue-50 to-purple-50 border-blue-200">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Sparkles className="w-5 h-5 text-blue-600" />
-                  EXAONE VL 개발 역량 정렬
+                  Trillion Labs 개발 역량 정렬
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="bg-white p-4 rounded-lg shadow-sm border border-blue-100">
-                    <h4 className="font-semibold text-gray-900 mb-2 text-sm">Multi-Modal LLM 벤치마크 최적화</h4>
+                    <h4 className="font-semibold text-gray-900 mb-2 text-sm">AI 리터러시 & SLM 파인튜닝</h4>
                     <p className="text-xs text-gray-600">
-                      WSI Medical 분야에서 General VL 성능 개선까지 포괄하는 벤치마크 최적화 경험
+                      AI 리터러시 기반 빠른 기술 적응과 Small Language Model 파인튜닝 경험을 통한 한국어 특화 AI 개발 역량
                     </p>
                   </div>
                   <div className="bg-white p-4 rounded-lg shadow-sm border border-blue-100">
-                    <h4 className="font-semibold text-gray-900 mb-2 text-sm">대규모 시스템 경험</h4>
+                    <h4 className="font-semibold text-gray-900 mb-2 text-sm">풀스택 웹개발 & AI 통합</h4>
                     <p className="text-xs text-gray-600">
-                      기관 전체 데이터 AI 변환 프로젝트 리드로 대규모 데이터 학습 경험
+                      Next.js, React, Ruby on Rails 풀스택 경험과 LLM API 연동을 통한 혁신적 사용자 경험 창조
                     </p>
                   </div>
                 </div>
                 <div className="bg-gradient-to-r from-blue-100 to-purple-100 p-4 rounded-lg">
-                  <h4 className="font-semibold text-gray-900 mb-2">빠른 의사결정과 실행력</h4>
+                  <h4 className="font-semibold text-gray-900 mb-2">빠른 학습과 도전 정신</h4>
                   <p className="text-sm text-gray-600 mb-3">
-                    <strong>팀장 경험</strong>을 통해 빠른 의사결정과 실행력을 중요시하는 문화에 적합한 역량 보유. 
-                    개발적 능력을 기반으로 한 <strong>Full-Stack + AI 통합 개발</strong> 전문성.
+                    <strong>팀장 경험</strong>을 통해 빠른 학습과 "이거 재밌겠다!" 하는 도전 정신을 갖춘 인재. 
+                    <strong>AI 리터러시와 웹개발 경험</strong>을 기반으로 Kotlin 등 새로운 기술에 빠른 적응 가능.
                   </p>
                   <div className="text-center">
                     <span className="px-3 py-1 bg-blue-600 text-white text-xs rounded-full font-medium">
-                      EXAONE Lab 인턴십 지원 준비 중
+                      Trillion Labs 인턴십 지원 준비 중
                     </span>
                   </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Trillion Labs Vision Alignment - Enhanced */}
+            <Card className="hover-card bg-gradient-to-br from-blue-50 to-purple-50 border-blue-200">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Sparkles className="w-5 h-5 text-blue-600" />
+                  Trillion Labs Product Engineer 역량 매칭
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="bg-white p-4 rounded-lg shadow-sm border border-blue-100">
+                  <h4 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
+                    <span className="text-blue-600">🛠️</span>
+                    "Swiss Army Knife of Product Engineering"
+                  </h4>
+                  <p className="text-sm text-gray-600 mb-3">
+                    <strong>풀스택 다재다능:</strong> TypeScript/React 프론트엔드부터 Python 백엔드, Ruby on Rails 서비스까지 
+                    전 스택을 아우르는 개발 경험. <strong>직관적인 UX, 성능 최적화된 API, 프로덕션급 백엔드 시스템</strong> 구축 가능.
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    <Badge variant="secondary" className="text-xs bg-blue-100 text-blue-700">TypeScript/React</Badge>
+                    <Badge variant="secondary" className="text-xs bg-green-100 text-green-700">Python APIs</Badge>
+                    <Badge variant="secondary" className="text-xs bg-red-100 text-red-700">Ruby on Rails</Badge>
+                    <Badge variant="secondary" className="text-xs bg-purple-100 text-purple-700">Production Systems</Badge>
+                  </div>
+                </div>
+
+                <div className="bg-white p-4 rounded-lg shadow-sm border border-purple-100">
+                  <h4 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
+                    <span className="text-purple-600">✨</span>
+                    Novel AI UX & Interactive Interfaces
+                  </h4>
+                  <p className="text-sm text-gray-600 mb-3">
+                    <strong>AI를 위한 새로운 UX 설계:</strong> SOGAMBOT.com, 의료 AI 진단 시스템, 교사 어시스턴트 등 
+                    강력한 AI 모델과의 상호작용을 <strong>직관적이고 자연스럽고 즐거운</strong> 인터페이스로 구현한 경험.
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    <Badge variant="secondary" className="text-xs bg-purple-100 text-purple-700">AI UX Design</Badge>
+                    <Badge variant="secondary" className="text-xs bg-pink-100 text-pink-700">Interactive Tools</Badge>
+                    <Badge variant="secondary" className="text-xs bg-indigo-100 text-indigo-700">Creative Applications</Badge>
+                  </div>
+                </div>
+
+                <div className="bg-white p-4 rounded-lg shadow-sm border border-orange-100">
+                  <h4 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
+                    <span className="text-orange-600">⚡</span>
+                    Fast Prototyping to Productization
+                  </h4>
+                  <p className="text-sm text-gray-600 mb-3">
+                    <strong>"애매함 속에서도 번창":</strong> 불확실성을 즐기며 아이디어를 빠르게 구현하고 반복 개발하는 능력. 
+                    DeepFountain Team Leader로서 <strong>빠른 제품 아이디어 테스트와 end-to-end 엔지니어링</strong>을 주도.
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    <Badge variant="secondary" className="text-xs bg-orange-100 text-orange-700">Rapid Prototyping</Badge>
+                    <Badge variant="secondary" className="text-xs bg-yellow-100 text-yellow-700">Fast Iteration</Badge>
+                    <Badge variant="secondary" className="text-xs bg-red-100 text-red-700">End-to-End Engineering</Badge>
+                  </div>
+                </div>
+
+                <div className="bg-white p-4 rounded-lg shadow-sm border border-emerald-100">
+                  <h4 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
+                    <span className="text-emerald-600">🔬</span>
+                    Research-Product Bridge Builder
+                  </h4>
+                  <p className="text-sm text-gray-600 mb-3">
+                    <strong>연구와 제품 연결:</strong> 수학과 석사과정으로서의 연구 경험과 AI 모델을 실제 제품으로 
+                    구현하는 능력을 겸비. <strong>복잡한 시스템과 API를 유지 관리</strong>하며 빠르게 발전하는 도메인에서 
+                    기술적·제품적 방향성을 정의하는 데 기여.
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    <Badge variant="secondary" className="text-xs bg-emerald-100 text-emerald-700">Research Background</Badge>
+                    <Badge variant="secondary" className="text-xs bg-teal-100 text-teal-700">Product Integration</Badge>
+                    <Badge variant="secondary" className="text-xs bg-cyan-100 text-cyan-700">System Architecture</Badge>
+                  </div>
+                </div>
+
+                <div className="bg-gradient-to-r from-blue-100 to-purple-100 p-4 rounded-lg border border-blue-200">
+                  <h4 className="font-semibold text-gray-900 mb-2">핵심 역량 요약</h4>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+                    <div className="flex items-center gap-2">
+                      <span className="text-blue-600">✓</span>
+                      <span className="text-gray-700"><strong>강력한 제품 직관</strong>과 사용자 경험에 대한 깊은 관심</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-blue-600">✓</span>
+                      <span className="text-gray-700"><strong>빠르게 움직이고 깔끔한 코드</strong>를 작성하는 능력</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-blue-600">✓</span>
+                      <span className="text-gray-700"><strong>고도로 협력적이고 탐구적인</strong> 환경에서 번창</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-blue-600">✓</span>
+                      <span className="text-gray-700">LLM 및 <strong>ML 시스템 구축 경험</strong></span>
+                    </div>
+                  </div>
+                  <div className="mt-3 p-3 bg-white rounded-lg border border-blue-100">
+                    <p className="text-xs text-gray-600 italic text-center">
+                      <strong>"Move fast, write clean code, and thrive in highly collaborative, exploratory environment"</strong>
+                      <br />- 이것이 바로 제가 추구하는 개발 철학입니다.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="text-center pt-2">
+                  <a 
+                    href="https://lnkd.in/g6vA5qcu" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:from-blue-700 hover:to-purple-700 font-medium text-sm transition-all duration-200 shadow-md hover:shadow-lg"
+                  >
+                    <Sparkles className="w-4 h-4" />
+                    Trillion Labs Product Engineer 지원 준비 완료
+                  </a>
                 </div>
               </CardContent>
             </Card>

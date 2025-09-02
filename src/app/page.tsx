@@ -13,7 +13,7 @@ export default function Home() {
     // Update meta description
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', 'Portfolio of Jae-Hyun Baek, AI/ML researcher specializing in VLM, Multimodal AI, and Mathematics. Team Leader at DeepFountain Inc, EXAONE Lab applicant.');
+      metaDescription.setAttribute('content', 'Portfolio of Jae-Hyun Baek, AI/ML researcher specializing in VLM, Multimodal AI, and Mathematics. Team Leader at DeepFountain Inc, Trillion Labs applicant.');
     }
   }, []);
 
@@ -88,11 +88,11 @@ export default function Home() {
                   (Jae-Hyun Baek)
                 </h2>
                 <div className="flex items-center justify-center gap-1 text-lg text-white/90 font-medium">
-                  <span className="bg-gradient-to-r from-amber-400 to-orange-400 text-black px-3 py-1 rounded-full text-sm font-semibold">VLM Researcher</span>
+                  <span className="bg-gradient-to-r from-amber-400 to-orange-400 text-black px-3 py-1 rounded-full text-sm font-semibold">AI UX Engineer</span>
                   <span className="text-amber-200">•</span>
-                  <span className="bg-gradient-to-r from-blue-400 to-purple-400 text-black px-3 py-1 rounded-full text-sm font-semibold">Full-Stack Dev</span>
+                  <span className="bg-gradient-to-r from-blue-400 to-purple-400 text-black px-3 py-1 rounded-full text-sm font-semibold">Product Engineer</span>
                   <span className="text-amber-200">•</span>
-                  <span className="bg-gradient-to-r from-emerald-400 to-teal-400 text-black px-3 py-1 rounded-full text-sm font-semibold">EXAONE 지원자</span>
+                  <span className="bg-gradient-to-r from-emerald-400 to-teal-400 text-black px-3 py-1 rounded-full text-sm font-semibold">Swiss Army Knife</span>
                 </div>
               </div>
             </div>
@@ -107,12 +107,12 @@ export default function Home() {
             <div className="bg-black/40 backdrop-blur-md rounded-xl px-6 py-6 max-w-4xl mx-auto border border-white/20">
               <p className="text-xl text-white leading-relaxed text-center">
                 <span className="text-3xl text-amber-300 font-bold block mb-4 drop-shadow-lg">
-                  "압도적 성능의 LLM, 함께 만들어가겠습니다."
+                  "AI의 힘을 직관적이고 즐거운 UX로 연결하겠습니다."
                 </span>
                 <span className="text-lg text-white/90 leading-relaxed">
-                  VLM 벤치마크 최적화와 대규모 AI 시스템 구축 경험을 바탕으로<br/>
-                  <strong className="text-amber-200">EXAONE VL의 General 성능 개선</strong>에 기여하고자 합니다.<br/><br/>
-                  빠른 의사결정과 실행력으로 오픈소스 LLM 생태계의 혁신을 이끄는 연구자가 되겠습니다.
+                  풀스택 개발부터 AI 모델 통합까지, <strong className="text-amber-200">빠른 프로토타이핑과 제품화</strong>를 통해<br/>
+                  <strong className="text-cyan-200">Trillion Labs의 혁신적인 AI 인터페이스</strong> 구축에 기여하고자 합니다.<br/><br/>
+                  "Thrive in ambiguity" 아이디어를 현실로 만드는 것이 제 강점입니다.
                 </span>
               </p>
             </div>
