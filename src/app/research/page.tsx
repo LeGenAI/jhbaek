@@ -116,7 +116,7 @@ export default function ResearchPage() {
             </div>
             <div className="lg:col-span-3 p-8 bg-white flex items-center justify-center">
               <img
-                src="/ISIS/slide1.PNG"
+                src="/ISIS/slide1.png"
                 alt="Alignment Faking Presentation"
                 className="w-full max-h-80 object-contain rounded-lg shadow-md border border-gray-100 hover:scale-[1.02] transition-transform"
               />
