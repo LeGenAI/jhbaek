@@ -1,0 +1,655 @@
+\documentclass[10pt, aspectratio=169]{beamer}
+
+% Modern Theme Selection
+% Metropolis is the gold standard for modern beamer. 
+% If 'metropolis' is not found, fallback to 'default' with specific colors, but we assume a modern TexLive distribution.
+\usetheme{metropolis} 
+
+% Customizing the theme to be even cleaner
+\metroset{block=fill} % Fill blocks with background color
+\metroset{titleformat=smallcaps} % Small caps for titles
+\metroset{progressbar=frametitle} % Progress bar under frame title
+
+% Color Customization (Sogang University Red-ish style or neutral)
+\definecolor{SogangRed}{RGB}{179, 0, 31} % Approximation of a dark red
+\setbeamercolor{palettetprimary}{bg=SogangRed, fg=white}
+\setbeamercolor{background canvas}{bg=white}
+\setbeamercolor{structure}{fg=SogangRed} 
+
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{appendixnumberbeamer} % Don't count appendix slides
+\usepackage{tikz}
+
+% Font adjustments
+\usepackage{lmodern}
+\renewcommand{\familydefault}{\sfdefault}
+
+% Custom Commands
+\newcommand{\Hull}{\operatorname{Hull}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\F}{\mathbb{F}}
+
+
+% Meta-information
+\title{SolEvolve: An LLM-driven evolutionary discovery of algorithms for solving mathematical problems}
+\author{\textbf{Jae-Hyun Baek}}
+\institute{Dept. of Mathematics \\ Sogang University}
+\date{\today}
+
+\begin{document}
+
+% 1. Title Slide
+\begin{frame}
+    \titlepage
+\end{frame}
+
+% 2. Introduction
+\section{Introduction}
+
+\begin{frame}{The Challenge: Automated Discovery}
+    \begin{columns}
+        \column{0.6\textwidth}
+        \textbf{Context}: Large Language Models (LLMs) are transforming code generation, but often lack mathematical rigor.
+        
+        \vspace{0.3cm}
+        \textbf{State of the Art}:
+        \begin{itemize}
+            \item \textit{FunSearch} (Nature 2024): Mathematical function discovery.
+            \item \textit{SolSearch} (arXiv 2025): SAT heuristics.
+        \end{itemize}
+        
+        \vspace{0.3cm}
+        \textbf{Limitations}:
+        \begin{itemize}
+            \item \alert{Passive Generation}: LLMs wait for human prompts.
+            \item \alert{No Feedback Loop}: Manual verification required.
+            \item \alert{Hallucinations}: Plausible but incorrect proofs.
+        \end{itemize}
+
+        \column{0.4\textwidth}
+        \begin{alertblock}{Goal}
+            Create an \textbf{autonomous}, closed-loop discovery system where the LLM acts as an active researcher, not just a tool.
+        \end{alertblock}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{The Paradigm Shift: AI-Driven Mathematical Discovery}
+    \begin{columns}
+        \column{0.6\textwidth}
+        \textbf{The "Hard Problems" Team}:
+        Fields Medalist \textbf{Terence Tao} has actively engaged with AI, joining EpochAI's initiative to generate "impossible" problems for LLMs.
+        
+        \vspace{0.3cm}
+        \textbf{A New Era (Nov 2025)}:
+        Tao and Google DeepMind released a groundbreaking paper:
+        \textit{"Mathematical Exploration and Discovery at Scale"}.
+        
+        \vspace{0.3cm}
+        \textbf{AlphaEvolve Architecture}:
+        \begin{itemize}
+            \item \textbf{Evolutionary Coding Agent}: Combines LLM generation with automated evolutionary evaluation.
+            \item \textbf{Autonomous Discovery}: Rediscovered best-known solutions for 67 hard problems and improved several.
+        \end{itemize}
+
+        \column{0.4\textwidth}
+        \begin{alertblock}{Tao's Vision}
+            By adopting AlphaEvolve, Tao declares a shift towards using complex, evolutionary architectures to solve the most intractable mathematical problems, complementing human intuition with scalable AI search.
+        \end{alertblock}
+    \end{columns}
+
+    \vspace{0.2cm}
+    \textbf{Diversity of 67+ Explored Problems}:
+    \begin{center}
+    \tiny \linespread{0.8}\selectfont
+    \textcolor{gray}{
+    Finite field Kakeya/Nikodym sets $\cdot$ Autocorrelation inequalities $\cdot$ Difference bases $\cdot$ Kissing numbers $\cdot$ Kakeya needle $\cdot$ Sphere packing $\cdot$ Classical inequalities $\cdot$ Ovals problem $\cdot$ Sendov’s/Crouzeix’s/Sidorenko’s, conjectures $\cdot$ Prime number theorem $\cdot$ Flat polynomials $\cdot$ Blocks Stacking $\cdot$ Arithmetic Kakeya $\cdot$ Furstenberg–Sárközy $\cdot$ Spherical designs $\cdot$ Thomson/Tammes problems $\cdot$ Packing problems $\cdot$ Turán number of tetrahedron $\cdot$ Factoring $N!$ $\cdot$ Beat the average $\cdot$ Erdős discrepancy $\cdot$ Points on sphere maximizing volume $\cdot$ Sum-product problems $\cdot$ Triangle density $\cdot$ Matrix multiplications $\cdot$ Heilbronn problems $\cdot$ Max-to-min ratios $\cdot$ Erdős–Gyárfás $\cdot$ Erdős squarefree $\cdot$ Equidistant points in convex polygons $\cdot$ Pairwise touching cylinders $\cdot$ Erdős squares in a square $\cdot$ Szemerédi–Trotter $\cdot$ Rudin problem $\cdot$ Erdős–Szekeres Happy Ending $\cdot$ No-isosceles-triangle grid subsets $\cdot$ “No 5 on a sphere” $\cdot$ Ring Loading $\cdot$ Moving sofa problem $\cdot$ IMO 2025: Problem 6 $\cdot$ Smullyan-type logic puzzles
+    }
+    \end{center}
+\end{frame}
+
+\begin{frame}{The Engine: SAT solvers}
+    \begin{columns}
+        \column{0.6\textwidth}
+        \textbf{SAT Competition 2025 Landscape}:
+        The Main Track was dominated by variants of \textbf{Kissat}, \textbf{CaDiCaL}, and \textbf{SBVA} (Satisfiability-Based Variable Addition).
+        
+        \vspace{0.2cm}
+        \textbf{Key Benchmarks (Downloads)}:
+        \begin{itemize} \footnotesize
+            \item \texttt{AE\_kissat2025\_bump}, \texttt{Kissat\_CURE}
+            \item \texttt{hKis-sbva}, \texttt{hCaD-sbva}
+            \item \texttt{cadical-sc2025}, \texttt{ulc-cadical}
+        \end{itemize}
+
+        \vspace{0.3cm}
+        \textbf{SolEvolve's Strategy}:
+        \begin{itemize}
+            \item \textbf{Black-Box Philosophy}: We do not reinvent low-level solver logic (CDCL, VSIDS).
+            \item \textbf{Leverage}: We utilize these highly optimized, competition-proven engines (\textit{Kissat}, \textit{CaDiCaL}) directly.
+        \end{itemize}
+
+        \column{0.4\textwidth}
+        \begin{alertblock}{Validation}
+            The swarm of 2025 competition entries confirms that \textbf{Kissat} and \textbf{CaDiCaL} remain the gold standard. SolEvolve's choice to wrap these solvers ensures we operate at the frontier of SAT performance.
+        \end{alertblock}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{SolEvolve Overview}
+    \begin{columns}
+        \column{0.5\textwidth}
+        \textbf{Core Innovation}:
+        \small
+        Instead of white-box optimization of internal solver logic, SolEvolve performs \textbf{black-box optimization} of problem encodings and strategies.
+
+        \vspace{0.5cm}
+        \textbf{The Four Agents}:
+        \begin{enumerate}
+            \item \textbf{Generator}: Synthesizes Python/SAT/ILP code.
+            \item \textbf{Evolver}: Executes population interaction.
+            \item \textbf{Verifier}: Rigorous mathematical checks.
+            \item \textbf{Reflector}: Semantic feedback ("The Brain").
+        \end{enumerate}
+         \column{0.5\textwidth}
+          \textbf{Iterative Process}:
+          \small
+          The cycle of Generation $\to$ Evolution $\to$ Verification $\to$ Reflection allows the system to escape local optima and refine its strategies over time.
+    \end{columns}
+\end{frame}
+
+\begin{frame}{SolEvolve Architecture}
+    \begin{figure}
+        \centering
+        % User requested this path
+        \includegraphics[height=0.8\textheight]{Figures/graphical_abstract.png}
+        \caption{The SolEvolve Architecture.}
+    \end{figure}
+\end{frame}
+
+% Chapter Results grouped by Domain
+\section{Discoveries: Binary Linear Codes}
+
+\begin{frame}{Discovery of Binary Linear Codes (Foundations)}
+    \begin{definition}[Binary linear code]
+    A \textit{binary linear code} $\mathcal{C}$ of length $n$ and dimension $k$ is a $k$-dimensional subspace of $\mathbb{F}_2^n$. Elements are called \textit{codewords}.
+    \end{definition}
+
+    \begin{columns}
+        \column{0.5\textwidth}
+        \begin{definition}[Generator matrix]
+        A $k \times n$ matrix $G$ whose rows form a basis for $\mathcal{C}$. $\mathcal{C} = \{ xG \mid x \in \mathbb{F}_2^k \}$.
+        \end{definition}
+        
+        \begin{definition}[Parity check matrix]
+        An $(n-k) \times n$ matrix $H$ such that $c \in \mathcal{C} \iff Hc^T = \mathbf{0}$.
+        \end{definition}
+
+        \column{0.5\textwidth}
+        \begin{definition}[Standard form]
+        $G = [I_k \mid P]$, where $I_k$ is identity and $P$ is $k \times (n-k)$.
+        \end{definition}
+        
+       \begin{definition}[Minimum distance]
+        $d(\mathcal{C}) = \min \{ wt(c) \mid c \in \mathcal{C}, c \neq \mathbf{0} \}$.
+        \end{definition}
+    \end{columns}
+    
+    \vspace{0.5cm}
+    \textbf{Objective}: Discover optimal $[n,k,d]$ codes.
+\end{frame}
+
+\begin{frame}{Discovery of Binary Linear Codes (Results)}
+    \begin{columns}
+        \column{0.6\textwidth}
+        \textbf{LLM Encodings}:
+        \begin{itemize} \footnotesize
+            \item \textbf{Standard Form}: Reduced search space by $O(2^{k^2})$.
+            \item \textbf{Tseitin XOR}: Efficient CNF for parities.
+        \end{itemize}
+
+        \vspace{0.3cm}
+        \textbf{Key Results}:
+        \begin{table}
+        \centering \small
+        \begin{tabular}{lccl}
+        \toprule
+        \textbf{Code} & \textbf{Time} & \textbf{Status} & \textbf{Note} \\ \midrule
+        $[28,14,8]$ & \textbf{267s} & Found & Uniquely optimal \\
+        $[32,14,8]$ & \textbf{16.85s} & Found & Optimal \\
+        $[43,10,16]$ & 47.71s & Found & Rare \\
+        $[43,10,17]$ & --- & Not Found & Open \\
+        \bottomrule
+        \end{tabular}
+        \end{table}
+
+        \column{0.4\textwidth}
+        \begin{alertblock}{Impact}
+            SolEvolve rediscovered in \textbf{seconds} what typically requires specialized algebraic software (e.g., Magma) or manual theoretical guidance.
+        \end{alertblock}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Hybrid SAT-GA \& Repair}
+    \begin{columns}
+        \column{0.4\textwidth}
+        \textbf{The Stagnation Problem}:
+        Pure SAT struggles with large search spaces (e.g., $[35,10,13]$).
+        
+        \vspace{0.5cm}
+        \textbf{The Solution}:
+        SAT-seeded Genetic Algorithm + \textbf{SAT Repair}.
+        \begin{itemize} \footnotesize
+            \item Initialize GA with SAT seeds.
+            \item If GA stagnates, Reflector builds specific "repair" constraints.
+        \end{itemize}
+
+        \column{0.6\textwidth}
+        \begin{figure}
+            \centering
+            % User requested this path
+            \includegraphics[width=\textwidth]{Figures/Hybrid_approach_SAT_repair.png}
+            \caption{The Hybrid Repair Workflow.}
+        \end{figure}
+    \end{columns}
+\end{frame}
+
+\section{Discoveries: Self-Orthogonal Embeddings}
+
+\begin{frame}{Self-Orthogonal Embeddings (Foundations)}
+    \begin{definition}[Self-orthogonal and Self-dual]
+    $\mathcal{C}$ is \textit{self-orthogonal} if $\mathcal{C} \subseteq \mathcal{C}^\perp$. $\mathcal{C}$ is \textit{self-dual} if $\mathcal{C} = \mathcal{C}^\perp$.
+    \end{definition}
+
+    \begin{columns}
+        \column{0.5\textwidth}
+        \begin{definition}[Hull]
+        $\Hull(\mathcal{C}) = \mathcal{C} \cap \mathcal{C}^\perp$.
+        \end{definition}
+
+        \begin{definition}[Gram matrix condition]
+        $\mathcal{C}$ is self-orthogonal $\iff GG^T = \mathbf{0}$.
+        \end{definition}
+
+        \column{0.5\textwidth}
+         \begin{definition}[SO embedding]
+        Minimal self-orthogonal code $\tilde{\mathcal{C}}$ containing $\mathcal{C}$.
+        \end{definition}
+        
+        \begin{definition}[Hermitian inner product]
+         $\langle x, y \rangle_H = \sum x_i y_i^q$ over $\mathbb{F}_{q^2}$.
+        \end{definition}
+    \end{columns}
+
+\end{frame}
+\begin{frame}{Self-Orthogonal Embeddings (Algorithm)}
+    \begin{columns}
+        \column{0.5\textwidth}
+        \textbf{Rank-One Elimination Algorithm}:
+        \begin{enumerate}
+            \item \textbf{Input}: Generator matrix $G \in \mathbb{F}_q^{k \times n}$.
+            \item \textbf{Step 1}: Compute Gram matrix $R = G G^T$.
+            \item \textbf{Step 2}: Identify non-zero entry in $R$.
+                \begin{itemize} \footnotesize
+                    \item If $R_{ii} \ne 0$: Append $v \in \mathbb{F}_q^k$ (from $i$-th row).
+                    \item If $R_{ij} \ne 0$: Append $v$ (from pair $i,j$).
+                \end{itemize}
+            \item \textbf{Step 3}: Update $R \gets R - vv^T$ (cancel entry).
+            \item \textbf{Repeat} until $R = \mathbf{0}$.
+        \end{enumerate}
+
+        \column{0.5\textwidth}
+        \begin{alertblock}{Theorem (Correctness)}
+            The algorithm terminates in exactly $r = \rank(G G^T)$ steps. The length of the shortest SO embedding is \textbf{$n + \rank(G G^T)$}.
+        \end{alertblock}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Self-Orthogonal Embeddings (Results)}
+    \textbf{SAT-based Experimentation}:
+    \begin{itemize}
+        \item While the algebraic algorithm minimizes length, \textbf{SolEvolve} minimizes length \textit{and} maximizes distance ($d$).
+    \end{itemize}
+
+    \begin{table}[htbp]
+    \centering \tiny
+    \caption{SAT-based self-orthogonal embeddings across $\mathbb{F}_2,\mathbb{F}_3,\mathbb{F}_4,\mathbb{F}_5$}
+    \begin{tabular}{lccccccc}
+    \toprule
+    Field & Start Code & Inner Product & Gram Rank & Min $t$ & Output $[n',k]$ & $d_{\min}$ & Grassl \\ \midrule
+    $\mathbb{F}_2$ & $\mathcal{H}_4\,[15,11,3]$ & Dot & 7 & 7 & $[22,11]$ & 6 & 7 \\
+    $\mathbb{F}_2$ & $\mathcal{H}_5\,[31,26,3]$ & Dot & 21 & 21 & $[52,26]$ & 8 & 10--12 \\
+    $\mathbb{F}_3$ & BCH $[13,7,5]$ & Dot & 7 & 7 & $[20,7]$ & 9 & 9 \\
+    $\mathbb{F}_4$ & $[10,5]$ & Hermitian & 5 & 5 & $[15,5]$ & 6 & 8 \\
+    $\mathbb{F}_5$ & $[12,6]$ & Dot & 6 & 6 & $[18,6]$ & 8 & 10 \\
+    \bottomrule
+    \end{tabular}
+    \end{table}
+\end{frame}
+
+\begin{frame}{Self-Orthogonal Embeddings (Example: $[22,11,6]$)}
+    \begin{columns}
+        \column{0.6\textwidth}
+        \textbf{Target}: Embed Hamming Code $\mathcal{H}_4\,[15,11,3]$ into SO code.
+        
+        \vspace{0.2cm}
+        \textbf{Process}:
+        \begin{itemize}
+            \item \textbf{Input}: $G_{15,11}$ (Hamming).
+            \item \textbf{Gram Rank}: $\rank(G G^T) = 7$.
+            \item \textbf{Extension}: Must add exactly 7 columns ($n' = 15+7 = 22$).
+        \end{itemize}
+        
+        \vspace{0.2cm}
+        \textbf{Results}:
+        \begin{enumerate}
+            \item \textbf{Algebraic}: Finds $[22,11,4]$ (Minimal length, poor distance).
+            \item \textbf{SolEvolve (SAT)}: Finds **$[22,11,6]$**.
+        \end{enumerate}
+
+        \column{0.4\textwidth}
+        \begin{block}{Insight}
+            This is the famous **Shortened Golay Code**. SolEvolve rediscovered this optimal structure autonomously using only the self-orthogonality constraint and distance optimization.
+        \end{block}
+        
+        \vspace{0.2cm}
+        \small
+        * Proof of non-existence for $d=7$: Verified by UNSAT in 300s.
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Self-Orthogonal Embeddings (Visual Example: Ternary $[20,7,9]$)}
+    \textbf{Ternary BCH Extension}: $[13,7,5] \xrightarrow{\text{SolEvolve}} [20,7,9]$ ($t=7$).
+    \vspace{0.2cm}
+    
+    \centering \tiny
+    \[
+    G_{\text{ext}} = \left[ \begin{array}{ccccccccccccc|ccccccc}
+    1 & 0 & 2 & 0 & 2 & 2 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 2 & 0 & 0 & 0 & 1 & 1 & 1 \\
+    0 & 1 & 0 & 2 & 0 & 2 & 2 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 2 & 0 & 0 & 2 & 2 & 0 \\
+    0 & 0 & 1 & 0 & 2 & 0 & 2 & 2 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 2 & 0 & 2 & 1 & 0 \\
+    0 & 0 & 0 & 1 & 0 & 2 & 0 & 2 & 2 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 2 & 1 & 2 & 0 \\
+    0 & 0 & 0 & 0 & 1 & 0 & 2 & 0 & 2 & 2 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 \\
+    0 & 0 & 0 & 0 & 0 & 1 & 0 & 2 & 0 & 2 & 2 & 1 & 0 & 0 & 0 & 0 & 0 & 2 & 2 & 1 \\
+    0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 2 & 0 & 2 & 2 & 1 & 0 & 0 & 0 & 0 & 1 & 2 & 2
+    \end{array} \right]
+    \]
+    
+    \vspace{0.2cm}
+    \raggedright
+    \footnotesize
+    \begin{itemize}
+        \item \textbf{Left}: Identity + Parity ($[13,7]$ BCH).
+        \item \textbf{Right}: SolEvolve-discovered extension ($S$).
+        \item \textbf{Result}: Self-orthogonal over $\mathbb{F}_3$ with $d=9$.
+    \end{itemize}
+\end{frame}
+
+\section{Discoveries: Generalized Lucas Cubes}
+
+\begin{frame}{Preliminaries: Interconnection Networks}
+    \begin{columns}
+        \column{0.6\textwidth}
+        \textbf{Interconnection Topologies}:
+        modeled by graphs $G=(V,E)$ where $V$ represents processors and $E$ communication links. key metric: $d_G(u,v)$ (shortest path).
+        
+        \vspace{0.2cm}
+        \textbf{Hypercube $Q_n$}:
+        \begin{itemize} \footnotesize
+            \item Vertices: Binary strings of length $n$.
+            \item Edges: Adjacent if strings differ in exactly one coordinate.
+            \item Metric: $d_{Q_n}(u,v) = $ Hamming distance.
+        \end{itemize}
+
+        \vspace{0.2cm}
+        \textbf{Fibonacci \& Lucas Cubes} (Isometric subgraphs of $Q_n$):
+        \begin{itemize} \footnotesize
+            \item \textbf{Fibonacci Cube $\Gamma_n$}: Induced by strings with no consecutive 1s ($b_i b_{i+1} = 0$).
+            \item \textbf{Lucas Cube $\Lambda_n$}: Induced by strings with no consecutive 1s, including wrap-around ($b_1 b_n \neq 1$).
+        \end{itemize}
+
+        \column{0.4\textwidth}
+        \begin{figure}
+            \centering
+             % Conceptual illustration (placeholder or use existing if avail)
+            \begin{tikzpicture}[scale=0.5, every node/.style={circle,draw,inner sep=1pt,fill=black}]
+               % Simple 2D hypercube/fib representation could act as visual anchor
+               \node (00) at (0,0) {}; \node (01) at (0,2) {};
+               \node (10) at (2,0) {}; 
+               \draw (00)--(01); \draw (00)--(10); 
+               % Just a clear abstract visual
+            \end{tikzpicture}
+            \caption{\footnotesize $\Lambda_n$ removes nodes with periodic $11$ patterns from $Q_n$.}
+        \end{figure}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Perfect Partitions in Generalized Lucas Cubes (Foundations)}
+    \begin{columns}
+        \column{0.55\textwidth}
+    \begin{definition}[Generalized Lucas cube $\Lambda_n(1^s)$]
+    Subgraph of $Q_n$ induced by vertices without $1^s$ in any circular shift.
+    \end{definition}
+    
+    \begin{definition}[Perfect Code/Partition]
+    A set $\mathcal{C}$ where balls $N[c]$ form a partition of $V(G)$.
+    \end{definition}
+
+        \textbf{Perfect Partitions}:
+        \small
+        \begin{itemize}
+            \item \textbf{Prev. Boundary}: Mollard ($s \ge n-2$).
+            \item \textbf{New}: Perfect partition for $\Lambda_7(1^4)$ ($s=n-3$).
+            \item \textbf{Insight}: "Syndrome Shift" - Centers derived from Hamming codes.
+        \end{itemize}
+        
+        \vspace{0.2cm}
+        \textbf{Results}:
+        \footnotesize
+        \begin{itemize}
+            \item $\Lambda_7(1^4)$: 15 centers (Found in $<0.1$s).
+            \item $\Lambda_{15}(1^{12})$: 2047 centers (Found in 5.6s).
+        \end{itemize}
+
+        \column{0.45\textwidth}
+        \begin{figure}
+            \centering
+            % User requested this path
+            \includegraphics[width=0.9\textwidth]{Figures/lucas_circular.png}
+            \caption{Perfect partition of $\Lambda_7(1^4)$.}
+        \end{figure}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Perfect Partitions in Generalized Lucas Cubes (Results)}
+    \begin{table}[htbp]
+    \centering
+    \caption{Perfect partition results for generalized Lucas cubes}
+    \begin{tabular}{llllll}
+    \toprule
+    $(n, s)$ & $|V|$ & Ball Sizes & Centers & Status & Time \\
+    \midrule
+    $(7, 4)$ & 99 & $\{6, 7, 8\}$ & 15 & SAT & $<0.1$s \\
+    $(7, 3)$ & 71 & --- & --- & UNSAT & 0.02s \\
+    $(7, 2)$ & 29 & --- & --- & UNSAT & $<0.01$s \\
+    $(15, 12)$ & 32,707 & $\{14, 15, 16\}$ & 2,047 & SAT & 5.6s \\
+    $(15, 11)$ & 32,647 & $\{14, 15, 16\}$ & 2,047 & SAT & 388s \\
+    $(15, 10)$ & 32,527 & $\{14, 15, 16\}$ & $\le 2047$ & Timeout & $>$2hr \\
+    $(15, 4)$ & 18,842 & --- & --- & UNSAT & 496s \\
+    $(15, 3)$ & 9,327 & --- & --- & UNSAT & 5.4s \\
+    $(15, 2)$ & 1,364 & --- & --- & UNSAT & $<0.1$s \\
+    \bottomrule
+    \end{tabular}
+    \end{table}
+\end{frame}
+
+\begin{frame}{Generalized Lucas Cubes (Example: $\Lambda_7(1^4)$)}
+    \begin{columns}
+        \column{0.5\textwidth}
+        \textbf{Discovery Details}:
+        \begin{itemize}
+            \item \textbf{Problem}: Find a perfect code in $\Lambda_7(1^4)$ ($|V|=99$).
+            \item \textbf{Result}: Found 15 centers forming a partition.
+        \end{itemize}
+        
+        \vspace{0.2cm}
+        \textbf{Structure (Non-uniform Ball Sizes)}:
+        \begin{itemize}
+            \item \textbf{8 centers}: Ball size 8.
+            \item \textbf{6 centers}: Ball size 6.
+            \item \textbf{1 center}: Ball size 7.
+        \end{itemize}
+        \small
+        * Total coverage: $8(8) + 6(6) + 1(7) = 64 + 36 + 7 = 99 = |V|$.
+
+        \column{0.5\textwidth}
+        \textbf{Explicit Centers}:
+        \tiny
+        \begin{tabular}{ccc}
+        \toprule
+        \textbf{Center} & \textbf{Wt} & \textbf{Ball} \\ \midrule
+        \texttt{0000000} & 0 & 8 \\
+        \texttt{0001011} & 3 & 8 \\
+        \texttt{0010110} & 3 & 8 \\
+        \texttt{0011101} & 4 & 6 \\
+        \texttt{0100111} & 4 & 6 \\
+        \texttt{0101100} & 3 & 8 \\
+        \texttt{0110001} & 3 & 8 \\
+        \texttt{0111010} & 4 & 6 \\
+        \texttt{1000101} & 3 & 8 \\
+        \texttt{1001110} & 4 & 6 \\
+        \texttt{1010011} & 4 & 6 \\
+        \texttt{1011000} & 3 & 8 \\
+        \texttt{1100010} & 3 & 8 \\
+        \texttt{1101001} & 4 & 7 \\
+        \texttt{1110100} & 4 & 6 \\
+        \bottomrule
+        \end{tabular}
+    \end{columns}
+\end{frame}
+
+\section{Discoveries: Mutually Orthogonal Latin Squares}
+
+\begin{frame}{Mutually Orthogonal Latin Squares (Foundations)}
+    \begin{definition}[Latin Square]
+    $n \times n$ array with $n$ symbols, appearing once per row/col.
+    \end{definition}
+    
+    \begin{definition}[MOLS]
+    $L_1, L_2$ are orthogonal if every pair $(x,y)$ appears once when superimposed.
+    \end{definition}
+
+    \begin{definition}[$k$-net]
+    Set of points and lines ensuring unique intersection between parallel classes. Equivalent to MOLS.
+    \end{definition}
+
+    \vspace{0.3cm}
+    \textbf{Target}: $\text{MOLS}(10,2)$ and $\text{MOLS}(10,3)$ exploration.
+\end{frame}
+
+\begin{frame}{Mutually Orthogonal Latin Squares (Results)}
+    \textbf{Key Findings}:
+    \begin{itemize}
+        \item \textbf{Efficiency}: Rediscovered $\text{MOLS}(10,2)$ in \textbf{7.58 seconds}.
+        \item \textbf{Innovation}: Automatic non-symmetric pair discovery and UNSAT certificates for Delisle sub-cases.
+    \end{itemize}
+
+    \begin{table}
+    \centering \tiny
+    \caption{Comprehensive MOLS search results via SAT}
+    \begin{tabular}{lccrrlc}
+    \toprule
+    \textbf{Experiment} & \textbf{Problem} & \textbf{Method} & \textbf{Vars} & \textbf{Clauses} & \textbf{Time} & \textbf{Result} \\
+    \midrule
+    Small orders & (4,2) & Standard & 448 & 2,264 & $<0.1$s & SAT \\
+    & (5,2) & Standard & $\sim$975 & $\sim$11,672 & $<0.1$s & SAT \\
+    & (6,2) & Standard & 3,456 & 13,944 & $<0.1$s & SAT \\
+    & (8,2) & Standard & --- & --- & $<1$s & SAT \\
+    \midrule
+    Hard/Open & (9,3) & Non-symmetric & 32,159 & 193,801 & 10.4s & SAT \\
+    & (10,2) & Delisle Case 1 & 19,300 & 114,000 & 8.65s & SAT \\
+    & (10,2) & Delisle Case 5 & 19,300 & 114,000 & 7.58s & SAT \\
+    & (10,2) & Delisle Cases 2--4 & 19,300 & 114,000 & $<0.1$s & UNSAT \\
+    \midrule
+    Near-MOLS & (10,3) & Soft (MaxDup=25) & 177,000 & 1.0M & 27.09s & 0.75 \\
+    & (10,3) & Soft (MaxDup=22) & 177,000 & 1.0M & 83.21s & 0.79 \\
+    & (10,3) & Soft (MaxDup=20) & 177,000 & 1.0M & Timeout & --- \\
+    \bottomrule
+    \end{tabular}
+    \end{table}
+\end{frame}
+
+\begin{frame}{Pilot Study: MOLS(5,2) with Non-Symmetry}
+    \begin{columns}
+        \column{0.5\textwidth}
+        \textbf{Challenge}: Find two orthogonal Latin squares of order 5 that are \textit{not} symmetric ($L \neq L^T$).
+        
+        \vspace{0.2cm}
+        \textbf{Result}:
+        \begin{itemize}
+            \item \textbf{Status}: Found in \textbf{$< 1$ second}.
+            \item \textbf{Verification}: Confirmed non-symmetry and orthogonality.
+        \end{itemize}
+        
+        \vspace{0.2cm}
+        \textbf{Significance}:
+        Demonstrates the solver's ability to handle complex structural constraints (latin, orthogonal, non-symmetric) simultaneously and efficiently.
+
+        \column{0.5\textwidth}
+        \centering
+        \footnotesize
+        \textbf{$L_1$} \quad
+        \begin{tabular}{|c|c|c|c|c|}
+        \hline
+         \textcolor{red}{0} & \textcolor{violet}{4} & \textcolor{green!60!black}{2} & \textcolor{orange}{3} & \textcolor{blue}{1} \\ \hline
+         \textcolor{orange}{3} & \textcolor{green!60!black}{2} & \textcolor{red}{0} & \textcolor{blue}{1} & \textcolor{violet}{4} \\ \hline
+         \textcolor{green!60!black}{2} & \textcolor{blue}{1} & \textcolor{violet}{4} & \textcolor{red}{0} & \textcolor{orange}{3} \\ \hline
+         \textcolor{blue}{1} & \textcolor{red}{0} & \textcolor{orange}{3} & \textcolor{violet}{4} & \textcolor{green!60!black}{2} \\ \hline
+         \textcolor{violet}{4} & \textcolor{orange}{3} & \textcolor{blue}{1} & \textcolor{green!60!black}{2} & \textcolor{red}{0} \\ \hline
+        \end{tabular}
+
+        \vspace{0.2cm}
+        \textbf{$L_2$} \quad
+        \begin{tabular}{|c|c|c|c|c|}
+        \hline
+         \textcolor{violet}{4} & \textcolor{orange}{3} & \textcolor{green!60!black}{2} & \textcolor{red}{0} & \textcolor{blue}{1} \\ \hline
+         \textcolor{orange}{3} & \textcolor{red}{0} & \textcolor{blue}{1} & \textcolor{green!60!black}{2} & \textcolor{violet}{4} \\ \hline
+         \textcolor{blue}{1} & \textcolor{violet}{4} & \textcolor{red}{0} & \textcolor{orange}{3} & \textcolor{green!60!black}{2} \\ \hline
+         \textcolor{red}{0} & \textcolor{green!60!black}{2} & \textcolor{violet}{4} & \textcolor{blue}{1} & \textcolor{orange}{3} \\ \hline
+         \textcolor{green!60!black}{2} & \textcolor{blue}{1} & \textcolor{orange}{3} & \textcolor{violet}{4} & \textcolor{red}{0} \\ \hline
+        \end{tabular}
+    \end{columns}
+\end{frame}
+
+\section{Conclusion}
+
+\begin{frame}{Conclusion}
+    \begin{center}
+        \Large \textbf{From Assisted Discovery to Autonomous Partnership}
+    \end{center}
+    \vspace{0.5cm}
+    SolEvolve demonstrates that LLMs, when wrapped in a rigorous evolutionary framework, can:
+    \begin{enumerate}
+        \item \textbf{Optimize Encodings}: $O(2^{k^2})$ search space reductions.
+        \item \textbf{Conceive Algorithms}: Rank-one elimination derived \textit{ab initio}.
+        \item \textbf{Verify Constructs}: Providing formal guarantees (UNSAT proofs).
+    \end{enumerate}
+    \vspace{0.5cm}
+    \begin{block}{}
+        \centering
+        Future work: Extending to quantum error correction codes and non-linear cryptographic functions.
+    \end{block}
+\end{frame}
+
+\begin{frame}[standout]
+    \Huge Thank You!
+    \vspace{0.5cm} 
+    \normalsize
+    Questions?
+\end{frame}
+
+\appendix
+
+\end{document}

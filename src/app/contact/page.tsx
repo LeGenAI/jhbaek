@@ -1,24 +1,35 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Navigation } from '@/components/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { 
-  Mail, 
-  Github, 
-  Linkedin, 
-  Phone, 
+import {
+  Mail,
+  Github,
+  Linkedin,
+  Phone,
   MapPin,
   MessageCircle,
-  Send
+  Send,
+  Shield,
+  Globe,
+  Brain
 } from 'lucide-react';
 
 export default function ContactPage() {
+  useEffect(() => {
+    document.title = 'Contact | Jae-Hyun Baek - AI Safety Researcher';
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Contact Jae-Hyun Baek for collaboration on AI Safety, Alignment Faking research, and Formal Methods.');
+    }
+  }, []);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       <Navigation />
-      
+
       {/* Header Spacing */}
       <div className="pt-20"></div>
 
@@ -27,8 +38,8 @@ export default function ContactPage() {
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Get in Touch</h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Interested in collaboration, have questions about my research, or want to discuss opportunities? 
-            I'd love to hear from you!
+            Interested in <strong>AI Safety</strong>, <strong>Formal Verification</strong>, or discussing <strong>Alignment Faking</strong>?
+            I am ready to collaborate with the AIM Intelligence team.
           </p>
         </div>
 
@@ -91,7 +102,7 @@ export default function ContactPage() {
                 </Button>
 
                 <Button asChild variant="outline" size="lg" className="w-full gap-2 text-left justify-start">
-                  <a href="https://www.linkedin.com/in/재현-백-516899227" target="_blank" rel="noopener noreferrer">
+                  <a href="https://www.linkedin.com/in/jae-hyun-baek-516899227" target="_blank" rel="noopener noreferrer">
                     <Linkedin className="w-5 h-5" />
                     Connect on LinkedIn
                   </a>
@@ -106,55 +117,39 @@ export default function ContactPage() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Send className="w-5 h-5" />
-                  Areas of Collaboration
+                  Areas of Contribution
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-6">
-                  <div className="border-l-4 border-blue-500 pl-4 bg-blue-50 p-4 rounded-r-lg">
+                  <div className="border-l-4 border-indigo-500 pl-4 bg-indigo-50 p-4 rounded-r-lg">
                     <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
-                      <span className="text-blue-600">🛠️</span>
-                      Trillion Labs Product Engineer - Perfect Match
+                      <span className="text-indigo-600">🛡️</span>
+                      AIM Intelligence Fit
                     </h4>
                     <div className="space-y-2 text-sm text-gray-600">
-                      <p><strong>"Swiss Army Knife"</strong>로서의 풀스택 역량: TypeScript/React, Python, Ruby on Rails</p>
-                      <p><strong>"Thrive in ambiguity"</strong>: 불확실성 속에서도 빠른 프로토타이핑과 반복 개발</p>
-                      <p><strong>"Novel AI UX"</strong>: AI 모델을 직관적이고 즐거운 인터페이스로 연결하는 경험</p>
-                      <p><strong>"Bridge research and product"</strong>: 수학 연구진과 제품팀 사이의 완벽한 가교 역할</p>
+                      <p><strong>Formal Methods</strong>: Applying mathematical rigor to AI Safety guarantees.</p>
+                      <p><strong>Red Teaming</strong>: Designing evaluation pipelines for "Alignment Faking".</p>
+                      <p><strong>Engineering</strong>: Bridging abstract research with scalable, production-grade code (EntropyMath).</p>
                     </div>
                     <div className="flex flex-wrap gap-1 text-xs mt-3">
-                      <span className="px-2 py-1 bg-blue-100 text-blue-700 rounded-full">Product Engineering</span>
-                      <span className="px-2 py-1 bg-purple-100 text-purple-700 rounded-full">AI UX Design</span>
-                      <span className="px-2 py-1 bg-green-100 text-green-700 rounded-full">Fast Iteration</span>
-                      <span className="px-2 py-1 bg-orange-100 text-orange-700 rounded-full">Research Bridge</span>
+                      <span className="px-2 py-1 bg-indigo-100 text-indigo-700 rounded-full">AI Safety</span>
+                      <span className="px-2 py-1 bg-red-100 text-red-700 rounded-full">Red Teaming</span>
+                      <span className="px-2 py-1 bg-blue-100 text-blue-700 rounded-full">Formal Verification</span>
                     </div>
                   </div>
 
                   <div className="border-l-4 border-purple-500 pl-4">
-                    <h4 className="font-semibold text-gray-900 mb-2">AI & Machine Learning</h4>
+                    <h4 className="font-semibold text-gray-900 mb-2">Evaluation & Metrics</h4>
                     <p className="text-sm text-gray-600">
-                      LLM API 연동, RAG 시스템, 멀티모달 AI, 오픈소스 모델 활용 경험
+                      Building leaderboards (EntropyMath) and designing novel metrics for "Honest" reasoning in Agents.
                     </p>
                   </div>
 
                   <div className="border-l-4 border-green-500 pl-4">
-                    <h4 className="font-semibold text-gray-900 mb-2">Large-Scale AI Systems</h4>
+                    <h4 className="font-semibold text-gray-900 mb-2">Global Research</h4>
                     <p className="text-sm text-gray-600">
-                      기관 전체 AI 데이터 변환, OSS Fine-tuning, 대규모 시스템 설계
-                    </p>
-                  </div>
-
-                  <div className="border-l-4 border-orange-500 pl-4">
-                    <h4 className="font-semibold text-gray-900 mb-2">Full-Stack + AI Development</h4>
-                    <p className="text-sm text-gray-600">
-                      Ruby on Rails + Python API, RAG 기반 웹서비스, AI 모델 배포
-                    </p>
-                  </div>
-
-                  <div className="border-l-4 border-red-500 pl-4">
-                    <h4 className="font-semibold text-gray-900 mb-2">Research & Academia</h4>
-                    <p className="text-sm text-gray-600">
-                      수학 백그라운드, 논문 발표, 국제 학회 초청 강연
+                      Experience presenting at international venues (ISIS 2025) and collaborating in English.
                     </p>
                   </div>
                 </div>
@@ -169,27 +164,19 @@ export default function ContactPage() {
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
                     <span className="text-sm font-medium text-gray-700">Position</span>
-                    <span className="text-sm text-gray-600">Team Leader, DeepFountain Corp.</span>
+                    <span className="text-sm text-gray-600">M.S. Student & Team Leader</span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium text-gray-700">Education</span>
-                    <span className="text-sm text-gray-600">M.S. in Data Science (In Progress)</span>
+                    <span className="text-sm font-medium text-gray-700">Availability</span>
+                    <span className="text-sm text-blue-600">Ready for Internship (Winter 2026)</span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium text-gray-700">Career Vision</span>
-                    <span className="text-sm text-purple-600">컨설팅 → 스타트업 → 교육</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium text-gray-700">Current Focus</span>
-                    <span className="text-sm text-purple-600">Trillion Labs Product Engineer</span>
+                    <span className="text-sm font-medium text-gray-700">Focus</span>
+                    <span className="text-sm text-purple-600">AIM Intelligence Application</span>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-sm font-medium text-gray-700">Response Time</span>
                     <span className="text-sm text-green-600">Usually within 24 hours</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium text-gray-700">Availability</span>
-                    <span className="text-sm text-blue-600">빠른 의사결정 & 실행력 준비 완료</span>
                   </div>
                 </div>
               </CardContent>
@@ -199,32 +186,28 @@ export default function ContactPage() {
 
         {/* Call to Action */}
         <div className="mt-16 text-center">
-          <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 rounded-2xl p-8 text-white relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-white opacity-10 rounded-full transform translate-x-16 -translate-y-16"></div>
-            <div className="absolute bottom-0 left-0 w-24 h-24 bg-white opacity-10 rounded-full transform -translate-x-12 translate-y-12"></div>
+          <div className="bg-gradient-to-r from-indigo-900 via-blue-900 to-black rounded-2xl p-8 text-white relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500 opacity-20 rounded-full transform translate-x-16 -translate-y-16"></div>
+            <div className="absolute bottom-0 left-0 w-24 h-24 bg-purple-500 opacity-20 rounded-full transform -translate-x-12 translate-y-12"></div>
             <div className="relative z-10">
-              <h2 className="text-2xl font-bold mb-4">수학으로 세상을 이롭게 하는 Integrator</h2>
+              <h2 className="text-2xl font-bold mb-4">Let's Build Safe & Trustworthy AI</h2>
               <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
-                <strong>"Move fast, write clean code"</strong> 철학으로 빠른 프로토타이핑과 제품화를 주도합니다.  
-                <strong>AI의 힘을 직관적이고 즐거운 UX로 연결</strong>하여 
-                Trillion Labs의 혁신적인 AI 인터페이스 구축에 기여하고자 합니다.
+                I am eager to contribute my <strong>mathematical background</strong> and <strong>engineering skills</strong> to
+                AIM Intelligence's mission of securing the AI ecosystem.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button asChild size="lg" variant="secondary">
+                <Button asChild size="lg" variant="secondary" className="hover:bg-blue-50">
                   <a href="mailto:bjh3641@gmail.com">
                     <Mail className="w-5 h-5 mr-2" />
-                    연구 협업 논의하기
+                    Contact for Internship
                   </a>
                 </Button>
-                <Button asChild size="lg" variant="secondary">
+                <Button asChild size="lg" variant="secondary" className="hover:bg-blue-50">
                   <a href="https://github.com/LeGenAI" target="_blank" rel="noopener noreferrer">
                     <span className="mr-2">🚀</span>
-                    프로젝트 포트폴리오 보기
+                    View Portfolio Code
                   </a>
                 </Button>
-              </div>
-              <div className="mt-4 text-sm text-blue-200">
-                Mission: 수학으로 세상을 이롭게 하는 통합형 인재 | Career: 컨설팅 → 스타트업 → 교육
               </div>
             </div>
           </div>
