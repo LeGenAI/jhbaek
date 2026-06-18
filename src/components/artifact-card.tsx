@@ -7,14 +7,21 @@ export function ArtifactCard({ artifact }: { artifact: ProjectArtifact }) {
   return (
     <Card className="group h-full overflow-hidden border-slate-200 bg-white/90 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
       {artifact.image ? (
-        <div className="h-44 overflow-hidden border-b border-slate-100 bg-slate-50">
+        <div className="h-44 overflow-hidden border-b border-slate-100 bg-slate-50 p-3">
           <img
             src={artifact.image}
             alt={artifact.title}
-            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+            className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-[1.03]"
           />
         </div>
-      ) : null}
+      ) : (
+        <div className="flex h-44 items-center justify-center border-b border-slate-100 bg-[radial-gradient(circle_at_top_left,_rgba(37,99,235,0.16),_transparent_35%),linear-gradient(135deg,_#f8fafc,_#eef2ff)] p-6">
+          <div className="rounded-2xl border border-blue-100 bg-white/70 px-4 py-3 text-center shadow-sm">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-blue-700">{artifact.kind}</p>
+            <p className="mt-1 text-sm text-slate-500">public preview pending</p>
+          </div>
+        </div>
+      )}
       <CardContent className="flex h-full flex-col gap-4 p-6">
         <div className="flex flex-wrap items-center gap-2">
           <Badge className="bg-slate-900 text-white hover:bg-slate-800">{artifact.kind}</Badge>

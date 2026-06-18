@@ -11,18 +11,32 @@ const statusStyles: Record<Publication['status'], string> = {
   'In Preparation': 'bg-zinc-100 text-zinc-700 border-zinc-200',
 };
 
+const linkLabels: Record<string, string> = {
+  researchGate: 'ResearchGate',
+  paper: 'Paper',
+  code: 'Code',
+  project: 'Project',
+  doi: 'DOI',
+};
+
 export function PublicationCard({ publication }: { publication: Publication }) {
   return (
     <Card className="group overflow-hidden border-slate-200 bg-white/90 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
       {publication.image ? (
-        <div className="h-48 overflow-hidden border-b border-slate-100 bg-slate-50">
+        <div className="h-48 overflow-hidden border-b border-slate-100 bg-slate-50 p-3">
           <img
             src={publication.image}
             alt={publication.title}
-            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+            className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-[1.03]"
           />
         </div>
-      ) : null}
+      ) : (
+        <div className="flex h-48 items-center justify-center border-b border-slate-100 bg-gradient-to-br from-slate-100 to-blue-50 p-6 text-center">
+          <span className="text-sm font-medium uppercase tracking-[0.2em] text-slate-500">
+            {publication.area}
+          </span>
+        </div>
+      )}
       <CardContent className="space-y-4 p-6">
         <div className="flex flex-wrap items-center gap-2">
           <Badge variant="outline" className={statusStyles[publication.status]}>
@@ -65,7 +79,7 @@ export function PublicationCard({ publication }: { publication: Publication }) {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1 font-medium text-blue-600 hover:text-blue-800"
                 >
-                  {label}
+                  {linkLabels[label] ?? label}
                   <ExternalLink className="h-3 w-3" />
                 </a>
               ) : null,

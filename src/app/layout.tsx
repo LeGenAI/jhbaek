@@ -95,7 +95,7 @@ export default function RootLayout({
   const widgetKey = process.env.NEXT_PUBLIC_DEEPFOUNTAIN_WIDGET_KEY;
 
   return (
-    <html suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <head>
         {widgetKey ? (
           <script

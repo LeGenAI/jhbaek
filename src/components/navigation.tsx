@@ -9,11 +9,8 @@ import {
   Menu,
   User,
   GraduationCap,
-  Briefcase,
   Trophy,
-  Code,
   BookOpen,
-  FileText,
   Mail,
   Github,
   Linkedin
@@ -111,7 +108,7 @@ export function Navigation() {
                   ? "text-white/90 hover:text-amber-300 hover:bg-white/10"
                   : "text-gray-600 hover:text-blue-600 hover:bg-gray-100"
               }>
-                <a href="https://github.com/LeGenAI" target="_blank" rel="noopener noreferrer">
+                <a href="https://github.com/LeGenAI" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">
                   <Github className="w-4 h-4" />
                 </a>
               </Button>
@@ -120,7 +117,7 @@ export function Navigation() {
                   ? "text-white/90 hover:text-amber-300 hover:bg-white/10"
                   : "text-gray-600 hover:text-blue-600 hover:bg-gray-100"
               }>
-                <a href="https://www.linkedin.com/in/jae-hyun-baek-516899227" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.linkedin.com/in/jae-hyun-baek-516899227" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile">
                   <Linkedin className="w-4 h-4" />
                 </a>
               </Button>
@@ -129,7 +126,7 @@ export function Navigation() {
                   ? "text-white/90 hover:text-amber-300 hover:bg-white/10"
                   : "text-gray-600 hover:text-blue-600 hover:bg-gray-100"
               }>
-                <a href="mailto:bjh3641@gmail.com">
+                <a href="mailto:bjh3641@gmail.com" aria-label="Email Jae-Hyun Baek">
                   <Mail className="w-4 h-4" />
                 </a>
               </Button>
@@ -149,8 +146,8 @@ export function Navigation() {
                 <SheetContent side="right" className="w-80">
                   <div className="flex flex-col space-y-4 mt-8">
                     <div className="text-center pb-4 border-b">
-                      <h3 className="text-lg font-bold text-gray-900">재현 백</h3>
-                      <p className="text-sm text-gray-600">Team Leader • Researcher</p>
+                      <h3 className="text-lg font-bold text-gray-900">백재현</h3>
+                      <p className="text-sm text-gray-600">Researcher-builder • AI systems maker</p>
                     </div>
 
                     {/* Mobile Navigation Items */}

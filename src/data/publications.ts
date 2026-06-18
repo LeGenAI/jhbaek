@@ -31,6 +31,9 @@ export const publications: Publication[] = [
       'A modified retrieval augmented generation framework for regulatory documents. This is one of the applied roots of my current interest in turning domain documents into agent-readable memory.',
     tags: ['RAG', 'regulatory documents', 'LLM evaluation', 'best paper'],
     image: '/award_kiis_2024.png',
+    links: {
+      researchGate: 'https://www.researchgate.net/profile/Jae-Hyun-Baek?ev=hdr_xprf',
+    },
     featured: true,
   },
   {
@@ -44,6 +47,9 @@ export const publications: Publication[] = [
       'A study of foundation-model forecasting for river water levels. We compare TimeGPT with classical and linear baselines under rolling-origin evaluation on the Gamcheon River setting.',
     tags: ['TimeGPT', 'water-level prediction', 'foundation models', 'environmental AI'],
     image: '/accepted/Application_of_TimeGPT_for_enhancing_water_level_prediction_in_Gamcheon_River__Korea/TimeGPT_overall.png',
+    links: {
+      researchGate: 'https://www.researchgate.net/profile/Jae-Hyun-Baek?ev=hdr_xprf',
+    },
     featured: true,
   },
   {
@@ -57,6 +63,9 @@ export const publications: Publication[] = [
       'A hybrid pipeline combining visual retrieval and LLM reasoning for diagram-heavy mathematical problems, especially cases where OCR-only methods miss the actual structure of the figure.',
     tags: ['VLM', 'ColPali', 'MathVision', 'multimodal reasoning'],
     image: '/accepted/Hybrid multimodal GenAI for solving math problems containing various figures_v2_20250209/colpalianstwo.png',
+    links: {
+      researchGate: 'https://www.researchgate.net/profile/Jae-Hyun-Baek?ev=hdr_xprf',
+    },
     featured: true,
   },
   {
