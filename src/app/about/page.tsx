@@ -1,358 +1,158 @@
-'use client';
-
-import React, { useEffect } from 'react';
+import { Brain, GraduationCap, Network, PackageOpen, Wrench } from 'lucide-react';
 import { Navigation } from '@/components/navigation';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Separator } from '@/components/ui/separator';
-import {
-  Users,
-  GraduationCap,
-  Briefcase,
-  Code,
-  Brain,
-  BookOpen,
-  Sparkles,
-  Zap,
-  Target, // For Mission/Vision
-  Globe, // For Global Communication
-  Shield, // For AI Safety
-  Cpu // For Engineering
-} from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
-const projects = [
+const workHabits = [
   {
-    title: 'SolEvolve (Master\'s Thesis)',
-    description: 'Autonomous algorithm discovery system using LLM and Evolutionary computation. Rediscovered optimal codes ($[22,11,6]$) via Black-box optimization.',
-    tech: ['Evolutionary Comp.', 'LLM Agents', 'SAT Solvers', 'Python'],
-    impact: 'Research',
-    highlight: 'Autonomous Discovery of Mathematical Theorems',
-    image: '/thesis/graphical_abstract.png'
+    title: 'I look for the substrate first',
+    body: 'A theorem, a PDF archive, a table, a product log, a set of screenshots: every project has some hidden knowledge shape. I try to make that shape explicit.',
   },
   {
-    title: 'EntropyMath (AI Safety Eval)',
-    description: 'Leaderboard for evaluating Agentic Tool Use, designed to solve Data Contamination issues in LLM benchmarks.',
-    tech: ['Evaluation Pipeline', 'Next.js', 'Python', 'AI Safety'],
-    impact: 'Leaderboard Launch',
-    highlight: 'Measuring "Honest" Reasoning Capabilities',
-    link: 'https://entropymath.com',
-    image: '/1212/1212_workshop_fig_1.png'
+    title: 'I build before the framing is perfect',
+    body: 'Many of my projects begin as rough scripts, local tools, or one-off experiments. The useful ones become libraries, dashboards, papers, or deployed systems.',
   },
   {
-    title: 'SOGAMBOT.com',
-    description: 'University-wide AI Chatbot and RAG solution for Sogang University.',
-    tech: ['RAG', 'Vector DB', 'Full-Stack', 'System Architecture'],
-    impact: 'Service Launched',
-    highlight: 'Transformed institutional data into AI-ready assets',
-    link: 'https://sogambot.com',
-    image: '/sogambot_events.jpg'
+    title: 'I care about agent access',
+    body: 'If a human can understand a domain but an agent cannot search, reuse, or verify it, the knowledge is still half locked. That is why Lean, MCP, graph memory, and retrieval systems keep showing up in my work.',
+  },
+];
+
+const timeline = [
+  {
+    label: 'Mathematics',
+    text: 'Coding theory, self-dual codes, combinatorial structures, and formal proof became the technical backbone of my research.',
   },
   {
-    title: 'MekaNet (Medical AI)',
-    description: 'WSI-based Tiny Object Detection using SSL architecture. Focused on medical image analysis.',
-    tech: ['Computer Vision', 'PyTorch', 'Medical AI'],
-    impact: 'Paper Under Review',
-    highlight: 'implemented TESSD architecture for Gigapixel images',
-    image: '/mekanet.png'
-  }
+    label: 'AI systems',
+    text: 'RAG products, forecasting workflows, medical AI, and education tools pushed me to turn research ideas into systems other people can use.',
+  },
+  {
+    label: 'Research memory',
+    text: 'The thread tying them together is now clearer: build agent-operable knowledge environments for domains that matter.',
+  },
 ];
 
 export default function AboutPage() {
-  useEffect(() => {
-    document.title = 'About | Jae-Hyun Baek - AI Safety Researcher';
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'AI Safety Researcher Jae-Hyun Baek. Specializing in Alignment Faking, Formal Methods, and Engineering. M.S. in Mathematics.');
-    }
-  }, []);
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+    <div className="min-h-screen bg-slate-50 text-slate-950">
       <Navigation />
-
-      {/* Header Spacing */}
-      <div className="pt-20"></div>
-
-      {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-6 py-16">
-
-        {/* Hero Section */}
-        <div className="text-center mb-16">
-          <Badge className="mb-4 bg-indigo-100 text-indigo-800 hover:bg-indigo-200 px-3 py-1 text-sm">
-            AI Safety Researcher & Mathematician
-          </Badge>
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Building <span className="text-indigo-600">Trustworthy AI</span> via<br />
-            Formal Verification & Mathematical Rigor
-          </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            "I study the discrepancy between an LLM's internal motives and external behaviors (<span className="font-semibold text-gray-900">Alignment Faking</span>)
-            and build trustworthy AI systems by mathematically formalizing these phenomena."
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Left Column - Profile & Core Competencies */}
-          <div className="space-y-8">
-
-            {/* Personal Information */}
-            <Card className="hover-card border-l-4 border-l-indigo-500">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Users className="w-5 h-5 text-indigo-600" />
-                  Profile
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 mb-6">
-                  <div className="relative">
-                    <img
-                      src="/jhbaek_profile.jpg"
-                      alt="Profile"
-                      className="w-24 h-24 rounded-full object-cover border-4 border-indigo-100 shadow-md"
-                    />
-                    <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 border-2 border-white rounded-full" title="Available for Hire"></div>
-                  </div>
-                  <div className="text-center sm:text-left">
-                    <h3 className="text-xl font-bold text-gray-900">Jae-Hyun Baek</h3>
-                    <p className="text-indigo-600 font-medium">M.S. in Mathematics, Sogang Univ.</p>
-                    <div className="text-sm text-gray-500 mt-1">
-                      Born 2000.07.17 | bjh3641@gmail.com
-                    </div>
-                    <div className="flex flex-wrap gap-2 mt-3 justify-center sm:justify-start">
-                      <Badge variant="outline" className="text-gray-600">Optimization</Badge>
-                      <Badge variant="outline" className="text-gray-600">Formal Methods</Badge>
-                      <Badge variant="outline" className="text-gray-600">Red Teaming</Badge>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Education */}
-            <Card className="hover-card">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <GraduationCap className="w-5 h-5 text-gray-700" />
-                  Education
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                <div>
-                  <div className="flex justify-between items-start mb-1">
-                    <h4 className="font-bold text-gray-900">M.S. in Mathematics</h4>
-                    <span className="text-sm text-indigo-600 font-medium">2024.03 - 2026.02 (Expected)</span>
-                  </div>
-                  <p className="text-gray-700">Sogang University</p>
-                  <p className="text-sm text-gray-500 mt-1">
-                    GPA: 4.1 / 4.3 (Top 3%)<br />
-                    Advisor: Prof. Jon-Lark Kim<br />
-                    Focus: Coding Theory, AI Safety, Optimization
-                  </p>
-                </div>
-                <Separator />
-                <div>
-                  <div className="flex justify-between items-start mb-1">
-                    <h4 className="font-bold text-gray-900">B.S. in Mathematics</h4>
-                    <span className="text-sm text-gray-500 font-medium">2022.03 - 2024.02</span>
-                  </div>
-                  <p className="text-gray-700">Sogang University</p>
-                  <p className="text-sm text-gray-500 mt-1">
-                    Transfer Student | GPA: 3.8 / 4.3
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Key Strengths for AIM */}
-            <Card className="hover-card bg-gradient-to-br from-indigo-50 to-blue-50 border-indigo-200">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Shield className="w-5 h-5 text-indigo-700" />
-                  Why AIM Intelligence?
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-5">
-
-                <div className="bg-white/60 p-4 rounded-lg border border-indigo-100">
-                  <h4 className="font-bold text-indigo-900 mb-2 flex items-center gap-2">
-                    <span className="text-xl">1.</span> Formal Methods as a Weapon
-                  </h4>
-                  <p className="text-sm text-indigo-800 leading-relaxed">
-                    Unlike typical engineers, I approach AI Safety from a <strong>mathematical foundation</strong>.
-                    I don't just find vulnerabilities; I aim to provide <strong>Formal Guarantees</strong> and explain <em>why</em> alignment failures occur structurally.
-                  </p>
-                </div>
-
-                <div className="bg-white/60 p-4 rounded-lg border border-indigo-100">
-                  <h4 className="font-bold text-indigo-900 mb-2 flex items-center gap-2">
-                    <span className="text-xl">2.</span> Global Communication
-                  </h4>
-                  <p className="text-sm text-indigo-800 leading-relaxed">
-                    Proven ability to present complex research in English at international venues (<strong className="underline">ISIS 2025 Award</strong>).
-                    Ready to collaborate with global leaders like Anthropic & DeepMind.
-                  </p>
-                </div>
-
-                <div className="bg-white/60 p-4 rounded-lg border border-indigo-100">
-                  <h4 className="font-bold text-indigo-900 mb-2 flex items-center gap-2">
-                    <span className="text-xl">3.</span> Engineering to Research
-                  </h4>
-                  <p className="text-sm text-indigo-800 leading-relaxed">
-                    Capable of building the full evaluation pipeline (<strong className="underline">EntropyMath</strong>).
-                    I bridge the gap between abstract theoretical safety and practical, scalable engineering.
-                  </p>
-                </div>
-
-              </CardContent>
-            </Card>
-
+      <main className="px-6 pt-32 pb-24">
+        <section className="mx-auto grid max-w-7xl grid-cols-1 gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+          <div className="space-y-6">
+            <Badge className="bg-slate-900 text-white hover:bg-slate-800">about the maker</Badge>
+            <h1 className="text-5xl font-semibold tracking-tight md:text-6xl">
+              I build small bridges between messy knowledge and working systems.
+            </h1>
+            <p className="text-lg leading-8 text-slate-600">
+              I am a PhD student in Sogang University's AI department, advised by Prof. Jong-Rak Kim, and a technical lead at DeepFountain. My work moves between formal mathematics, AI evaluation, and deployed AI systems.
+            </p>
+            <p className="text-lg leading-8 text-slate-600">
+              The projects look scattered at first: Lean libraries, math benchmarks, university chatbots, river forecasting, pathology images, Buddhist text retrieval. I see them as variations of one maker problem: how do we turn a domain into something searchable, verifiable, extensible, and useful?
+            </p>
           </div>
 
-          {/* Right Column - Vision, Proposal, Experience */}
-          <div className="space-y-8">
-
-            {/* 8-Week Research Proposal */}
-            <Card className="hover-card border-l-4 border-l-red-500 shadow-md">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Target className="w-5 h-5 text-red-600" />
-                  8-Week Research Proposal
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="mb-2">
-                  <p className="text-gray-700 mb-3">
-                    Goal: Research methodology to <strong>induce Alignment Faking</strong> via Red Teaming.
-                  </p>
-                </div>
-
-                <div className="grid grid-cols-1 gap-3">
-                  <div className="flex items-start gap-3 p-3 bg-red-50 rounded-lg">
-                    <span className="bg-red-200 text-red-800 text-xs font-bold px-2 py-1 rounded mt-0.5">Week 1-2</span>
-                    <p className="text-sm text-gray-700"><strong>Taxonomy & Setup:</strong> Define "Strategic Compliance" triggers in finance/medical domains.</p>
-                  </div>
-                  <div className="flex items-start gap-3 p-3 bg-red-50 rounded-lg">
-                    <span className="bg-red-200 text-red-800 text-xs font-bold px-2 py-1 rounded mt-0.5">Week 3-6</span>
-                    <p className="text-sm text-gray-700"><strong>Red Teaming Experiments:</strong> Develop automated jailbreaking prompts that target "Sycohphancy" and "Faking".</p>
-                  </div>
-                  <div className="flex items-start gap-3 p-3 bg-red-50 rounded-lg">
-                    <span className="bg-red-200 text-red-800 text-xs font-bold px-2 py-1 rounded mt-0.5">Week 7-8</span>
-                    <p className="text-sm text-gray-700"><strong>Evaluation & Paper Draft:</strong> Quantify the "Faking Rate" and draft a submission for NeurIPS/ICML 2026.</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Experience */}
-            <Card className="hover-card">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Briefcase className="w-5 h-5 text-gray-700" />
-                  Experience
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-6">
-
-                <div className="relative border-l-2 border-gray-200 pl-4 py-1">
-                  <div className="absolute -left-[9px] top-2 w-4 h-4 rounded-full bg-blue-500 border-2 border-white"></div>
-                  <h4 className="font-bold text-gray-900">Team Leader & Eng. Lead</h4>
-                  <p className="text-sm text-blue-600 font-medium mb-1">DeepFountain Corp. (2025.03 - Present)</p>
-                  <p className="text-sm text-gray-600 leading-relaxed">
-                    Led the development of AI Agent Platforms (SaaS).
-                    Orchestrated <strong>Ruby on Rails + Python</strong> hybrid architecture for scalable RAG systems.
-                  </p>
-                </div>
-
-                <div className="relative border-l-2 border-gray-200 pl-4 py-1">
-                  <div className="absolute -left-[9px] top-2 w-4 h-4 rounded-full bg-gray-300 border-2 border-white"></div>
-                  <h4 className="font-bold text-gray-900">Research Intern</h4>
-                  <p className="text-sm text-gray-500 font-medium mb-1">DeepHelix (2025.01 - 2025.02)</p>
-                  <p className="text-sm text-gray-600 leading-relaxed">
-                    Developed Multi-modal LLM pipelines for medical education assistants.
-                  </p>
-                </div>
-
-              </CardContent>
-            </Card>
-
-            {/* Tech Stack */}
-            <Card className="hover-card">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Code className="w-5 h-5 text-gray-700" />
-                  Technical Stack
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  <div>
-                    <h5 className="text-sm font-bold text-gray-900 mb-2">AI & Research</h5>
-                    <div className="flex flex-wrap gap-2">
-                      <Badge variant="secondary">PyTorch</Badge>
-                      <Badge variant="secondary">HuggingFace</Badge>
-                      <Badge variant="secondary">SAT Solvers</Badge>
-                      <Badge variant="secondary">LangChain</Badge>
+          <Card className="overflow-hidden border-slate-200 shadow-sm">
+            <div className="grid grid-cols-1 md:grid-cols-[220px_1fr]">
+              <div className="bg-slate-900 p-6 text-white">
+                <img
+                  src="/jhbaek_profile.jpg"
+                  alt="Jae-Hyun Baek"
+                  className="mb-6 h-36 w-36 rounded-3xl object-cover shadow-xl"
+                />
+                <h2 className="text-2xl font-semibold">Jae-Hyun Baek</h2>
+                <p className="mt-2 text-sm text-slate-300">백재현</p>
+              </div>
+              <CardContent className="space-y-6 p-8">
+                <div>
+                  <p className="text-sm font-semibold uppercase tracking-wide text-slate-500">current roles</p>
+                  <div className="mt-4 grid gap-3">
+                    <div className="flex gap-3 rounded-2xl bg-slate-50 p-4">
+                      <GraduationCap className="mt-1 h-5 w-5 text-blue-600" />
+                      <div>
+                        <p className="font-semibold">PhD student, Sogang AI</p>
+                        <p className="text-sm text-slate-600">Formalized mathematical AI, coding theory, agentic evaluation</p>
+                      </div>
                     </div>
-                  </div>
-                  <div>
-                    <h5 className="text-sm font-bold text-gray-900 mb-2">Web Engineering</h5>
-                    <div className="flex flex-wrap gap-2">
-                      <Badge variant="outline">Next.js (React)</Badge>
-                      <Badge variant="outline">TypeScript</Badge>
-                      <Badge variant="outline">FastAPI</Badge>
-                      <Badge variant="outline">Ruby on Rails</Badge>
-                      <Badge variant="outline">Supabase</Badge>
+                    <div className="flex gap-3 rounded-2xl bg-slate-50 p-4">
+                      <Wrench className="mt-1 h-5 w-5 text-blue-600" />
+                      <div>
+                        <p className="font-semibold">Technical lead, DeepFountain</p>
+                        <p className="text-sm text-slate-600">Applied AI products, RAG systems, agent workflows</p>
+                      </div>
+                    </div>
+                    <div className="flex gap-3 rounded-2xl bg-slate-50 p-4">
+                      <Network className="mt-1 h-5 w-5 text-blue-600" />
+                      <div>
+                        <p className="font-semibold">Research operator</p>
+                        <p className="text-sm text-slate-600">Turning domain knowledge into papers, benchmarks, and deployed artifacts</p>
+                      </div>
                     </div>
                   </div>
                 </div>
               </CardContent>
-            </Card>
+            </div>
+          </Card>
+        </section>
 
+        <section className="mx-auto mt-20 max-w-7xl">
+          <div className="mb-8 max-w-3xl">
+            <Badge variant="outline" className="border-slate-300 text-slate-600">how I work</Badge>
+            <h2 className="mt-4 text-4xl font-semibold tracking-tight">The same motion, different domains.</h2>
           </div>
-        </div>
-
-        {/* Selected Projects Grid */}
-        <div className="mt-20">
-          <h2 className="text-2xl font-bold text-gray-900 mb-8 flex items-center gap-2">
-            <Brain className="w-6 h-6 text-indigo-600" />
-            Selected Projects
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {projects.map((project, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow border-gray-200">
-                <div className="h-48 overflow-hidden bg-gray-100 rounded-t-xl relative">
-                  <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
-                  <div className="absolute top-4 right-4">
-                    <Badge className="bg-white/90 text-gray-800 shadow-sm hover:bg-white">
-                      {project.impact}
-                    </Badge>
-                  </div>
-                </div>
-                <CardContent className="p-6">
-                  <h3 className="text-lg font-bold text-gray-900 mb-2">{project.title}</h3>
-                  <p className="text-gray-600 text-sm mb-4 min-h-[40px]">{project.description}</p>
-
-                  <div className="mb-4">
-                    <span className="text-xs font-semibold text-indigo-600 bg-indigo-50 px-2 py-1 rounded">
-                      Must See: {project.highlight}
-                    </span>
-                  </div>
-
-                  <div className="flex flex-wrap gap-2 mt-auto">
-                    {project.tech.map((t) => (
-                      <Badge key={t} variant="secondary" className="text-xs text-gray-600">
-                        {t}
-                      </Badge>
-                    ))}
-                  </div>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+            {workHabits.map((habit) => (
+              <Card key={habit.title} className="border-slate-200 shadow-sm">
+                <CardHeader>
+                  <CardTitle className="text-xl">{habit.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm leading-6 text-slate-600">{habit.body}</p>
                 </CardContent>
               </Card>
             ))}
           </div>
-        </div>
+        </section>
 
-      </div>
+        <section className="mx-auto mt-20 max-w-7xl rounded-[2rem] bg-slate-900 p-8 text-white md:p-12">
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+            <div>
+              <PackageOpen className="mb-5 h-9 w-9 text-blue-300" />
+              <h2 className="text-4xl font-semibold tracking-tight">What I am trying to become</h2>
+              <p className="mt-5 text-lg leading-8 text-slate-300">
+                A researcher-builder who can turn a domain into an agent-operable research environment: searchable, verifiable, extensible, and useful enough to become either a paper or a product.
+              </p>
+            </div>
+            <div className="grid gap-4">
+              {timeline.map((item, index) => (
+                <div key={item.label} className="rounded-2xl border border-white/10 bg-white/10 p-5">
+                  <div className="flex items-center gap-3">
+                    <span className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-300 text-sm font-bold text-slate-950">
+                      {index + 1}
+                    </span>
+                    <h3 className="font-semibold text-white">{item.label}</h3>
+                  </div>
+                  <p className="mt-3 text-sm leading-6 text-slate-300">{item.text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="mx-auto mt-20 max-w-7xl">
+          <Card className="border-blue-100 bg-blue-50 shadow-sm">
+            <CardContent className="flex flex-col gap-5 p-8 md:flex-row md:items-start">
+              <Brain className="h-8 w-8 shrink-0 text-blue-700" />
+              <div>
+                <h2 className="text-2xl font-semibold text-slate-950">The question I keep asking</h2>
+                <p className="mt-3 text-lg leading-8 text-slate-700">
+                  What is the knowledge substrate here, and what would it take for an agent, prover, evaluator, or product team to use it without guessing?
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+        </section>
+      </main>
     </div>
   );
 }
