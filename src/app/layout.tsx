@@ -13,14 +13,29 @@ const geistMono = Geist_Mono({
   subsets: ['latin'],
 });
 
+const siteUrl = 'https://jhbaek.deep-fountain.com';
+
 export const metadata: Metadata = {
-  metadataBase: new URL('https://jhbaek.deep-fountain.com'),
+  metadataBase: new URL(siteUrl),
   title: {
-    default: 'Jae-Hyun Baek | AI Researcher & Mathematics Expert',
-    template: '%s | Jae-Hyun Baek'
+    default: 'Jae-Hyun Baek | Formalized Mathematical AI and Agentic Systems',
+    template: '%s | Jae-Hyun Baek',
   },
-  description: 'AI/ML researcher specializing in Mathematics, Computer Vision, and AI Security. CTO of DeepFountain Inc. Publications in IJFIS, JKIIS. Expert in VLM, Multimodal AI, and Trillion Labs applicant.',
-  keywords: ['AI researcher', 'Machine Learning', 'Mathematics', 'Computer Vision', 'AI Security', 'VLM', 'Multimodal AI', 'Deep Learning', 'Research', 'Trillion Labs', 'Sogang University'],
+  description:
+    'Portfolio of Jae-Hyun Baek, a Sogang AI PhD student and maker of formal math libraries, auditable AI benchmarks, RAG products, forecasting pipelines, and agent-readable research memory.',
+  keywords: [
+    'Jae-Hyun Baek',
+    '백재현',
+    'Formalized Mathematical AI',
+    'Lean',
+    'CodingTheoryLib',
+    'EntropyMath',
+    'AI4Math',
+    'RAG',
+    'MCP',
+    'AI evaluation',
+    'Sogang University',
+  ],
   authors: [{ name: 'Jae-Hyun Baek', url: 'https://github.com/LeGenAI' }],
   creator: 'Jae-Hyun Baek',
   publisher: 'Jae-Hyun Baek',
@@ -39,31 +54,29 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     alternateLocale: 'ko_KR',
-    url: 'https://jhbaek.deep-fountain.com',
+    url: siteUrl,
     siteName: 'Jae-Hyun Baek Portfolio',
-    title: 'Jae-Hyun Baek | AI Researcher & Mathematics Expert',
-    description: 'AI/ML researcher specializing in Mathematics, Computer Vision, and AI Security. Expert in VLM, Multimodal AI, and Korean AI sovereignty through Trillion Labs.',
+    title: 'Jae-Hyun Baek | Formalized Mathematical AI and Agentic Systems',
+    description:
+      'A research workshop for formalized mathematics, auditable benchmarks, agentic knowledge systems, and applied AI products.',
     images: [
       {
         url: '/background.jpg',
         width: 1200,
         height: 630,
-        alt: 'Jae-Hyun Baek - AI Researcher and Mathematics Expert',
+        alt: 'Jae-Hyun Baek portfolio',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Jae-Hyun Baek | AI Researcher & Mathematics Expert',
-    description: 'AI/ML researcher specializing in Mathematics, Computer Vision, and AI Security. Expert in VLM, Multimodal AI, and Korean AI sovereignty through Trillion Labs.',
+    title: 'Jae-Hyun Baek | Formalized Mathematical AI and Agentic Systems',
+    description:
+      'Formal math libraries, auditable AI benchmarks, RAG products, and agent-readable research memory.',
     images: ['/background.jpg'],
-    creator: '@jhbaek',
-  },
-  verification: {
-    google: 'verification-code-here', // Replace with actual Google Search Console verification code
   },
   category: 'Research',
-  classification: 'Academic Portfolio',
+  classification: 'Academic portfolio and research workshop',
   icons: {
     icon: '/favicon.ico',
     shortcut: '/favicon.ico',
@@ -79,29 +92,29 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const widgetKey = process.env.NEXT_PUBLIC_DEEPFOUNTAIN_WIDGET_KEY;
+
   return (
     <html suppressHydrationWarning>
       <head>
-        {/* DeepFountain Widget */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                const script = document.createElement('script');
-                script.src = 'https://saas.deep-fountain.com/widget/ai-agent-service/loader.js';
-                script.setAttribute('data-api-key', 'cb_7360d506ce2d702c7f6fd064337d8e31');
-                script.async = true;
-                script.defer = true;
-                document.head.appendChild(script);
-              })();
-            `,
-          }}
-        />
-        {/* End DeepFountain Widget */}
+        {widgetKey ? (
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+                (function() {
+                  const script = document.createElement('script');
+                  script.src = 'https://saas.deep-fountain.com/widget/ai-agent-service/loader.js';
+                  script.setAttribute('data-api-key', '${widgetKey}');
+                  script.async = true;
+                  script.defer = true;
+                  document.head.appendChild(script);
+                })();
+              `,
+            }}
+          />
+        ) : null}
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <Providers>{children}</Providers>
       </body>
     </html>

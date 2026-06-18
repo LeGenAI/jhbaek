@@ -1,227 +1,179 @@
-'use client';
-
-import React, { useEffect } from 'react';
-import { Button } from '@/components/ui/button';
-import { Github, Linkedin, MapPin, Mail } from 'lucide-react';
+import { ArrowRight, Github, Linkedin, Mail, Network, Search, ShieldCheck, Wrench } from 'lucide-react';
 import { Navigation } from '@/components/navigation';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { PublicationCard } from '@/components/publication-card';
+import { ArtifactCard } from '@/components/artifact-card';
+import { featuredPublications } from '@/data/publications';
+import { projectArtifacts } from '@/data/projects';
+
+const pipeline = [
+  { label: 'domain knowledge', detail: 'papers, logs, textbooks, PDFs, datasets' },
+  { label: 'structured substrate', detail: 'Lean, graphs, vector memory, MCP, schemas' },
+  { label: 'agent interface', detail: 'retrieval, prover, evaluator, product workflow' },
+  { label: 'artifact', detail: 'paper, benchmark, deployed system, public tool' },
+];
+
+const axes = [
+  {
+    icon: ShieldCheck,
+    title: 'Formalized mathematical AI',
+    body: 'Coding theory, self-dual codes, Lean/Mathlib, and MCP-style memory for mathematical agents.',
+  },
+  {
+    icon: Search,
+    title: 'Auditable evaluation',
+    body: 'EntropyMath and EntropyMaLean treat benchmarks as traceable processes, not frozen files.',
+  },
+  {
+    icon: Network,
+    title: 'Agent-readable knowledge',
+    body: 'I keep asking what shape a domain must take before an agent, prover, or evaluator can use it.',
+  },
+  {
+    icon: Wrench,
+    title: 'Deployed AI systems',
+    body: 'RAG chatbots, forecasting pipelines, medical AI tools, and education products keep the work grounded.',
+  },
+];
 
 export default function Home() {
-  useEffect(() => {
-    // Dynamic SEO optimization for homepage
-    document.title = 'Jae-Hyun Baek | AI Safety Researcher & Mathematics Expert';
-
-    // Update meta description
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'Portfolio of Jae-Hyun Baek, AI Safety Researcher specializing in Alignment Faking, Formal Methods, and Mathematics. Master\'s from Sogang University. Applicant for AIM Intelligence.');
-    }
-  }, []);
-
-  const personSchema = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Jae-Hyun Baek",
-    "alternateName": "백재현",
-    "jobTitle": ["AI Safety Researcher", "AI Researcher", "Mathematics Expert"],
-    "worksFor": [
-      {
-        "@type": "Organization",
-        "name": "DeepFountain Inc",
-        "url": "https://deep-fountain.com"
-      },
-      {
-        "@type": "Organization",
-        "name": "Sogang University",
-        "url": "https://sogang.ac.kr"
-      }
-    ],
-    "alumniOf": {
-      "@type": "Organization",
-      "name": "Sogang University",
-      "department": "Department of Mathematics"
-    },
-    "knowsAbout": [
-      "Artificial Intelligence",
-      "AI Safety",
-      "Alignment Faking",
-      "Formal Methods",
-      "Machine Learning",
-      "Mathematics",
-      "VLM (Vision Language Models)",
-      "Multimodal AI"
-    ],
-    "url": "https://jhbaek.deep-fountain.com",
-    "image": "https://jhbaek.deep-fountain.com/background.jpg",
-    "sameAs": [
-      "https://github.com/LeGenAI",
-      "https://www.linkedin.com/in/jae-hyun-baek-516899227"
-    ],
-    "email": "bjh3641@gmail.com"
-  };
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
-      {/* Structured Data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
-      />
+    <div className="min-h-screen bg-slate-950 text-white">
       <Navigation />
 
-      {/* Hero Section */}
-      <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
-        {/* Background Image with Overlay */}
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: 'url(/background.jpg)' }}
-        ></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-orange-900/60 via-amber-900/70 to-yellow-900/60"></div>
-        <div className="absolute inset-0 backdrop-blur-[0.5px]"></div>
-        <div className="max-w-7xl mx-auto px-6 py-16 relative z-10">
-          <div className="text-center space-y-6">
-            <div className="space-y-2">
-              <div className="bg-white/10 backdrop-blur-md rounded-2xl px-8 py-6 border border-white/20 shadow-2xl">
-                <h1 className="text-6xl font-bold tracking-tight text-white mb-3 drop-shadow-lg">
-                  Jae-Hyun Baek
+      <main>
+        <section className="relative isolate min-h-screen overflow-hidden px-6 pt-32">
+          <div
+            className="absolute inset-0 -z-20 bg-cover bg-center opacity-25"
+            style={{ backgroundImage: 'url(/background.jpg)' }}
+          />
+          <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,_rgba(59,130,246,0.35),_transparent_35%),linear-gradient(135deg,_rgba(15,23,42,0.96),_rgba(15,23,42,0.78)_45%,_rgba(30,41,59,0.95))]" />
+
+          <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-16 pb-24 lg:grid-cols-[1.08fr_0.92fr]">
+            <div className="space-y-8">
+              <Badge className="border border-blue-300/30 bg-blue-400/10 px-4 py-1.5 text-blue-100 hover:bg-blue-400/10">
+                Formalized Mathematical AI · Agentic Knowledge Systems · Applied AI Products
+              </Badge>
+
+              <div className="space-y-5">
+                <h1 className="max-w-4xl text-5xl font-semibold tracking-tight text-white md:text-7xl">
+                  I turn domain knowledge into systems that agents can use.
                 </h1>
-                <h2 className="text-2xl font-light text-amber-100 mb-4 drop-shadow-md">
-                  (백 재 현)
-                </h2>
-                <div className="flex items-center justify-center gap-1 text-lg text-white/90 font-medium">
-                  <span className="bg-gradient-to-r from-amber-400 to-orange-400 text-black px-3 py-1 rounded-full text-sm font-semibold">AI Safety Researcher</span>
-                  <span className="text-amber-200">•</span>
-                  <span className="bg-gradient-to-r from-blue-400 to-purple-400 text-black px-3 py-1 rounded-full text-sm font-semibold">Formal Methods</span>
-                  <span className="text-amber-200">•</span>
-                  <span className="bg-gradient-to-r from-emerald-400 to-teal-400 text-black px-3 py-1 rounded-full text-sm font-semibold">Alignment Faking</span>
-                </div>
+                <p className="max-w-3xl text-lg leading-8 text-slate-200 md:text-xl">
+                  I am a PhD student in AI at Sogang University and a technical lead at DeepFountain. My work sits between formal mathematics, AI evaluation, and deployed systems: Lean libraries for coding theory, auditable math benchmarks, RAG products, forecasting pipelines, and research memory for agents.
+                </p>
+              </div>
+
+              <div className="flex flex-wrap gap-3">
+                <Button asChild size="lg" className="gap-2 bg-white text-slate-950 hover:bg-blue-50">
+                  <a href="/research">
+                    View research map <ArrowRight className="h-4 w-4" />
+                  </a>
+                </Button>
+                <Button asChild size="lg" variant="outline" className="gap-2 border-white/30 bg-white/10 text-white hover:bg-white/20">
+                  <a href="https://github.com/LeGenAI" target="_blank" rel="noopener noreferrer">
+                    <Github className="h-4 w-4" /> GitHub
+                  </a>
+                </Button>
+                <Button asChild size="lg" variant="outline" className="gap-2 border-white/30 bg-white/10 text-white hover:bg-white/20">
+                  <a href="https://www.linkedin.com/in/jae-hyun-baek-516899227" target="_blank" rel="noopener noreferrer">
+                    <Linkedin className="h-4 w-4" /> LinkedIn
+                  </a>
+                </Button>
+                <Button asChild size="lg" variant="outline" className="gap-2 border-white/30 bg-white/10 text-white hover:bg-white/20">
+                  <a href="mailto:bjh3641@gmail.com">
+                    <Mail className="h-4 w-4" /> Email
+                  </a>
+                </Button>
               </div>
             </div>
 
-            <div className="flex justify-center items-center gap-6">
-              <div className="flex items-center gap-2 bg-black/30 backdrop-blur-sm rounded-full px-4 py-2 text-white/90 border border-white/20">
-                <MapPin className="w-4 h-4 text-amber-300" />
-                <span className="text-sm font-medium">Sogang University, Master of Science in Mathematics</span>
+            <div className="rounded-[2rem] border border-white/10 bg-white/10 p-6 shadow-2xl backdrop-blur-md">
+              <p className="mb-6 text-sm font-medium uppercase tracking-[0.22em] text-blue-200">the working pattern</p>
+              <div className="space-y-4">
+                {pipeline.map((step, index) => (
+                  <div key={step.label} className="rounded-2xl border border-white/10 bg-slate-950/50 p-5">
+                    <div className="flex items-center gap-3">
+                      <span className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-400 text-sm font-semibold text-slate-950">
+                        {index + 1}
+                      </span>
+                      <h2 className="text-lg font-semibold text-white">{step.label}</h2>
+                    </div>
+                    <p className="mt-3 text-sm leading-6 text-slate-300">{step.detail}</p>
+                  </div>
+                ))}
               </div>
             </div>
+          </div>
+        </section>
 
-            <div className="bg-black/40 backdrop-blur-md rounded-xl px-6 py-6 max-w-4xl mx-auto border border-white/20">
-              <p className="text-xl text-white leading-relaxed text-center">
-                <span className="text-3xl text-amber-300 font-bold block mb-4 drop-shadow-lg">
-                  "Researching Alignment Faking with Formal Verification"
-                </span>
-                <span className="text-lg text-white/90 leading-relaxed">
-                  I formalize the discrepancy between internal motives and external behaviors of LLMs.<br />
-                  Aiming to build <strong className="text-cyan-200">Robust & Trustworthy AI Systems</strong> at <strong className="text-amber-200">AIM Intelligence</strong>.<br /><br />
-                  "Diagnosing AI not just by observation, but by mathematical guarantees."
-                </span>
+        <section className="bg-slate-50 px-6 py-24 text-slate-950">
+          <div className="mx-auto max-w-7xl space-y-10">
+            <div className="max-w-3xl space-y-4">
+              <Badge variant="outline" className="border-slate-300 text-slate-600">workshop, not just CV</Badge>
+              <h2 className="text-4xl font-semibold tracking-tight">The prototype usually starts ugly.</h2>
+              <p className="text-lg leading-8 text-slate-600">
+                A notebook. A pile of PDFs. A Lean theorem that will not compile. A dataset with missing values. A product log nobody wants to clean. If the idea survives that first mess, I try to turn it into something searchable, testable, and shareable.
               </p>
             </div>
 
-            <div className="flex justify-center gap-4 flex-wrap">
-              <Button asChild size="lg" className="gap-2 bg-[#0A66C2] text-white hover:bg-[#004182] font-semibold shadow-xl border-2 border-white/20 backdrop-blur-sm transition-all duration-300 hover:scale-105">
-                <a href="https://www.linkedin.com/in/jae-hyun-baek-516899227" target="_blank" rel="noopener noreferrer">
-                  <Linkedin className="w-5 h-5" />
-                  LinkedIn
-                </a>
-              </Button>
-              <Button asChild size="lg" className="gap-2 bg-gradient-to-r from-amber-500 to-orange-500 text-black hover:from-amber-600 hover:to-orange-600 font-semibold shadow-xl border-2 border-white/20 backdrop-blur-sm transition-all duration-300 hover:scale-105">
-                <a href="https://github.com/LeGenAI" target="_blank" rel="noopener noreferrer">
-                  <Github className="w-5 h-5" />
-                  GitHub Portfolio
-                </a>
-              </Button>
-              <Button asChild size="lg" className="gap-2 bg-white/20 backdrop-blur-md text-white hover:bg-white/30 font-semibold shadow-xl border-2 border-white/40 transition-all duration-300 hover:scale-105">
-                <a href="https://huggingface.co/datasets/LeBrony/buddha_oss_dataset" target="_blank" rel="noopener noreferrer">
-                  <span className="text-orange-300">🤗</span>
-                  HuggingFace Dataset
-                </a>
-              </Button>
-              <Button asChild size="lg" className="gap-2 bg-white/20 backdrop-blur-md text-white hover:bg-white/30 font-semibold shadow-xl border-2 border-white/40 transition-all duration-300 hover:scale-105">
-                <a href="https://deep-fountain.com" target="_blank" rel="noopener noreferrer">
-                  <img src="/deepfountain-logo.png" alt="DeepFountain" className="w-5 h-5" />
-                  DeepFountain Corp
-                </a>
-              </Button>
-            </div>
-
-            <div className="mt-8 flex justify-center">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-5xl mx-auto">
-                <div className="bg-black/30 backdrop-blur-md rounded-xl px-5 py-4 shadow-2xl border border-white/20 hover:bg-black/40 transition-all duration-300 hover:scale-105">
-                  <div className="flex items-center gap-3 text-sm">
-                    <div className="flex items-center justify-center w-8 h-8 bg-amber-400/80 rounded-full">
-                      <span className="text-lg">🏆</span>
-                    </div>
-                    <span className="text-white font-semibold">ISIS Best Presentation Award</span>
+            <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4">
+              {axes.map((axis) => {
+                const Icon = axis.icon;
+                return (
+                  <div key={axis.title} className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+                    <Icon className="mb-5 h-7 w-7 text-blue-600" />
+                    <h3 className="text-lg font-semibold text-slate-950">{axis.title}</h3>
+                    <p className="mt-3 text-sm leading-6 text-slate-600">{axis.body}</p>
                   </div>
-                </div>
-                <div className="bg-black/30 backdrop-blur-md rounded-xl px-5 py-4 shadow-2xl border border-white/20 hover:bg-black/40 transition-all duration-300 hover:scale-105">
-                  <div className="flex items-center gap-3 text-sm">
-                    <div className="flex items-center justify-center w-8 h-8 bg-orange-400/80 rounded-full">
-                      <span className="text-lg">🤗</span>
-                    </div>
-                    <span className="text-white font-semibold">HuggingFace 100+ Downloads</span>
-                  </div>
-                </div>
-                <div className="bg-black/30 backdrop-blur-md rounded-xl px-5 py-4 shadow-2xl border border-white/20 hover:bg-black/40 transition-all duration-300 hover:scale-105">
-                  <div className="flex items-center gap-3 text-sm">
-                    <div className="flex items-center justify-center w-8 h-8 bg-blue-400/80 rounded-full">
-                      <span className="text-lg">🚀</span>
-                    </div>
-                    <span className="text-white font-semibold">DeepFountain Team Leader</span>
-                  </div>
-                </div>
-              </div>
+                );
+              })}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Business Cards Section */}
-      <section className="py-16 bg-gradient-to-br from-slate-100 to-blue-100">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Business Card</h2>
-            <p className="text-lg text-gray-600">Professional Identity & Contact Information</p>
-          </div>
-
-          <div className="flex justify-center gap-8 max-w-5xl mx-auto">
-            <div className="group cursor-pointer">
-              <div className="bg-white rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border border-gray-200">
-                <img
-                  src="/namecard-front.jpg"
-                  alt="Business Card Front"
-                  className="w-80 h-50 object-cover rounded-xl shadow-lg"
-                />
-                <div className="mt-4 text-center">
-                  <h3 className="text-lg font-semibold text-gray-900">Front Side</h3>
-                  <p className="text-sm text-gray-600">Basic Info & Logo</p>
-                </div>
+        <section className="bg-white px-6 py-24 text-slate-950">
+          <div className="mx-auto max-w-7xl space-y-10">
+            <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+              <div className="max-w-3xl space-y-4">
+                <Badge variant="outline" className="border-blue-200 text-blue-700">accepted and published work</Badge>
+                <h2 className="text-4xl font-semibold tracking-tight">Papers are artifacts too.</h2>
+                <p className="text-lg leading-8 text-slate-600">
+                  I want the paper, the code, the benchmark, and the deployed system to point at the same underlying substrate whenever possible.
+                </p>
               </div>
+              <Button asChild variant="outline" className="w-fit">
+                <a href="/research">All research</a>
+              </Button>
             </div>
 
-            <div className="group cursor-pointer">
-              <div className="bg-white rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border border-gray-200">
-                <img
-                  src="/namecard-back.jpg"
-                  alt="Business Card Back"
-                  className="w-80 h-50 object-cover rounded-xl shadow-lg"
-                />
-                <div className="mt-4 text-center">
-                  <h3 className="text-lg font-semibold text-gray-900">Back Side</h3>
-                  <p className="text-sm text-gray-600">Expertise & Vision</p>
-                </div>
-              </div>
+            <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+              {featuredPublications.slice(0, 4).map((publication) => (
+                <PublicationCard key={publication.title} publication={publication} />
+              ))}
             </div>
           </div>
+        </section>
 
-          <div className="text-center mt-12">
-            <p className="text-gray-600 text-sm max-w-2xl mx-auto">
-              Professional business card design for networking.
-              Reflecting expertise as a Team Leader at DeepFountain and specialized skills in AI/ML & Formal Methods.
-            </p>
+        <section className="bg-slate-100 px-6 py-24 text-slate-950">
+          <div className="mx-auto max-w-7xl space-y-10">
+            <div className="max-w-3xl space-y-4">
+              <Badge variant="outline" className="border-slate-300 text-slate-600">systems I built</Badge>
+              <h2 className="text-4xl font-semibold tracking-tight">A map of working artifacts.</h2>
+              <p className="text-lg leading-8 text-slate-600">
+                The surface changes from theorem proving to medical AI to RAG products. The maker habit is the same: find the hidden structure, make it computable, and ship a usable artifact.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
+              {projectArtifacts.slice(0, 6).map((artifact) => (
+                <ArtifactCard key={artifact.title} artifact={artifact} />
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </main>
     </div>
   );
 }
