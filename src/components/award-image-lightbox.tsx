@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import { createPortal } from 'react-dom';
 import { Maximize2, X } from 'lucide-react';
 import { useEffect, useId, useState } from 'react';
 
@@ -32,7 +33,12 @@ export function AwardImageLightbox({
   unoptimized = false,
 }: AwardImageLightboxProps) {
   const [open, setOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const titleId = useId();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -74,6 +80,45 @@ export function AwardImageLightbox({
     ? `group relative block h-full w-full cursor-zoom-in overflow-hidden text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 ${className}`
     : `group relative inline-flex cursor-zoom-in overflow-hidden text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 ${className}`;
 
+  const lightbox = open ? (
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby={titleId}
+      className="fixed inset-0 z-[9999] isolate flex h-dvh w-dvw items-center justify-center bg-slate-950/95 p-3 md:p-6"
+      onClick={() => setOpen(false)}
+    >
+      <div className="relative h-full w-full" onClick={(event) => event.stopPropagation()}>
+        <div className="pointer-events-none absolute left-0 right-14 top-0 z-10 flex min-h-12 items-center text-white">
+          <h2 id={titleId} className="line-clamp-2 text-sm font-semibold drop-shadow md:text-lg">
+            {title}
+          </h2>
+        </div>
+        <button
+          type="button"
+          onClick={() => setOpen(false)}
+          className="absolute right-0 top-0 z-20 rounded-full bg-white/10 p-2 text-white transition hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+          aria-label="Close expanded image"
+        >
+          <X className="h-5 w-5" />
+        </button>
+        <div className="relative h-full w-full cursor-zoom-out">
+          {/* Use a plain img in the fullscreen portal. Next/Image is useful in the
+              card grid, but the fullscreen overlay should be a single stable
+              compositor layer with no responsive image bookkeeping while the
+              cursor moves over it. */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={src}
+            alt={alt}
+            className="h-full w-full select-none object-contain p-2 pt-14 md:p-6 md:pt-16"
+            draggable={false}
+          />
+        </div>
+      </div>
+    </div>
+  ) : null;
+
   return (
     <>
       <button
@@ -89,41 +134,7 @@ export function AwardImageLightbox({
         </span>
       </button>
 
-      {open ? (
-        <div
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby={titleId}
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/85 p-4 backdrop-blur-sm"
-          onClick={() => setOpen(false)}
-        >
-          <div className="flex max-h-[94vh] w-full max-w-6xl flex-col gap-4" onClick={(event) => event.stopPropagation()}>
-            <div className="flex items-center justify-between gap-4 text-white">
-              <h2 id={titleId} className="text-base font-semibold md:text-lg">
-                {title}
-              </h2>
-              <button
-                type="button"
-                onClick={() => setOpen(false)}
-                className="rounded-full bg-white/10 p-2 text-white transition hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
-                aria-label="Close expanded image"
-              >
-                <X className="h-5 w-5" />
-              </button>
-            </div>
-            <div className="relative flex min-h-[60vh] items-center justify-center overflow-hidden rounded-3xl bg-white p-4 shadow-2xl md:min-h-[76vh] md:p-8">
-              <Image
-                src={src}
-                alt={alt}
-                fill
-                sizes="100vw"
-                unoptimized={unoptimized}
-                className="object-contain p-4"
-              />
-            </div>
-          </div>
-        </div>
-      ) : null}
+      {mounted && lightbox ? createPortal(lightbox, document.body) : null}
     </>
   );
 }
