@@ -1,4 +1,4 @@
-import { ArrowRight, Github, Linkedin, Mail, Network, Search, ShieldCheck, Wrench } from 'lucide-react';
+import { ArrowRight, Github, Network, Search, ShieldCheck, Wrench } from 'lucide-react';
 import { Navigation } from '@/components/navigation';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -6,6 +6,7 @@ import { PublicationCard } from '@/components/publication-card';
 import { ArtifactCard } from '@/components/artifact-card';
 import { featuredPublications } from '@/data/publications';
 import { projectArtifacts } from '@/data/projects';
+import { currentFocus } from '@/data/current-focus';
 
 const pipeline = [
   { label: 'domain knowledge', detail: 'papers, logs, textbooks, PDFs, datasets' },
@@ -77,13 +78,8 @@ export default function Home() {
                   </a>
                 </Button>
                 <Button asChild size="lg" variant="outline" className="gap-2 border-white/30 bg-white/10 text-white hover:bg-white/20">
-                  <a href="https://www.linkedin.com/in/jae-hyun-baek-516899227" target="_blank" rel="noopener noreferrer">
-                    <Linkedin className="h-4 w-4" /> LinkedIn
-                  </a>
-                </Button>
-                <Button asChild size="lg" variant="outline" className="gap-2 border-white/30 bg-white/10 text-white hover:bg-white/20">
-                  <a href="mailto:bjh3641@gmail.com">
-                    <Mail className="h-4 w-4" /> Email
+                  <a href="/contact">
+                    Start a conversation
                   </a>
                 </Button>
               </div>
@@ -129,6 +125,47 @@ export default function Home() {
                   </div>
                 );
               })}
+            </div>
+          </div>
+        </section>
+
+        <section className="bg-white px-6 py-24 text-slate-950">
+          <div className="mx-auto max-w-7xl space-y-10">
+            <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+              <div className="max-w-3xl space-y-4">
+                <Badge variant="outline" className="border-blue-200 text-blue-700">selected current focus</Badge>
+                <h2 className="text-4xl font-semibold tracking-tight">What I am sharpening now.</h2>
+                <p className="text-lg leading-8 text-slate-600">
+                  I keep a wide workshop, but the public portfolio should make the center of gravity clear: formalized mathematical AI, auditable evaluation, and applied systems that prove the substrate works.
+                </p>
+              </div>
+              <Button asChild variant="outline" className="w-fit">
+                <a href="/about">How I choose work</a>
+              </Button>
+            </div>
+
+            <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
+              {currentFocus.map((focus, index) => (
+                <div key={focus.title} className="rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-sm">
+                  <div className="mb-5 flex items-center justify-between gap-4">
+                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-slate-900 text-sm font-semibold text-white">
+                      {index + 1}
+                    </span>
+                    <Badge variant="outline" className="border-slate-300 text-slate-600">{focus.horizon}</Badge>
+                  </div>
+                  <h3 className="text-xl font-semibold text-slate-950">{focus.title}</h3>
+                  <p className="mt-3 text-sm leading-6 text-slate-600">{focus.why}</p>
+                  <div className="mt-5 rounded-2xl border border-dashed border-blue-200 bg-white p-4">
+                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-blue-700">target artifact</p>
+                    <p className="mt-2 text-sm leading-6 text-slate-700">{focus.artifact}</p>
+                  </div>
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {focus.tags.map((tag) => (
+                      <span key={tag} className="rounded-full bg-white px-3 py-1 text-xs text-slate-600 ring-1 ring-slate-200">{tag}</span>
+                    ))}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>

@@ -2,6 +2,7 @@ export type PublicationStatus = 'Published' | 'Accepted' | 'Under Review' | 'Sub
 
 export type Publication = {
   title: string;
+  slug: string;
   authors: string;
   venue: string;
   year: string;
@@ -11,9 +12,11 @@ export type Publication = {
   tags: string[];
   image?: string;
   links?: {
+    doi?: string;
     paper?: string;
     project?: string;
     code?: string;
+    source?: string;
     researchGate?: string;
   };
   featured?: boolean;
@@ -21,7 +24,25 @@ export type Publication = {
 
 export const publications: Publication[] = [
   {
+    title: 'Proposal of an LLM-Lean Approach and Architecture for Automated Mathematical Problem Solving',
+    slug: 'llm-lean-closed-agent-math-solving',
+    authors: 'Youngjik Lee, Jon-Lark Kim, Woo-Seok Jeong, Beom-Soo Kim, Jae-Hyun Baek',
+    venue: '2026 KIIS Spring Conference — Best Paper Award',
+    year: '2026',
+    status: 'Accepted',
+    area: 'AI4Math / Lean agents',
+    summary:
+      'A closed-agent architecture for mathematical problem solving that compares a Single solver structure with a Dual structure where a falsifier participates in the reasoning loop, emphasizing token/compute efficiency and final solving performance.',
+    tags: ['LLM-Lean', 'closed agents', 'falsifier', 'AI4Math', 'best paper'],
+    image: '/awards/kiis-2026-lean-best-paper.jpg',
+    links: {
+      source: 'https://imds.sogang.ac.kr/front/cmsboardview.do?currentPage=1&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=7110&siteId=imds&pkid=937656',
+    },
+    featured: true,
+  },
+  {
     title: 'Performance Improvement of LLMs for Regulatory Document Understanding based on Modified RAG Approach',
+    slug: 'regulatory-rag-llm-understanding',
     authors: 'Jae-Hyun Baek, Jon-Lark Kim',
     venue: 'JKIIS',
     year: '2025',
@@ -31,23 +52,32 @@ export const publications: Publication[] = [
       'A modified retrieval augmented generation framework for regulatory documents. This is one of the applied roots of my current interest in turning domain documents into agent-readable memory.',
     tags: ['RAG', 'regulatory documents', 'LLM evaluation', 'best paper'],
     image: '/award_kiis_2024.png',
+    links: {
+      researchGate: 'https://www.researchgate.net/profile/Jae-Hyun-Baek?ev=hdr_xprf',
+    },
     featured: true,
   },
   {
-    title: 'Application of TimeGPT for Enhancing Water Level Prediction in Gamcheon River, Korea',
+    title: 'Water Level Forecasting in the Gamcheon River, Korea, Using TimeGPT',
+    slug: 'timegpt-gamcheon-water-level',
     authors: 'Jon-Lark Kim, Jae-Hyun Baek, Keon-Hwi Kim, Tae Hyo Baek, Chang-Lae Jang',
-    venue: 'Accepted manuscript',
-    year: '2025',
-    status: 'Accepted',
+    venue: 'International Journal of Fuzzy Logic and Intelligent Systems',
+    year: '2026',
+    status: 'Published',
     area: 'Time-series / Hydrology AI',
     summary:
       'A study of foundation-model forecasting for river water levels. We compare TimeGPT with classical and linear baselines under rolling-origin evaluation on the Gamcheon River setting.',
     tags: ['TimeGPT', 'water-level prediction', 'foundation models', 'environmental AI'],
     image: '/accepted/Application_of_TimeGPT_for_enhancing_water_level_prediction_in_Gamcheon_River__Korea/TimeGPT_overall.png',
+    links: {
+      doi: 'https://doi.org/10.5391/ijfis.2026.26.1.10',
+      researchGate: 'https://www.researchgate.net/profile/Jae-Hyun-Baek?ev=hdr_xprf',
+    },
     featured: true,
   },
   {
     title: 'Hybrid Multimodal GenAI for Solving Math Problems Containing Various Figures',
+    slug: 'hybrid-multimodal-genai-math-figures',
     authors: 'Sangsoo Lee, Jae-Hyun Baek, Jon-Lark Kim',
     venue: 'Accepted manuscript',
     year: '2025',
@@ -57,10 +87,14 @@ export const publications: Publication[] = [
       'A hybrid pipeline combining visual retrieval and LLM reasoning for diagram-heavy mathematical problems, especially cases where OCR-only methods miss the actual structure of the figure.',
     tags: ['VLM', 'ColPali', 'MathVision', 'multimodal reasoning'],
     image: '/accepted/Hybrid multimodal GenAI for solving math problems containing various figures_v2_20250209/colpalianstwo.png',
+    links: {
+      researchGate: 'https://www.researchgate.net/profile/Jae-Hyun-Baek?ev=hdr_xprf',
+    },
     featured: true,
   },
   {
     title: 'SolEvolve: LLM-driven Evolutionary Discovery of Algorithms',
+    slug: 'solevolve-evolutionary-discovery',
     authors: 'Jae-Hyun Baek',
     venue: "Master's thesis / manuscript track",
     year: '2025',
@@ -74,6 +108,7 @@ export const publications: Publication[] = [
   },
   {
     title: 'MekaNet: WSI-based Tiny Object Detection',
+    slug: 'mekanet-wsi-tiny-object-detection',
     authors: 'Jae-Hyun Baek et al.',
     venue: 'Medical image analysis manuscript',
     year: '2025',
@@ -86,6 +121,7 @@ export const publications: Publication[] = [
   },
   {
     title: 'Symmetric Sudoku-Type Games from Perfect Codes',
+    slug: 'symmetric-sudoku-perfect-codes',
     authors: 'Jae-Hyun Baek et al.',
     venue: 'Submitted manuscript',
     year: '2025',

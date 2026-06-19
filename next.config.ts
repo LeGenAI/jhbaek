@@ -5,11 +5,6 @@ const nextConfig: NextConfig = {
   output: 'standalone',
 
   images: {
-    remotePatterns: [
-      {
-        hostname: '**',
-      },
-    ],
     formats: ['image/webp', 'image/avif'],
     minimumCacheTTL: 60 * 60 * 24 * 7, // 1 week
   },
