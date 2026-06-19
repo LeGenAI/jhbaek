@@ -1,5 +1,5 @@
-import Image from 'next/image';
 import { ExternalLink, GraduationCap, Trophy } from 'lucide-react';
+import { AwardImageLightbox } from '@/components/award-image-lightbox';
 import { Navigation } from '@/components/navigation';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
@@ -113,15 +113,18 @@ export default function AwardsPage() {
                 ) : null}
               </div>
               <div className="flex min-h-[420px] items-center justify-center bg-slate-200 p-8">
-                <Image
+                <AwardImageLightbox
                   src={awards[0].image}
                   alt={`${awards[0].title} certificate`}
+                  title={`${awards[0].title} · ${awards[0].venue}`}
+                  fill={false}
                   width={900}
                   height={636}
                   sizes="(min-width: 1024px) 55vw, 100vw"
                   priority
                   unoptimized
-                  className="max-h-[360px] w-auto rounded-xl object-contain drop-shadow-2xl"
+                  className="rounded-xl"
+                  imageClassName="max-h-[360px] w-auto rounded-xl object-contain drop-shadow-2xl"
                 />
               </div>
             </div>
@@ -132,12 +135,14 @@ export default function AwardsPage() {
           {awards.slice(1).map((award) => (
             <Card key={`${award.title}-${award.year}-${award.work}`} className="overflow-hidden border-slate-200 bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl">
               <div className="relative h-56 bg-slate-100 p-4">
-                <Image
+                <AwardImageLightbox
                   src={award.image}
                   alt={`${award.title} certificate`}
-                  fill
+                  title={`${award.title} · ${award.venue}`}
                   sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw"
-                  className="object-contain p-4 drop-shadow-md"
+                  unoptimized
+                  className="absolute inset-0"
+                  imageClassName="object-contain p-4 drop-shadow-md"
                 />
               </div>
               <CardContent className="space-y-4 p-6">
@@ -180,21 +185,25 @@ export default function AwardsPage() {
                 </p>
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <div className="relative h-64 overflow-hidden rounded-2xl border border-blue-100 bg-white shadow-sm">
-                    <Image
+                    <AwardImageLightbox
                       src="/deanslist_1.jpg"
                       alt="Dean's List recognition ceremony at Sogang University"
-                      fill
+                      title="Dean's List recognition ceremony"
                       sizes="(min-width: 768px) 32vw, 100vw"
-                      className="object-cover"
+                      unoptimized
+                      className="absolute inset-0"
+                      imageClassName="object-cover"
                     />
                   </div>
                   <div className="relative h-64 overflow-hidden rounded-2xl border border-blue-100 bg-white shadow-sm">
-                    <Image
+                    <AwardImageLightbox
                       src="/deanslist_2.jpg"
                       alt="Dean's List award moment at Sogang University"
-                      fill
+                      title="Dean's List award moment"
                       sizes="(min-width: 768px) 32vw, 100vw"
-                      className="object-cover"
+                      unoptimized
+                      className="absolute inset-0"
+                      imageClassName="object-cover"
                     />
                   </div>
                 </div>
