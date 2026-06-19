@@ -167,22 +167,36 @@ export default function AwardsPage() {
         </section>
 
         <section className="mx-auto mt-16 max-w-7xl">
-          <Card className="border-blue-100 bg-blue-50 shadow-sm">
+          <Card className="overflow-hidden border-blue-100 bg-blue-50 shadow-sm">
             <CardContent className="grid grid-cols-1 gap-8 p-8 md:grid-cols-[0.35fr_0.65fr] md:p-10">
               <div>
                 <GraduationCap className="mb-5 h-8 w-8 text-blue-700" />
                 <h2 className="text-3xl font-semibold tracking-tight text-slate-950">Dean's List</h2>
                 <p className="mt-3 text-sm font-medium uppercase tracking-[0.18em] text-blue-700">Sogang University · 2024</p>
               </div>
-              <div className="space-y-5">
+              <div className="space-y-6">
                 <p className="text-lg leading-8 text-slate-700">
                   Recognized by Sogang University's College of Natural Sciences for academic performance during my master's program. I keep it here as part of the transition from mathematics into AI systems research.
                 </p>
-                <div className="rounded-2xl border border-blue-100 bg-white p-5">
-                  <p className="text-sm font-semibold uppercase tracking-[0.18em] text-blue-700">privacy note</p>
-                  <p className="mt-2 text-sm leading-6 text-slate-600">
-                    Ceremony photos are intentionally not embedded here. Public pages should show the work and recognition without unnecessarily exposing other people in event photos.
-                  </p>
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                  <div className="relative h-64 overflow-hidden rounded-2xl border border-blue-100 bg-white shadow-sm">
+                    <Image
+                      src="/deanslist_1.jpg"
+                      alt="Dean's List recognition ceremony at Sogang University"
+                      fill
+                      sizes="(min-width: 768px) 32vw, 100vw"
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="relative h-64 overflow-hidden rounded-2xl border border-blue-100 bg-white shadow-sm">
+                    <Image
+                      src="/deanslist_2.jpg"
+                      alt="Dean's List award moment at Sogang University"
+                      fill
+                      sizes="(min-width: 768px) 32vw, 100vw"
+                      className="object-cover"
+                    />
+                  </div>
                 </div>
               </div>
             </CardContent>
