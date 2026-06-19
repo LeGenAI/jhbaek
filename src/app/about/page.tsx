@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { Brain, GraduationCap, Network, PackageOpen, Wrench } from 'lucide-react';
 import { Navigation } from '@/components/navigation';
 import { Badge } from '@/components/ui/badge';
@@ -62,9 +63,12 @@ export default function AboutPage() {
           <Card className="overflow-hidden border-slate-200 shadow-sm">
             <div className="grid grid-cols-1 md:grid-cols-[220px_1fr]">
               <div className="bg-slate-900 p-6 text-white">
-                <img
+                <Image
                   src="/jhbaek_profile.jpg"
                   alt="Jae-Hyun Baek"
+                  width={144}
+                  height={144}
+                  priority
                   className="mb-6 h-36 w-36 rounded-3xl object-cover shadow-xl"
                 />
                 <h2 className="text-2xl font-semibold">Jae-Hyun Baek</h2>

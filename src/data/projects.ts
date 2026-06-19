@@ -1,5 +1,6 @@
 export type ProjectArtifact = {
   title: string;
+  slug: string;
   kind: 'proof' | 'benchmark' | 'agent memory' | 'product' | 'forecasting' | 'medical AI' | 'research system';
   status: 'active' | 'deployed' | 'research' | 'prototype';
   summary: string;
@@ -12,6 +13,7 @@ export type ProjectArtifact = {
 export const projectArtifacts: ProjectArtifact[] = [
   {
     title: 'CodingTheoryLib / CodingTheoryLib-MCP',
+    slug: 'codingtheorylib-mcp',
     kind: 'agent memory',
     status: 'active',
     summary:
@@ -23,6 +25,7 @@ export const projectArtifacts: ProjectArtifact[] = [
   },
   {
     title: 'EntropyMath / EntropyMaG / EntropyMaLean',
+    slug: 'entropymath-entropymag-entropymalean',
     kind: 'benchmark',
     status: 'active',
     summary:
@@ -35,6 +38,7 @@ export const projectArtifacts: ProjectArtifact[] = [
   },
   {
     title: 'SolEvolve',
+    slug: 'solevolve',
     kind: 'research system',
     status: 'research',
     summary:
@@ -46,6 +50,7 @@ export const projectArtifacts: ProjectArtifact[] = [
   },
   {
     title: 'SOGAMBOT',
+    slug: 'sogambot',
     kind: 'product',
     status: 'deployed',
     summary:
@@ -58,6 +63,7 @@ export const projectArtifacts: ProjectArtifact[] = [
   },
   {
     title: 'MindBuddhi',
+    slug: 'mindbuddhi',
     kind: 'product',
     status: 'prototype',
     summary:
@@ -69,6 +75,7 @@ export const projectArtifacts: ProjectArtifact[] = [
   },
   {
     title: 'Water-level forecasting pipeline',
+    slug: 'water-level-forecasting',
     kind: 'forecasting',
     status: 'research',
     summary:
@@ -80,6 +87,7 @@ export const projectArtifacts: ProjectArtifact[] = [
   },
   {
     title: 'MekaNet / medical AI pipelines',
+    slug: 'mekanet-medical-ai',
     kind: 'medical AI',
     status: 'research',
     summary:

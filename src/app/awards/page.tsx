@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { GraduationCap, Trophy } from 'lucide-react';
 import { Navigation } from '@/components/navigation';
 import { Badge } from '@/components/ui/badge';
@@ -80,11 +81,14 @@ export default function AwardsPage() {
                 </div>
                 <p className="mt-6 leading-7 text-slate-300">{awards[0].note}</p>
               </div>
-              <div className="flex items-center justify-center bg-slate-100 p-8">
-                <img
+              <div className="relative flex min-h-[420px] items-center justify-center bg-slate-100 p-8">
+                <Image
                   src={awards[0].image}
                   alt={`${awards[0].title} certificate`}
-                  className="max-h-[360px] w-full rounded-2xl object-contain shadow-lg"
+                  fill
+                  sizes="(min-width: 1024px) 55vw, 100vw"
+                  priority
+                  className="object-contain p-8"
                 />
               </div>
             </div>
@@ -94,8 +98,14 @@ export default function AwardsPage() {
         <section className="mx-auto mt-10 grid max-w-7xl grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
           {awards.slice(1).map((award) => (
             <Card key={`${award.title}-${award.year}-${award.work}`} className="overflow-hidden border-slate-200 bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl">
-              <div className="h-56 bg-slate-50 p-4">
-                <img src={award.image} alt={`${award.title} certificate`} className="h-full w-full object-contain" />
+              <div className="relative h-56 bg-slate-50 p-4">
+                <Image
+                  src={award.image}
+                  alt={`${award.title} certificate`}
+                  fill
+                  sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw"
+                  className="object-contain p-4"
+                />
               </div>
               <CardContent className="space-y-4 p-6">
                 <div className="flex flex-wrap items-center gap-2">

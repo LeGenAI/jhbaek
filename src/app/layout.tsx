@@ -61,10 +61,10 @@ export const metadata: Metadata = {
       'A research workshop for formalized mathematics, auditable benchmarks, agentic knowledge systems, and applied AI products.',
     images: [
       {
-        url: '/background.jpg',
+        url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Jae-Hyun Baek portfolio',
+        alt: 'Jae-Hyun Baek portfolio preview: Formalized Mathematical AI, Agentic Knowledge Systems, Applied AI Products',
       },
     ],
   },
@@ -73,7 +73,7 @@ export const metadata: Metadata = {
     title: 'Jae-Hyun Baek | Formalized Mathematical AI and Agentic Systems',
     description:
       'Formal math libraries, auditable AI benchmarks, RAG products, and agent-readable research memory.',
-    images: ['/background.jpg'],
+    images: ['/og-image.png'],
   },
   category: 'Research',
   classification: 'Academic portfolio and research workshop',

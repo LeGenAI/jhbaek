@@ -1,3 +1,5 @@
+import Image from 'next/image';
+import Link from 'next/link';
 import { ExternalLink } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
@@ -23,11 +25,13 @@ export function PublicationCard({ publication }: { publication: Publication }) {
   return (
     <Card className="group overflow-hidden border-slate-200 bg-white/90 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
       {publication.image ? (
-        <div className="h-48 overflow-hidden border-b border-slate-100 bg-slate-50 p-3">
-          <img
+        <div className="relative h-48 overflow-hidden border-b border-slate-100 bg-slate-50 p-3">
+          <Image
             src={publication.image}
             alt={publication.title}
-            className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-[1.03]"
+            fill
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            className="object-contain p-3 transition-transform duration-500 group-hover:scale-[1.03]"
           />
         </div>
       ) : (
@@ -52,7 +56,9 @@ export function PublicationCard({ publication }: { publication: Publication }) {
 
         <div>
           <h3 className="text-lg font-semibold leading-snug text-slate-950">
-            {publication.title}
+            <Link href={`/research/publications/${publication.slug}`} className="hover:text-blue-700">
+              {publication.title}
+            </Link>
           </h3>
           <p className="mt-2 text-sm text-slate-500">{publication.authors}</p>
           <p className="mt-1 text-sm font-medium text-slate-700">{publication.venue}</p>
@@ -68,24 +74,27 @@ export function PublicationCard({ publication }: { publication: Publication }) {
           ))}
         </div>
 
-        {publication.links ? (
-          <div className="flex flex-wrap gap-3 pt-2 text-sm">
-            {Object.entries(publication.links).map(([label, href]) =>
-              href ? (
-                <a
-                  key={label}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 font-medium text-blue-600 hover:text-blue-800"
-                >
-                  {linkLabels[label] ?? label}
-                  <ExternalLink className="h-3 w-3" />
-                </a>
-              ) : null,
-            )}
-          </div>
-        ) : null}
+        <div className="flex flex-wrap gap-3 pt-2 text-sm">
+          <Link href={`/research/publications/${publication.slug}`} className="inline-flex items-center gap-1 font-medium text-slate-700 hover:text-blue-800">
+            Detail page
+          </Link>
+          {publication.links
+            ? Object.entries(publication.links).map(([label, href]) =>
+                href ? (
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 font-medium text-blue-600 hover:text-blue-800"
+                  >
+                    {linkLabels[label] ?? label}
+                    <ExternalLink className="h-3 w-3" />
+                  </a>
+                ) : null,
+              )
+            : null}
+        </div>
       </CardContent>
     </Card>
   );

@@ -1,3 +1,5 @@
+import Image from 'next/image';
+import Link from 'next/link';
 import { ExternalLink } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
@@ -7,11 +9,13 @@ export function ArtifactCard({ artifact }: { artifact: ProjectArtifact }) {
   return (
     <Card className="group h-full overflow-hidden border-slate-200 bg-white/90 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
       {artifact.image ? (
-        <div className="h-44 overflow-hidden border-b border-slate-100 bg-slate-50 p-3">
-          <img
+        <div className="relative h-44 overflow-hidden border-b border-slate-100 bg-slate-50 p-3">
+          <Image
             src={artifact.image}
             alt={artifact.title}
-            className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-[1.03]"
+            fill
+            sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw"
+            className="object-contain p-3 transition-transform duration-500 group-hover:scale-[1.03]"
           />
         </div>
       ) : (
@@ -31,7 +35,11 @@ export function ArtifactCard({ artifact }: { artifact: ProjectArtifact }) {
         </div>
 
         <div>
-          <h3 className="text-xl font-semibold text-slate-950">{artifact.title}</h3>
+          <h3 className="text-xl font-semibold text-slate-950">
+            <Link href={`/research/projects/${artifact.slug}`} className="hover:text-blue-700">
+              {artifact.title}
+            </Link>
+          </h3>
           <p className="mt-3 text-sm leading-6 text-slate-600">{artifact.summary}</p>
         </div>
 
@@ -47,16 +55,21 @@ export function ArtifactCard({ artifact }: { artifact: ProjectArtifact }) {
           ))}
         </div>
 
-        {artifact.link ? (
-          <a
-            href={artifact.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 pt-1 text-sm font-medium text-blue-600 hover:text-blue-800"
-          >
-            Visit artifact <ExternalLink className="h-3 w-3" />
-          </a>
-        ) : null}
+        <div className="flex flex-wrap gap-3 pt-1 text-sm">
+          <Link href={`/research/projects/${artifact.slug}`} className="inline-flex items-center gap-1 font-medium text-slate-700 hover:text-blue-800">
+            Detail page
+          </Link>
+          {artifact.link ? (
+            <a
+              href={artifact.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 font-medium text-blue-600 hover:text-blue-800"
+            >
+              Visit artifact <ExternalLink className="h-3 w-3" />
+            </a>
+          ) : null}
+        </div>
       </CardContent>
     </Card>
   );

@@ -2,6 +2,7 @@ export type PublicationStatus = 'Published' | 'Accepted' | 'Under Review' | 'Sub
 
 export type Publication = {
   title: string;
+  slug: string;
   authors: string;
   venue: string;
   year: string;
@@ -11,6 +12,7 @@ export type Publication = {
   tags: string[];
   image?: string;
   links?: {
+    doi?: string;
     paper?: string;
     project?: string;
     code?: string;
@@ -22,6 +24,7 @@ export type Publication = {
 export const publications: Publication[] = [
   {
     title: 'Performance Improvement of LLMs for Regulatory Document Understanding based on Modified RAG Approach',
+    slug: 'regulatory-rag-llm-understanding',
     authors: 'Jae-Hyun Baek, Jon-Lark Kim',
     venue: 'JKIIS',
     year: '2025',
@@ -37,23 +40,26 @@ export const publications: Publication[] = [
     featured: true,
   },
   {
-    title: 'Application of TimeGPT for Enhancing Water Level Prediction in Gamcheon River, Korea',
+    title: 'Water Level Forecasting in the Gamcheon River, Korea, Using TimeGPT',
+    slug: 'timegpt-gamcheon-water-level',
     authors: 'Jon-Lark Kim, Jae-Hyun Baek, Keon-Hwi Kim, Tae Hyo Baek, Chang-Lae Jang',
-    venue: 'Accepted manuscript',
-    year: '2025',
-    status: 'Accepted',
+    venue: 'International Journal of Fuzzy Logic and Intelligent Systems',
+    year: '2026',
+    status: 'Published',
     area: 'Time-series / Hydrology AI',
     summary:
       'A study of foundation-model forecasting for river water levels. We compare TimeGPT with classical and linear baselines under rolling-origin evaluation on the Gamcheon River setting.',
     tags: ['TimeGPT', 'water-level prediction', 'foundation models', 'environmental AI'],
     image: '/accepted/Application_of_TimeGPT_for_enhancing_water_level_prediction_in_Gamcheon_River__Korea/TimeGPT_overall.png',
     links: {
+      doi: 'https://doi.org/10.5391/ijfis.2026.26.1.10',
       researchGate: 'https://www.researchgate.net/profile/Jae-Hyun-Baek?ev=hdr_xprf',
     },
     featured: true,
   },
   {
     title: 'Hybrid Multimodal GenAI for Solving Math Problems Containing Various Figures',
+    slug: 'hybrid-multimodal-genai-math-figures',
     authors: 'Sangsoo Lee, Jae-Hyun Baek, Jon-Lark Kim',
     venue: 'Accepted manuscript',
     year: '2025',
@@ -70,6 +76,7 @@ export const publications: Publication[] = [
   },
   {
     title: 'SolEvolve: LLM-driven Evolutionary Discovery of Algorithms',
+    slug: 'solevolve-evolutionary-discovery',
     authors: 'Jae-Hyun Baek',
     venue: "Master's thesis / manuscript track",
     year: '2025',
@@ -83,6 +90,7 @@ export const publications: Publication[] = [
   },
   {
     title: 'MekaNet: WSI-based Tiny Object Detection',
+    slug: 'mekanet-wsi-tiny-object-detection',
     authors: 'Jae-Hyun Baek et al.',
     venue: 'Medical image analysis manuscript',
     year: '2025',
@@ -95,6 +103,7 @@ export const publications: Publication[] = [
   },
   {
     title: 'Symmetric Sudoku-Type Games from Perfect Codes',
+    slug: 'symmetric-sudoku-perfect-codes',
     authors: 'Jae-Hyun Baek et al.',
     venue: 'Submitted manuscript',
     year: '2025',
