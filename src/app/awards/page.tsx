@@ -1,4 +1,4 @@
-import { Award, GraduationCap, Trophy } from 'lucide-react';
+import { GraduationCap, Trophy } from 'lucide-react';
 import { Navigation } from '@/components/navigation';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
@@ -121,19 +121,15 @@ export default function AwardsPage() {
                 <h2 className="text-3xl font-semibold tracking-tight text-slate-950">Dean's List</h2>
                 <p className="mt-3 text-sm font-medium uppercase tracking-[0.18em] text-blue-700">Sogang University · 2024</p>
               </div>
-              <div className="space-y-4">
+              <div className="space-y-5">
                 <p className="text-lg leading-8 text-slate-700">
                   Recognized by Sogang University's College of Natural Sciences for academic performance during my master's program. I keep it here as part of the transition from mathematics into AI systems research.
                 </p>
-                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-                  <div className="overflow-hidden rounded-2xl bg-white p-3 shadow-sm">
-                    <img src="/deanslist_1.jpg" alt="Dean's List ceremony" className="h-56 w-full rounded-xl object-cover" />
-                    <p className="mt-3 text-sm font-medium text-slate-700">Dean's List ceremony</p>
-                  </div>
-                  <div className="overflow-hidden rounded-2xl bg-white p-3 shadow-sm">
-                    <img src="/deanslist_2.jpg" alt="Dean's List recognition" className="h-56 w-full rounded-xl object-cover" />
-                    <p className="mt-3 text-sm font-medium text-slate-700">Awarded by the Dean of Natural Sciences</p>
-                  </div>
+                <div className="rounded-2xl border border-blue-100 bg-white p-5">
+                  <p className="text-sm font-semibold uppercase tracking-[0.18em] text-blue-700">privacy note</p>
+                  <p className="mt-2 text-sm leading-6 text-slate-600">
+                    Ceremony photos are intentionally not embedded here. Public pages should show the work and recognition without unnecessarily exposing other people in event photos.
+                  </p>
                 </div>
               </div>
             </CardContent>

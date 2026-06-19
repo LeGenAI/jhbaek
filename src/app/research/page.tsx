@@ -1,7 +1,8 @@
-import { BookOpen, Boxes, FileText, FlaskConical, Network, ShieldCheck } from 'lucide-react';
+import { BookOpen, Boxes, ExternalLink, FileText, FlaskConical, Network, ShieldCheck } from 'lucide-react';
 import { Navigation } from '@/components/navigation';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 import { PublicationCard } from '@/components/publication-card';
 import { ArtifactCard } from '@/components/artifact-card';
 import { publications } from '@/data/publications';
@@ -51,6 +52,18 @@ export default function ResearchPage() {
             <p className="text-lg leading-8 text-slate-600">
               My research sits at the boundary between formal mathematics and working AI systems. I care about the artifact behind the claim: the Lean library, the benchmark lineage, the retrieval graph, the evaluation pipeline, the deployed product.
             </p>
+            <div className="flex flex-wrap gap-3">
+              <Button asChild className="gap-2 bg-slate-900 text-white hover:bg-slate-800">
+                <a href="https://www.researchgate.net/profile/Jae-Hyun-Baek?ev=hdr_xprf" target="_blank" rel="noopener noreferrer">
+                  ResearchGate profile <ExternalLink className="h-4 w-4" />
+                </a>
+              </Button>
+              <Button asChild variant="outline" className="gap-2">
+                <a href="https://github.com/LeGenAI" target="_blank" rel="noopener noreferrer">
+                  GitHub artifacts <ExternalLink className="h-4 w-4" />
+                </a>
+              </Button>
+            </div>
           </div>
         </section>
 
@@ -63,6 +76,9 @@ export default function ResearchPage() {
             {featured.map((publication) => (
               <PublicationCard key={publication.title} publication={publication} />
             ))}
+          </div>
+          <div className="rounded-2xl border border-slate-200 bg-white p-5 text-sm leading-6 text-slate-600">
+            Publication metadata is curated manually from my portfolio sources and ResearchGate profile. I keep accepted/published work separate from submitted or under-review manuscripts so the status of each artifact stays explicit.
           </div>
         </section>
 
