@@ -33,6 +33,13 @@ const timeline = [
   },
 ];
 
+const selectionRules = [
+  'Does this expose a domain substrate that agents, provers, or evaluators can reuse?',
+  'Can the work leave behind an artifact: a library, dataset, benchmark, deployed assistant, or reproducible paper trail?',
+  'Is there a real user, expert, or scientific question keeping the system honest?',
+  'Will saying yes sharpen the core thesis, or only add another disconnected obligation?',
+];
+
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-950">
@@ -148,6 +155,30 @@ export default function AboutPage() {
                 <p className="mt-3 text-lg leading-8 text-slate-700">
                   What is the knowledge substrate here, and what would it take for an agent, prover, evaluator, or product team to use it without guessing?
                 </p>
+              </div>
+            </CardContent>
+          </Card>
+        </section>
+
+        <section className="mx-auto mt-10 max-w-7xl">
+          <Card className="border-slate-200 bg-white shadow-sm">
+            <CardContent className="grid grid-cols-1 gap-8 p-8 md:grid-cols-[0.42fr_0.58fr]">
+              <div>
+                <Badge variant="outline" className="border-slate-300 text-slate-600">selection rule</Badge>
+                <h2 className="mt-4 text-3xl font-semibold tracking-tight text-slate-950">How I decide what belongs in the workshop</h2>
+                <p className="mt-4 leading-7 text-slate-600">
+                  The risk in my work is not lack of ideas; it is letting too many unrelated ideas blur the main direction. These are the filters I want future projects to pass.
+                </p>
+              </div>
+              <div className="grid gap-3">
+                {selectionRules.map((rule, index) => (
+                  <div key={rule} className="flex gap-4 rounded-2xl bg-slate-50 p-4">
+                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-slate-900 text-xs font-semibold text-white">
+                      {index + 1}
+                    </span>
+                    <p className="text-sm leading-6 text-slate-700">{rule}</p>
+                  </div>
+                ))}
               </div>
             </CardContent>
           </Card>

@@ -1,4 +1,4 @@
-import { ArrowRight, Github, Linkedin, Mail, Network, Search, ShieldCheck, Wrench } from 'lucide-react';
+import { ArrowRight, Github, Network, Search, ShieldCheck, Wrench } from 'lucide-react';
 import { Navigation } from '@/components/navigation';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -77,13 +77,8 @@ export default function Home() {
                   </a>
                 </Button>
                 <Button asChild size="lg" variant="outline" className="gap-2 border-white/30 bg-white/10 text-white hover:bg-white/20">
-                  <a href="https://www.linkedin.com/in/jae-hyun-baek-516899227" target="_blank" rel="noopener noreferrer">
-                    <Linkedin className="h-4 w-4" /> LinkedIn
-                  </a>
-                </Button>
-                <Button asChild size="lg" variant="outline" className="gap-2 border-white/30 bg-white/10 text-white hover:bg-white/20">
-                  <a href="mailto:bjh3641@gmail.com">
-                    <Mail className="h-4 w-4" /> Email
+                  <a href="/contact">
+                    Start a conversation
                   </a>
                 </Button>
               </div>

@@ -1,0 +1,28 @@
+<svg width="1200" height="675" viewBox="0 0 1200 675" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="675" rx="36" fill="#0f172a"/>
+  <rect x="56" y="56" width="1088" height="563" rx="28" fill="#111827" stroke="#334155" stroke-width="2"/>
+  <text x="88" y="112" fill="#93c5fd" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="22" letter-spacing="5">CODINGTHEORYLIB / MCP</text>
+  <text x="88" y="170" fill="#f8fafc" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="44" font-weight="700">Formal memory for coding theory agents</text>
+  <g transform="translate(88 245)">
+    <rect x="0" y="0" width="250" height="108" rx="18" fill="#1e293b" stroke="#60a5fa"/>
+    <text x="28" y="44" fill="#f8fafc" font-family="Inter, ui-sans-serif" font-size="24" font-weight="700">Lean definitions</text>
+    <text x="28" y="77" fill="#cbd5e1" font-family="Inter, ui-sans-serif" font-size="18">codes · bounds · proofs</text>
+    <rect x="390" y="0" width="250" height="108" rx="18" fill="#1e293b" stroke="#818cf8"/>
+    <text x="418" y="44" fill="#f8fafc" font-family="Inter, ui-sans-serif" font-size="24" font-weight="700">Graph memory</text>
+    <text x="418" y="77" fill="#cbd5e1" font-family="Inter, ui-sans-serif" font-size="18">theorems · dependencies</text>
+    <rect x="780" y="0" width="250" height="108" rx="18" fill="#1e293b" stroke="#22c55e"/>
+    <text x="808" y="44" fill="#f8fafc" font-family="Inter, ui-sans-serif" font-size="24" font-weight="700">Agent tools</text>
+    <text x="808" y="77" fill="#cbd5e1" font-family="Inter, ui-sans-serif" font-size="18">search · reuse · verify</text>
+    <path d="M250 54H390" stroke="#64748b" stroke-width="4" stroke-linecap="round"/>
+    <path d="M640 54H780" stroke="#64748b" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="320" cy="54" r="8" fill="#60a5fa"/>
+    <circle cx="710" cy="54" r="8" fill="#818cf8"/>
+  </g>
+  <g transform="translate(88 420)" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="21">
+    <text x="0" y="0" fill="#bfdbfe">theorem self_dual_code</text>
+    <text x="0" y="42" fill="#c4b5fd">def hamming_bound → reusable lemma</text>
+    <text x="0" y="84" fill="#86efac">mcp.search("building-up construction")</text>
+  </g>
+  <rect x="870" y="435" width="210" height="76" rx="18" fill="#eff6ff"/>
+  <text x="902" y="482" fill="#1d4ed8" font-family="Inter, ui-sans-serif" font-size="22" font-weight="700">agent-readable</text>
+</svg>

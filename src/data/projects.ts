@@ -19,6 +19,7 @@ export const projectArtifacts: ProjectArtifact[] = [
     makerNote:
       'The goal is not only to prove isolated theorems. I want a working memory for a mathematical domain, something a prover agent can actually search and reuse.',
     tags: ['Lean', 'Mathlib', 'coding theory', 'MCP', 'Neo4j'],
+    image: '/previews/codingtheorylib.svg',
   },
   {
     title: 'EntropyMath / EntropyMaG / EntropyMaLean',
@@ -64,6 +65,7 @@ export const projectArtifacts: ProjectArtifact[] = [
     makerNote:
       'The hard part is not only the chatbot. It is preserving the texture of the source material while still making the experience simple enough to use.',
     tags: ['RAG', 'Buddhist texts', 'counseling UX', 'source grounding'],
+    image: '/previews/mindbuddhi.svg',
   },
   {
     title: 'Water-level forecasting pipeline',
