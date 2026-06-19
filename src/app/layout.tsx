@@ -61,10 +61,10 @@ export const metadata: Metadata = {
       'A research workshop for formalized mathematics, auditable benchmarks, agentic knowledge systems, and applied AI products.',
     images: [
       {
-        url: '/background.jpg',
+        url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Jae-Hyun Baek portfolio',
+        alt: 'Jae-Hyun Baek portfolio preview: Formalized Mathematical AI, Agentic Knowledge Systems, Applied AI Products',
       },
     ],
   },
@@ -73,7 +73,7 @@ export const metadata: Metadata = {
     title: 'Jae-Hyun Baek | Formalized Mathematical AI and Agentic Systems',
     description:
       'Formal math libraries, auditable AI benchmarks, RAG products, and agent-readable research memory.',
-    images: ['/background.jpg'],
+    images: ['/og-image.png'],
   },
   category: 'Research',
   classification: 'Academic portfolio and research workshop',
@@ -87,6 +87,39 @@ export const metadata: Metadata = {
   },
 };
 
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Jae-Hyun Baek',
+  alternateName: ['백재현', 'Jaehyeon Baek'],
+  url: siteUrl,
+  image: `${siteUrl}/jhbaek_profile.jpg`,
+  affiliation: [
+    {
+      '@type': 'CollegeOrUniversity',
+      name: 'Sogang University',
+    },
+    {
+      '@type': 'Organization',
+      name: 'DeepFountain',
+    },
+  ],
+  jobTitle: ['PhD student in AI', 'Technical lead', 'Researcher-builder'],
+  sameAs: [
+    'https://github.com/LeGenAI',
+    'https://www.linkedin.com/in/jae-hyun-baek-516899227',
+    'https://www.researchgate.net/profile/Jae-Hyun-Baek?ev=hdr_xprf',
+  ],
+  knowsAbout: [
+    'Formalized Mathematical AI',
+    'Lean theorem proving',
+    'Coding theory',
+    'Retrieval augmented generation',
+    'AI evaluation',
+    'Agent-readable knowledge systems',
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -95,8 +128,12 @@ export default function RootLayout({
   const widgetKey = process.env.NEXT_PUBLIC_DEEPFOUNTAIN_WIDGET_KEY;
 
   return (
-    <html suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
         {widgetKey ? (
           <script
             dangerouslySetInnerHTML={{
