@@ -19,6 +19,7 @@ const linkLabels: Record<string, string> = {
   code: 'Code',
   project: 'Project',
   doi: 'DOI',
+  source: 'Source',
 };
 
 export function PublicationCard({ publication }: { publication: Publication }) {

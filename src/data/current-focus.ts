@@ -10,9 +10,9 @@ export const currentFocus: CurrentFocus[] = [
   {
     title: 'Formalized Mathematical AI',
     horizon: 'core thesis',
-    why: 'CodingTheoryLib, Lean, and MCP-style memory are the spine of my long-term research direction.',
-    artifact: 'A reusable coding-theory substrate that theorem-proving agents can search, inspect, and extend.',
-    tags: ['Lean', 'coding theory', 'MCP', 'formal memory'],
+    why: 'CodingTheoryLib, Lean, MCP-style memory, and the 2026 KIIS LLM-Lean award thread are the spine of my long-term research direction.',
+    artifact: 'A reusable coding-theory and math-solving substrate that theorem-proving agents can search, inspect, falsify, and extend.',
+    tags: ['Lean', 'coding theory', 'MCP', 'closed agents', 'falsifier'],
   },
   {
     title: 'Auditable benchmark evolution',

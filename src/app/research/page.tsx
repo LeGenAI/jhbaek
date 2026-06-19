@@ -12,8 +12,8 @@ const researchAxes = [
   {
     icon: ShieldCheck,
     title: 'Formalized mathematical AI',
-    body: 'Coding theory, self-dual codes, building-up constructions, Lean/Mathlib, and formal memory for theorem-proving agents.',
-    tags: ['Lean', 'CodingTheoryLib', 'Mathlib', 'MCP'],
+    body: 'Coding theory, self-dual codes, building-up constructions, Lean/Mathlib, closed-agent math solving, and formal memory for theorem-proving agents.',
+    tags: ['Lean', 'CodingTheoryLib', 'LLM-Lean', 'MCP'],
   },
   {
     icon: FlaskConical,

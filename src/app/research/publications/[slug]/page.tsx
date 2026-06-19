@@ -13,6 +13,7 @@ const linkLabels: Record<string, string> = {
   paper: 'Paper',
   project: 'Project',
   code: 'Code',
+  source: 'Source',
   researchGate: 'ResearchGate',
 };
 
@@ -50,14 +51,16 @@ export default async function PublicationDetailPage({ params }: { params: Promis
           </div>
 
           {publication.image ? (
-            <div className="relative h-[360px] overflow-hidden rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm">
+            <div className="flex min-h-[360px] items-center justify-center overflow-hidden rounded-[2rem] border border-slate-200 bg-slate-200 p-6 shadow-sm">
               <Image
                 src={publication.image}
                 alt={publication.title}
-                fill
+                width={900}
+                height={636}
                 sizes="(min-width: 1024px) 900px, 100vw"
-                className="object-contain p-6"
+                className="max-h-[320px] w-auto rounded-xl object-contain drop-shadow-xl"
                 priority
+                unoptimized
               />
             </div>
           ) : null}

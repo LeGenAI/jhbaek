@@ -16,12 +16,30 @@ export type Publication = {
     paper?: string;
     project?: string;
     code?: string;
+    source?: string;
     researchGate?: string;
   };
   featured?: boolean;
 };
 
 export const publications: Publication[] = [
+  {
+    title: 'Proposal of an LLM-Lean Approach and Architecture for Automated Mathematical Problem Solving',
+    slug: 'llm-lean-closed-agent-math-solving',
+    authors: 'Youngjik Lee, Jon-Lark Kim, Woo-Seok Jeong, Beom-Soo Kim, Jae-Hyun Baek',
+    venue: '2026 KIIS Spring Conference — Best Paper Award',
+    year: '2026',
+    status: 'Accepted',
+    area: 'AI4Math / Lean agents',
+    summary:
+      'A closed-agent architecture for mathematical problem solving that compares a Single solver structure with a Dual structure where a falsifier participates in the reasoning loop, emphasizing token/compute efficiency and final solving performance.',
+    tags: ['LLM-Lean', 'closed agents', 'falsifier', 'AI4Math', 'best paper'],
+    image: '/awards/kiis-2026-lean-best-paper.jpg',
+    links: {
+      source: 'https://imds.sogang.ac.kr/front/cmsboardview.do?currentPage=1&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=7110&siteId=imds&pkid=937656',
+    },
+    featured: true,
+  },
   {
     title: 'Performance Improvement of LLMs for Regulatory Document Understanding based on Modified RAG Approach',
     slug: 'regulatory-rag-llm-understanding',

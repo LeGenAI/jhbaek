@@ -1,10 +1,21 @@
 import Image from 'next/image';
-import { GraduationCap, Trophy } from 'lucide-react';
+import { ExternalLink, GraduationCap, Trophy } from 'lucide-react';
 import { Navigation } from '@/components/navigation';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 
-const awards = [
+type Award = {
+  title: string;
+  year: string;
+  venue: string;
+  work: string;
+  note: string;
+  image: string;
+  tone: 'rose' | 'blue' | 'amber' | 'slate';
+  sourceUrl?: string;
+};
+
+const awards: Award[] = [
   {
     title: 'Best Presentation Award',
     year: '2025',
@@ -13,6 +24,16 @@ const awards = [
     note: 'Recognized for a study on monitoring-aware behavior in language models and the formal framing of alignment faking.',
     image: '/ISIS/IMG_8109.png',
     tone: 'rose',
+  },
+  {
+    title: 'Best Paper Award',
+    year: '2026',
+    venue: '2026 KIIS Spring Conference',
+    work: 'Proposal of an LLM-Lean approach and architecture for automated mathematical problem solving',
+    note: 'A recent, lower-stakes conference recognition whose importance is contextual: it is public evidence that the IMDS Lean/AI4Math line has moved from internal research into an official presentation track.',
+    image: '/awards/kiis-2026-lean-best-paper.jpg',
+    tone: 'blue',
+    sourceUrl: 'https://imds.sogang.ac.kr/front/cmsboardview.do?currentPage=1&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=7110&siteId=imds&pkid=937656',
   },
   {
     title: 'Best Paper Award',
@@ -62,7 +83,7 @@ export default function AwardsPage() {
               Awards are useful when they point back to the work.
             </h1>
             <p className="text-lg leading-8 text-slate-600">
-              I keep this page less as a trophy shelf and more as a trail of signals: RAG systems, forecasting, AI safety, and product-building experiments that later became part of a larger research workshop.
+              I keep this page less as a trophy shelf and more as a trail of signals: Lean/AI4Math agents, RAG systems, forecasting, AI safety, and product-building experiments that later became part of a larger research workshop. Items are ordered by significance and selectivity rather than recency.
             </p>
           </div>
         </section>
@@ -72,7 +93,7 @@ export default function AwardsPage() {
             <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr]">
               <div className="bg-slate-900 p-8 text-white md:p-10">
                 <Trophy className="mb-6 h-9 w-9 text-blue-300" />
-                <Badge className="mb-5 bg-blue-300 text-slate-950 hover:bg-blue-300">latest recognition</Badge>
+                <Badge className="mb-5 bg-blue-300 text-slate-950 hover:bg-blue-300">higher-signal recognition</Badge>
                 <h2 className="text-3xl font-semibold tracking-tight">{awards[0].title}</h2>
                 <p className="mt-3 text-slate-300">{awards[0].venue}</p>
                 <div className="mt-6 rounded-2xl border border-white/10 bg-white/10 p-5">
@@ -80,15 +101,27 @@ export default function AwardsPage() {
                   <p className="mt-2 text-lg font-medium">{awards[0].work}</p>
                 </div>
                 <p className="mt-6 leading-7 text-slate-300">{awards[0].note}</p>
+                {awards[0].sourceUrl ? (
+                  <a
+                    href={awards[0].sourceUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-blue-200 hover:text-white"
+                  >
+                    IMDS source <ExternalLink className="h-3 w-3" />
+                  </a>
+                ) : null}
               </div>
-              <div className="relative flex min-h-[420px] items-center justify-center bg-slate-100 p-8">
+              <div className="flex min-h-[420px] items-center justify-center bg-slate-200 p-8">
                 <Image
                   src={awards[0].image}
                   alt={`${awards[0].title} certificate`}
-                  fill
+                  width={900}
+                  height={636}
                   sizes="(min-width: 1024px) 55vw, 100vw"
                   priority
-                  className="object-contain p-8"
+                  unoptimized
+                  className="max-h-[360px] w-auto rounded-xl object-contain drop-shadow-2xl"
                 />
               </div>
             </div>
@@ -98,13 +131,13 @@ export default function AwardsPage() {
         <section className="mx-auto mt-10 grid max-w-7xl grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
           {awards.slice(1).map((award) => (
             <Card key={`${award.title}-${award.year}-${award.work}`} className="overflow-hidden border-slate-200 bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl">
-              <div className="relative h-56 bg-slate-50 p-4">
+              <div className="relative h-56 bg-slate-100 p-4">
                 <Image
                   src={award.image}
                   alt={`${award.title} certificate`}
                   fill
                   sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw"
-                  className="object-contain p-4"
+                  className="object-contain p-4 drop-shadow-md"
                 />
               </div>
               <CardContent className="space-y-4 p-6">
@@ -118,6 +151,16 @@ export default function AwardsPage() {
                   <p className="mt-1 text-sm text-slate-500">{award.work}</p>
                 </div>
                 <p className="text-sm leading-6 text-slate-600">{award.note}</p>
+                {award.sourceUrl ? (
+                  <a
+                    href={award.sourceUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-sm font-medium text-blue-600 hover:text-blue-800"
+                  >
+                    Source <ExternalLink className="h-3 w-3" />
+                  </a>
+                ) : null}
               </CardContent>
             </Card>
           ))}
