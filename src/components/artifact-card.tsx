@@ -3,11 +3,22 @@ import Link from 'next/link';
 import { ExternalLink } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
-import type { ProjectArtifact } from '@/data/projects';
+import type { ArtifactLinkKey, ProjectArtifact } from '@/data/projects';
+
+const artifactLinkLabels: Record<ArtifactLinkKey, string> = {
+  paper: 'Paper',
+  code: 'Code',
+  demo: 'Demo',
+  data: 'Data',
+  docs: 'Docs',
+  slides: 'Slides',
+  source: 'Source',
+  website: 'Website',
+};
 
 export function ArtifactCard({ artifact }: { artifact: ProjectArtifact }) {
   return (
-    <Card className="group h-full overflow-hidden border-slate-200 bg-white/90 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+    <Card className="group flex h-full flex-col overflow-hidden border-slate-200 bg-white/90 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
       {artifact.image ? (
         <div className="relative h-44 overflow-hidden border-b border-slate-100 bg-slate-50 p-3">
           <Image
@@ -26,7 +37,7 @@ export function ArtifactCard({ artifact }: { artifact: ProjectArtifact }) {
           </div>
         </div>
       )}
-      <CardContent className="flex h-full flex-col gap-4 p-6">
+      <CardContent className="flex flex-1 flex-col gap-4 p-6">
         <div className="flex flex-wrap items-center gap-2">
           <Badge className="bg-slate-900 text-white hover:bg-slate-800">{artifact.kind}</Badge>
           <Badge variant="outline" className="border-slate-200 text-slate-600">
@@ -40,6 +51,7 @@ export function ArtifactCard({ artifact }: { artifact: ProjectArtifact }) {
               {artifact.title}
             </Link>
           </h3>
+          <p className="mt-3 text-sm font-medium leading-6 text-blue-800">{artifact.oneLine}</p>
           <p className="mt-3 text-sm leading-6 text-slate-600">{artifact.summary}</p>
         </div>
 
@@ -47,7 +59,7 @@ export function ArtifactCard({ artifact }: { artifact: ProjectArtifact }) {
           {artifact.makerNote}
         </div>
 
-        <div className="mt-auto flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2">
           {artifact.tags.map((tag) => (
             <span key={tag} className="rounded-full bg-blue-50 px-3 py-1 text-xs text-blue-700">
               {tag}
@@ -55,20 +67,35 @@ export function ArtifactCard({ artifact }: { artifact: ProjectArtifact }) {
           ))}
         </div>
 
-        <div className="flex flex-wrap gap-3 pt-1 text-sm">
+        <div className="mt-auto flex flex-wrap gap-3 pt-1 text-sm">
           <Link href={`/research/projects/${artifact.slug}`} className="inline-flex items-center gap-1 font-medium text-slate-700 hover:text-blue-800">
             Detail page
           </Link>
-          {artifact.link ? (
-            <a
-              href={artifact.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 font-medium text-blue-600 hover:text-blue-800"
-            >
-              Visit artifact <ExternalLink className="h-3 w-3" />
-            </a>
-          ) : null}
+          {artifact.artifactLinks
+            ? Object.entries(artifact.artifactLinks).map(([label, href]) =>
+                href ? (
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 font-medium text-blue-600 hover:text-blue-800"
+                  >
+                    {artifactLinkLabels[label as ArtifactLinkKey] ?? label}
+                    <ExternalLink className="h-3 w-3" />
+                  </a>
+                ) : null,
+              )
+            : artifact.link ? (
+              <a
+                href={artifact.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 font-medium text-blue-600 hover:text-blue-800"
+              >
+                Visit artifact <ExternalLink className="h-3 w-3" />
+              </a>
+            ) : null}
         </div>
       </CardContent>
     </Card>
