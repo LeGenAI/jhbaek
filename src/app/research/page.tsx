@@ -53,8 +53,10 @@ const researchAxes = [
 ];
 
 export default function ResearchPage() {
-  const featured = publications.filter((publication) => publication.featured);
-  const manuscripts = publications.filter((publication) => !publication.featured);
+  const featured = publications.filter((publication) => publication.featured && publication.status === 'Published');
+  const submittedAndAccepted = publications.filter((publication) =>
+    ['Accepted', 'Submitted', 'Under Review'].includes(publication.status),
+  );
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-950">
@@ -174,14 +176,17 @@ export default function ResearchPage() {
           </div>
         </section>
 
-        {manuscripts.length > 0 ? (
+        {submittedAndAccepted.length > 0 ? (
           <section className="mx-auto mt-20 max-w-7xl space-y-8">
             <div className="flex items-center gap-3">
               <BookOpen className="h-6 w-6 text-blue-600" />
-              <h2 className="text-3xl font-semibold tracking-tight">Manuscripts and selected work</h2>
+              <h2 className="text-3xl font-semibold tracking-tight">Submitted, accepted, and under-review papers</h2>
+            </div>
+            <div className="rounded-2xl border border-blue-100 bg-blue-50 p-5 text-sm leading-6 text-slate-700">
+              This section is an inventory, not a selective shelf: it includes the accepted works, workshop/conference submissions, submitted manuscripts, and under-review manuscripts I have evidence for in the local research archive.
             </div>
             <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-              {manuscripts.map((publication) => (
+              {submittedAndAccepted.map((publication) => (
                 <PublicationCard key={publication.title} publication={publication} />
               ))}
             </div>
