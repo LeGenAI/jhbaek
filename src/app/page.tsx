@@ -54,7 +54,7 @@ export default function Home() {
           <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-16 pb-24 lg:grid-cols-[1.08fr_0.92fr]">
             <div className="space-y-8">
               <Badge className="border border-blue-300/30 bg-blue-400/10 px-4 py-1.5 text-blue-100 hover:bg-blue-400/10">
-                Formalized Mathematical AI · Agentic Knowledge Systems · Applied AI Products
+                Formalized Mathematical AI · Auditable Evaluation · Deployed Knowledge Systems
               </Badge>
 
               <div className="space-y-5">
@@ -62,7 +62,7 @@ export default function Home() {
                   I turn domain knowledge into systems that agents can use.
                 </h1>
                 <p className="max-w-3xl text-lg leading-8 text-slate-200 md:text-xl">
-                  I am a PhD student in AI at Sogang University and a technical lead at DeepFountain. My work sits between formal mathematics, AI evaluation, and deployed systems: Lean libraries for coding theory, auditable math benchmarks, RAG products, forecasting pipelines, and research memory for agents.
+                  I build AI systems that turn domain knowledge into formal, searchable, and testable artifacts: Lean libraries for coding theory, auditable math benchmarks, RAG products, forecasting pipelines, and research memory for agents.
                 </p>
               </div>
 
@@ -196,7 +196,7 @@ export default function Home() {
         <section className="bg-slate-100 px-6 py-24 text-slate-950">
           <div className="mx-auto max-w-7xl space-y-10">
             <div className="max-w-3xl space-y-4">
-              <Badge variant="outline" className="border-slate-300 text-slate-600">systems I built</Badge>
+              <Badge variant="outline" className="border-slate-300 text-slate-600">deployed research systems</Badge>
               <h2 className="text-4xl font-semibold tracking-tight">A map of working artifacts.</h2>
               <p className="text-lg leading-8 text-slate-600">
                 The surface changes from theorem proving to medical AI to RAG products. The maker habit is the same: find the hidden structure, make it computable, and ship a usable artifact.

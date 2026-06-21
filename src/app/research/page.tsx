@@ -1,4 +1,5 @@
-import { BookOpen, Boxes, ExternalLink, FileText, FlaskConical, Network, ShieldCheck } from 'lucide-react';
+import { ArrowRight, BookOpen, Boxes, ExternalLink, FileText, FlaskConical, Network, ShieldCheck } from 'lucide-react';
+import Link from 'next/link';
 import { Navigation } from '@/components/navigation';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -10,28 +11,44 @@ import { projectArtifacts } from '@/data/projects';
 
 const researchAxes = [
   {
+    id: 'formalized-math-ai',
     icon: ShieldCheck,
-    title: 'Formalized mathematical AI',
-    body: 'Coding theory, self-dual codes, building-up constructions, Lean/Mathlib, closed-agent math solving, and formal memory for theorem-proving agents.',
-    tags: ['Lean', 'CodingTheoryLib', 'LLM-Lean', 'MCP'],
+    title: 'Formalized Mathematical AI',
+    thesis: 'Make mathematical knowledge formal, searchable, and reusable by theorem-proving agents.',
+    body:
+      'This is the spine of the portfolio: coding theory, self-dual codes, Lean/Mathlib, closed-agent math solving, and domain-specific memory for mathematical agents.',
+    questions: ['What should a mathematical domain look like before an agent can use it?', 'How do Lean artifacts, proof trajectories, and MCP interfaces become reusable research memory?'],
+    tags: ['Lean', 'CodingTheoryLib', 'AI4Math', 'MCP', 'proof trajectories'],
   },
   {
+    id: 'auditable-evaluation',
     icon: FlaskConical,
-    title: 'Auditable benchmark evolution',
-    body: 'EntropyMath and EntropyMaLean explore generated math problems with lineage, solver traces, verifier contracts, and evaluation artifacts.',
-    tags: ['EntropyMath', 'AI4Math', 'verification', 'benchmarks'],
+    title: 'Auditable Benchmark Evolution',
+    thesis: 'Treat benchmarks as inspectable processes, not static files.',
+    body:
+      'EntropyMath, EntropyMaG, and EntropyMaLean connect generated problems to lineage, solver traces, verifier contracts, and revision-ready evidence.',
+    questions: ['What does a generated math benchmark need to expose before it can be trusted?', 'Can verification and lineage become first-class evaluation artifacts?'],
+    tags: ['EntropyMath', 'benchmark lineage', 'verification', 'solver traces'],
   },
   {
+    id: 'deployed-knowledge-systems',
     icon: Network,
-    title: 'Agent-readable research memory',
-    body: 'A recurring goal is to make domain knowledge searchable and reusable by agents through graphs, retrieval layers, and MCP-style interfaces.',
-    tags: ['GBrain', 'Neo4j', 'vector memory', 'agents'],
+    title: 'Deployed Knowledge Systems',
+    thesis: 'Use real products to test whether a knowledge substrate actually helps people.',
+    body:
+      'SOGAMBOT, MindBuddhi, regulatory RAG, and institutional assistants keep the agent-readable-memory idea grounded in messy users, documents, and product constraints.',
+    questions: ['Can source-grounded answers preserve the texture of a domain?', 'What breaks when retrieval leaves a notebook and becomes a user-facing system?'],
+    tags: ['RAG', 'source grounding', 'product UX', 'domain memory'],
   },
   {
+    id: 'applied-ai-methods',
     icon: Boxes,
-    title: 'Applied AI systems',
-    body: 'The applied side keeps the research honest: RAG systems, forecasting pipelines, medical AI, education tools, and deployed prototypes.',
-    tags: ['RAG', 'forecasting', 'medical AI', 'products'],
+    title: 'Applied AI Methods under Real Constraints',
+    thesis: 'Use forecasting, medical images, and education tools to keep the research honest.',
+    body:
+      'Hydrology, whole-slide images, and education systems create pressure that clean benchmarks often hide: missing data, clinical validation, event timing, and operational evaluation.',
+    questions: ['What evaluation choices matter outside the benchmark?', 'How does domain friction reshape the model pipeline?'],
+    tags: ['forecasting', 'medical AI', 'education AI', 'evaluation'],
   },
 ];
 
@@ -45,22 +62,27 @@ export default function ResearchPage() {
       <main className="px-6 pt-32 pb-24">
         <section className="mx-auto max-w-7xl">
           <div className="max-w-4xl space-y-5">
-            <Badge className="bg-slate-900 text-white hover:bg-slate-800">research and publications</Badge>
+            <Badge className="bg-slate-900 text-white hover:bg-slate-800">research program</Badge>
             <h1 className="text-5xl font-semibold tracking-tight md:text-6xl">
-              Papers, systems, and the knowledge substrates underneath them.
+              Formal, searchable, and testable knowledge for AI agents.
             </h1>
             <p className="text-lg leading-8 text-slate-600">
-              My research sits at the boundary between formal mathematics and working AI systems. I care about the artifact behind the claim: the Lean library, the benchmark lineage, the retrieval graph, the evaluation pipeline, the deployed product.
+              My work asks how messy domain knowledge becomes something an agent, prover, evaluator, or real user can reliably use. The domains range from Lean and coding theory to RAG products, hydrology, and medical images, but the motion is the same: substrate → interface → evidence → artifact.
             </p>
             <div className="flex flex-wrap gap-3">
               <Button asChild className="gap-2 bg-slate-900 text-white hover:bg-slate-800">
-                <a href="https://www.researchgate.net/profile/Jae-Hyun-Baek?ev=hdr_xprf" target="_blank" rel="noopener noreferrer">
-                  ResearchGate profile <ExternalLink className="h-4 w-4" />
-                </a>
+                <Link href="/artifacts">
+                  Browse artifacts <ArrowRight className="h-4 w-4" />
+                </Link>
               </Button>
               <Button asChild variant="outline" className="gap-2">
                 <a href="https://github.com/LeGenAI" target="_blank" rel="noopener noreferrer">
-                  GitHub artifacts <ExternalLink className="h-4 w-4" />
+                  GitHub <ExternalLink className="h-4 w-4" />
+                </a>
+              </Button>
+              <Button asChild variant="outline" className="gap-2">
+                <a href="https://www.researchgate.net/profile/Jae-Hyun-Baek?ev=hdr_xprf" target="_blank" rel="noopener noreferrer">
+                  ResearchGate <ExternalLink className="h-4 w-4" />
                 </a>
               </Button>
             </div>
@@ -68,42 +90,61 @@ export default function ResearchPage() {
         </section>
 
         <section className="mx-auto mt-16 max-w-7xl space-y-8">
-          <div className="flex items-center gap-3">
-            <FileText className="h-6 w-6 text-blue-600" />
-            <h2 className="text-3xl font-semibold tracking-tight">Featured publications</h2>
-          </div>
-          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-            {featured.map((publication) => (
-              <PublicationCard key={publication.title} publication={publication} />
-            ))}
-          </div>
-          <div className="rounded-2xl border border-slate-200 bg-white p-5 text-sm leading-6 text-slate-600">
-            Publication metadata is curated manually from my portfolio sources and ResearchGate profile. I keep accepted/published work separate from submitted or under-review manuscripts so the status of each artifact stays explicit.
-          </div>
-        </section>
-
-        <section className="mx-auto mt-20 max-w-7xl space-y-8">
           <div className="max-w-3xl space-y-4">
-            <Badge variant="outline" className="border-slate-300 text-slate-600">research axes</Badge>
-            <h2 className="text-4xl font-semibold tracking-tight">The threads that keep repeating.</h2>
+            <Badge variant="outline" className="border-slate-300 text-slate-600">research map</Badge>
+            <h2 className="text-4xl font-semibold tracking-tight">Four threads, one repeated pattern.</h2>
             <p className="text-lg leading-8 text-slate-600">
-              The domains change, but the research pattern is stable: formalize the domain, expose it to agents, test it through evaluation, and turn the result into a paper or product.
+              Each axis below links a question to the papers and systems that carry it. This is the page that should explain the research program before anyone sees a certificate or a trophy.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
             {researchAxes.map((axis) => {
               const Icon = axis.icon;
+              const axisPublications = publications.filter((publication) => publication.researchAxis === axis.id).slice(0, 3);
+              const axisArtifacts = projectArtifacts.filter((artifact) => artifact.researchAxis === axis.id).slice(0, 3);
+
               return (
                 <Card key={axis.title} className="border-slate-200 bg-white shadow-sm">
                   <CardHeader>
                     <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-50 text-blue-700">
                       <Icon className="h-6 w-6" />
                     </div>
-                    <CardTitle>{axis.title}</CardTitle>
+                    <CardTitle className="text-2xl">{axis.title}</CardTitle>
+                    <p className="pt-2 text-sm font-semibold leading-6 text-blue-800">{axis.thesis}</p>
                   </CardHeader>
-                  <CardContent className="space-y-4">
+                  <CardContent className="space-y-5">
                     <p className="text-sm leading-6 text-slate-600">{axis.body}</p>
+                    <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">questions</p>
+                      <ul className="mt-3 space-y-2 text-sm leading-6 text-slate-700">
+                        {axis.questions.map((question) => (
+                          <li key={question}>• {question}</li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div className="grid gap-4 md:grid-cols-2">
+                      <div>
+                        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">papers</p>
+                        <div className="mt-3 space-y-2">
+                          {axisPublications.map((publication) => (
+                            <Link key={publication.slug} href={`/research/publications/${publication.slug}`} className="block text-sm font-medium leading-6 text-slate-700 hover:text-blue-700">
+                              {publication.title}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                      <div>
+                        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">artifacts</p>
+                        <div className="mt-3 space-y-2">
+                          {axisArtifacts.map((artifact) => (
+                            <Link key={artifact.slug} href={`/research/projects/${artifact.slug}`} className="block text-sm font-medium leading-6 text-slate-700 hover:text-blue-700">
+                              {artifact.title}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
                     <div className="flex flex-wrap gap-2">
                       {axis.tags.map((tag) => (
                         <span key={tag} className="rounded-full bg-slate-100 px-3 py-1 text-xs text-slate-600">
@@ -120,29 +161,51 @@ export default function ResearchPage() {
 
         <section className="mx-auto mt-20 max-w-7xl space-y-8">
           <div className="flex items-center gap-3">
-            <BookOpen className="h-6 w-6 text-blue-600" />
-            <h2 className="text-3xl font-semibold tracking-tight">Manuscripts and selected work</h2>
+            <FileText className="h-6 w-6 text-blue-600" />
+            <h2 className="text-3xl font-semibold tracking-tight">Selected publications</h2>
           </div>
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-            {manuscripts.map((publication) => (
+            {featured.map((publication) => (
               <PublicationCard key={publication.title} publication={publication} />
             ))}
           </div>
+          <div className="rounded-2xl border border-slate-200 bg-white p-5 text-sm leading-6 text-slate-600">
+            Status labels separate published/accepted work from submitted or under-review manuscripts. Each detail page explains the problem, key idea, role, evidence, and related artifacts.
+          </div>
         </section>
+
+        {manuscripts.length > 0 ? (
+          <section className="mx-auto mt-20 max-w-7xl space-y-8">
+            <div className="flex items-center gap-3">
+              <BookOpen className="h-6 w-6 text-blue-600" />
+              <h2 className="text-3xl font-semibold tracking-tight">Manuscripts and selected work</h2>
+            </div>
+            <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+              {manuscripts.map((publication) => (
+                <PublicationCard key={publication.title} publication={publication} />
+              ))}
+            </div>
+          </section>
+        ) : null}
 
         <section className="mx-auto mt-20 max-w-7xl space-y-8">
           <div className="max-w-3xl space-y-4">
             <Badge variant="outline" className="border-slate-300 text-slate-600">systems and artifacts</Badge>
             <h2 className="text-4xl font-semibold tracking-tight">The systems behind the papers.</h2>
             <p className="text-lg leading-8 text-slate-600">
-              I want the work to leave behind something usable: a library, a benchmark, a deployed assistant, a forecasting workflow, or a research memory an agent can query.
+              The public site should make artifacts easier to inspect than awards. These systems are the working surfaces where the research program becomes code, data, demos, and deployed tools.
             </p>
           </div>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
-            {projectArtifacts.map((artifact) => (
+            {projectArtifacts.slice(0, 6).map((artifact) => (
               <ArtifactCard key={artifact.title} artifact={artifact} />
             ))}
           </div>
+          <Button asChild variant="outline" className="gap-2">
+            <Link href="/artifacts">
+              View all artifacts <ArrowRight className="h-4 w-4" />
+            </Link>
+          </Button>
         </section>
       </main>
     </div>

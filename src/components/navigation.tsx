@@ -9,17 +9,19 @@ import {
   Menu,
   User,
   GraduationCap,
-  Trophy,
   BookOpen,
   Mail,
   Github,
-  Linkedin
+  Linkedin,
+  Boxes,
+  PenLine
 } from 'lucide-react';
 
 const navigationItems = [
   { href: '/', label: 'Home', icon: User },
-  { href: '/awards', label: 'Awards', icon: Trophy },
   { href: '/research', label: 'Research', icon: BookOpen },
+  { href: '/artifacts', label: 'Artifacts', icon: Boxes },
+  { href: '/writing', label: 'Writing', icon: PenLine },
   { href: '/about', label: 'About', icon: GraduationCap },
   { href: '/contact', label: 'Contact', icon: Mail }
 ];

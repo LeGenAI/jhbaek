@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { ExternalLink } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
-import type { Publication } from '@/data/publications';
+import type { Publication, PublicationLinkKey } from '@/data/publications';
 
 const statusStyles: Record<Publication['status'], string> = {
   Published: 'bg-emerald-100 text-emerald-800 border-emerald-200',
@@ -13,20 +13,23 @@ const statusStyles: Record<Publication['status'], string> = {
   'In Preparation': 'bg-zinc-100 text-zinc-700 border-zinc-200',
 };
 
-const linkLabels: Record<string, string> = {
+const linkLabels: Record<PublicationLinkKey, string> = {
   researchGate: 'ResearchGate',
   paper: 'Paper',
   code: 'Code',
   project: 'Project',
   doi: 'DOI',
   source: 'Source',
+  artifact: 'Artifact',
+  slides: 'Slides',
+  data: 'Data',
 };
 
 export function PublicationCard({ publication }: { publication: Publication }) {
   return (
-    <Card className="group overflow-hidden border-slate-200 bg-white/90 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+    <Card className="group flex h-full flex-col overflow-hidden border-slate-200 bg-white/90 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
       {publication.image ? (
-        <div className="relative h-48 overflow-hidden border-b border-slate-100 bg-slate-50 p-3">
+        <div className="relative h-44 overflow-hidden border-b border-slate-100 bg-slate-50 p-3">
           <Image
             src={publication.image}
             alt={publication.title}
@@ -36,13 +39,13 @@ export function PublicationCard({ publication }: { publication: Publication }) {
           />
         </div>
       ) : (
-        <div className="flex h-48 items-center justify-center border-b border-slate-100 bg-gradient-to-br from-slate-100 to-blue-50 p-6 text-center">
+        <div className="flex h-44 items-center justify-center border-b border-slate-100 bg-gradient-to-br from-slate-100 to-blue-50 p-6 text-center">
           <span className="text-sm font-medium uppercase tracking-[0.2em] text-slate-500">
             {publication.area}
           </span>
         </div>
       )}
-      <CardContent className="space-y-4 p-6">
+      <CardContent className="flex flex-1 flex-col gap-4 p-6">
         <div className="flex flex-wrap items-center gap-2">
           <Badge variant="outline" className={statusStyles[publication.status]}>
             {publication.status}
@@ -65,6 +68,10 @@ export function PublicationCard({ publication }: { publication: Publication }) {
           <p className="mt-1 text-sm font-medium text-slate-700">{publication.venue}</p>
         </div>
 
+        <div className="rounded-2xl border border-blue-100 bg-blue-50/70 p-4 text-sm leading-6 text-slate-700">
+          <span className="font-semibold text-blue-800">TL;DR:</span> {publication.tldr}
+        </div>
+
         <p className="text-sm leading-6 text-slate-600">{publication.summary}</p>
 
         <div className="flex flex-wrap gap-2">
@@ -75,7 +82,7 @@ export function PublicationCard({ publication }: { publication: Publication }) {
           ))}
         </div>
 
-        <div className="flex flex-wrap gap-3 pt-2 text-sm">
+        <div className="mt-auto flex flex-wrap gap-3 pt-2 text-sm">
           <Link href={`/research/publications/${publication.slug}`} className="inline-flex items-center gap-1 font-medium text-slate-700 hover:text-blue-800">
             Detail page
           </Link>
@@ -89,7 +96,7 @@ export function PublicationCard({ publication }: { publication: Publication }) {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1 font-medium text-blue-600 hover:text-blue-800"
                   >
-                    {linkLabels[label] ?? label}
+                    {linkLabels[label as PublicationLinkKey] ?? label}
                     <ExternalLink className="h-3 w-3" />
                   </a>
                 ) : null,

@@ -1,8 +1,9 @@
 import Image from 'next/image';
-import { Brain, GraduationCap, Network, PackageOpen, Wrench } from 'lucide-react';
+import { Brain, ExternalLink, GraduationCap, Network, PackageOpen, Wrench } from 'lucide-react';
 import { Navigation } from '@/components/navigation';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { recognitions } from '@/data/recognitions';
 
 const workHabits = [
   {
@@ -186,6 +187,44 @@ export default function AboutPage() {
               </div>
             </CardContent>
           </Card>
+        </section>
+
+        <section className="mx-auto mt-20 max-w-7xl">
+          <div className="mb-8 max-w-3xl">
+            <Badge variant="outline" className="border-slate-300 text-slate-600">recognition</Badge>
+            <h2 className="mt-4 text-4xl font-semibold tracking-tight">Signals that point back to the work.</h2>
+            <p className="mt-4 text-lg leading-8 text-slate-600">
+              I keep awards here as supporting evidence rather than the center of the site. Each item is tied to the research or product thread it helped make visible.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+            {recognitions.map((item) => (
+              <Card key={`${item.title}-${item.year}-${item.recognizedWork}`} className="border-slate-200 bg-white shadow-sm">
+                <CardContent className="grid grid-cols-[88px_1fr] gap-5 p-5">
+                  <div className="relative h-24 overflow-hidden rounded-2xl border border-slate-100 bg-slate-50">
+                    {item.image ? (
+                      <Image src={item.image} alt={`${item.title} evidence`} fill sizes="88px" className="object-contain p-2" unoptimized />
+                    ) : null}
+                  </div>
+                  <div className="space-y-2">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <Badge variant="outline" className="border-slate-200 text-slate-600">{item.year}</Badge>
+                      <span className="text-xs font-semibold uppercase tracking-[0.16em] text-blue-700">{item.relatedThread}</span>
+                    </div>
+                    <h3 className="font-semibold leading-snug text-slate-950">{item.title}</h3>
+                    <p className="text-sm text-slate-600">{item.venue}</p>
+                    <p className="text-sm font-medium text-slate-800">{item.recognizedWork}</p>
+                    <p className="text-sm leading-6 text-slate-600">{item.whyItMatters}</p>
+                    {item.sourceUrl ? (
+                      <a href={item.sourceUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-sm font-medium text-blue-600 hover:text-blue-800">
+                        Source <ExternalLink className="h-3 w-3" />
+                      </a>
+                    ) : null}
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </section>
       </main>
     </div>
