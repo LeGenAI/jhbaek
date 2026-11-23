@@ -211,14 +211,14 @@ export const projectArtifacts: ProjectArtifact[] = [
     whyItMatters:
       'It demonstrates the applied-AI side of turning expert data into inspectable, publishable systems.',
     whatIBuilt: ['Data and result validation support', 'WSI/tiny-object detection project scaffolding', 'Medical AI release/manuscript support'],
-    evidence: ['MekaNet release/project artifacts', 'Under-review manuscript line'],
+    evidence: ['MekaNet release/project artifacts', 'Tiling and semi-supervised detection manuscript submitted to BMC'],
     currentStatus: 'Research/manuscript track with external clinical context.',
     nextStep: 'Keep public portfolio detail concise while preserving enough evidence of technical scope.',
     role: 'Technical contributor for data, evaluation, and manuscript reliability.',
     researchAxis: 'applied-ai-methods',
     tags: ['WSI', 'pathology', 'tiny object detection', 'cellularity'],
     image: '/mekanet.png',
-    relatedPublications: ['mekanet-wsi-tiny-object-detection'],
+    relatedPublications: ['mekanet-tiling-enhanced-semisupervised-megakaryocytes'],
   },
 ];
 
