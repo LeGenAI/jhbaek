@@ -27,17 +27,27 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-      <section className="section-rule grid gap-4 md:grid-cols-[1fr_2fr]">
-        <h2 className="section-title">Applied work</h2>
-        <div className="max-w-prose">
-          <p className="leading-relaxed">I also build retrieval systems. SOGAMBOT helps students find answers in university documents. MindBuddhi retrieves passages from Buddhist texts.</p>
-          <div className="mt-2 flex flex-wrap gap-x-6">
-            <Link className="source-link" href="/research/projects/sogambot">SOGAMBOT</Link>
-            <Link className="source-link" href="/research/projects/mindbuddhi">MindBuddhi</Link>
-          </div>
-        </div>
+      <section aria-labelledby="experience" className="section-rule grid gap-4 md:grid-cols-[1fr_2fr]">
+        <h2 id="experience" className="section-title scroll-mt-20">Experience</h2>
+        <ul className="max-w-prose divide-y divide-[#c8d1c6]">
+          <li className="pb-5">
+            <h3 className="text-xl font-semibold">AI Engineer Intern, Canvas &amp; People</h3>
+            <p className="meta-text mt-1">Mar–Apr 2026 · TaxCanvas</p>
+            <p className="mt-2 leading-relaxed">I implemented graph and vector retrieval to link tax laws to supplementary provisions. I optimized LangGraph nodes and used LangSmith to monitor chatbot failures and negative feedback.</p>
+          </li>
+          <li className="py-5">
+            <h3 className="text-xl font-semibold">Technical Lead, DeepFountain</h3>
+            <p className="mt-2 leading-relaxed">I lead development of applied AI systems, including retrieval and agent workflows.</p>
+          </li>
+          <li className="pt-5">
+            <h3 className="text-xl font-semibold">Teaching Assistant, Sogang University</h3>
+            <p className="meta-text mt-1">Basic Artificial Intelligence · Fall 2026</p>
+          </li>
+        </ul>
       </section>
       <div className="section-rule flex flex-wrap gap-x-6">
+        <Link className="source-link" href="/research/projects/sogambot">SOGAMBOT</Link>
+        <Link className="source-link" href="/research/projects/mindbuddhi">MindBuddhi</Link>
         <Link className="source-link" href="/awards">Awards and certificates</Link>
         <Link className="source-link" href="/contact">Contact</Link>
       </div>
