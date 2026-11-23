@@ -38,7 +38,7 @@ export default async function PublicationDetailPage({ params }: { params: Promis
   return (
     <div className="min-h-screen bg-slate-50 text-slate-950">
       <Navigation />
-      <main className="px-6 pt-32 pb-24">
+      <main className="px-5 pt-24 pb-16 sm:px-8 md:pt-32">
         <section className="mx-auto max-w-6xl space-y-8">
           <Button asChild variant="outline" className="gap-2">
             <Link href="/research">
@@ -52,7 +52,18 @@ export default async function PublicationDetailPage({ params }: { params: Promis
               <Badge variant="outline" className="border-slate-300 text-slate-600">{publication.year}</Badge>
               <Badge variant="outline" className="border-blue-200 text-blue-700">{publication.area}</Badge>
             </div>
-            <h1 className="text-4xl font-semibold tracking-tight md:text-6xl">{publication.title}</h1>
+            <h1 className="break-words text-3xl font-semibold tracking-tight sm:text-4xl md:text-6xl">{publication.title}</h1>
+            <p className="text-base leading-relaxed text-slate-700">{publication.authors}</p>
+            <p className="text-sm text-slate-600">{publication.venue} · {publication.year}</p>
+            {publication.links && (
+              <div className="flex flex-wrap gap-x-5">
+                {Object.entries(publication.links).map(([label, href]) => (
+                  <a key={label} href={href} className="inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-blue-800 underline underline-offset-4">
+                    {linkLabels[label as PublicationLinkKey]} <ExternalLink aria-hidden="true" className="h-3 w-3" />
+                  </a>
+                ))}
+              </div>
+            )}
             <p className="text-xl font-medium leading-8 text-blue-800">{publication.tldr}</p>
             <p className="text-lg leading-8 text-slate-600">{publication.summary}</p>
           </div>
@@ -75,7 +86,7 @@ export default async function PublicationDetailPage({ params }: { params: Promis
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-[0.68fr_0.32fr]">
             <div className="space-y-6">
               <Card className="border-slate-200 bg-white shadow-sm">
-                <CardContent className="space-y-6 p-8">
+                <CardContent className="space-y-6 p-5 sm:p-8">
                   <div>
                     <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">problem</p>
                     <p className="mt-2 leading-7 text-slate-700">{publication.problem}</p>
@@ -115,8 +126,8 @@ export default async function PublicationDetailPage({ params }: { params: Promis
               </div>
 
               <Card className="border-blue-100 bg-blue-50 shadow-sm">
-                <CardContent className="space-y-4 p-8">
-                  <p className="text-sm font-semibold uppercase tracking-[0.18em] text-blue-700">why this belongs in the portfolio</p>
+                <CardContent className="space-y-4 p-5 sm:p-8">
+                  <p className="text-sm font-semibold uppercase tracking-[0.18em] text-blue-700">Contributions</p>
                   <ul className="space-y-3 text-sm leading-6 text-slate-700">
                     {publication.contribution.map((item) => (
                       <li key={item}>• {item}</li>
@@ -128,14 +139,9 @@ export default async function PublicationDetailPage({ params }: { params: Promis
 
             <div className="space-y-6">
               <Card className="border-slate-200 bg-white shadow-sm">
-                <CardContent className="space-y-5 p-8">
+                <CardContent className="space-y-5 p-5 sm:p-8">
                   <div>
-                    <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">authors</p>
-                    <p className="mt-2 text-sm leading-6 text-slate-700">{publication.authors}</p>
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">venue / status</p>
-                    <p className="mt-2 text-sm leading-6 text-slate-700">{publication.venue}</p>
+                    <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Publication details</p>
                     <p className="mt-3 text-sm leading-6 text-slate-500">{publication.statusNote}</p>
                   </div>
                   <div>
@@ -146,24 +152,13 @@ export default async function PublicationDetailPage({ params }: { params: Promis
                       ))}
                     </div>
                   </div>
-                  {publication.links ? (
-                    <div className="space-y-3">
-                      <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">artifact links</p>
-                      {Object.entries(publication.links).map(([label, href]) =>
-                        href ? (
-                          <a key={label} href={href} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm font-medium text-blue-600 hover:text-blue-800">
-                            {linkLabels[label as PublicationLinkKey] ?? label} <ExternalLink className="h-3 w-3" />
-                          </a>
-                        ) : null,
-                      )}
-                    </div>
-                  ) : null}
+
                 </CardContent>
               </Card>
 
               {relatedArtifacts.length > 0 ? (
                 <Card className="border-slate-200 bg-white shadow-sm">
-                  <CardContent className="space-y-4 p-8">
+                  <CardContent className="space-y-4 p-5 sm:p-8">
                     <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">related artifacts</p>
                     {relatedArtifacts.map((artifact) => (
                       <Link key={artifact.slug} href={`/research/projects/${artifact.slug}`} className="block rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm hover:border-blue-200 hover:bg-blue-50">

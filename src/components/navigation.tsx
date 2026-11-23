@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import {
@@ -28,6 +28,7 @@ const navigationItems = [
 
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
 
   // 홈페이지인지 확인
@@ -55,13 +56,13 @@ export function Navigation() {
             ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-200'
             : 'bg-white/90 backdrop-blur-sm shadow-md border-b border-gray-100'
         }`}>
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="flex items-center justify-between h-16">
             {/* Logo/Brand */}
             <div className="flex-shrink-0">
               <Link
                 href="/"
-                className={`text-xl font-bold transition-colors ${isHomePage
+                className={`text-lg sm:text-xl font-bold transition-colors ${isHomePage
                     ? // 홈페이지용 로고 (흰색 텍스트)
                     isScrolled ? 'text-white drop-shadow-lg' : 'text-white drop-shadow-lg'
                     : // 일반 페이지용 로고 (검은색 텍스트)
@@ -74,7 +75,7 @@ export function Navigation() {
             </div>
 
             {/* Desktop Menu */}
-            <div className="hidden md:block">
+            <div className="hidden lg:block">
               <div className="flex items-center space-x-1">
                 {navigationItems.map((item) => {
                   const Icon = item.icon;
@@ -104,7 +105,7 @@ export function Navigation() {
             </div>
 
             {/* Social Links */}
-            <div className="hidden md:flex items-center gap-2">
+            <div className="hidden lg:flex items-center gap-2">
               <Button asChild variant="ghost" size="sm" className={
                 isHomePage
                   ? "text-white/90 hover:text-amber-300 hover:bg-white/10"
@@ -135,21 +136,20 @@ export function Navigation() {
             </div>
 
             {/* Mobile Menu Button */}
-            <div className="md:hidden">
-              <Sheet>
+            <div className="lg:hidden">
+              <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
                 <SheetTrigger asChild>
-                  <Button variant="ghost" size="sm">
+                  <Button variant="ghost" size="icon" className="h-11 w-11" aria-label="Open navigation">
                     <Menu className={`w-5 h-5 ${isHomePage
                         ? isScrolled ? 'text-white drop-shadow-lg' : 'text-white drop-shadow-lg'
                         : 'text-gray-700'
                       }`} />
                   </Button>
                 </SheetTrigger>
-                <SheetContent side="right" className="w-80">
+                <SheetContent side="right" aria-describedby={undefined} className="w-80 max-w-full overflow-y-auto">
                   <div className="flex flex-col space-y-4 mt-8">
                     <div className="text-center pb-4 border-b">
-                      <h3 className="text-lg font-bold text-gray-900">백재현</h3>
-                      <p className="text-sm text-gray-600">Researcher-builder • AI systems maker</p>
+                      <SheetTitle>Navigation</SheetTitle>
                     </div>
 
                     {/* Mobile Navigation Items */}
@@ -161,6 +161,7 @@ export function Navigation() {
                         <Link
                           key={item.href}
                           href={item.href}
+                          onClick={() => setMenuOpen(false)}
                           className={`flex items-center gap-3 px-4 py-3 rounded-lg text-left transition-colors ${isActive
                               ? 'bg-blue-50 text-blue-700 border border-blue-200'
                               : 'text-gray-700 hover:bg-gray-50'

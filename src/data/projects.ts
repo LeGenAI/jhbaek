@@ -1,6 +1,20 @@
 export type ProjectKind = 'proof substrate' | 'benchmark' | 'agent memory' | 'deployed system' | 'forecasting' | 'medical AI' | 'research system' | 'education system' | 'game artifact';
 export type ProjectStatus = 'active' | 'deployed' | 'research' | 'prototype' | 'submitted' | 'public preview pending';
-export type ArtifactLinkKey = 'paper' | 'code' | 'demo' | 'data' | 'docs' | 'slides' | 'source' | 'website';
+export type ArtifactLinkKey = 'paper' | 'code' | 'demo' | 'data' | 'docs' | 'slides' | 'source' | 'website' | 'leaderboard' | 'evaluation' | 'reproduce';
+
+export const artifactLinkLabels: Record<ArtifactLinkKey, string> = {
+  paper: 'Paper',
+  code: 'Code',
+  demo: 'Demo',
+  data: 'Data',
+  docs: 'Docs',
+  slides: 'Slides',
+  source: 'Source',
+  website: 'Website',
+  leaderboard: 'EntropyMath leaderboard',
+  evaluation: 'EntropyMath evaluation code',
+  reproduce: 'Reviewer reproduction',
+};
 
 export type ProjectArtifact = {
   title: string;
@@ -31,26 +45,19 @@ export const projectArtifacts: ProjectArtifact[] = [
     slug: 'codingtheorylib-mcp',
     kind: 'proof substrate',
     status: 'active',
-    summary:
-      'A formalized coding-theory substrate: Lean definitions, proof work, graph memory, and MCP-style access for agents.',
-    oneLine: 'Formal coding-theory knowledge shaped into a reusable substrate for theorem-proving agents.',
-    makerNote:
-      'The goal is not only to prove isolated theorems. I want a working memory for a mathematical domain, something a prover agent can actually search and reuse.',
-    problem:
-      'General theorem-proving models struggle when a research topic depends on local definitions, naming conventions, and domain-specific theorem structure.',
-    whyItMatters:
-      'If a mathematical domain has no formal, searchable substrate, every agent must rediscover the vocabulary before it can reason productively.',
-    whatIBuilt: ['Lean/Mathlib formalization work around coding theory', 'A graph/MCP direction for exposing the library to agents', 'Project scaffolding for domain-specific formal memory'],
-    evidence: ['Core thesis project in the portfolio', 'Connected to the LLM-Lean award thread and building-up/self-dual-code work'],
-    currentStatus: 'Active research substrate; public preview and documentation are being shaped around the long-term AI4Math direction.',
-    nextStep: 'Make the agent-facing interface and example workflows clearer for external readers.',
-    role: 'Lead builder/researcher for the agent-readable coding-theory substrate direction.',
+    summary: 'CodingTheoryLib contains Lean definitions for coding theory. CodingTheoryLib-MCP connects textbook material through a Neo4j graph.',
+    oneLine: 'Look up the definitions a model needs to reason about an error-correcting code.',
+    makerNote: 'Worked example: ask how a building-up construction preserves self-duality.',
+    problem: 'Different textbooks use different names and notation for equivalent constructions.',
+    whyItMatters: 'A theorem statement is easier to use when its field assumptions and definitions travel with it.',
+    whatIBuilt: ['Lean definitions for coding theory', 'A retrieval interface for textbook definitions and theorem statements'],
+    evidence: ['Example input: “What assumptions does the building-up construction need?”', 'Neo4j lookup: follow references from the construction to self-duality and the underlying bilinear form across textbooks.', 'Context for the LLM: the retrieved definitions, theorem assumptions, and source passages.'],
+    currentStatus: 'The library and retrieval interface are under development.',
+    nextStep: 'Publish a query and its returned textbook passages.',
+    role: 'Library and retrieval interface developer.',
     researchAxis: 'formalized-math-ai',
     tags: ['Lean', 'Mathlib', 'coding theory', 'MCP', 'formal memory'],
     image: '/previews/codingtheorylib.svg',
-    artifactLinks: {
-      code: 'https://github.com/LeGenAI/CodingTheoryLib',
-    },
     relatedPublications: ['llm-lean-closed-agent-math-solving', 'solevolve-evolutionary-discovery'],
   },
   {
@@ -58,29 +65,25 @@ export const projectArtifacts: ProjectArtifact[] = [
     slug: 'entropymath-entropymag-entropymalean',
     kind: 'benchmark',
     status: 'active',
-    summary:
-      'A family of systems for evolving math problems with lineage, solver traces, and verification hooks instead of treating benchmarks as frozen files.',
-    oneLine: 'Math benchmarks treated as auditable processes rather than static downloads.',
-    makerNote:
-      'I keep coming back to the same question: can a benchmark be something you audit, not just something you download?',
-    problem:
-      'Generated math benchmarks can look impressive while hiding provenance, contamination risk, solver dependence, and weak validation contracts.',
-    whyItMatters:
-      'AI4Math evaluation needs artifacts that can be inspected, traced, and revised, especially when generated data becomes part of the benchmark supply chain.',
-    whatIBuilt: ['Multi-generation math problem evolution pipeline', 'Quality gates around verification, lineage, and release metadata', 'Evaluation artifacts for ICML AI4Math workshop submission/revision'],
-    evidence: ['Public EntropyMath artifact', 'EntropyMaG/EntropyMaLean project family', 'Revision-ready evidence and benchmark lineage framing'],
-    currentStatus: 'Active paper/revision track after workshop review; being reframed around auditable benchmark evolution.',
-    nextStep: 'Sharpen the contribution around a narrow Lean-gated validity contract and stronger evidence scale.',
-    role: 'Lead system builder and paper framer.',
+    summary: 'EntropyMaG generates math problems. EntropyMaLean is the Lean proof-checking harness. EntropyMath publishes benchmark scores and per-problem traces.',
+    oneLine: 'Problem generation, proof checking, and model evaluation.',
+    makerNote: 'A model can return the expected answer while leaving its proof unchecked.',
+    problem: 'Answer accuracy and proof validity require different tests.',
+    whyItMatters: 'Per-problem results let readers inspect the attempts behind a leaderboard score.',
+    whatIBuilt: ['EntropyMaG problem-generation pipeline', 'Evaluation workflow for generated math problems'],
+    evidence: ['Public benchmark results include accuracy and Pass@3.', 'The evaluation repository includes dataset configurations, grading scripts, and compact result summaries.'],
+    currentStatus: 'The leaderboard and EntropyMath evaluation utilities are public.',
+    nextStep: 'Release a worked EntropyMaLean proof-checking example.',
+    role: 'Benchmark system developer.',
     researchAxis: 'auditable-evaluation',
     tags: ['AI4Math', 'evaluation', 'Lean', 'benchmark evolution', 'provenance'],
     image: '/1212/1212_workshop_fig_1.png',
     link: 'https://entropymath.com',
     artifactLinks: {
-      demo: 'https://entropymath.com',
-      code: 'https://github.com/LeGenAI/EntropyMaG-2',
+      leaderboard: 'https://entropymath.com/',
+      evaluation: 'https://github.com/LeGenAI/entropymath_eval',
     },
-    relatedPublications: ['hybrid-multimodal-genai-math-figures', 'solevolve-evolutionary-discovery'],
+    relatedPublications: ['entropymath-evolutionary-benchmark-generation', 'hybrid-multimodal-genai-math-figures'],
   },
   {
     title: 'SolEvolve',
@@ -105,6 +108,7 @@ export const projectArtifacts: ProjectArtifact[] = [
     tags: ['evolutionary search', 'SAT', 'coding theory', 'LLM agents'],
     image: '/thesis/graphical_abstract.png',
     artifactLinks: {
+      reproduce: 'https://github.com/LeGenAI/sol_evolve#reviewer-reproduction',
       code: 'https://github.com/LeGenAI/sol_evolve',
     },
     relatedPublications: ['solevolve-evolutionary-discovery'],

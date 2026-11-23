@@ -3,18 +3,7 @@ import Link from 'next/link';
 import { ExternalLink } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
-import type { ArtifactLinkKey, ProjectArtifact } from '@/data/projects';
-
-const artifactLinkLabels: Record<ArtifactLinkKey, string> = {
-  paper: 'Paper',
-  code: 'Code',
-  demo: 'Demo',
-  data: 'Data',
-  docs: 'Docs',
-  slides: 'Slides',
-  source: 'Source',
-  website: 'Website',
-};
+import { artifactLinkLabels, type ArtifactLinkKey, type ProjectArtifact } from '@/data/projects';
 
 export function ArtifactCard({ artifact }: { artifact: ProjectArtifact }) {
   return (
