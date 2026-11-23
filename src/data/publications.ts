@@ -7,7 +7,8 @@ export type PublicationLinkKey = 'doi' | 'paper' | 'project' | 'code' | 'source'
 export const publicationTopics = {
   'coding-theory': 'Coding theory and combinatorial constructions',
   'reasoning-evaluation': 'Mathematical reasoning and model evaluation',
-  'retrieval-forecasting': 'Document retrieval and deep learning',
+  'document-retrieval': 'Document retrieval',
+  'time-series-forecasting': 'Time-series forecasting',
   'computational-pathology': 'Computational pathology',
 } as const;
 
@@ -163,7 +164,7 @@ export const publications: Publication[] = [
     methods: ['Retrieval-augmented generation', 'Regulatory document chunking', 'LLM answer evaluation'],
     results: ['The paper reports better regulatory question-answering performance than both GPT-3.5 baselines.'],
     statusNote: 'Published in the Journal of Korean Institute of Intelligent Systems in February 2025.',
-    topic: 'retrieval-forecasting',
+    topic: 'document-retrieval',
     relatedProjects: ['sogambot', 'mindbuddhi'],
     tags: ['RAG', 'regulatory documents', 'LLM evaluation', 'domain memory'],
     links: { doi: 'https://doi.org/10.5391/jkiis.2025.35.1.65' },
@@ -185,7 +186,7 @@ export const publications: Publication[] = [
     methods: ['TimeGPT forecasting', 'Rolling-origin evaluation', 'Hydrological time-series preprocessing'],
     results: ['TimeGPT outperformed both baselines on Nash–Sutcliffe efficiency for the short- and long-term forecasts reported in the paper.'],
     statusNote: 'Published in IJFIS, volume 26, issue 1 (2026).',
-    topic: 'retrieval-forecasting',
+    topic: 'time-series-forecasting',
     relatedProjects: ['water-level-forecasting'],
     tags: ['TimeGPT', 'water-level prediction', 'foundation models', 'environmental AI'],
     image: '/accepted/Application_of_TimeGPT_for_enhancing_water_level_prediction_in_Gamcheon_River__Korea/TimeGPT_overall.png',
@@ -257,7 +258,6 @@ export const publications: Publication[] = [
     topic: 'reasoning-evaluation',
     relatedProjects: ['entropymath-entropymag-entropymalean'],
     tags: ['EntropyMath', 'AI4Math', 'benchmark generation', 'lineage', 'verification'],
-    image: '/1212/1212_workshop_fig_1.png',
     links: {
       openReview: 'https://openreview.net/forum?id=PQ0KR4KDvK&noteId=O2YkA0QUyM',
       data: 'https://huggingface.co/datasets/sgmlc1234/EntropyMath-Gen-v1',

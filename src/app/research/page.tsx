@@ -106,6 +106,7 @@ export default function ResearchPage() {
         </nav>
         {topics.map(({ id, title, years, items }) => (
           <section key={id} id={`papers-${id}`} aria-labelledby={`topic-${id}`} className="mt-10 scroll-mt-24">
+            {id === 'document-retrieval' && <span id="papers-retrieval-forecasting" className="block scroll-mt-24" aria-hidden="true" />}
             <h3 id={`topic-${id}`} className="font-serif text-2xl leading-tight sm:text-3xl">{title}</h3>
             {years.map((year) => (
               <div key={year} className="mt-4 border-t border-[#c8d1c6] sm:grid sm:grid-cols-[5rem_minmax(0,1fr)] sm:gap-x-6">
