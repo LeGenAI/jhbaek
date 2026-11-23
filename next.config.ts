@@ -15,6 +15,11 @@ const nextConfig: NextConfig = {
   // Domain redirects: Railway → Custom Domain
   async redirects() {
     return [
+      {
+        source: '/research/publications/novel-sudoku-perfect-codes-zmodn',
+        destination: '/research/publications/symmetric-sudoku-perfect-codes',
+        permanent: false,
+      },
       // Railway 기본 도메인 → 커스텀 도메인
       {
         source: '/:path*',

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ResearchDetail, DetailSection, DetailList } from '@/components/research-detail';
-import { publications, type PublicationLinkKey } from '@/data/publications';
+import { publications, sudokuCitation, type PublicationLinkKey } from '@/data/publications';
 import { projectArtifacts } from '@/data/projects';
 
 const linkLabels: Record<PublicationLinkKey, string> = {
@@ -18,11 +18,23 @@ const linkLabels: Record<PublicationLinkKey, string> = {
 };
 
 export function generateStaticParams() {
-  return publications.map((publication) => ({ slug: publication.slug }));
+  return [...publications, sudokuCitation].map(({ slug }) => ({ slug }));
 }
 
 export default async function PublicationDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
+  if (slug === sudokuCitation.slug) {
+    return (
+      <main className="portfolio-page">
+        <Link href="/research#publications" className="source-link">Back to research</Link>
+        <h1 className="page-title mt-4">{sudokuCitation.title}</h1>
+        <p className="page-intro">{sudokuCitation.authors}</p>
+        <p className="meta-text mt-2"><cite>{sudokuCitation.venue}</cite> · {sudokuCitation.issue}</p>
+        <a href={sudokuCitation.href} className="source-link mt-2">Read on IEEE Xplore</a>
+      </main>
+    );
+  }
+
   const publication = publications.find((item) => item.slug === slug);
 
   if (!publication) {

@@ -29,6 +29,17 @@ export type Publication = {
   featured?: boolean;
 };
 
+export const sudokuCitation = {
+  title: 'Symmetric Sudoku-Type Games From Perfect Codes',
+  slug: 'symmetric-sudoku-perfect-codes',
+  authors: 'Junmin An, Jae-Hyun Baek, Keon-Hwi Kim, Haeun Lim, Jon-Lark Kim',
+  venue: 'IEEE Transactions on Games',
+  year: '2026',
+  status: 'Published',
+  issue: '18(2), pp. 327–339, June 2026',
+  href: 'https://doi.org/10.1109/TG.2026.3683305',
+};
+
 export const publications: Publication[] = [
   {
     title: 'Proposal of an LLM-Lean Approach and Architecture for Automated Mathematical Problem Solving',
@@ -200,28 +211,6 @@ export const publications: Publication[] = [
     image: '/mekanet.png',
   },
   {
-    title: 'Symmetric Sudoku-Type Games from Perfect Codes',
-    slug: 'symmetric-sudoku-perfect-codes',
-    authors: 'Junmin An, Jae-Hyun Baek, Keon-Hwi Kim, Haeun Lim, Jon-Lark Kim',
-    venue: 'IEEE Transactions on Games',
-    year: '2026',
-    status: 'Published',
-    area: 'Coding theory / Combinatorial games',
-    summary: 'We used perfect codes in the Lee metric to define subgrids for symmetric Sudoku games and enumerated solutions up to rigid motions.',
-    tldr: 'The 5 × 5 grids form 17 classes under symbol relabeling and 4 under the additional rotations and translations in §6.1.',
-    role: 'Co-author and application developer.',
-    problem: 'How does the number of distinct grids change when we allow symbol relabeling and then the symmetries that preserve the subgrids?',
-    keyIdea: 'Use tilings from perfect codes to define the subgrids, then classify valid grids under rigid motions.',
-    methods: ['Lee distance', 'Grid enumeration', 'Human-like solver'],
-    results: ['The 2,040 valid 5 × 5 grids form 17 classes under symbol relabeling.', 'Those 17 classes form 4 orbits under the combined rotations and translations defined in §6.1 (Table 1).', '232,735 and 304,014 inequivalent solutions for the two 8 × 8 games'],
-    contribution: ['Constructs two sizes of symmetric Sudoku games', 'Assesses puzzle difficulty with a human-like solver'],
-    statusNote: 'Volume 18, pages 327–339, June 2026.',
-    links: { doi: 'https://doi.org/10.1109/TG.2026.3683305', paper: 'https://arxiv.org/html/2605.09617v1#S6.SS1' },
-    researchAxis: 'formalized-math-ai',
-    relatedProjects: ['sudoku-game'],
-    tags: ['coding theory', 'perfect codes', 'games', 'combinatorics'],
-  },
-  {
     title: 'EntropyMath: An Evolutionary Benchmark Generation System for Evaluating High-Difficulty Mathematical Reasoning',
     slug: 'entropymath-evolutionary-benchmark-generation',
     authors: 'Jae-Hyun Baek et al.',
@@ -374,30 +363,6 @@ export const publications: Publication[] = [
     relatedProjects: ['codingtheorylib-mcp'],
     tags: ['coding theory', 'binary codes', 'self-orthogonal embeddings', 'formalization'],
     image: '/thesis/lucas_circular_v1.png',
-  },
-  {
-    title: 'A Novel Sudoku from Perfect Codes over the Ring of Integers Modulo n',
-    slug: 'novel-sudoku-perfect-codes-zmodn',
-    authors: 'Jae-Hyun Baek et al.',
-    venue: 'Submitted coding-theory manuscript',
-    year: '2025',
-    status: 'Submitted',
-    area: 'Coding theory / Combinatorial games',
-    summary:
-      'A manuscript on constructing Sudoku-type games from perfect codes over the ring of integers modulo n.',
-    tldr: 'A submitted manuscript connecting perfect codes over Z/nZ to Sudoku-style combinatorial game construction.',
-    role: 'Research contributor and application builder.',
-    problem:
-      'Sudoku-like games can be treated as mathematical structures, but their construction from perfect-code theory needs explicit provenance.',
-    keyIdea:
-      'Use perfect codes over the ring of integers modulo n as the construction substrate for novel Sudoku-type games.',
-    methods: ['Perfect-code construction', 'Modular-ring combinatorics', 'Game-structure design'],
-    results: ['Submitted manuscript tracked in the Overleaf project index', 'Related to the public Sudoku/game artifact line'],
-    contribution: ['Links coding-theory constructions to public-facing artifacts', 'Keeps the maker/research bridge visible'],
-    statusNote: 'Submitted/draft manuscript; paired with the broader symmetric Sudoku manuscript in the inventory.',
-    researchAxis: 'formalized-math-ai',
-    relatedProjects: ['sudoku-game'],
-    tags: ['perfect codes', 'Z/nZ', 'Sudoku', 'combinatorics', 'coding theory'],
   },
 ];
 

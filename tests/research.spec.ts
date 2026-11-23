@@ -25,12 +25,12 @@ test('CV entry exposes the papers, proofs and reviewer instructions', async ({ p
   }
   await expectPageFits(page);
   await page.getByRole('link', { name: 'Publications', exact: true }).click();
-  await page.getByRole('link', { name: 'Symmetric Sudoku-Type Games from Perfect Codes', exact: true }).click();
+  const ieeeUrl = 'https://doi.org/10.1109/TG.2026.3683305';
+  await expect(page.getByRole('link', { name: /Sudoku/i })).toHaveAttribute('href', ieeeUrl);
+  await page.goto('/research/publications/symmetric-sudoku-perfect-codes');
   await expect(page.getByText('Junmin An, Jae-Hyun Baek, Keon-Hwi Kim, Haeun Lim, Jon-Lark Kim')).toBeVisible();
-  await expect(page.getByText(/The 2,040 valid 5 × 5 grids/)).toContainText('17 classes under symbol relabeling');
-  await expect(page.getByText(/Those 17 classes/)).toContainText('4 orbits');
-  await expect(page.getByText('IEEE Transactions on Games · 2026')).toBeVisible();
-  await expect(page.getByRole('link', { name: 'DOI', exact: true })).toHaveAttribute('href', 'https://doi.org/10.1109/TG.2026.3683305');
+  await expect(page.getByRole('link', { name: 'Read on IEEE Xplore' })).toHaveAttribute('href', ieeeUrl);
+  await expect(page.locator('main a[href*="arxiv"]')).toHaveCount(0);
   await expectPageFits(page);
   await page.getByRole('link', { name: 'Back to research' }).click();
   await expect(page.locator('#eaqecc')).toBeVisible();
