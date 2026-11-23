@@ -45,7 +45,7 @@ const selectedResearch = [
 const textLink = 'source-link';
 
 const statusOrder: Record<PublicationStatus, number> = {
-  Published: 0, Accepted: 1, 'Under Review': 2, Submitted: 3, 'In Preparation': 4,
+  Published: 0, Accepted: 1, Preprint: 2, 'Under Review': 3, Submitted: 4, 'In Preparation': 5,
 };
 
 export default function ResearchPage() {
@@ -93,7 +93,8 @@ export default function ResearchPage() {
           {papers.map((paper) => (
             <li key={paper.slug} className="py-3">
               <Link className="block py-1 text-base font-semibold leading-snug hover:text-[#225441] hover:underline" href={`/research/publications/${paper.slug}`}>{paper.title}</Link>
-              <p className="text-sm leading-relaxed text-[#4a6258]">{paper.year} · {paper.venue} · {paper.status}</p>
+              <p className="meta-text">{paper.year} · {paper.venue} · {paper.status}</p>
+              <p className="mt-2 max-w-prose leading-relaxed">{paper.summary}</p>
             </li>
           ))}
         </ul>

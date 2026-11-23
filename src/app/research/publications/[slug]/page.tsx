@@ -7,6 +7,8 @@ import { projectArtifacts } from '@/data/projects';
 
 const linkLabels: Record<PublicationLinkKey, string> = {
   doi: 'DOI',
+  certificate: 'Lean certificate',
+  specification: 'Comparator specification (v2)',
   paper: 'Paper',
   thesis: 'Master’s thesis (Sogang University)',
   project: 'Project',
@@ -68,11 +70,10 @@ export default async function PublicationDetailPage({ params }: { params: Promis
         <DetailSection title="Research question"><p>{publication.problem}</p></DetailSection>
         <DetailSection title="Approach"><p>{publication.keyIdea}</p></DetailSection>
         <DetailList title="Methods" items={publication.methods} />
-        <DetailList title="Results" items={publication.results} />
+        {publication.results.length > 0 && <DetailList title="Results" items={publication.results} />}
       </div>
       <aside>
         <DetailSection title="My role"><p>{publication.role}</p></DetailSection>
-        <DetailList title="Contributions" items={publication.contribution} />
         <DetailSection title="Publication status"><p>{publication.statusNote}</p></DetailSection>
         {relatedArtifacts.length > 0 && (
           <DetailSection title="Related projects">

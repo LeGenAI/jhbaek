@@ -1,4 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
+import { publications, sudokuCitation } from '../src/data/publications';
 
 async function expectPageFits(page: Page) {
   await expect.poll(() => page.evaluate(() =>
@@ -27,7 +28,13 @@ test('CV entry exposes the papers, proofs and reviewer instructions', async ({ p
   await page.getByRole('link', { name: 'Publications', exact: true }).click();
   const ieeeUrl = 'https://doi.org/10.1109/TG.2026.3683305';
   const entries = page.locator('#publications li');
-  await expect(entries.first()).toContainText('Symmetric Sudoku-Type Games');
+  await expect(entries.first()).toContainText('Published');
+  const papers = [...publications, sudokuCitation];
+  await expect(entries).toHaveCount(papers.length);
+  for (const paper of papers) {
+    const entry = entries.filter({ has: page.getByRole('link', { name: paper.title, exact: true }) });
+    await expect(entry.getByText(paper.summary, { exact: true })).toBeVisible();
+  }
   await expect(entries.filter({ hasText: 'Shortest Self-Orthogonal Embeddings' })).toHaveCount(0);
   await page.getByRole('link', { name: /Sudoku/i }).click();
   await expect(page).toHaveURL(/publications\/symmetric-sudoku-perfect-codes$/);
