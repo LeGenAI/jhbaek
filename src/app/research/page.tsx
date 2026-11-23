@@ -1,3 +1,4 @@
+import { academicProfiles } from '@/data/profiles';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { publications, solEvolveThesisUrl, sudokuCitation, type PublicationStatus } from '@/data/publications';
@@ -88,6 +89,9 @@ export default function ResearchPage() {
       </section>
       <section id="publications" className="mt-12 scroll-mt-24">
         <h2 className="section-title">Publications and manuscripts</h2>
+        <nav aria-label="Academic profiles" className="flex flex-wrap gap-x-6">
+          {academicProfiles.map(({ label, href }) => <a key={href} className={textLink} href={href}>{label}</a>)}
+        </nav>
         <p className="meta-text mb-4 mt-2">Newest year first, with published and accepted work first within each year.</p>
         <ul className="divide-y divide-[#c8d1c6] border-y border-[#c8d1c6]">
           {papers.map((paper) => (

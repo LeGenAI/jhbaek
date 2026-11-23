@@ -1,8 +1,9 @@
+import { academicProfiles } from '@/data/profiles';
 export const metadata = { title: 'Contact', alternates: { canonical: '/contact' } };
 
 const profiles = [
   ['GitHub', 'LeGenAI', 'https://github.com/LeGenAI'],
-  ['ResearchGate', 'Jae-Hyun Baek', 'https://www.researchgate.net/profile/Jae-Hyun-Baek?ev=hdr_xprf'],
+  ...academicProfiles.map(({ label, href }) => [label, 'Jae-Hyun Baek', href]),
   ['LinkedIn', 'Jae-Hyun Baek', 'https://www.linkedin.com/in/jae-hyun-baek-516899227'],
 ];
 

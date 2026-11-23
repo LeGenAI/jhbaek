@@ -1,3 +1,4 @@
+import { academicProfiles } from '@/data/profiles';
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
@@ -109,7 +110,7 @@ const structuredData = {
   sameAs: [
     'https://github.com/LeGenAI',
     'https://www.linkedin.com/in/jae-hyun-baek-516899227',
-    'https://www.researchgate.net/profile/Jae-Hyun-Baek?ev=hdr_xprf',
+    ...academicProfiles.map(({ href }) => href),
   ],
   knowsAbout: [
     'Formalized Mathematical AI',

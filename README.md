@@ -2,6 +2,8 @@
 
 I study error-correcting codes at Sogang University. My recent work uses Lean to check algebraic constructions and deterministic solvers to verify codes found through program search. [Research portfolio](https://jhbaek.deep-fountain.com/research)
 
+[Google Scholar](https://scholar.google.com/citations?user=WZRat_4AAAAJ&hl=en) · [ResearchGate](https://www.researchgate.net/profile/Jae-Hyun-Baek/research)
+
 ## Selected research
 
 - **Entanglement-assisted quantum codes.** Our construction and entanglement lifting close 54 gaps in archived code tables. Lean checks the algebraic certificate for Theorem 1. [Preprint](https://arxiv.org/abs/2610.41183v1) · [Lean certificate](https://github.com/LeGenAI/llm_guided_EAQECC_search/blob/3e7b2e8d42487f1f117f0ab9b457c50701588068/formal/eaqecc/README.md)
