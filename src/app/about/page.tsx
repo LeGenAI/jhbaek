@@ -33,7 +33,7 @@ export default function AboutPage() {
           <li className="pb-5">
             <h3 className="text-xl font-semibold">AI Engineer Intern, Canvas &amp; People</h3>
             <p className="meta-text mt-1">Mar–Apr 2026 · TaxCanvas</p>
-            <p className="mt-2 leading-relaxed">I implemented graph and vector retrieval to link tax laws to supplementary provisions. I optimized LangGraph nodes and used LangSmith to monitor chatbot failures and negative feedback.</p>
+            <p className="mt-2 leading-relaxed">I implemented graph and vector retrieval to link tax laws to their addenda. I optimized LangGraph nodes and used LangSmith to monitor chatbot failures and negative feedback.</p>
           </li>
           <li className="py-5">
             <h3 className="text-xl font-semibold">Technical Lead, DeepFountain</h3>
