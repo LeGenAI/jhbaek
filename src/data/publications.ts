@@ -149,9 +149,9 @@ export const publications: Publication[] = [
     title: 'SolEvolve: LLM-driven Evolutionary Discovery of Algorithms',
     slug: 'solevolve-evolutionary-discovery',
     authors: 'Jae-Hyun Baek',
-    venue: "Master's thesis / manuscript track",
+    venue: 'Journal manuscript',
     year: '2025',
-    status: 'Submitted',
+    status: 'Under Review',
     area: 'Evolutionary discovery / Coding theory',
     summary:
       'An autonomous search system where LLM-guided operators, SAT-seeded search, and verification loops rediscover strong coding-theoretic constructions.',
@@ -162,9 +162,9 @@ export const publications: Publication[] = [
     keyIdea:
       'Combine LLM-guided mutation/recombination, SAT-seeded search, and verification loops to explore construction spaces.',
     methods: ['Evolutionary search', 'SAT-seeded candidate generation', 'LLM-guided operators', 'Verification loops'],
-    results: ['Submitted/manuscript track', 'Acts as a precursor to later benchmark-evolution and formal-agent systems'],
+    results: ['The public reviewer command checks bundled witnesses, including Lucas-cube center sets.'],
     contribution: ['Turns search trajectories into reusable research evidence', 'Connects coding-theory search with agentic experimentation'],
-    statusNote: 'Submitted manuscript / thesis-derived research line.',
+    statusNote: 'The manuscript is under review. A minor revision was requested in mid-2026.',
     researchAxis: 'formalized-math-ai',
     relatedProjects: ['solevolve', 'codingtheorylib-mcp'],
     tags: ['evolutionary search', 'SAT', 'coding theory', 'algorithm discovery'],

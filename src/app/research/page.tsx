@@ -33,7 +33,7 @@ const selectedResearch = [
   {
     id: 'solevolve',
     title: 'SolEvolve',
-    credit: 'Research software · Lead developer',
+    credit: 'Lead developer · Manuscript under review (minor revision requested)',
     finding: 'I built an LLM-guided system for searching combinatorial constructions. The reviewer command checks bundled witnesses, including Lucas-cube center sets, and writes a report without calling an LLM.',
     links: [
       { label: 'Reviewer reproduction', href: 'https://github.com/LeGenAI/sol_evolve#reviewer-reproduction' },
