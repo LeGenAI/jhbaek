@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Navigation } from '@/components/navigation';
-import { publications } from '@/data/publications';
+import { publications, solEvolveThesisUrl } from '@/data/publications';
 
 export const metadata: Metadata = {
   title: 'Research',
@@ -33,10 +33,11 @@ const selectedResearch = [
   {
     id: 'solevolve',
     title: 'SolEvolve',
-    credit: 'Lead developer · Manuscript under review (minor revision requested)',
+    credit: 'Lead developer · Under review at Neurocomputing (minor revision requested)',
     finding: 'I built an LLM-guided system for searching combinatorial constructions. The reviewer command checks bundled witnesses, including Lucas-cube center sets, and writes a report without calling an LLM.',
     links: [
       { label: 'Reviewer reproduction', href: 'https://github.com/LeGenAI/sol_evolve#reviewer-reproduction' },
+      { label: 'Master’s thesis (Sogang University)', href: solEvolveThesisUrl },
       { label: 'SolEvolve manuscript details', href: '/research/publications/solevolve-evolutionary-discovery' },
     ],
   },

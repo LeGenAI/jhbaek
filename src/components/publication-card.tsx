@@ -16,6 +16,7 @@ const statusStyles: Record<Publication['status'], string> = {
 const linkLabels: Record<PublicationLinkKey, string> = {
   researchGate: 'ResearchGate',
   paper: 'Paper',
+  thesis: 'Master’s thesis (Sogang University)',
   code: 'Code',
   project: 'Project',
   doi: 'DOI',

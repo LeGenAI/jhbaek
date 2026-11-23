@@ -12,6 +12,7 @@ import { projectArtifacts } from '@/data/projects';
 const linkLabels: Record<PublicationLinkKey, string> = {
   doi: 'DOI',
   paper: 'Paper',
+  thesis: 'Master’s thesis (Sogang University)',
   project: 'Project',
   code: 'Code',
   source: 'Source',

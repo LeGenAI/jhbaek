@@ -1,6 +1,8 @@
+export const solEvolveThesisUrl = 'https://dcollection.sogang.ac.kr/dcollection/srch/srchDetail/000000082888?localeParam=en';
+
 export type PublicationStatus = 'Published' | 'Accepted' | 'Under Review' | 'Submitted' | 'In Preparation';
 
-export type PublicationLinkKey = 'doi' | 'paper' | 'project' | 'code' | 'source' | 'researchGate' | 'artifact' | 'slides' | 'data';
+export type PublicationLinkKey = 'doi' | 'paper' | 'project' | 'code' | 'source' | 'researchGate' | 'artifact' | 'slides' | 'data' | 'thesis';
 
 export type Publication = {
   title: string;
@@ -146,11 +148,11 @@ export const publications: Publication[] = [
     featured: true,
   },
   {
-    title: 'SolEvolve: LLM-driven Evolutionary Discovery of Algorithms',
+    title: 'SolEvolve: LLM-Driven Evolutionary Search for SAT-Verified Constructions in Combinatorics',
     slug: 'solevolve-evolutionary-discovery',
-    authors: 'Jae-Hyun Baek',
-    venue: 'Journal manuscript',
-    year: '2025',
+    authors: 'Jon-Lark Kim, Jae-Hyun Baek',
+    venue: 'Neurocomputing',
+    year: '2026',
     status: 'Under Review',
     area: 'Evolutionary discovery / Coding theory',
     summary:
@@ -164,7 +166,8 @@ export const publications: Publication[] = [
     methods: ['Evolutionary search', 'SAT-seeded candidate generation', 'LLM-guided operators', 'Verification loops'],
     results: ['The public reviewer command checks bundled witnesses, including Lucas-cube center sets.'],
     contribution: ['Turns search trajectories into reusable research evidence', 'Connects coding-theory search with agentic experimentation'],
-    statusNote: 'The manuscript is under review. A minor revision was requested in mid-2026.',
+    statusNote: 'The manuscript is under review at Neurocomputing. A minor revision was requested in mid-2026.',
+    links: { thesis: solEvolveThesisUrl },
     researchAxis: 'formalized-math-ai',
     relatedProjects: ['solevolve', 'codingtheorylib-mcp'],
     tags: ['evolutionary search', 'SAT', 'coding theory', 'algorithm discovery'],

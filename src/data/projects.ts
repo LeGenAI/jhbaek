@@ -1,6 +1,8 @@
+import { solEvolveThesisUrl } from './publications';
+
 export type ProjectKind = 'proof substrate' | 'benchmark' | 'agent memory' | 'deployed system' | 'forecasting' | 'medical AI' | 'research system' | 'education system' | 'game artifact';
 export type ProjectStatus = 'active' | 'deployed' | 'research' | 'prototype' | 'submitted' | 'public preview pending';
-export type ArtifactLinkKey = 'paper' | 'code' | 'demo' | 'data' | 'docs' | 'slides' | 'source' | 'website' | 'leaderboard' | 'evaluation' | 'reproduce';
+export type ArtifactLinkKey = 'paper' | 'code' | 'demo' | 'data' | 'docs' | 'slides' | 'source' | 'website' | 'leaderboard' | 'evaluation' | 'reproduce' | 'thesis';
 
 export const artifactLinkLabels: Record<ArtifactLinkKey, string> = {
   paper: 'Paper',
@@ -14,6 +16,7 @@ export const artifactLinkLabels: Record<ArtifactLinkKey, string> = {
   leaderboard: 'EntropyMath leaderboard',
   evaluation: 'EntropyMath evaluation code',
   reproduce: 'Reviewer reproduction',
+  thesis: 'Master’s thesis (Sogang University)',
 };
 
 export type ProjectArtifact = {
@@ -101,7 +104,7 @@ export const projectArtifacts: ProjectArtifact[] = [
       'The same search-and-verify pattern appears in coding theory, benchmark generation, and formal proof workflows.',
     whatIBuilt: ['LLM-guided evolutionary search pipeline', 'SAT-seeded candidate generation direction', 'Verification-oriented research traces'],
     evidence: ['Master’s thesis/manuscript track', 'Connects to coding-theory construction search and EntropyMath-style lineage'],
-    currentStatus: 'The SolEvolve manuscript is under review. A minor revision was requested in mid-2026.',
+    currentStatus: 'The SolEvolve manuscript is under review at Neurocomputing. A minor revision was requested in mid-2026.',
     nextStep: 'Clarify what part of the trajectory can become reusable data for specialized mathematical agents.',
     role: 'Lead researcher and system builder.',
     researchAxis: 'formalized-math-ai',
@@ -109,6 +112,7 @@ export const projectArtifacts: ProjectArtifact[] = [
     image: '/thesis/graphical_abstract.png',
     artifactLinks: {
       reproduce: 'https://github.com/LeGenAI/sol_evolve#reviewer-reproduction',
+      thesis: solEvolveThesisUrl,
       code: 'https://github.com/LeGenAI/sol_evolve',
     },
     relatedPublications: ['solevolve-evolutionary-discovery'],
