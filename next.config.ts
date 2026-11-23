@@ -16,6 +16,11 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: '/research/publications/shortest-self-orthogonal-embeddings-binary-codes',
+        destination: '/research/publications/solevolve-evolutionary-discovery',
+        permanent: true,
+      },
+      {
         source: '/research/publications/novel-sudoku-perfect-codes-zmodn',
         destination: '/research/publications/symmetric-sudoku-perfect-codes',
         permanent: false,

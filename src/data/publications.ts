@@ -35,7 +35,8 @@ export const sudokuCitation = {
   authors: 'Junmin An, Jae-Hyun Baek, Keon-Hwi Kim, Haeun Lim, Jon-Lark Kim',
   venue: 'IEEE Transactions on Games',
   year: '2026',
-  status: 'Published',
+  status: 'Published' as const,
+  gameUrl: 'https://perfect-sudoku.up.railway.app/',
   issue: '18(2), pp. 327–339, June 2026',
   href: 'https://doi.org/10.1109/TG.2026.3683305',
 };
@@ -175,10 +176,10 @@ export const publications: Publication[] = [
     keyIdea:
       'Combine LLM-guided mutation/recombination, SAT-seeded search, and verification loops to explore construction spaces.',
     methods: ['Evolutionary search', 'SAT-seeded candidate generation', 'LLM-guided operators', 'Verification loops'],
-    results: ['The public reviewer command checks bundled witnesses, including Lucas-cube center sets.'],
+    results: ['The public reviewer command checks seven claims, including three self-orthogonal embeddings and three Lucas-cube constructions.'],
     contribution: ['Turns search trajectories into reusable research evidence', 'Connects coding-theory search with agentic experimentation'],
     statusNote: 'The manuscript is under review at Neurocomputing. A minor revision was requested in mid-2026.',
-    links: { thesis: solEvolveThesisUrl },
+    links: { thesis: solEvolveThesisUrl, code: 'https://github.com/LeGenAI/sol_evolve#reviewer-reproduction' },
     researchAxis: 'formalized-math-ai',
     relatedProjects: ['solevolve', 'codingtheorylib-mcp'],
     tags: ['evolutionary search', 'SAT', 'coding theory', 'algorithm discovery'],
@@ -338,31 +339,6 @@ export const publications: Publication[] = [
     relatedProjects: ['mekanet-medical-ai'],
     tags: ['cellularity', 'bone marrow', 'segmentation', 'medical AI'],
     image: '/mekanet.png',
-  },
-  {
-    title: 'Shortest Self-Orthogonal Embeddings of Selected Binary Codes',
-    slug: 'shortest-self-orthogonal-embeddings-binary-codes',
-    authors: 'Jae-Hyun Baek et al.',
-    venue: 'Submitted coding-theory manuscript',
-    year: '2025',
-    status: 'Submitted',
-    area: 'Coding theory / Formal mathematics',
-    summary:
-      'A coding-theory manuscript on shortest self-orthogonal embeddings of selected binary codes, connected to the formal-math backbone of the portfolio.',
-    tldr: 'A submitted coding-theory manuscript on self-orthogonal embeddings, adjacent to the Lean/CodingTheoryLib line.',
-    role: 'Research contributor; connected the coding-theory manuscript line to the broader formalization agenda.',
-    problem:
-      'Self-orthogonal embeddings of binary codes raise concrete construction and minimality questions that can later benefit from formalization and searchable theorem infrastructure.',
-    keyIdea:
-      'Study selected binary codes through their shortest self-orthogonal embeddings and associated construction constraints.',
-    methods: ['Coding-theory construction', 'Self-orthogonality analysis', 'Binary-code embedding study'],
-    results: ['Submitted manuscript tracked in the Overleaf paper-candidate index', 'Provides mathematical-domain material for future formalization'],
-    contribution: ['Keeps the portfolio anchored in actual coding-theory research', 'Feeds the formalized mathematical AI substrate direction'],
-    statusNote: 'Submitted/draft manuscript; listed as part of the complete submitted/accepted work inventory.',
-    researchAxis: 'formalized-math-ai',
-    relatedProjects: ['codingtheorylib-mcp'],
-    tags: ['coding theory', 'binary codes', 'self-orthogonal embeddings', 'formalization'],
-    image: '/thesis/lucas_circular_v1.png',
   },
 ];
 

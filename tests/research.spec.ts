@@ -26,14 +26,20 @@ test('CV entry exposes the papers, proofs and reviewer instructions', async ({ p
   await expectPageFits(page);
   await page.getByRole('link', { name: 'Publications', exact: true }).click();
   const ieeeUrl = 'https://doi.org/10.1109/TG.2026.3683305';
-  await expect(page.getByRole('link', { name: /Sudoku/i })).toHaveAttribute('href', ieeeUrl);
-  await page.goto('/research/publications/symmetric-sudoku-perfect-codes');
+  const entries = page.locator('#publications li');
+  await expect(entries.first()).toContainText('Symmetric Sudoku-Type Games');
+  await expect(entries.filter({ hasText: 'Shortest Self-Orthogonal Embeddings' })).toHaveCount(0);
+  await page.getByRole('link', { name: /Sudoku/i }).click();
+  await expect(page).toHaveURL(/publications\/symmetric-sudoku-perfect-codes$/);
+  await expect(page.getByRole('link', { name: 'Play Perfect Sudoku' })).toHaveAttribute('href', 'https://perfect-sudoku.up.railway.app/');
   await expect(page.getByText('Junmin An, Jae-Hyun Baek, Keon-Hwi Kim, Haeun Lim, Jon-Lark Kim')).toBeVisible();
   await expect(page.getByRole('link', { name: 'Read on IEEE Xplore' })).toHaveAttribute('href', ieeeUrl);
   await expect(page.locator('main a[href*="arxiv"]')).toHaveCount(0);
   await expectPageFits(page);
   await page.getByRole('link', { name: 'Back to research' }).click();
   await expect(page.locator('#eaqecc')).toBeVisible();
+  await page.goto('/research/publications/shortest-self-orthogonal-embeddings-binary-codes');
+  await expect(page).toHaveURL(/publications\/solevolve-evolutionary-discovery$/);
 });
 
 test('research links distinguish the benchmark and the Lean harness', async ({ page }) => {

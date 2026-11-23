@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ResearchDetail, DetailSection, DetailList } from '@/components/research-detail';
@@ -28,9 +29,23 @@ export default async function PublicationDetailPage({ params }: { params: Promis
       <main className="portfolio-page">
         <Link href="/research#publications" className="source-link">Back to research</Link>
         <h1 className="page-title mt-4">{sudokuCitation.title}</h1>
-        <p className="page-intro">{sudokuCitation.authors}</p>
+        <p className="mt-4">{sudokuCitation.authors}</p>
         <p className="meta-text mt-2"><cite>{sudokuCitation.venue}</cite> · {sudokuCitation.issue}</p>
-        <a href={sudokuCitation.href} className="source-link mt-2">Read on IEEE Xplore</a>
+        <section className="section-rule grid items-center gap-6 md:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
+          <div>
+            <h2 className="section-title">Play Perfect Sudoku</h2>
+            <p className="page-intro">In our paper, we use perfect codes to divide a Sudoku board into regions. On the 5 × 5 board, each region is a cross that can wrap around the edges. Each row, column, and colored region must contain the numbers 1 through 5 exactly once.</p>
+            <p className="mt-3 max-w-prose leading-relaxed">I built Perfect Sudoku so you can try these puzzles in your browser. Start with the 5 × 5 board or challenge a friend to an online match.</p>
+            <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2">
+              <a href={sudokuCitation.gameUrl} className="inline-flex min-h-11 items-center rounded bg-[#173f35] px-4 text-sm font-semibold text-white hover:bg-[#245848]">Play Perfect Sudoku</a>
+              <a href={sudokuCitation.href} className="source-link">Read on IEEE Xplore</a>
+            </div>
+          </div>
+          <figure className="max-w-[17.5rem]">
+            <Image src="/previews/perfect-sudoku-board.png" alt="A partially filled 5 × 5 board with five colored regions, several crossing the edges." width={560} height={560} sizes="(max-width: 320px) 90vw, 280px" />
+            <figcaption className="meta-text mt-2">A puzzle from Perfect Sudoku. Each color marks one region.</figcaption>
+          </figure>
+        </section>
       </main>
     );
   }

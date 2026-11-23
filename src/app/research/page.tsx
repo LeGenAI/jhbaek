@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { publications, solEvolveThesisUrl, sudokuCitation } from '@/data/publications';
+import { publications, solEvolveThesisUrl, sudokuCitation, type PublicationStatus } from '@/data/publications';
 
 export const metadata: Metadata = {
   title: 'Research',
@@ -44,9 +44,14 @@ const selectedResearch = [
 
 const textLink = 'source-link';
 
+const statusOrder: Record<PublicationStatus, number> = {
+  Published: 0, Accepted: 1, 'Under Review': 2, Submitted: 3, 'In Preparation': 4,
+};
+
 export default function ResearchPage() {
-  const papers = [...publications.map((paper) => ({ ...paper, href: `/research/publications/${paper.slug}` })), sudokuCitation]
-    .sort((a, b) => b.year.localeCompare(a.year));
+  const papers = [...publications, sudokuCitation].sort((a, b) =>
+    b.year.localeCompare(a.year) || statusOrder[a.status] - statusOrder[b.status] || a.title.localeCompare(b.title, 'en')
+  );
 
   return (
     <main className="portfolio-page">
@@ -82,11 +87,12 @@ export default function ResearchPage() {
         </div>
       </section>
       <section id="publications" className="mt-12 scroll-mt-24">
-        <h2 className="mb-4 section-title">Publications and manuscripts</h2>
+        <h2 className="section-title">Publications and manuscripts</h2>
+        <p className="meta-text mb-4 mt-2">Newest year first, with published and accepted work first within each year.</p>
         <ul className="divide-y divide-[#c8d1c6] border-y border-[#c8d1c6]">
           {papers.map((paper) => (
             <li key={paper.slug} className="py-3">
-              <Link className="block py-1 text-base font-semibold leading-snug hover:text-[#225441] hover:underline" href={paper.href}>{paper.title}</Link>
+              <Link className="block py-1 text-base font-semibold leading-snug hover:text-[#225441] hover:underline" href={`/research/publications/${paper.slug}`}>{paper.title}</Link>
               <p className="text-sm leading-relaxed text-[#4a6258]">{paper.year} · {paper.venue} · {paper.status}</p>
             </li>
           ))}
