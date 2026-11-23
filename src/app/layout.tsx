@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
+import { Navigation } from '@/components/navigation';
 import Providers from './providers';
 
 const geistSans = Geist({
@@ -18,11 +19,11 @@ const siteUrl = 'https://jhbaek.deep-fountain.com';
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'Jae-Hyun Baek | Formalized Mathematical AI and Agentic Systems',
+    default: 'Jae-Hyun Baek | Coding theory and formal verification',
     template: '%s | Jae-Hyun Baek',
   },
   description:
-    'Portfolio of Jae-Hyun Baek, a Sogang AI PhD student and maker of formal math libraries, auditable AI benchmarks, RAG products, forecasting pipelines, and agent-readable research memory.',
+    'Research by Jae-Hyun Baek at Sogang University. Papers, Lean proofs, and reproducible experiments in coding theory.',
   keywords: [
     'Jae-Hyun Baek',
     '백재현',
@@ -56,9 +57,9 @@ export const metadata: Metadata = {
     alternateLocale: 'ko_KR',
     url: siteUrl,
     siteName: 'Jae-Hyun Baek Portfolio',
-    title: 'Jae-Hyun Baek | Formalized Mathematical AI and Agentic Systems',
+    title: 'Jae-Hyun Baek | Coding theory and formal verification',
     description:
-      'A research workshop for formalized mathematics, auditable benchmarks, agentic knowledge systems, and applied AI products.',
+      'Papers, Lean proofs, and reproducible experiments in coding theory by Jae-Hyun Baek.',
     images: [
       {
         url: '/og-image.png',
@@ -70,9 +71,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Jae-Hyun Baek | Formalized Mathematical AI and Agentic Systems',
+    title: 'Jae-Hyun Baek | Coding theory and formal verification',
     description:
-      'Formal math libraries, auditable AI benchmarks, RAG products, and agent-readable research memory.',
+      'Coding theory, Lean proofs, mathematical benchmarks, and applied AI projects at Sogang University.',
     images: ['/og-image.png'],
   },
   category: 'Research',
@@ -151,8 +152,8 @@ export default function RootLayout({
           />
         ) : null}
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <Providers>{children}</Providers>
+      <body className={`${geistSans.variable} ${geistMono.variable} bg-[#faf9f4] text-[#192c27] antialiased`}>
+        <Providers><Navigation />{children}</Providers>
       </body>
     </html>
   );

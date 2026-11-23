@@ -77,8 +77,8 @@ export function AwardImageLightbox({
   );
 
   const triggerClassName = fill
-    ? `group relative block h-full w-full cursor-zoom-in overflow-hidden text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 ${className}`
-    : `group relative inline-flex cursor-zoom-in overflow-hidden text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 ${className}`;
+    ? `group relative block h-full w-full cursor-zoom-in overflow-hidden text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#225441] focus-visible:ring-offset-2 ${className}`
+    : `group relative inline-flex cursor-zoom-in overflow-hidden text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#225441] focus-visible:ring-offset-2 ${className}`;
 
   const lightbox = open ? (
     <div
@@ -97,10 +97,10 @@ export function AwardImageLightbox({
         <button
           type="button"
           onClick={() => setOpen(false)}
-          className="absolute right-0 top-0 z-20 rounded-full bg-white/10 p-2 text-white transition hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+          className="absolute right-0 top-0 z-20 grid h-11 w-11 place-items-center rounded-full bg-white/10 p-2 text-white transition hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
           aria-label="Close expanded image"
         >
-          <X className="h-5 w-5" />
+          <X aria-hidden="true" className="h-5 w-5" />
         </button>
         <div className="relative h-full w-full cursor-zoom-out">
           {/* Use a plain img in the fullscreen portal. Next/Image is useful in the
@@ -129,7 +129,7 @@ export function AwardImageLightbox({
       >
         {image}
         <span className="absolute right-3 top-3 inline-flex items-center gap-1 rounded-full bg-slate-950/75 px-3 py-1.5 text-xs font-medium text-white opacity-0 shadow-lg backdrop-blur transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
-          <Maximize2 className="h-3.5 w-3.5" />
+          <Maximize2 aria-hidden="true" className="h-3.5 w-3.5" />
           View larger
         </span>
       </button>

@@ -82,3 +82,40 @@ test('homepage lets readers inspect the EAQECC proof and reach its sources', asy
   await page.getByRole('link', { name: 'SolEvolve', exact: true }).click();
   await expect(page.locator('#solevolve')).toBeInViewport();
 });
+
+test('portrait keeps its original proportions on Home and About', async ({ page }) => {
+  for (const path of ['/', '/about']) {
+    await page.goto(path);
+    const portrait = page.getByRole('img', { name: 'Jae-Hyun Baek', exact: true });
+    await expect(portrait).toBeInViewport({ ratio: 1 });
+    await expect.poll(() => portrait.evaluate((node: HTMLImageElement) => node.naturalWidth)).toBe(360);
+    const box = (await portrait.boundingBox())!;
+    expect(box.width).toBeGreaterThanOrEqual(76);
+    expect(box.width / box.height).toBeCloseTo(360 / 462, 2);
+  }
+});
+
+test('portfolio navigation, source links and certificate viewer work across sections', async ({ page, isMobile }) => {
+  await page.goto('/');
+  for (const [label, title] of [
+    ['About', 'Jae-Hyun Baek'], ['Awards', 'Awards'], ['Writing', 'Writing'],
+    ['Artifacts', 'Research artifacts'], ['Contact', 'Contact'],
+  ]) {
+    if (isMobile) await page.getByRole('button', { name: 'Open navigation' }).click();
+    const menu = isMobile ? page.getByRole('dialog', { name: 'Navigation' }) : page.getByRole('navigation', { name: 'Main navigation' });
+    await menu.getByRole('link', { name: label, exact: true }).click();
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText(title);
+    await expectPageFits(page);
+    if (label === 'Awards') {
+      await page.getByRole('button', { name: /^Expand/ }).first().click();
+      const dialog = page.getByRole('dialog');
+      await expect(dialog.getByRole('img', { name: /certificate/ })).toBeVisible();
+      await dialog.getByRole('button', { name: 'Close expanded image' }).click();
+      await expect(dialog).toHaveCount(0);
+    }
+    if (label === 'Writing') {
+      await expect(page.getByRole('link', { name: 'Read the thesis at Sogang' })).toHaveAttribute('href', /000000082888/);
+    }
+  }
+  await expect(page.getByRole('link', { name: 'bjh3641@gmail.com' })).toHaveAttribute('href', 'mailto:bjh3641@gmail.com');
+});

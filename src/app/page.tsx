@@ -1,8 +1,7 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
+import { Portrait } from '@/components/portrait';
 import Link from 'next/link';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
-import { Navigation } from '@/components/navigation';
 import { EaqeccProof } from '@/components/eaqecc-proof';
 
 export const metadata: Metadata = {
@@ -19,19 +18,18 @@ const selectedWork = [
 export default function Home() {
   return (
     <div className="min-h-screen bg-[#faf9f4] text-[#192c27]">
-      <Navigation />
       <main className="mx-auto max-w-7xl px-4 pb-16 pt-20 sm:px-8 sm:pt-24 lg:px-12 lg:pt-32">
         <div className="grid items-center gap-3 border-b border-[#c8d1c6] pb-8 sm:gap-8 lg:grid-cols-[minmax(0,0.93fr)_minmax(0,1.07fr)] lg:gap-14 lg:pb-14">
           <section className="contents lg:block">
             <header className="order-1">
-              <div className="flex items-center gap-3">
-                <Image src="/jhbaek_profile.jpg" width={54} height={54} alt="" className="h-11 w-11 rounded-full object-cover object-top sm:h-14 sm:w-14" />
-                <div>
+              <div className="grid grid-cols-[1fr_auto] items-center gap-x-3 gap-y-2 sm:block">
+                <Portrait className="col-start-2 row-span-2 row-start-1 w-[4.75rem] min-[375px]:w-24 sm:float-left sm:mr-5 sm:w-28" />
+                <div className="col-start-1 row-start-1 sm:min-h-36 sm:pt-8">
                   <p className="font-semibold">Jae-Hyun Baek <span lang="ko" className="pl-1 font-normal text-[#4a6258]">백재현</span></p>
-                  <p className="text-sm text-[#4a6258]">AI PhD student · Sogang University</p>
+                  <p className="meta-text">AI PhD student · Sogang University</p>
                 </div>
+                <h1 className="col-start-1 row-start-2 max-w-xl font-serif text-[2rem] leading-[1.02] tracking-[-0.045em] min-[375px]:text-[2.55rem] sm:mt-5 sm:clear-both sm:text-6xl xl:text-7xl">Searching for quantum codes</h1>
               </div>
-              <h1 className="mt-5 max-w-xl font-serif text-[2.55rem] leading-[1.02] tracking-[-0.045em] sm:mt-7 sm:text-6xl xl:text-7xl">Searching for quantum codes</h1>
             </header>
             <div className="order-4 lg:mt-4">
               <p className="max-w-lg text-base leading-relaxed sm:text-lg">

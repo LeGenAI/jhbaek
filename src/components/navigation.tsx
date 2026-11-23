@@ -1,206 +1,59 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import {
-  Menu,
-  User,
-  GraduationCap,
-  BookOpen,
-  Mail,
-  Github,
-  Linkedin,
-  Boxes,
-  PenLine
-} from 'lucide-react';
+import { Github, Linkedin, Mail, Menu } from 'lucide-react';
+import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 
-const navigationItems = [
-  { href: '/', label: 'Home', icon: User },
-  { href: '/research', label: 'Research', icon: BookOpen },
-  { href: '/artifacts', label: 'Artifacts', icon: Boxes },
-  { href: '/writing', label: 'Writing', icon: PenLine },
-  { href: '/about', label: 'About', icon: GraduationCap },
-  { href: '/contact', label: 'Contact', icon: Mail }
+const pages = [
+  ['Home', '/'], ['Research', '/research'], ['Artifacts', '/artifacts'],
+  ['Writing', '/writing'], ['About', '/about'], ['Awards', '/awards'], ['Contact', '/contact'],
+];
+const profiles = [
+  { label: 'GitHub', href: 'https://github.com/LeGenAI', icon: Github },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/jae-hyun-baek-516899227', icon: Linkedin },
+  { label: 'Email', href: 'mailto:bjh3641@gmail.com', icon: Mail },
 ];
 
 export function Navigation() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [open, setOpen] = useState(false);
   const pathname = usePathname();
-
-  // 홈페이지인지 확인
-  const isHomePage = pathname === '/';
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const section = pathname.startsWith('/research/projects/') ? '/artifacts' : '/' + pathname.split('/')[1];
+  const links = pages.map(([label, href]) => (
+    <Link key={href} href={href} onClick={() => setOpen(false)}
+      aria-current={pathname === href ? 'page' : section === href ? 'location' : undefined}
+      className="site-nav-link">
+      {label}
+    </Link>
+  ));
+  const socials = profiles.map(({ label, href, icon: Icon }) => (
+    <a key={href} href={href} aria-label={label} className="grid h-11 w-11 place-items-center rounded hover:bg-white/10">
+      <Icon size={18} aria-hidden="true" />
+    </a>
+  ));
 
   return (
-    <>
-      {/* Desktop Navigation */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isHomePage
-          ? 'bg-[#10332e] border-b border-[#294e43]'
-          : // 일반 페이지용 헤더 (흰 배경에 최적화)
-          isScrolled
-            ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-200'
-            : 'bg-white/90 backdrop-blur-sm shadow-md border-b border-gray-100'
-        }`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="flex items-center justify-between h-16">
-            {/* Logo/Brand */}
-            <div className="flex-shrink-0">
-              <Link
-                href="/"
-                className={`text-lg sm:text-xl font-bold transition-colors ${isHomePage
-                    ? // 홈페이지용 로고 (흰색 텍스트)
-                    isScrolled ? 'text-white drop-shadow-lg' : 'text-white drop-shadow-lg'
-                    : // 일반 페이지용 로고 (검은색 텍스트)
-                    'text-gray-900'
-                  } ${isHomePage ? 'hover:text-amber-300' : 'hover:text-blue-600'
-                  }`}
-              >
-                백 재 현 (Jae-Hyun Baek)
-              </Link>
-            </div>
-
-            {/* Desktop Menu */}
-            <div className="hidden lg:block">
-              <div className="flex items-center space-x-1">
-                {navigationItems.map((item) => {
-                  const Icon = item.icon;
-                  const isActive = pathname === item.href;
-
-                  return (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${isActive
-                          ? isHomePage
-                            ? 'bg-amber-400/20 text-amber-300 shadow-md backdrop-blur-sm border border-amber-400/30'
-                            : 'bg-blue-100 text-blue-700 shadow-md border border-blue-200'
-                          : isHomePage
-                            ? isScrolled
-                              ? 'text-white/90 hover:text-amber-300 hover:bg-white/10 drop-shadow-sm'
-                              : 'text-white/90 hover:text-amber-300 hover:bg-white/10 drop-shadow-sm'
-                            : 'text-gray-700 hover:text-blue-600 hover:bg-gray-100'
-                        }`}
-                    >
-                      <Icon className="w-4 h-4" />
-                      {item.label}
-                    </Link>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Social Links */}
-            <div className="hidden lg:flex items-center gap-2">
-              <Button asChild variant="ghost" size="sm" className={
-                isHomePage
-                  ? "text-white/90 hover:text-amber-300 hover:bg-white/10"
-                  : "text-gray-600 hover:text-blue-600 hover:bg-gray-100"
-              }>
-                <a href="https://github.com/LeGenAI" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">
-                  <Github className="w-4 h-4" />
-                </a>
-              </Button>
-              <Button asChild variant="ghost" size="sm" className={
-                isHomePage
-                  ? "text-white/90 hover:text-amber-300 hover:bg-white/10"
-                  : "text-gray-600 hover:text-blue-600 hover:bg-gray-100"
-              }>
-                <a href="https://www.linkedin.com/in/jae-hyun-baek-516899227" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile">
-                  <Linkedin className="w-4 h-4" />
-                </a>
-              </Button>
-              <Button asChild variant="ghost" size="sm" className={
-                isHomePage
-                  ? "text-white/90 hover:text-amber-300 hover:bg-white/10"
-                  : "text-gray-600 hover:text-blue-600 hover:bg-gray-100"
-              }>
-                <a href="mailto:bjh3641@gmail.com" aria-label="Email Jae-Hyun Baek">
-                  <Mail className="w-4 h-4" />
-                </a>
-              </Button>
-            </div>
-
-            {/* Mobile Menu Button */}
-            <div className="lg:hidden">
-              <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
-                <SheetTrigger asChild>
-                  <Button variant="ghost" size="icon" className="h-11 w-11" aria-label="Open navigation">
-                    <Menu className={`w-5 h-5 ${isHomePage
-                        ? isScrolled ? 'text-white drop-shadow-lg' : 'text-white drop-shadow-lg'
-                        : 'text-gray-700'
-                      }`} />
-                  </Button>
-                </SheetTrigger>
-                <SheetContent side="right" aria-describedby={undefined} className="w-80 max-w-full overflow-y-auto">
-                  <div className="flex flex-col space-y-4 mt-8">
-                    <div className="text-center pb-4 border-b">
-                      <SheetTitle>Navigation</SheetTitle>
-                    </div>
-
-                    {/* Mobile Navigation Items */}
-                    {navigationItems.map((item) => {
-                      const Icon = item.icon;
-                      const isActive = pathname === item.href;
-
-                      return (
-                        <Link
-                          key={item.href}
-                          href={item.href}
-                          onClick={() => setMenuOpen(false)}
-                          className={`flex items-center gap-3 px-4 py-3 rounded-lg text-left transition-colors ${isActive
-                              ? 'bg-blue-50 text-blue-700 border border-blue-200'
-                              : 'text-gray-700 hover:bg-gray-50'
-                            }`}
-                        >
-                          <Icon className="w-5 h-5" />
-                          <span className="font-medium">{item.label}</span>
-                        </Link>
-                      );
-                    })}
-
-                    {/* Mobile Social Links */}
-                    <div className="pt-4 border-t">
-                      <p className="text-sm text-gray-500 mb-3">Connect with me</p>
-                      <div className="flex gap-2">
-                        <Button asChild variant="outline" size="sm" className="flex-1">
-                          <a href="https://github.com/LeGenAI" target="_blank" rel="noopener noreferrer">
-                            <Github className="w-4 h-4 mr-2" />
-                            GitHub
-                          </a>
-                        </Button>
-                        <Button asChild variant="outline" size="sm" className="flex-1">
-                          <a href="https://www.linkedin.com/in/jae-hyun-baek-516899227" target="_blank" rel="noopener noreferrer">
-                            <Linkedin className="w-4 h-4 mr-2" />
-                            LinkedIn
-                          </a>
-                        </Button>
-                      </div>
-                      <Button asChild variant="default" size="sm" className="w-full mt-2">
-                        <a href="mailto:bjh3641@gmail.com">
-                          <Mail className="w-4 h-4 mr-2" />
-                          Email Me
-                        </a>
-                      </Button>
-                    </div>
-                  </div>
-                </SheetContent>
-              </Sheet>
-            </div>
-          </div>
+    <nav aria-label="Main navigation" className="fixed inset-x-0 top-0 z-50 border-b border-[#294e43] bg-[#10332e] text-white">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-3 px-4 sm:px-8 lg:px-12">
+        <Link href="/" className="inline-flex min-h-11 items-center gap-2 text-lg font-semibold">
+          Jae-Hyun Baek <span lang="ko" className="text-sm font-normal text-[#c8d8cb]">백재현</span>
+        </Link>
+        <div className="hidden items-center gap-1 lg:flex">{links}</div>
+        <div className="hidden lg:flex">{socials}</div>
+        <div className="lg:hidden">
+          <Sheet open={open} onOpenChange={setOpen}>
+            <SheetTrigger asChild>
+              <button aria-label="Open navigation" className="grid h-11 w-11 place-items-center"><Menu size={22} /></button>
+            </SheetTrigger>
+            <SheetContent side="right" aria-describedby={undefined} className="w-72 max-w-full overflow-y-auto border-[#294e43] bg-[#10332e] text-white">
+              <SheetTitle className="mb-5 font-serif text-2xl text-white">Navigation</SheetTitle>
+              <div className="grid">{links}</div>
+              <div className="mt-5 flex border-t border-white/25 pt-3">{socials}</div>
+            </SheetContent>
+          </Sheet>
         </div>
-      </nav>
-    </>
+      </div>
+    </nav>
   );
 }
