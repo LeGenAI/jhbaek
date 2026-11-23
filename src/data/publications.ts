@@ -2,7 +2,7 @@ export const solEvolveThesisUrl = 'https://dcollection.sogang.ac.kr/dcollection/
 
 export type PublicationStatus = 'Published' | 'Accepted' | 'Under Review' | 'Revision requested' | 'Revision submitted' | 'Submitted' | 'In Preparation' | 'Preprint';
 
-export type PublicationLinkKey = 'doi' | 'paper' | 'project' | 'code' | 'source' | 'googleScholar' | 'researchGate' | 'artifact' | 'slides' | 'data' | 'thesis' | 'certificate' | 'specification';
+export type PublicationLinkKey = 'doi' | 'paper' | 'project' | 'code' | 'source' | 'googleScholar' | 'researchGate' | 'artifact' | 'slides' | 'data' | 'thesis' | 'certificate' | 'specification' | 'openReview';
 
 export const publicationTopics = {
   'coding-theory': 'Coding theory and combinatorial constructions',
@@ -242,23 +242,24 @@ export const publications: Publication[] = [
     title: 'EntropyMath: An Evolutionary Benchmark Generation System for Evaluating High-Difficulty Mathematical Reasoning',
     slug: 'entropymath-evolutionary-benchmark-generation',
     authors: 'Jae-Hyun Baek et al.',
-    venue: 'ICML AI for Math Workshop submission',
+    venue: 'NeurIPS Evaluations & Datasets (E&D) Track',
     year: '2026',
     status: 'Submitted',
     area: 'AI4Math / Benchmark evaluation',
     summary: 'EntropyMath evolves mathematics problems from earlier ones and records how each problem changes. Solver traces and validation checks let a reader inspect the problems behind an aggregate benchmark score and follow a generated item back to its parent.',
-    tldr: 'The submitted EntropyMath workshop paper: benchmarks as auditable evolutionary processes rather than static problem sets.',
+    tldr: 'EntropyMath records how each benchmark problem was generated and checked.',
     role: 'I led development of the benchmark system.',
     problem: 'How can a reader audit the origin and grading of a generated mathematics problem?',
     keyIdea: 'Track the lineage of a generated problem together with the solver attempts and checks applied to it. The public evaluation code includes grading scripts and dataset configurations.',
     methods: ['Evolutionary problem generation', 'Benchmark lineage tracking', 'Solver-trace analysis', 'Validation-gate design'],
     results: [],
-    statusNote: 'Workshop manuscript submitted to the ICML AI for Math Workshop.',
+    statusNote: 'Submitted to the NeurIPS 2026 Evaluations & Datasets Track.',
     topic: 'reasoning-evaluation',
     relatedProjects: ['entropymath-entropymag-entropymalean'],
     tags: ['EntropyMath', 'AI4Math', 'benchmark generation', 'lineage', 'verification'],
     image: '/1212/1212_workshop_fig_1.png',
     links: {
+      openReview: 'https://openreview.net/forum?id=PQ0KR4KDvK&noteId=O2YkA0QUyM',
       project: 'https://entropymath.com',
       code: 'https://github.com/LeGenAI/entropymath_eval',
     },

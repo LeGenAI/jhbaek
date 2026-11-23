@@ -7,6 +7,7 @@ import { projectArtifacts } from '@/data/projects';
 
 const linkLabels: Record<PublicationLinkKey, string> = {
   doi: 'DOI',
+  openReview: 'OpenReview',
   certificate: 'Lean certificate',
   specification: 'Comparator specification (v2)',
   paper: 'Paper',
