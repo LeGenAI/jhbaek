@@ -1,8 +1,15 @@
 export const solEvolveThesisUrl = 'https://dcollection.sogang.ac.kr/dcollection/srch/srchDetail/000000082888?localeParam=en';
 
-export type PublicationStatus = 'Published' | 'Accepted' | 'Under Review' | 'Submitted' | 'In Preparation' | 'Preprint';
+export type PublicationStatus = 'Published' | 'Accepted' | 'Under Review' | 'Revision requested' | 'Revision submitted' | 'Submitted' | 'In Preparation' | 'Preprint';
 
 export type PublicationLinkKey = 'doi' | 'paper' | 'project' | 'code' | 'source' | 'googleScholar' | 'researchGate' | 'artifact' | 'slides' | 'data' | 'thesis' | 'certificate' | 'specification';
+
+export const publicationTopics = {
+  'coding-theory': 'Coding theory and combinatorial constructions',
+  'reasoning-evaluation': 'Mathematical reasoning and model evaluation',
+  'retrieval-forecasting': 'Document retrieval and forecasting',
+  'computational-pathology': 'Computational pathology',
+} as const;
 
 export type Publication = {
   title: string;
@@ -20,7 +27,7 @@ export type Publication = {
   methods: string[];
   results: string[];
   statusNote: string;
-  researchAxis: 'formalized-math-ai' | 'auditable-evaluation' | 'deployed-knowledge-systems' | 'applied-ai-methods';
+  topic: keyof typeof publicationTopics;
   relatedProjects: string[];
   tags: string[];
   image?: string;
@@ -31,6 +38,7 @@ export type Publication = {
 export const sudokuCitation = {
   title: 'Symmetric Sudoku-Type Games From Perfect Codes',
   slug: 'symmetric-sudoku-perfect-codes',
+  topic: 'coding-theory' as const,
   authors: 'Junmin An, Jae-Hyun Baek, Keon-Hwi Kim, Haeun Lim, Jon-Lark Kim',
   venue: 'IEEE Transactions on Games',
   year: '2026',
@@ -46,9 +54,9 @@ export const publications: Publication[] = [
     title: 'An integer determinant approach to the length of Type II codes and the weights of shadows',
     slug: 'type-ii-codes-and-shadow-weights',
     authors: 'Jae-Hyun Baek, Jon-Lark Kim',
-    venue: 'arXiv:2610.30809v1',
+    venue: 'AMC',
     year: '2026',
-    status: 'Submitted',
+    status: 'Revision requested',
     area: 'Algebraic coding theory',
     summary: 'Why must the length of a binary doubly-even self-dual code be a multiple of eight? We give an elementary proof using the determinant of an integer Gram matrix. The same argument also explains the weight congruence for vectors in the shadow of a binary self-dual code.',
     tldr: 'One determinant congruence gives elementary proofs of two classical results on binary self-dual codes.',
@@ -57,8 +65,8 @@ export const publications: Publication[] = [
     keyIdea: 'Write a generator matrix in the form [I | A] and view the binary orthogonal matrix A as an integer matrix with entries 0 and 1. Expanding the determinant of its Gram matrix modulo 8 gives a short proof of Janusz’s row-count theorem. Applying that count yields both coding-theoretic congruences.',
     methods: ['Leibniz expansion of the Gram determinant modulo 8', 'Gauss sums', 'Evaluation of the MacWilliams identity at a single point'],
     results: ['The length of every binary Type II code is divisible by 8.', 'For a binary self-dual code of length n, every vector in its shadow has weight congruent to n/2 modulo 4.'],
-    statusNote: 'Submitted manuscript. The public preprint was posted on 22 October 2026.',
-    researchAxis: 'formalized-math-ai',
+    statusNote: 'AMC has requested a revision. The public preprint is arXiv:2610.30809v1, posted on 22 October 2026.',
+    topic: 'coding-theory',
     relatedProjects: [],
     tags: ['Type II codes', 'self-dual codes', 'shadows', 'integer determinants'],
     links: {
@@ -82,7 +90,7 @@ export const publications: Publication[] = [
     methods: ['Program evolution and exact evaluation', 'Algebraic generalization', 'Lean verification of the certificate'],
     results: ['Theorem 1 applies to prime powers q ≥ 3 at n ≥ 2q + 1, and to q = 2 at odd n ≥ 5.', 'The family and entanglement lifting together close 54 gaps in the archived tables.'],
     statusNote: 'Public preprint, version 1.',
-    researchAxis: 'formalized-math-ai',
+    topic: 'coding-theory',
     relatedProjects: [],
     tags: ['EAQECC', 'coding theory', 'Lean'],
     links: {
@@ -95,9 +103,9 @@ export const publications: Publication[] = [
     title: 'Formalizing Building-Up Constructions of Self-Dual Codes Through Isotropic Lines in Lean',
     slug: 'self-dual-codes-building-up',
     authors: 'Jae-Hyun Baek, Jon-Lark Kim',
-    venue: 'arXiv:2604.08485v2',
+    venue: 'AFM',
     year: '2026',
-    status: 'Preprint',
+    status: 'Revision submitted',
     area: 'Coding theory and formal verification',
     summary: 'Building up a self-dual code adds two coordinates. We studied when removing two coordinates recovers the parent code and how the construction extends to other finite fields. For a fixed ordered pairing, the intersection with a product of isotropic lines determines the rank in the normal form.',
     tldr: 'Isotropic lines explain how to reduce and extend a self-dual code.',
@@ -106,8 +114,8 @@ export const publications: Publication[] = [
     keyIdea: 'For q congruent to 1 modulo 4, a square root of −1 determines the split isotropic line. Fixing an ordered pairing then gives the rank-r normal form of Theorem 3.15.',
     methods: ['Binary reduction up to permutation equivalence', 'Finite-field matrix constructions', 'Lean 4 formalization of the algebraic core'],
     results: ['The paper gives explicit self-dual codes over the fields of 5 and 13 elements.', 'Listing 9 states the forward self-duality and normalization goals. The pinned Comparator file is their specification.'],
-    statusNote: 'Public preprint, version 2.',
-    researchAxis: 'formalized-math-ai',
+    statusNote: 'We submitted the revised manuscript to AFM. The public preprint is arXiv:2604.08485v2.',
+    topic: 'coding-theory',
     relatedProjects: ['codingtheorylib-mcp'],
     tags: ['self-dual codes', 'Lean'],
     links: {
@@ -131,7 +139,7 @@ export const publications: Publication[] = [
     methods: ['Closed-agent solver/falsifier architecture', 'Lean-oriented mathematical problem solving', 'Token and compute efficiency comparison'],
     results: ['Best Paper Award at the 2026 KIIS Spring Conference.'],
     statusNote: 'Accepted at the 2026 KIIS Spring Conference. Sogang IMDS published the award announcement.',
-    researchAxis: 'formalized-math-ai',
+    topic: 'reasoning-evaluation',
     relatedProjects: ['codingtheorylib-mcp', 'solevolve', 'entropymath-entropymag-entropymalean'],
     tags: ['LLM-Lean', 'closed agents', 'falsifier', 'AI4Math', 'best paper'],
     links: {
@@ -155,7 +163,7 @@ export const publications: Publication[] = [
     methods: ['Retrieval-augmented generation', 'Regulatory document chunking', 'LLM answer evaluation'],
     results: ['The paper reports better regulatory question-answering performance than both GPT-3.5 baselines.'],
     statusNote: 'Published in the Journal of Korean Institute of Intelligent Systems in February 2025.',
-    researchAxis: 'deployed-knowledge-systems',
+    topic: 'retrieval-forecasting',
     relatedProjects: ['sogambot', 'mindbuddhi'],
     tags: ['RAG', 'regulatory documents', 'LLM evaluation', 'domain memory'],
     links: { doi: 'https://doi.org/10.5391/jkiis.2025.35.1.65' },
@@ -177,7 +185,7 @@ export const publications: Publication[] = [
     methods: ['TimeGPT forecasting', 'Rolling-origin evaluation', 'Hydrological time-series preprocessing'],
     results: ['TimeGPT outperformed both baselines on Nash–Sutcliffe efficiency for the short- and long-term forecasts reported in the paper.'],
     statusNote: 'Published in IJFIS, volume 26, issue 1 (2026).',
-    researchAxis: 'applied-ai-methods',
+    topic: 'retrieval-forecasting',
     relatedProjects: ['water-level-forecasting'],
     tags: ['TimeGPT', 'water-level prediction', 'foundation models', 'environmental AI'],
     image: '/accepted/Application_of_TimeGPT_for_enhancing_water_level_prediction_in_Gamcheon_River__Korea/TimeGPT_overall.png',
@@ -200,7 +208,7 @@ export const publications: Publication[] = [
     methods: ['Vision-language retrieval', 'Multimodal math reasoning', 'Figure-aware prompt construction'],
     results: ['The paper reports accuracy improvements of up to 29.3% over standalone models.'],
     statusNote: 'Published in IJFIS, volume 26, issue 1 (2026).',
-    researchAxis: 'applied-ai-methods',
+    topic: 'reasoning-evaluation',
     relatedProjects: ['entropymath-entropymag-entropymalean'],
     tags: ['VLM', 'ColPali', 'MathVision', 'multimodal reasoning'],
     image: '/accepted/Hybrid multimodal GenAI for solving math problems containing various figures_v2_20250209/colpalianstwo.png',
@@ -224,7 +232,7 @@ export const publications: Publication[] = [
     results: ['The public reviewer command checks seven claims, including three self-orthogonal embeddings and three Lucas-cube constructions.'],
     statusNote: 'The manuscript is under review at Neurocomputing. A minor revision was requested in mid-2026.',
     links: { thesis: solEvolveThesisUrl, code: 'https://github.com/LeGenAI/sol_evolve#reviewer-reproduction' },
-    researchAxis: 'formalized-math-ai',
+    topic: 'coding-theory',
     relatedProjects: ['solevolve', 'codingtheorylib-mcp'],
     tags: ['evolutionary search', 'SAT', 'coding theory', 'algorithm discovery'],
     image: '/thesis/graphical_abstract.png',
@@ -246,7 +254,7 @@ export const publications: Publication[] = [
     methods: ['Whole-slide image processing', 'Tiny-object detection', 'External validation', 'Clinical metric reporting'],
     results: [],
     statusNote: 'Medical image analysis manuscript under review.',
-    researchAxis: 'applied-ai-methods',
+    topic: 'computational-pathology',
     relatedProjects: ['mekanet-medical-ai'],
     tags: ['medical AI', 'WSI', 'tiny object detection', 'computer vision'],
     image: '/mekanet.png',
@@ -267,7 +275,7 @@ export const publications: Publication[] = [
     methods: ['Evolutionary problem generation', 'Benchmark lineage tracking', 'Solver-trace analysis', 'Validation-gate design'],
     results: [],
     statusNote: 'Workshop manuscript submitted to the ICML AI for Math Workshop.',
-    researchAxis: 'auditable-evaluation',
+    topic: 'reasoning-evaluation',
     relatedProjects: ['entropymath-entropymag-entropymalean'],
     tags: ['EntropyMath', 'AI4Math', 'benchmark generation', 'lineage', 'verification'],
     image: '/1212/1212_workshop_fig_1.png',
@@ -292,7 +300,7 @@ export const publications: Publication[] = [
     methods: ['LLM safety case study', 'Behavior/internal-reasoning distinction', 'Formal-methods-oriented framing'],
     results: ['Best Presentation Award at ISIS 2025.'],
     statusNote: 'Presented at the 2025 International Symposium on Advanced Intelligent Systems.',
-    researchAxis: 'applied-ai-methods',
+    topic: 'reasoning-evaluation',
     relatedProjects: [],
     tags: ['alignment faking', 'LLM safety', 'formal methods', 'evaluation'],
     image: '/ISIS/slide1.png',
@@ -314,7 +322,7 @@ export const publications: Publication[] = [
     methods: ['Deep learning detection', 'Feature engineering', 'Pathology image analysis', 'Clinical classification workflow'],
     results: [],
     statusNote: 'Submitted medical imaging manuscript.',
-    researchAxis: 'applied-ai-methods',
+    topic: 'computational-pathology',
     relatedProjects: ['mekanet-medical-ai'],
     tags: ['MekaNet', 'megakaryocyte', 'MPN', 'pathology', 'feature engineering'],
     image: '/mekanet.png',
@@ -335,7 +343,7 @@ export const publications: Publication[] = [
     methods: ['Tiling strategy', 'Semi-supervised detection', 'WSI/pathology preprocessing', 'Detection evaluation'],
     results: [],
     statusNote: 'Submitted medical imaging manuscript.',
-    researchAxis: 'applied-ai-methods',
+    topic: 'computational-pathology',
     relatedProjects: ['mekanet-medical-ai'],
     tags: ['MekaNet', 'tiling', 'semi-supervised learning', 'megakaryocyte', 'WSI'],
     image: '/meka-release.png',
@@ -356,7 +364,7 @@ export const publications: Publication[] = [
     methods: ['Deep learning segmentation', 'Bone-marrow image analysis', 'Cellularity estimation', 'Clinical evaluation framing'],
     results: [],
     statusNote: 'Submitted medical imaging manuscript.',
-    researchAxis: 'applied-ai-methods',
+    topic: 'computational-pathology',
     relatedProjects: ['mekanet-medical-ai'],
     tags: ['cellularity', 'bone marrow', 'segmentation', 'medical AI'],
     image: '/mekanet.png',

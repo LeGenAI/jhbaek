@@ -1,5 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
-import { publications, sudokuCitation } from '../src/data/publications';
+import { publicationTopics, publications, sudokuCitation } from '../src/data/publications';
 
 async function expectPageFits(page: Page) {
   await expect.poll(() => page.evaluate(() =>
@@ -31,10 +31,21 @@ test('CV entry exposes the papers, proofs and reviewer instructions', async ({ p
   await expect(entries.first()).toContainText('Published');
   const papers = [...publications, sudokuCitation];
   await expect(entries).toHaveCount(papers.length);
-  for (const paper of papers) {
-    const entry = entries.filter({ has: page.getByRole('link', { name: paper.title, exact: true }) });
-    await expect(entry.getByText(paper.summary, { exact: true })).toBeVisible();
+  for (const [topic, title] of Object.entries(publicationTopics)) {
+    const group = page.getByRole('region', { name: title, exact: true });
+    const items = papers.filter((paper) => paper.topic === topic);
+    const years = [...new Set(items.map((paper) => paper.year))].sort().reverse();
+    await expect(group.getByRole('heading', { level: 4 })).toHaveText(years);
+    for (const paper of items) {
+      const yearList = group.getByRole('list', { name: paper.year, exact: true });
+      const entry = yearList.getByRole('listitem').filter({ has: page.getByRole('link', { name: paper.title, exact: true }) });
+      await expect(entry.getByText(paper.summary, { exact: true })).toBeVisible();
+    }
   }
+  const topicsNav = page.getByRole('navigation', { name: 'Publication topics' });
+  await topicsNav.getByRole('link', { name: 'Computational pathology' }).click();
+  await expect(page.getByRole('heading', { name: 'Computational pathology', exact: true })).toBeInViewport();
+  await expectPageFits(page);
   await expect(entries.filter({ hasText: 'Shortest Self-Orthogonal Embeddings' })).toHaveCount(0);
   await page.getByRole('link', { name: /Sudoku/i }).click();
   await expect(page).toHaveURL(/publications\/symmetric-sudoku-perfect-codes$/);

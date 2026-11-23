@@ -1,7 +1,7 @@
 import { academicProfiles } from '@/data/profiles';
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { publications, solEvolveThesisUrl, sudokuCitation, type PublicationStatus } from '@/data/publications';
+import { publicationTopics, publications, solEvolveThesisUrl, sudokuCitation, type PublicationStatus } from '@/data/publications';
 
 export const metadata: Metadata = {
   title: 'Research',
@@ -23,7 +23,7 @@ const selectedResearch = [
   {
     id: 'self-dual-codes',
     title: 'Building up self-dual codes in Lean',
-    credit: 'Jae-Hyun Baek, Jon-Lark Kim · 2026 preprint',
+    credit: 'Jae-Hyun Baek, Jon-Lark Kim · AFM · Revision submitted',
     finding: 'We studied when removing two coordinates reverses a building-up construction. Theorem 3.15 in v2 fixes the pairing of the coordinates and gives a rank-r normal form. The pinned Comparator file states the two Lean goals in Listing 9.',
     links: [
       { label: 'Comparator specification (v2)', href: 'https://github.com/LeGenAI/intersection-coding-theory-cohomology/blob/9c2c4a2ce24552dd57b69fbb5a7f0c071d120d5b/Formalization/Verification/Comparator/QaryRankBoxedNormalizationChallenge.lean' },
@@ -46,13 +46,20 @@ const selectedResearch = [
 const textLink = 'source-link';
 
 const statusOrder: Record<PublicationStatus, number> = {
-  Published: 0, Accepted: 1, Preprint: 2, 'Under Review': 3, Submitted: 4, 'In Preparation': 5,
+  Published: 0, Accepted: 1, Preprint: 2, 'Revision submitted': 3, 'Revision requested': 4,
+  'Under Review': 5, Submitted: 6, 'In Preparation': 7,
 };
 
 export default function ResearchPage() {
   const papers = [...publications, sudokuCitation].sort((a, b) =>
     b.year.localeCompare(a.year) || statusOrder[a.status] - statusOrder[b.status] || a.title.localeCompare(b.title, 'en')
   );
+
+  const topics = Object.entries(publicationTopics).map(([id, title]) => {
+    const items = papers.filter((paper) => paper.topic === id);
+    const years = [...new Set(items.map((paper) => paper.year))];
+    return { id, title, years, items };
+  }).filter(({ items }) => items.length > 0);
 
   return (
     <main className="portfolio-page">
@@ -92,16 +99,30 @@ export default function ResearchPage() {
         <nav aria-label="Academic profiles" className="flex flex-wrap gap-x-6">
           {academicProfiles.map(({ label, href }) => <a key={href} className={textLink} href={href}>{label}</a>)}
         </nav>
-        <p className="meta-text mb-4 mt-2">Newest year first, with published and accepted work first within each year.</p>
-        <ul className="divide-y divide-[#c8d1c6] border-y border-[#c8d1c6]">
-          {papers.map((paper) => (
-            <li key={paper.slug} className="py-3">
-              <Link className="block py-1 text-base font-semibold leading-snug hover:text-[#225441] hover:underline" href={`/research/publications/${paper.slug}`}>{paper.title}</Link>
-              <p className="meta-text">{paper.year} · {paper.venue} · {paper.status}</p>
-              <p className="mt-2 max-w-prose leading-relaxed">{paper.summary}</p>
-            </li>
+        <nav aria-label="Publication topics" className="mt-3 grid gap-x-8 border-y border-[#c8d1c6] py-2 sm:grid-cols-2">
+          {topics.map(({ id, title }) => (
+            <a key={id} className={textLink} href={`#papers-${id}`}>{title}</a>
           ))}
-        </ul>
+        </nav>
+        {topics.map(({ id, title, years, items }) => (
+          <section key={id} id={`papers-${id}`} aria-labelledby={`topic-${id}`} className="mt-10 scroll-mt-24">
+            <h3 id={`topic-${id}`} className="font-serif text-2xl leading-tight sm:text-3xl">{title}</h3>
+            {years.map((year) => (
+              <div key={year} className="mt-4 border-t border-[#c8d1c6] sm:grid sm:grid-cols-[5rem_minmax(0,1fr)] sm:gap-x-6">
+                <h4 id={`papers-${id}-${year}`} className="pt-3 text-lg font-semibold tabular-nums text-[#225441]">{year}</h4>
+                <ul aria-labelledby={`papers-${id}-${year}`} className="divide-y divide-[#c8d1c6]">
+                  {items.filter((paper) => paper.year === year).map((paper) => (
+                    <li key={paper.slug} className="py-3">
+                      <Link className="block py-1 text-base font-semibold leading-snug hover:text-[#225441] hover:underline" href={`/research/publications/${paper.slug}`}>{paper.title}</Link>
+                      <p className="meta-text">{paper.venue} · {paper.status}</p>
+                      <p className="mt-2 max-w-prose leading-relaxed">{paper.summary}</p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </section>
+        ))}
         <Link className={textLink} href="/artifacts">All projects</Link>
       </section>
     </main>
