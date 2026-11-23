@@ -42,6 +42,7 @@ export default function AboutPage() {
           <li className="pt-5">
             <h3 className="text-xl font-semibold">Teaching Assistant, Sogang University</h3>
             <p className="meta-text mt-1">Basic Artificial Intelligence · Fall 2026</p>
+            <p className="mt-2 leading-relaxed">I teach hands-on MATLAB labs.</p>
           </li>
         </ul>
       </section>
