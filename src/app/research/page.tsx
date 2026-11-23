@@ -15,17 +15,17 @@ const selectedResearch = [
     credit: 'Jae-Hyun Baek, Byung-Sun Won, Jon-Lark Kim · 2026 preprint',
     finding: 'We derived a family of quantum codes from finite constructions found by program search. Lean checks the algebraic certificate for Theorem 1. The family and entanglement lifting close 54 gaps in archived code tables.',
     links: [
-      { label: 'Lean certificate', href: 'https://github.com/LeGenAI/llm_guided_EAQECC_search/blob/main/formal/eaqecc/README.md' },
-      { label: 'EAQECC preprint', href: 'https://arxiv.org/abs/2610.41183' },
+      { label: 'Lean certificate', href: 'https://github.com/LeGenAI/llm_guided_EAQECC_search/blob/3e7b2e8d42487f1f117f0ab9b457c50701588068/formal/eaqecc/README.md' },
+      { label: 'EAQECC preprint', href: 'https://arxiv.org/abs/2610.41183v1' },
     ],
   },
   {
     id: 'self-dual-codes',
     title: 'Building up self-dual codes in Lean',
     credit: 'Jae-Hyun Baek, Jon-Lark Kim · 2026 preprint',
-    finding: 'We studied when removing two coordinates reverses a building-up construction. The Lean project formalizes the algebraic core. Separate matrix checks cover the finite-field examples.',
+    finding: 'We studied when removing two coordinates reverses a building-up construction. Theorem 3.15 in v2 fixes the pairing of the coordinates and gives a rank-r normal form. The pinned Comparator file states the two Lean goals in Listing 9.',
     links: [
-      { label: 'Paper-to-Lean map', href: 'https://github.com/LeGenAI/intersection-coding-theory-cohomology/blob/main/ARTIFACT_MAP.md' },
+      { label: 'Comparator specification (v2)', href: 'https://github.com/LeGenAI/intersection-coding-theory-cohomology/blob/9c2c4a2ce24552dd57b69fbb5a7f0c071d120d5b/Formalization/Verification/Comparator/QaryRankBoxedNormalizationChallenge.lean' },
       { label: 'Self-dual codes preprint', href: 'https://arxiv.org/abs/2604.08485v2' },
     ],
   },
@@ -53,7 +53,7 @@ export default function ResearchPage() {
         Selected Research in Formal Verification
       </h1>
       <nav aria-label="Research sections" className="mt-3 flex flex-wrap gap-x-5">
-        <a className={textLink} href="#entropymalean">EntropyMaLean harness</a>
+        <Link className={textLink} href="/research/projects/entropymath-entropymag-entropymalean">EntropyMaLean harness</Link>
         <a className={textLink} href="#publications">Publications</a>
       </nav>
       <div className="mt-3 divide-y divide-[#c8d1c6] border-y border-[#c8d1c6]">
@@ -74,7 +74,7 @@ export default function ResearchPage() {
       </div>
       <section id="entropymalean" className="mt-10 max-w-2xl scroll-mt-24">
         <h2 className="section-title">EntropyMaLean evaluation harness</h2>
-        <p className="mt-3 leading-relaxed">EntropyMaLean uses Lean to check proposed proofs. EntropyMath publishes model scores and per-problem results on its leaderboard.</p>
+        <p className="mt-3 leading-relaxed">I refined the harness to return Lean errors for another proof attempt and replay accepted proofs against the original goal. I set up experiments with two Nemotron models. EntropyMath reports benchmark scores separately.</p>
         <div className="flex flex-wrap gap-x-5">
           <Link className={textLink} href="/research/projects/entropymath-entropymag-entropymalean">Harness and benchmark details</Link>
           <a className={textLink} href="https://entropymath.com/">EntropyMath leaderboard</a>

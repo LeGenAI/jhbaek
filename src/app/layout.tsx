@@ -84,7 +84,7 @@ export const metadata: Metadata = {
     apple: '/jhbaek_profile.jpg',
   },
   alternates: {
-    canonical: '/',
+    canonical: './',
   },
 };
 

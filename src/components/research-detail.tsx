@@ -23,12 +23,12 @@ export function ResearchDetail({ back, title, metadata, byline, venue, summary, 
         <h1 className="page-title mt-2">{title}</h1>
         {byline && <p className="mt-4">{byline}</p>}
         {venue && <p className="meta-text mt-1">{venue}</p>}
+        <p className="page-intro">{summary}</p>
         {links.length > 0 && (
           <div className="mt-2 flex flex-wrap gap-x-6">
             {links.map(({ label, href }) => <a key={label} className="source-link" href={href}>{label}</a>)}
           </div>
         )}
-        <p className="page-intro">{summary}</p>
       </header>
       {image && (
         <div className="relative mt-6 h-48 border-y border-[#c8d1c6] bg-[#f2f2e9] sm:h-72">

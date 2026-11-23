@@ -10,9 +10,9 @@ export const metadata: Metadata = {
 };
 
 const selectedWork = [
+  { title: 'EntropyMaLean', note: 'How I use Lean errors to guide revisions and replay proofs against the original goal.', href: '/research/projects/entropymath-entropymag-entropymalean' },
   { title: 'Building up self-dual codes in Lean', note: 'How extending a code by two coordinates preserves self-duality.', href: '/research#self-dual-codes' },
   { title: 'SolEvolve', note: 'Reproducing combinatorial search results with SAT solvers and explicit witnesses.', href: '/research#solevolve' },
-  { title: 'EntropyMaLean', note: 'Checking proposed mathematical proofs with Lean.', href: '/research#entropymalean' },
 ];
 
 export default function Home() {
@@ -33,13 +33,13 @@ export default function Home() {
             </header>
             <div className="order-4 lg:mt-4">
               <p className="max-w-lg text-base leading-relaxed sm:text-lg">
-                We used program search to find examples of entanglement-assisted quantum codes. We generalized them into a family and checked its algebraic certificate in Lean.
+                Our search programs found finite qubit constructions. We used their structure to derive a family of quantum codes. Lean checks the dimension, radical, and weight results. In the paper we apply the stabilizer correspondence to obtain the code parameters.
               </p>
               <p className="mt-4 text-xs leading-relaxed text-[#52665d] sm:text-sm">Jae-Hyun Baek, Byung-Sun Won, Jon-Lark Kim · October 2026</p>
             </div>
             <div className="order-2 flex flex-wrap items-center gap-x-4 gap-y-1 lg:mt-3">
-              <a href="https://arxiv.org/abs/2610.41183" className="inline-flex min-h-11 items-center gap-2 rounded bg-[#173f35] px-4 text-sm font-semibold text-white hover:bg-[#245848]">EAQECC paper <ArrowUpRight size={16} aria-hidden="true" /></a>
-              <a href="https://github.com/LeGenAI/llm_guided_EAQECC_search/blob/main/formal/eaqecc/README.md" className="inline-flex min-h-11 items-center gap-1 text-sm font-semibold underline underline-offset-4">Lean certificate <ArrowUpRight size={16} aria-hidden="true" /></a>
+              <a href="https://arxiv.org/abs/2610.41183v1" className="inline-flex min-h-11 items-center gap-2 rounded bg-[#173f35] px-4 text-sm font-semibold text-white hover:bg-[#245848]">EAQECC paper <ArrowUpRight size={16} aria-hidden="true" /></a>
+              <a href="https://github.com/LeGenAI/llm_guided_EAQECC_search/blob/3e7b2e8d42487f1f117f0ab9b457c50701588068/formal/eaqecc/README.md" className="inline-flex min-h-11 items-center gap-1 text-sm font-semibold underline underline-offset-4">Lean certificate <ArrowUpRight size={16} aria-hidden="true" /></a>
             </div>
           </section>
           <div className="order-3 min-w-0"><EaqeccProof /></div>

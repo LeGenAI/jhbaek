@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { ArtifactCard } from '@/components/artifact-card';
 import { projectArtifacts } from '@/data/projects';
 
@@ -17,7 +18,7 @@ export default function ArtifactsPage() {
       <p className="page-intro">Code, benchmarks, and deployed systems from my research and engineering work.</p>
       <div className="flex flex-wrap gap-x-6">
         <a className="source-link" href="https://github.com/LeGenAI">GitHub repositories</a>
-        <a className="source-link" href="https://entropymath.com/">EntropyMath leaderboard</a>
+        <Link className="source-link" href="/research/projects/entropymath-entropymag-entropymalean">EntropyMaLean harness</Link>
       </div>
       <nav aria-label="Artifact groups" className="section-rule flex flex-wrap gap-x-6 pt-1 sm:pt-1">
         {groups.map(([id, label]) => <a href={'#' + id} className="source-link" key={id}>{label}</a>)}

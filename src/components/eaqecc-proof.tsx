@@ -35,6 +35,7 @@ export function EaqeccProof() {
         <div className={styles.certificate}>Lean algebraic certificate</div>
         <div className={styles.correspondence}><span>Stabilizer correspondence</span></div>
         <div className={styles.formula} aria-label="Quantum code parameters">[[n, 1, n − 1; n − q − 1]]<sub>q</sub></div>
+        <p className={styles.scope}>For prime powers <i>q</i> ≥ 3, <i>n</i> ≥ 2<i>q</i> + 1. For <i>q</i> = 2, <i>n</i> is odd and <i>n</i> ≥ 5.</p>
       </div>
       <div id="branch-detail" className={styles.detail} aria-live="polite">
         <div><b>{selected.name}</b><a href={`${proofFile}#L${selected.line}`}>{selected.field} <ArrowUpRight size={13} aria-hidden="true" /></a></div>

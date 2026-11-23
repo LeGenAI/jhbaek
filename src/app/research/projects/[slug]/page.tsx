@@ -28,7 +28,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
       <div>
         <DetailSection title="Problem"><p>{artifact.problem}</p></DetailSection>
         <DetailList title="What I built" items={artifact.whatIBuilt} />
-        <DetailList title="Evidence" items={artifact.evidence} />
+        <DetailList title={artifact.evidenceTitle ?? 'Evidence'} items={artifact.evidence} />
         <DetailSection title="Implementation notes"><p>{artifact.makerNote}</p></DetailSection>
       </div>
       <aside>

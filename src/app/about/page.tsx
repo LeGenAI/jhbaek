@@ -16,6 +16,9 @@ export default function AboutPage() {
         <p className="page-intro col-span-2 mt-0 sm:col-span-1 sm:col-start-2 sm:self-start">
           I am a PhD student in AI at Sogang University and a technical lead at DeepFountain. I study error-correcting codes and use Lean to check the mathematics behind their construction.
         </p>
+        <p className="col-span-2 max-w-prose leading-relaxed sm:col-span-1 sm:col-start-2">
+          A small example catches my attention when I can see a pattern but can’t yet say when it holds. Once I have a proof, I want to know exactly which claim Lean checked. I keep the statement, code, and checks together so someone else can retrace the argument and try the next case.
+        </p>
       </header>
       <section className="section-rule grid gap-4 md:grid-cols-[1fr_2fr]">
         <h2 className="section-title">At Sogang</h2>

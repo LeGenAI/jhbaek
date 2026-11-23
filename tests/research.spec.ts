@@ -12,9 +12,9 @@ test('CV entry exposes the papers, proofs and reviewer instructions', async ({ p
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Selected Research in Formal Verification');
   await expect(page.getByRole('link', { name: 'Lean certificate', exact: true })).toBeInViewport({ ratio: 1 });
   const links = {
-    'Lean certificate': 'https://github.com/LeGenAI/llm_guided_EAQECC_search/blob/main/formal/eaqecc/README.md',
-    'EAQECC preprint': 'https://arxiv.org/abs/2610.41183',
-    'Paper-to-Lean map': 'https://github.com/LeGenAI/intersection-coding-theory-cohomology/blob/main/ARTIFACT_MAP.md',
+    'Lean certificate': 'https://github.com/LeGenAI/llm_guided_EAQECC_search/blob/3e7b2e8d42487f1f117f0ab9b457c50701588068/formal/eaqecc/README.md',
+    'EAQECC preprint': 'https://arxiv.org/abs/2610.41183v1',
+    'Comparator specification (v2)': 'https://github.com/LeGenAI/intersection-coding-theory-cohomology/blob/9c2c4a2ce24552dd57b69fbb5a7f0c071d120d5b/Formalization/Verification/Comparator/QaryRankBoxedNormalizationChallenge.lean',
     'Self-dual codes preprint': 'https://arxiv.org/abs/2604.08485v2',
     'Reviewer reproduction': 'https://github.com/LeGenAI/sol_evolve#reviewer-reproduction',
   };
@@ -27,6 +27,8 @@ test('CV entry exposes the papers, proofs and reviewer instructions', async ({ p
   await page.getByRole('link', { name: 'Publications', exact: true }).click();
   await page.getByRole('link', { name: 'Symmetric Sudoku-Type Games from Perfect Codes', exact: true }).click();
   await expect(page.getByText('Junmin An, Jae-Hyun Baek, Keon-Hwi Kim, Haeun Lim, Jon-Lark Kim')).toBeVisible();
+  await expect(page.getByText(/The 2,040 valid 5 × 5 grids/)).toContainText('17 classes under symbol relabeling');
+  await expect(page.getByText(/Those 17 classes/)).toContainText('4 orbits');
   await expect(page.getByText('IEEE Transactions on Games · 2026')).toBeVisible();
   await expect(page.getByRole('link', { name: 'DOI', exact: true })).toHaveAttribute('href', 'https://doi.org/10.1109/TG.2026.3683305');
   await expectPageFits(page);
@@ -37,14 +39,15 @@ test('CV entry exposes the papers, proofs and reviewer instructions', async ({ p
 test('research links distinguish the benchmark and the Lean harness', async ({ page }) => {
   await page.goto('/research');
   await page.getByRole('link', { name: 'EntropyMaLean harness', exact: true }).click();
-  await expect(page.getByRole('heading', { name: 'EntropyMaLean evaluation harness' })).toBeInViewport();
-  await page.getByRole('link', { name: 'Harness and benchmark details' }).click();
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('EntropyMaLean proof-checking harness');
+  await expect(page.getByText(/I refined EntropyMaLean/)).toContainText('two Nemotron models');
   await expect(page.getByRole('link', { name: 'EntropyMath leaderboard' })).toHaveAttribute('href', 'https://entropymath.com/');
   await expect(page.getByRole('link', { name: 'EntropyMath evaluation code' })).toHaveAttribute('href', 'https://github.com/LeGenAI/entropymath_eval');
   await expect(page.locator('a[href*="EntropyMaG-2"]')).toHaveCount(0);
   await expectPageFits(page);
   await page.getByRole('link', { name: 'Back to artifacts' }).click();
   await page.getByRole('link', { name: 'CodingTheoryLib / CodingTheoryLib-MCP', exact: true }).click();
+  await expect(page.getByRole('link', { name: 'MCP usage guide (documentation)' })).toHaveAttribute('href', 'https://codingtheorylib.com/mcp-guide');
   await expect(page.getByText(/Neo4j lookup:/)).toBeVisible();
   await expect(page.locator('a[href="https://github.com/LeGenAI/CodingTheoryLib"]')).toHaveCount(0);
   await expectPageFits(page);
@@ -69,9 +72,13 @@ test('homepage lets readers inspect the EAQECC proof and reach its sources', asy
   await page.goto('/');
   const graph = page.getByRole('figure', { name: 'Theorem 1 · Proof dependencies' });
   await expect(graph.getByRole('button', { name: /Dimension/ })).toBeInViewport({ ratio: 1 });
-  await expect(page.getByRole('link', { name: 'EAQECC paper' })).toHaveAttribute('href', 'https://arxiv.org/abs/2610.41183');
+  await expect(page.getByRole('link', { name: 'EAQECC paper' })).toHaveAttribute('href', 'https://arxiv.org/abs/2610.41183v1');
   await expect(page.getByRole('link', { name: 'Lean certificate' })).toHaveAttribute('href', /formal\/eaqecc\/README\.md$/);
   await expect(graph.getByRole('link', { name: 'Fig. 6' })).toHaveAttribute('href', 'https://arxiv.org/html/2610.41183v1#A4.F6');
+  await expect(graph.getByText(/For prime powers/)).toHaveText('For prime powers q ≥ 3, n ≥ 2q + 1. For q = 2, n is odd and n ≥ 5.');
+  const firstWork = page.locator('section[aria-labelledby="selected-work"] li a').first();
+  await expect(firstWork).toHaveText('EntropyMaLean');
+  await expect(firstWork).toHaveAttribute('href', '/research/projects/entropymath-entropymag-entropymalean');
   for (const [name, field, line] of [['Dimension', 'normalizerFinrank', '316'], ['Radical', 'radicalIff', '315'], ['Weight', 'distanceAttained', '319']]) {
     const branch = graph.getByRole('button', { name: new RegExp(name) });
     await branch.click();

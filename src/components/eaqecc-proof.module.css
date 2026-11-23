@@ -50,6 +50,7 @@
 .correspondence { position: relative; align-self: flex-start; margin-left: 50%; border-left: 1px dashed var(--edge); padding: 3px 0 3px 7px; }
 .correspondence span { display: block; max-width: 100%; font-size: .67rem; line-height: 1.15; color: #d0dfd4; }
 .formula { margin-top: 6px; font: italic clamp(1.22rem, 3vw, 1.7rem) Georgia, serif; }
+.scope { margin-top: 6px; color: #d4e3d9; text-align: center; font-size: .875rem; line-height: 1.45; }
 .detail { background: #10332e; border-top: 1px solid #426159; }
 .detail b { font-size: .9rem; }
 .detail a { font-family: var(--font-geist-mono), monospace; }
