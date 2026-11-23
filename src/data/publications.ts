@@ -32,6 +32,7 @@ export type Publication = {
   relatedProjects: string[];
   tags: string[];
   image?: string;
+  figure?: { width: number; height: number; alt: string; caption: string };
   links?: Partial<Record<PublicationLinkKey, string>>;
   featured?: boolean;
 };
@@ -258,6 +259,13 @@ export const publications: Publication[] = [
     topic: 'reasoning-evaluation',
     relatedProjects: ['entropymath-entropymag-entropymalean'],
     tags: ['EntropyMath', 'AI4Math', 'benchmark generation', 'lineage', 'verification'],
+    image: '/previews/entropymag-1-figure-1.jpg',
+    figure: {
+      width: 1531,
+      height: 938,
+      alt: 'The planner retains one survivor. Mutation and crossover produce candidates that pass through the validation stack before joining the next generation.',
+      caption: 'Figure 1, p. 3. EntropyMaG-1 checks generated problems for sandbox execution, near-copies, solvability, and grounding. The archive supplies context to both the planner and the validation stack.',
+    },
     links: {
       openReview: 'https://openreview.net/forum?id=PQ0KR4KDvK&noteId=O2YkA0QUyM',
       data: 'https://huggingface.co/datasets/sgmlc1234/EntropyMath-Gen-v1',

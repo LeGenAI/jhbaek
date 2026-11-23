@@ -150,3 +150,17 @@ test('portfolio navigation, source links and certificate viewer work across sect
   }
   await expect(page.getByRole('link', { name: 'bjh3641@gmail.com' })).toHaveAttribute('href', 'mailto:bjh3641@gmail.com');
 });
+
+test('EntropyMaG-1 opens the validation diagram extracted from the manuscript', async ({ page }) => {
+  await page.goto('/research/publications/entropymath-evolutionary-benchmark-generation');
+  const figure = page.locator('figure').filter({ hasText: 'Figure 1, p. 3.' });
+  const diagram = figure.getByRole('img');
+  await diagram.scrollIntoViewIfNeeded();
+  await expect.poll(() => diagram.evaluate((img: HTMLImageElement) => img.naturalWidth)).toBeGreaterThan(0);
+  await expectPageFits(page);
+  await figure.getByRole('link', { name: 'Open full-size figure' }).click();
+  await expect(page).toHaveURL(/\/previews\/entropymag-1-figure-1\.jpg$/);
+  await expect.poll(() => page.locator('img').evaluate((img: HTMLImageElement) =>
+    [img.naturalWidth, img.naturalHeight]
+  )).toEqual([1531, 938]);
+});

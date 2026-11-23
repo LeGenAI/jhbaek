@@ -67,7 +67,7 @@ export default async function PublicationDetailPage({ params }: { params: Promis
   return (
     <ResearchDetail back={{ href: '/research', label: 'Back to research' }} title={publication.title}
       metadata={publication.status + ' · ' + publication.area} byline={publication.authors}
-      venue={publication.venue + ' · ' + publication.year} summary={publication.summary} image={publication.image} links={links}>
+      venue={publication.venue + ' · ' + publication.year} summary={publication.summary} image={publication.image} figure={publication.figure} links={links}>
       <div>
         <DetailSection title="Research question"><p>{publication.problem}</p></DetailSection>
         <DetailSection title="Approach"><p>{publication.keyIdea}</p></DetailSection>
