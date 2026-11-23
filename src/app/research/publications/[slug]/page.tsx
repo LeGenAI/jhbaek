@@ -14,6 +14,7 @@ const linkLabels: Record<PublicationLinkKey, string> = {
   project: 'Project',
   code: 'Code',
   source: 'Source',
+  googleScholar: 'Google Scholar',
   researchGate: 'ResearchGate',
   artifact: 'Artifact',
   slides: 'Slides',

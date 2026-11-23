@@ -15,6 +15,7 @@ const statusStyles: Record<Publication['status'], string> = {
 };
 
 const linkLabels: Record<PublicationLinkKey, string> = {
+  googleScholar: 'Google Scholar',
   researchGate: 'ResearchGate',
   paper: 'Paper',
   thesis: 'Master’s thesis (Sogang University)',

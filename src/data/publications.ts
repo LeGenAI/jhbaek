@@ -2,7 +2,7 @@ export const solEvolveThesisUrl = 'https://dcollection.sogang.ac.kr/dcollection/
 
 export type PublicationStatus = 'Published' | 'Accepted' | 'Under Review' | 'Submitted' | 'In Preparation' | 'Preprint';
 
-export type PublicationLinkKey = 'doi' | 'paper' | 'project' | 'code' | 'source' | 'researchGate' | 'artifact' | 'slides' | 'data' | 'thesis' | 'certificate' | 'specification';
+export type PublicationLinkKey = 'doi' | 'paper' | 'project' | 'code' | 'source' | 'googleScholar' | 'researchGate' | 'artifact' | 'slides' | 'data' | 'thesis' | 'certificate' | 'specification';
 
 export type Publication = {
   title: string;
@@ -42,6 +42,30 @@ export const sudokuCitation = {
 };
 
 export const publications: Publication[] = [
+  {
+    title: 'An integer determinant approach to the length of Type II codes and the weights of shadows',
+    slug: 'type-ii-codes-and-shadow-weights',
+    authors: 'Jae-Hyun Baek, Jon-Lark Kim',
+    venue: 'arXiv:2610.30809v1',
+    year: '2026',
+    status: 'Submitted',
+    area: 'Algebraic coding theory',
+    summary: 'Why must the length of a binary doubly-even self-dual code be a multiple of eight? We give an elementary proof using the determinant of an integer Gram matrix. The same argument also explains the weight congruence for vectors in the shadow of a binary self-dual code.',
+    tldr: 'One determinant congruence gives elementary proofs of two classical results on binary self-dual codes.',
+    role: 'First author, working with Jon-Lark Kim.',
+    problem: 'Can the length restriction for Type II codes be proved directly from a generator matrix? Vera Pless posed this question to Jon-Lark Kim.',
+    keyIdea: 'Write a generator matrix in the form [I | A] and view the binary orthogonal matrix A as an integer matrix with entries 0 and 1. Expanding the determinant of its Gram matrix modulo 8 gives a short proof of Janusz’s row-count theorem. Applying that count yields both coding-theoretic congruences.',
+    methods: ['Leibniz expansion of the Gram determinant modulo 8', 'Gauss sums', 'Evaluation of the MacWilliams identity at a single point'],
+    results: ['The length of every binary Type II code is divisible by 8.', 'For a binary self-dual code of length n, every vector in its shadow has weight congruent to n/2 modulo 4.'],
+    statusNote: 'Submitted manuscript. The public preprint was posted on 22 October 2026.',
+    researchAxis: 'formalized-math-ai',
+    relatedProjects: [],
+    tags: ['Type II codes', 'self-dual codes', 'shadows', 'integer determinants'],
+    links: {
+      paper: 'https://arxiv.org/abs/2610.30809v1',
+      googleScholar: 'https://scholar.google.com/citations?view_op=view_citation&hl=en&user=WZRat_4AAAAJ&citation_for_view=WZRat_4AAAAJ:qjMakFHDy7sC',
+    },
+  },
   {
     title: 'Researcher-in-the-loop Evolutionary Discovery of Entanglement-assisted Quantum Code Families',
     slug: 'eaqecc-evolutionary-discovery',
