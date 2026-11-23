@@ -47,10 +47,7 @@ export function Navigation() {
     <>
       {/* Desktop Navigation */}
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isHomePage
-          ? // 홈페이지용 헤더 (기존 스타일 유지)
-          isScrolled
-            ? 'bg-black/20 backdrop-blur-md shadow-2xl border-b border-white/20'
-            : 'bg-gradient-to-r from-black/30 via-orange-900/20 to-black/30 backdrop-blur-sm'
+          ? 'bg-[#10332e] border-b border-[#294e43]'
           : // 일반 페이지용 헤더 (흰 배경에 최적화)
           isScrolled
             ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-200'

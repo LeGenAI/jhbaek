@@ -1,0 +1,56 @@
+.figure {
+  --edge: #99bbb1;
+  margin: 0;
+  min-width: 0;
+  overflow: hidden;
+  background: #133b35;
+  color: #f3f5e9;
+  border: 1px solid #123b34;
+  border-radius: 10px;
+}
+.caption, .detail { padding: 12px clamp(14px, 4vw, 28px); }
+.caption, .detail > div { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.caption { border-bottom: 1px solid #426159; background: #10332e; }
+.caption h2 { font-weight: 600; font-size: .9rem; }
+.figure a { display: inline-flex; align-items: center; gap: 4px; min-height: 44px; font-size: .8rem; color: #d4e7db; text-decoration: underline; text-underline-offset: 3px; }
+.caption a { white-space: nowrap; }
+.graph {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 22px clamp(10px, 3vw, 34px);
+  background-image: radial-gradient(#69897b66 .7px, transparent .9px);
+  background-size: 14px 14px;
+}
+.map, .certificate, .branches button {
+  border: 1px solid #74988a;
+  border-radius: 5px;
+  background: #20483f;
+}
+.map, .certificate { padding: 9px 16px; font-size: .88rem; font-weight: 600; text-align: center; }
+.map { display: flex; align-items: center; gap: 9px; }
+.map i { font: italic 1.3rem Georgia, serif; color: #efdbad; }
+.fork, .merge { position: relative; width: 100%; height: 25px; display: grid; grid-template-columns: repeat(3, 1fr); }
+.fork::before, .merge::before { content: ''; position: absolute; left: 16.6667%; right: 16.6667%; top: 50%; border-top: 1px solid var(--edge); }
+.fork i, .merge i { position: relative; justify-self: center; border-left: 1px solid var(--edge); }
+.fork i { height: 50%; align-self: end; }
+.fork i:nth-child(2), .merge i:nth-child(2) { height: 100%; }
+.fork i::after, .merge i:nth-child(2)::after, .correspondence::after {
+  content: ''; position: absolute; bottom: 0; left: -3px; border: solid var(--edge); border-width: 0 1px 1px 0; width: 5px; height: 5px; transform: rotate(45deg);
+}
+.merge i { height: 50%; }
+.branches { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); width: 100%; }
+.branches button { margin: 0 3px; min-height: 54px; padding: 5px 1px; line-height: 1.2; }
+.branches button span { display: block; font-size: .8rem; font-weight: 600; }
+.branches i { display: block; margin-top: 3px; font: italic 1rem Georgia, serif; }
+.branches button:hover { border-color: #efdbad; }
+.branches button[aria-pressed=true] { color: #172f28; background: #eedbb0; border-color: #eedbb0; }
+.figure :is(button, a):focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.certificate { background: #dce9d8; border-color: #dce9d8; color: #193d32; }
+.correspondence { position: relative; align-self: flex-start; margin-left: 50%; border-left: 1px dashed var(--edge); padding: 3px 0 3px 7px; }
+.correspondence span { display: block; max-width: 100%; font-size: .67rem; line-height: 1.15; color: #d0dfd4; }
+.formula { margin-top: 6px; font: italic clamp(1.22rem, 3vw, 1.7rem) Georgia, serif; }
+.detail { background: #10332e; border-top: 1px solid #426159; }
+.detail b { font-size: .9rem; }
+.detail a { font-family: var(--font-geist-mono), monospace; }
+.detail p { min-height: 3em; margin-bottom: 5px; font-size: .88rem; line-height: 1.5; color: #d4e3d9; }

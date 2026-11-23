@@ -1,214 +1,64 @@
-import { ArrowRight, Github, Network, Search, ShieldCheck, Wrench } from 'lucide-react';
+import type { Metadata } from 'next';
+import Image from 'next/image';
+import Link from 'next/link';
+import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { Navigation } from '@/components/navigation';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { PublicationCard } from '@/components/publication-card';
-import { ArtifactCard } from '@/components/artifact-card';
-import { featuredPublications } from '@/data/publications';
-import { projectArtifacts } from '@/data/projects';
-import { currentFocus } from '@/data/current-focus';
+import { EaqeccProof } from '@/components/eaqecc-proof';
 
-const pipeline = [
-  { label: 'domain knowledge', detail: 'papers, logs, textbooks, PDFs, datasets' },
-  { label: 'structured substrate', detail: 'Lean, graphs, vector memory, MCP, schemas' },
-  { label: 'agent interface', detail: 'retrieval, prover, evaluator, product workflow' },
-  { label: 'artifact', detail: 'paper, benchmark, deployed system, public tool' },
-];
+export const metadata: Metadata = {
+  title: { absolute: 'Jae-Hyun Baek · Coding theory and formal verification' },
+  description: 'Research by Jae-Hyun Baek at Sogang University. Explore a Lean-checked quantum code construction, self-dual codes, and reproducible experiments in combinatorial search.',
+};
 
-const axes = [
-  {
-    icon: ShieldCheck,
-    title: 'Formalized mathematical AI',
-    body: 'Coding theory, self-dual codes, Lean/Mathlib, and MCP-style memory for mathematical agents.',
-  },
-  {
-    icon: Search,
-    title: 'Auditable evaluation',
-    body: 'EntropyMath and EntropyMaLean treat benchmarks as traceable processes, not frozen files.',
-  },
-  {
-    icon: Network,
-    title: 'Agent-readable knowledge',
-    body: 'I keep asking what shape a domain must take before an agent, prover, or evaluator can use it.',
-  },
-  {
-    icon: Wrench,
-    title: 'Deployed AI systems',
-    body: 'RAG chatbots, forecasting pipelines, medical AI tools, and education products keep the work grounded.',
-  },
+const selectedWork = [
+  { title: 'Building up self-dual codes in Lean', note: 'How extending a code by two coordinates preserves self-duality.', href: '/research#self-dual-codes' },
+  { title: 'SolEvolve', note: 'Reproducing combinatorial search results with SAT solvers and explicit witnesses.', href: '/research#solevolve' },
+  { title: 'EntropyMaLean', note: 'Checking proposed mathematical proofs with Lean.', href: '/research#entropymalean' },
 ];
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-slate-950 text-white">
+    <div className="min-h-screen bg-[#faf9f4] text-[#192c27]">
       <Navigation />
-
-      <main>
-        <section className="relative isolate min-h-screen overflow-hidden px-6 pt-32">
-          <div
-            className="absolute inset-0 -z-20 bg-cover bg-center opacity-25"
-            style={{ backgroundImage: 'url(/background.jpg)' }}
-          />
-          <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,_rgba(59,130,246,0.35),_transparent_35%),linear-gradient(135deg,_rgba(15,23,42,0.96),_rgba(15,23,42,0.78)_45%,_rgba(30,41,59,0.95))]" />
-
-          <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-16 pb-24 lg:grid-cols-[1.08fr_0.92fr]">
-            <div className="space-y-8">
-              <Badge className="border border-blue-300/30 bg-blue-400/10 px-4 py-1.5 text-blue-100 hover:bg-blue-400/10">
-                Formalized Mathematical AI · Auditable Evaluation · Deployed Knowledge Systems
-              </Badge>
-
-              <div className="space-y-5">
-                <h1 className="max-w-4xl text-5xl font-semibold tracking-tight text-white md:text-7xl">
-                  I turn domain knowledge into systems that agents can use.
-                </h1>
-                <p className="max-w-3xl text-lg leading-8 text-slate-200 md:text-xl">
-                  I build AI systems that turn domain knowledge into formal, searchable, and testable artifacts: Lean libraries for coding theory, auditable math benchmarks, RAG products, forecasting pipelines, and research memory for agents.
-                </p>
-              </div>
-
-              <div className="flex flex-wrap gap-3">
-                <Button asChild size="lg" className="gap-2 bg-white text-slate-950 hover:bg-blue-50">
-                  <a href="/research">
-                    View research map <ArrowRight className="h-4 w-4" />
-                  </a>
-                </Button>
-                <Button asChild size="lg" variant="outline" className="gap-2 border-white/30 bg-white/10 text-white hover:bg-white/20">
-                  <a href="https://github.com/LeGenAI" target="_blank" rel="noopener noreferrer">
-                    <Github className="h-4 w-4" /> GitHub
-                  </a>
-                </Button>
-                <Button asChild size="lg" variant="outline" className="gap-2 border-white/30 bg-white/10 text-white hover:bg-white/20">
-                  <a href="/contact">
-                    Start a conversation
-                  </a>
-                </Button>
-              </div>
-            </div>
-
-            <div className="rounded-[2rem] border border-white/10 bg-white/10 p-6 shadow-2xl backdrop-blur-md">
-              <p className="mb-6 text-sm font-medium uppercase tracking-[0.22em] text-blue-200">the working pattern</p>
-              <div className="space-y-4">
-                {pipeline.map((step, index) => (
-                  <div key={step.label} className="rounded-2xl border border-white/10 bg-slate-950/50 p-5">
-                    <div className="flex items-center gap-3">
-                      <span className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-400 text-sm font-semibold text-slate-950">
-                        {index + 1}
-                      </span>
-                      <h2 className="text-lg font-semibold text-white">{step.label}</h2>
-                    </div>
-                    <p className="mt-3 text-sm leading-6 text-slate-300">{step.detail}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="bg-slate-50 px-6 py-24 text-slate-950">
-          <div className="mx-auto max-w-7xl space-y-10">
-            <div className="max-w-3xl space-y-4">
-              <Badge variant="outline" className="border-slate-300 text-slate-600">workshop, not just CV</Badge>
-              <h2 className="text-4xl font-semibold tracking-tight">The prototype usually starts ugly.</h2>
-              <p className="text-lg leading-8 text-slate-600">
-                A notebook. A pile of PDFs. A Lean theorem that will not compile. A dataset with missing values. A product log nobody wants to clean. If the idea survives that first mess, I try to turn it into something searchable, testable, and shareable.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4">
-              {axes.map((axis) => {
-                const Icon = axis.icon;
-                return (
-                  <div key={axis.title} className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-                    <Icon className="mb-5 h-7 w-7 text-blue-600" />
-                    <h3 className="text-lg font-semibold text-slate-950">{axis.title}</h3>
-                    <p className="mt-3 text-sm leading-6 text-slate-600">{axis.body}</p>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-
-        <section className="bg-white px-6 py-24 text-slate-950">
-          <div className="mx-auto max-w-7xl space-y-10">
-            <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
-              <div className="max-w-3xl space-y-4">
-                <Badge variant="outline" className="border-blue-200 text-blue-700">selected current focus</Badge>
-                <h2 className="text-4xl font-semibold tracking-tight">What I am sharpening now.</h2>
-                <p className="text-lg leading-8 text-slate-600">
-                  I keep a wide workshop, but the public portfolio should make the center of gravity clear: formalized mathematical AI, auditable evaluation, and applied systems that prove the substrate works.
-                </p>
-              </div>
-              <Button asChild variant="outline" className="w-fit">
-                <a href="/about">How I choose work</a>
-              </Button>
-            </div>
-
-            <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
-              {currentFocus.map((focus, index) => (
-                <div key={focus.title} className="rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-sm">
-                  <div className="mb-5 flex items-center justify-between gap-4">
-                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-slate-900 text-sm font-semibold text-white">
-                      {index + 1}
-                    </span>
-                    <Badge variant="outline" className="border-slate-300 text-slate-600">{focus.horizon}</Badge>
-                  </div>
-                  <h3 className="text-xl font-semibold text-slate-950">{focus.title}</h3>
-                  <p className="mt-3 text-sm leading-6 text-slate-600">{focus.why}</p>
-                  <div className="mt-5 rounded-2xl border border-dashed border-blue-200 bg-white p-4">
-                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-blue-700">target artifact</p>
-                    <p className="mt-2 text-sm leading-6 text-slate-700">{focus.artifact}</p>
-                  </div>
-                  <div className="mt-5 flex flex-wrap gap-2">
-                    {focus.tags.map((tag) => (
-                      <span key={tag} className="rounded-full bg-white px-3 py-1 text-xs text-slate-600 ring-1 ring-slate-200">{tag}</span>
-                    ))}
-                  </div>
+      <main className="mx-auto max-w-7xl px-4 pb-16 pt-20 sm:px-8 sm:pt-24 lg:px-12 lg:pt-32">
+        <div className="grid items-center gap-3 border-b border-[#c8d1c6] pb-8 sm:gap-8 lg:grid-cols-[minmax(0,0.93fr)_minmax(0,1.07fr)] lg:gap-14 lg:pb-14">
+          <section className="contents lg:block">
+            <header className="order-1">
+              <div className="flex items-center gap-3">
+                <Image src="/jhbaek_profile.jpg" width={54} height={54} alt="" className="h-11 w-11 rounded-full object-cover object-top sm:h-14 sm:w-14" />
+                <div>
+                  <p className="font-semibold">Jae-Hyun Baek <span lang="ko" className="pl-1 font-normal text-[#4a6258]">백재현</span></p>
+                  <p className="text-sm text-[#4a6258]">AI PhD student · Sogang University</p>
                 </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="bg-white px-6 py-24 text-slate-950">
-          <div className="mx-auto max-w-7xl space-y-10">
-            <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
-              <div className="max-w-3xl space-y-4">
-                <Badge variant="outline" className="border-blue-200 text-blue-700">accepted and published work</Badge>
-                <h2 className="text-4xl font-semibold tracking-tight">Papers are artifacts too.</h2>
-                <p className="text-lg leading-8 text-slate-600">
-                  I want the paper, the code, the benchmark, and the deployed system to point at the same underlying substrate whenever possible.
-                </p>
               </div>
-              <Button asChild variant="outline" className="w-fit">
-                <a href="/research">All research</a>
-              </Button>
-            </div>
-
-            <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-              {featuredPublications.slice(0, 4).map((publication) => (
-                <PublicationCard key={publication.title} publication={publication} />
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="bg-slate-100 px-6 py-24 text-slate-950">
-          <div className="mx-auto max-w-7xl space-y-10">
-            <div className="max-w-3xl space-y-4">
-              <Badge variant="outline" className="border-slate-300 text-slate-600">deployed research systems</Badge>
-              <h2 className="text-4xl font-semibold tracking-tight">A map of working artifacts.</h2>
-              <p className="text-lg leading-8 text-slate-600">
-                The surface changes from theorem proving to medical AI to RAG products. The maker habit is the same: find the hidden structure, make it computable, and ship a usable artifact.
+              <h1 className="mt-5 max-w-xl font-serif text-[2.55rem] leading-[1.02] tracking-[-0.045em] sm:mt-7 sm:text-6xl xl:text-7xl">Searching for quantum codes</h1>
+            </header>
+            <div className="order-4 lg:mt-4">
+              <p className="max-w-lg text-base leading-relaxed sm:text-lg">
+                We used program search to find examples of entanglement-assisted quantum codes. We generalized them into a family and checked its algebraic certificate in Lean.
               </p>
+              <p className="mt-4 text-xs leading-relaxed text-[#52665d] sm:text-sm">Jae-Hyun Baek, Byung-Sun Won, Jon-Lark Kim · October 2026</p>
             </div>
-
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
-              {projectArtifacts.slice(0, 6).map((artifact) => (
-                <ArtifactCard key={artifact.title} artifact={artifact} />
-              ))}
+            <div className="order-2 flex flex-wrap items-center gap-x-4 gap-y-1 lg:mt-3">
+              <a href="https://arxiv.org/abs/2610.41183" className="inline-flex min-h-11 items-center gap-2 rounded bg-[#173f35] px-4 text-sm font-semibold text-white hover:bg-[#245848]">EAQECC paper <ArrowUpRight size={16} aria-hidden="true" /></a>
+              <a href="https://github.com/LeGenAI/llm_guided_EAQECC_search/blob/main/formal/eaqecc/README.md" className="inline-flex min-h-11 items-center gap-1 text-sm font-semibold underline underline-offset-4">Lean certificate <ArrowUpRight size={16} aria-hidden="true" /></a>
             </div>
+          </section>
+          <div className="order-3 min-w-0"><EaqeccProof /></div>
+        </div>
+        <section aria-labelledby="selected-work" className="pt-7 lg:pt-10">
+          <div className="flex flex-wrap items-center justify-between gap-x-4">
+            <h2 id="selected-work" className="font-serif text-3xl tracking-tight">Selected work</h2>
+            <Link href="/research" className="inline-flex min-h-11 items-center gap-2 text-sm font-semibold hover:underline">All research <ArrowRight size={16} aria-hidden="true" /></Link>
           </div>
+          <ul className="mt-4 grid gap-5 sm:grid-cols-3 lg:gap-8">
+            {selectedWork.map((work) => (
+              <li key={work.href} className="border-t border-[#c8d1c6] pt-1">
+                <Link href={work.href} className="inline-flex min-h-11 items-center gap-2 text-lg font-semibold leading-snug hover:underline">{work.title}<ArrowRight size={15} aria-hidden="true" className="shrink-0" /></Link>
+                <p className="text-sm leading-relaxed text-[#4a6258]">{work.note}</p>
+              </li>
+            ))}
+          </ul>
         </section>
       </main>
     </div>

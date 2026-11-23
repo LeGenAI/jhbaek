@@ -64,3 +64,21 @@ test('main navigation reaches Research and the mobile menu closes', async ({ pag
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Selected Research in Formal Verification');
   await expectPageFits(page);
 });
+
+test('homepage lets readers inspect the EAQECC proof and reach its sources', async ({ page }) => {
+  await page.goto('/');
+  const graph = page.getByRole('figure', { name: 'Theorem 1 · Proof dependencies' });
+  await expect(graph.getByRole('button', { name: /Dimension/ })).toBeInViewport({ ratio: 1 });
+  await expect(page.getByRole('link', { name: 'EAQECC paper' })).toHaveAttribute('href', 'https://arxiv.org/abs/2610.41183');
+  await expect(page.getByRole('link', { name: 'Lean certificate' })).toHaveAttribute('href', /formal\/eaqecc\/README\.md$/);
+  await expect(graph.getByRole('link', { name: 'Fig. 6' })).toHaveAttribute('href', 'https://arxiv.org/html/2610.41183v1#A4.F6');
+  for (const [name, field, line] of [['Dimension', 'normalizerFinrank', '316'], ['Radical', 'radicalIff', '315'], ['Weight', 'distanceAttained', '319']]) {
+    const branch = graph.getByRole('button', { name: new RegExp(name) });
+    await branch.click();
+    await expect(branch).toHaveAttribute('aria-pressed', 'true');
+    await expect(graph.getByRole('link', { name: field })).toHaveAttribute('href', new RegExp('Theorem1.lean#L' + line + '$'));
+    await expectPageFits(page);
+  }
+  await page.getByRole('link', { name: 'SolEvolve', exact: true }).click();
+  await expect(page.locator('#solevolve')).toBeInViewport();
+});
