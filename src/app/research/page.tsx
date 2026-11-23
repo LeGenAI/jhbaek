@@ -47,7 +47,7 @@ const textLink = 'source-link';
 
 const statusOrder: Record<PublicationStatus, number> = {
   Published: 0, Accepted: 1, Preprint: 2, 'Revision submitted': 3, 'Revision requested': 4,
-  'Under Review': 5, Submitted: 6, 'In Preparation': 7,
+  'Under Review': 5, Submitted: 6, 'In Preparation': 7, 'Unpublished manuscript': 8,
 };
 
 export default function ResearchPage() {

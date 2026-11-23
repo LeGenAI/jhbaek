@@ -13,6 +13,7 @@ const statusStyles: Record<Publication['status'], string> = {
   'Revision submitted': 'bg-amber-100 text-amber-800 border-amber-200',
   'Under Review': 'bg-amber-100 text-amber-800 border-amber-200',
   Submitted: 'bg-slate-100 text-slate-700 border-slate-200',
+  'Unpublished manuscript': 'bg-zinc-100 text-zinc-700 border-zinc-200',
   'In Preparation': 'bg-zinc-100 text-zinc-700 border-zinc-200',
 };
 

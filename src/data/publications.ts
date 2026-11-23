@@ -1,6 +1,6 @@
 export const solEvolveThesisUrl = 'https://dcollection.sogang.ac.kr/dcollection/srch/srchDetail/000000082888?localeParam=en';
 
-export type PublicationStatus = 'Published' | 'Accepted' | 'Under Review' | 'Revision requested' | 'Revision submitted' | 'Submitted' | 'In Preparation' | 'Preprint';
+export type PublicationStatus = 'Published' | 'Accepted' | 'Under Review' | 'Revision requested' | 'Revision submitted' | 'Submitted' | 'In Preparation' | 'Unpublished manuscript' | 'Preprint';
 
 export type PublicationLinkKey = 'doi' | 'paper' | 'project' | 'code' | 'source' | 'googleScholar' | 'researchGate' | 'artifact' | 'slides' | 'data' | 'thesis' | 'certificate' | 'specification' | 'openReview';
 
@@ -239,29 +239,29 @@ export const publications: Publication[] = [
     featured: true,
   },
   {
-    title: 'EntropyMath: An Evolutionary Benchmark Generation System for Evaluating High-Difficulty Mathematical Reasoning',
+    title: 'EntropyMaG-1: A System for Constructing Harder Mathematical Problems via Multi-Generation Evolution with Auditable Quality Control',
     slug: 'entropymath-evolutionary-benchmark-generation',
-    authors: 'Jae-Hyun Baek et al.',
+    authors: 'Jae-Hyun Baek, Junmin An, Haeun Lim, Keon-Hwi Kim, Sang-Soo Lee, Beomsoo Kim, Young Jik Lee, Yeachan Park, Woo-Seok Jeong, Jon-Lark Kim',
     venue: 'NeurIPS Evaluations & Datasets (E&D) Track',
     year: '2026',
-    status: 'Submitted',
+    status: 'Unpublished manuscript',
     area: 'AI4Math / Benchmark evaluation',
-    summary: 'EntropyMath evolves mathematics problems from earlier ones and records how each problem changes. Solver traces and validation checks let a reader inspect the problems behind an aggregate benchmark score and follow a generated item back to its parent.',
-    tldr: 'EntropyMath records how each benchmark problem was generated and checked.',
+    summary: 'EntropyMaG-1 creates variants of mathematics problems by modifying one parent or combining two. The released dataset contains 934 distinct problems, each with its solution, executable answer check, and a record of its ancestry.',
+    tldr: 'Readers can trace each released problem to its parents and rerun its answer check.',
     role: 'I led development of the benchmark system.',
     problem: 'How can a reader audit the origin and grading of a generated mathematics problem?',
-    keyIdea: 'Track the lineage of a generated problem together with the solver attempts and checks applied to it. The public evaluation code includes grading scripts and dataset configurations.',
+    keyIdea: 'Record the parents of each candidate, run its verification code, compare the output with its proposed answer, and filter near-duplicates before expert review.',
     methods: ['Evolutionary problem generation', 'Benchmark lineage tracking', 'Solver-trace analysis', 'Validation-gate design'],
-    results: [],
-    statusNote: 'Submitted to the NeurIPS 2026 Evaluations & Datasets Track.',
+    results: ['In a separate stress test, three models scored lower on generated variants of MATH-500 and GSM8K problems than on the seed problems. Results on AIME 2025 were mixed.'],
+    statusNote: 'Submitted to the NeurIPS 2026 Evaluations & Datasets Track on 5 May 2026. The review concluded on 25 September 2026.',
     topic: 'reasoning-evaluation',
     relatedProjects: ['entropymath-entropymag-entropymalean'],
     tags: ['EntropyMath', 'AI4Math', 'benchmark generation', 'lineage', 'verification'],
     image: '/1212/1212_workshop_fig_1.png',
     links: {
       openReview: 'https://openreview.net/forum?id=PQ0KR4KDvK&noteId=O2YkA0QUyM',
+      data: 'https://huggingface.co/datasets/sgmlc1234/EntropyMath-Gen-v1',
       project: 'https://entropymath.com',
-      code: 'https://github.com/LeGenAI/entropymath_eval',
     },
   },
   {
