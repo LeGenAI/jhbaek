@@ -16,6 +16,11 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: '/previews/ea-singleton-proof-dag.png',
+        destination: '/research/publications/entanglement-assisted-quantum-singleton-bound#proof-map',
+        permanent: false,
+      },
+      {
         source: '/research/publications/shortest-self-orthogonal-embeddings-binary-codes',
         destination: '/research/publications/solevolve-evolutionary-discovery',
         permanent: true,

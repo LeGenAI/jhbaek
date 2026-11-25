@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Portrait } from '@/components/portrait';
 import Link from 'next/link';
-import Image from 'next/image';
+import { SingletonProofFigure } from '@/components/singleton-proof-figure';
 import { singletonPaper, singletonPaperPath } from '@/data/publications';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { EaqeccProof } from '@/components/eaqecc-proof';
@@ -43,15 +43,7 @@ export default function Home() {
               </div>
             </div>
           </section>
-          <figure className="order-3 mt-2 min-w-0 border-y border-[#c8d1c6] bg-white px-3 py-2 sm:px-5">
-            <a className="block" href={singletonPaper.image} aria-label="Enlarge the Singleton bound proof diagram">
-              <Image src={singletonPaper.image} alt={singletonPaper.figure.alt} width={singletonPaper.figure.width} height={singletonPaper.figure.height} sizes="(min-width: 1024px) 580px, 95vw" className="mx-auto h-auto w-full max-w-[29rem]" />
-            </a>
-            <figcaption className="mt-2 flex flex-wrap items-baseline justify-between gap-x-3 border-t border-[#c8d1c6] text-sm">
-              <span className="py-2 font-semibold">Figure 3 · Lean proof dependencies</span>
-              <a href={singletonPaper.image} className="source-link">Open full-size figure</a>
-            </figcaption>
-          </figure>
+          <SingletonProofFigure compact />
         </div>
         <section aria-labelledby="selected-work" className="pt-7 lg:pt-10">
           <div className="flex flex-wrap items-center justify-between gap-x-4">

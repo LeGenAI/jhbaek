@@ -177,6 +177,43 @@ test('home leads to the Singleton bound paper, original diagram and proof archiv
   await expect(page.getByRole('link', { name: 'Paper', exact: true })).toHaveAttribute('href', 'https://arxiv.org/abs/2611.32126v1');
   await expect(page.getByRole('link', { name: /Lean proofs and Comparator/ })).toHaveAttribute('href', 'https://zenodo.org/records/24488547/files/lean.zip');
   await expectPageFits(page);
+  for (const path of [new URL(page.url()).pathname, '/']) {
+    await page.goto(path);
+    const trigger = page.getByRole('link', { name: 'Open full-size figure' });
+    await trigger.scrollIntoViewIfNeeded();
+    const position = await page.evaluate(() => window.scrollY);
+    await trigger.click();
+    const viewer = page.getByRole('dialog', { name: 'Lean proof dependencies' });
+    const diagram = viewer.getByRole('region').getByRole('img');
+    await expect(diagram).toHaveAttribute('src', '/previews/ea-singleton-proof-dag.svg');
+    const initialWidth = (await diagram.boundingBox())!.width;
+    for (let i = 0; i < 2; i++) await viewer.getByRole('button', { name: 'Zoom in' }).click();
+    expect((await diagram.boundingBox())!.width).toBeGreaterThan(initialWidth * 2.5);
+    const canvas = viewer.getByRole('region');
+    await canvas.evaluate(el => el.scrollTo(el.scrollWidth, el.scrollHeight));
+    await expect(viewer.getByRole('button', { name: 'Close' })).toBeInViewport({ ratio: 1 });
+    await viewer.getByRole('button', { name: 'Zoom out' }).click();
+    await expect(viewer.locator('output')).toHaveText('2×');
+    await page.keyboard.press('Escape');
+    await expect(viewer).toHaveCount(0);
+    await expect(trigger).toBeFocused();
+    expect(Math.abs(await page.evaluate(() => window.scrollY) - position)).toBeLessThan(4);
+    await page.getByRole('link', { name: 'Enlarge the Singleton bound proof diagram' }).click();
+    await expect(viewer.locator('output')).toHaveText('1×');
+    await viewer.getByRole('button', { name: 'Close' }).click();
+    await expect(viewer).toHaveCount(0);
+    expect(new URL(page.url()).pathname).toBe(path);
+  }
+});
+
+test('old proof image link opens a viewer with a way home', async ({ page }) => {
+  await page.goto('/previews/ea-singleton-proof-dag.png');
+  const viewer = page.getByRole('dialog', { name: 'Lean proof dependencies' });
+  await expect(viewer).toBeVisible();
+  await viewer.getByRole('button', { name: 'Close' }).click();
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('Validity and maximum violation');
   await page.getByRole('link', { name: 'Open full-size figure' }).click();
-  await expect.poll(() => page.locator('img').evaluate((img: HTMLImageElement) => [img.naturalWidth, img.naturalHeight])).toEqual([1805, 1987]);
+  await viewer.getByRole('link', { name: 'Home' }).click();
+  expect(new URL(page.url()).pathname).toBe('/');
+  await expect(viewer).toHaveCount(0);
 });

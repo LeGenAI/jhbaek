@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
+import { SingletonProofFigure } from '@/components/singleton-proof-figure';
 import { notFound } from 'next/navigation';
 import { ResearchDetail, DetailSection, DetailList } from '@/components/research-detail';
 import { publications, singletonPaper, singletonPaperPath, sudokuCitation, type PublicationLinkKey } from '@/data/publications';
@@ -27,7 +28,8 @@ const linkLabels: Record<PublicationLinkKey, string> = {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   if (slug !== singletonPaper.slug) return {};
-  const { title, summary: description, image, figure } = singletonPaper;
+  const { title, summary: description, figure } = singletonPaper;
+  const image = '/previews/ea-singleton-social.png';
   return {
     title, description,
     alternates: { canonical: singletonPaperPath },
@@ -81,7 +83,7 @@ export default async function PublicationDetailPage({ params }: { params: Promis
   return (
     <ResearchDetail back={{ href: '/research', label: 'Back to research' }} title={publication.title}
       metadata={publication.status + ' · ' + publication.area} byline={publication.authors}
-      venue={publication.venue + ' · ' + publication.year} summary={publication.summary} image={publication.image} figure={publication.figure} links={links}>
+      venue={publication.venue + ' · ' + publication.year} summary={publication.summary} image={publication.image} figure={publication.figure} expandedFigure={publication.slug === singletonPaper.slug ? <SingletonProofFigure /> : undefined} links={links}>
       <div>
         <DetailSection title="Research question"><p>{publication.problem}</p></DetailSection>
         <DetailSection title="Approach"><p>{publication.keyIdea}</p></DetailSection>

@@ -74,7 +74,7 @@ export const singletonPaper = {
   topic: 'coding-theory',
   relatedProjects: [],
   tags: ['Quantum codes', 'Singleton bound', 'Lean 4', 'Comparator'],
-  image: '/previews/ea-singleton-proof-dag.png',
+  image: '/previews/ea-singleton-proof-dag.svg',
   figure: {
     source: 'https://arxiv.org/html/2611.32126v1#A2.F3',
     width: 1805, height: 1987,

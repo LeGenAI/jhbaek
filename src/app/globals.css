@@ -317,3 +317,29 @@ iframe {
     @apply list-disc space-y-2 pl-5;
   }
 }
+
+html:has(.proof-viewer[open]) {
+  overflow: hidden;
+}
+
+.proof-viewer[open] {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  width: 100%;
+  height: 100dvh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  background: #faf9f4;
+  color: #192c27;
+}
+
+.proof-canvas {
+  container-type: size;
+  overflow: auto;
+  overscroll-behavior: contain;
+  background: white;
+}
