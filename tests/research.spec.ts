@@ -175,7 +175,7 @@ test('home leads to the Singleton bound paper, original diagram and proof archiv
   await openPaper.click();
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Validity and maximum violation');
   await expect(page.getByText(/contributed equally/)).toBeVisible();
-  await expect(page.getByText('With editors · Quantum coding theory · Lean 4')).toBeVisible();
+  await expect(page.getByText('Submitted · Quantum coding theory · Lean 4')).toBeVisible();
   await expect(page.getByText(/Physical Review A received the manuscript on 23 November 2026/)).toBeVisible();
   const bound = page.locator('.katex-display').filter({ has: page.locator('annotation', { hasText: String.raw`2(d-1)\le n-k+c` }) });
   await expect(bound).toBeVisible();
@@ -224,7 +224,8 @@ test('old proof image link opens a viewer with a way home', async ({ page }) => 
   await expect(viewer).toHaveCount(0);
 });
 
-const galleryCounts = {
+const storyCounts = {
+  'solevolve-evolutionary-discovery': 1,
   'entanglement-assisted-quantum-singleton-bound': 3,
   'eaqecc-evolutionary-discovery': 6,
   'self-dual-codes-building-up': 1,
@@ -234,16 +235,20 @@ const galleryCounts = {
   'regulatory-rag-llm-understanding': 6,
 };
 
-for (const [slug, count] of Object.entries(galleryCounts)) {
-  test(`paper figures load and enlarge in print order: ${slug}`, async ({ page }) => {
+for (const [slug, count] of Object.entries(storyCounts)) {
+  test(`the illustrated explanation embeds and opens every figure: ${slug}`, async ({ page }) => {
     await page.goto('/research/publications/' + slug);
-    await page.getByRole('link', { name: `Figures (${count})`, exact: true }).click();
-    const gallery = page.getByRole('region', { name: 'Figures from the paper' });
-    const figures = gallery.getByRole('figure');
+    const story = page.getByRole('article', { name: 'Illustrated explanation' });
+    const sections = story.locator(':scope > section');
+    expect(await sections.count()).toBeGreaterThan(1);
+    for (const section of await sections.all()) {
+      await expect(section.getByRole('heading', { level: 2 })).toBeVisible();
+      expect((await section.locator(':scope > p').first().innerText()).length).toBeGreaterThan(80);
+    }
+    const figures = story.getByRole('figure');
     await expect(figures).toHaveCount(count);
     for (let index = 0; index < count; index++) {
-      const figure = figures.nth(index);
-      await expect(figure).toHaveAccessibleName(new RegExp(`^Figure ${index + 1} ·`));
+      const figure = story.getByRole('figure', { name: new RegExp(`^Figure ${index + 1} ·`) });
       await figure.scrollIntoViewIfNeeded();
       const preview = figure.getByRole('img');
       await expect.poll(() => preview.evaluate((img: HTMLImageElement) => img.naturalWidth)).toBeGreaterThan(0);
@@ -261,3 +266,32 @@ for (const [slug, count] of Object.entries(galleryCounts)) {
     await expectPageFits(page);
   });
 }
+
+test('selected research titles open their own articles; external sources open another tab', async ({ page, context }) => {
+  const selected = [
+    ['singleton-bound', 'entanglement-assisted-quantum-singleton-bound'],
+    ['eaqecc', 'eaqecc-evolutionary-discovery'],
+    ['self-dual-codes', 'self-dual-codes-building-up'],
+    ['solevolve', 'solevolve-evolutionary-discovery'],
+  ];
+  await page.goto('/research');
+  for (const [id, slug] of selected) {
+    const link = page.locator('article#' + id).getByRole('heading').getByRole('link');
+    await link.click();
+    await expect(page).toHaveURL(new RegExp('/research/publications/' + slug + '$'));
+    await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+    await page.goBack();
+  }
+  for (const label of ['EAQECC preprint', 'Lean certificate']) {
+    const source = page.getByRole('link', { name: label, exact: true });
+    const href = (await source.getAttribute('href'))!;
+    await context.route(href, route => route.fulfill({ contentType: 'text/plain', body: 'External source' }));
+    const popupPromise = page.waitForEvent('popup');
+    await source.click();
+    const popup = await popupPromise;
+    await expect(popup).toHaveURL(href);
+    expect(await popup.evaluate(() => window.opener === null)).toBe(true);
+    await popup.close();
+    await expect(page).toHaveURL(/\/research$/);
+  }
+});

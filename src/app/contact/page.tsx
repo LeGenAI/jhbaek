@@ -1,3 +1,4 @@
+import { SiteLink } from '@/components/site-link';
 import { academicProfiles } from '@/data/profiles';
 export const metadata = { title: 'Contact', alternates: { canonical: '/contact' } };
 
@@ -23,7 +24,7 @@ export default function ContactPage() {
         <ul className="max-w-xl divide-y divide-[#c8d1c6]">
           {profiles.map(([label, name, href]) => (
             <li key={href} className="flex items-center justify-between gap-4 py-1">
-              <a className="source-link" href={href}>{label}</a><span className="meta-text">{name}</span>
+              <SiteLink className="source-link" href={href}>{label}</SiteLink><span className="meta-text">{name}</span>
             </li>
           ))}
         </ul>

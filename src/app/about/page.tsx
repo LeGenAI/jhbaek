@@ -1,3 +1,4 @@
+import { SiteLink } from '@/components/site-link';
 import Link from 'next/link';
 import { Portrait } from '@/components/portrait';
 import { solEvolveThesisUrl } from '@/data/publications';
@@ -25,7 +26,7 @@ export default function AboutPage() {
         <div className="max-w-prose">
           <p className="leading-relaxed">My master’s thesis describes SolEvolve, a system that searches for combinatorial constructions. In my doctoral work with Professor Jon-Lark Kim, I study self-dual and entanglement-assisted quantum codes.</p>
           <div className="mt-2 flex flex-wrap gap-x-6">
-            <a className="source-link" href={solEvolveThesisUrl}>Master’s thesis</a>
+            <SiteLink className="source-link" href={solEvolveThesisUrl}>Master’s thesis</SiteLink>
             <Link className="source-link" href="/research">Papers and proofs</Link>
           </div>
         </div>

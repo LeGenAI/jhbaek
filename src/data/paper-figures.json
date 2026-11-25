@@ -154,7 +154,7 @@
     },
     {
       "title": "SARIMAX forecasts",
-      "caption": "Observed and predicted water levels across the forecast windows.",
+      "caption": "The SARIMAX lines stay relatively flat as the recorded level falls.",
       "source": "https://www.e-sciencecentral.org/upload/ijfis/pdf/ijfis-26-1-10.pdf#page=6",
       "image": "/figures/timegpt-gamcheon-water-level/figure-3.webp",
       "width": 3254,
@@ -162,7 +162,7 @@
     },
     {
       "title": "Prophet forecasts",
-      "caption": "Observed and predicted water levels across the forecast windows.",
+      "caption": "The longer Prophet forecast rises away from the measured level in this window.",
       "source": "https://www.e-sciencecentral.org/upload/ijfis/pdf/ijfis-26-1-10.pdf#page=6",
       "image": "/figures/timegpt-gamcheon-water-level/figure-4.webp",
       "width": 3282,
@@ -170,7 +170,7 @@
     },
     {
       "title": "Linear forecasts",
-      "caption": "Observed and predicted water levels across the forecast windows.",
+      "caption": "The direct linear forecast extends the patterns in previous readings across the forecast window.",
       "source": "https://www.e-sciencecentral.org/upload/ijfis/pdf/ijfis-26-1-10.pdf#page=6",
       "image": "/figures/timegpt-gamcheon-water-level/figure-5.webp",
       "width": 3236,
@@ -178,7 +178,7 @@
     },
     {
       "title": "DLinear forecasts",
-      "caption": "Observed and predicted water levels across the forecast windows.",
+      "caption": "DLinear predicts the trend and the remaining fluctuations separately, then adds them together.",
       "source": "https://www.e-sciencecentral.org/upload/ijfis/pdf/ijfis-26-1-10.pdf#page=6",
       "image": "/figures/timegpt-gamcheon-water-level/figure-6.webp",
       "width": 3200,
@@ -186,7 +186,7 @@
     },
     {
       "title": "NLinear forecasts",
-      "caption": "Observed and predicted water levels across the forecast windows.",
+      "caption": "NLinear uses the last recorded level as the starting point for the forecast.",
       "source": "https://www.e-sciencecentral.org/upload/ijfis/pdf/ijfis-26-1-10.pdf#page=6",
       "image": "/figures/timegpt-gamcheon-water-level/figure-7.webp",
       "width": 3266,
@@ -194,15 +194,15 @@
     },
     {
       "title": "TimeGPT forecasts",
-      "caption": "Observed and predicted water levels across the forecast windows.",
+      "caption": "At the start of each forecast, the base model has access to water levels recorded up to that date.",
       "source": "https://www.e-sciencecentral.org/upload/ijfis/pdf/ijfis-26-1-10.pdf#page=7",
       "image": "/figures/timegpt-gamcheon-water-level/figure-8.webp",
       "width": 3232,
       "height": 1634
     },
     {
-      "title": "TimeGPT with rainfall inputs forecasts",
-      "caption": "Observed and predicted water levels across the forecast windows.",
+      "title": "TimeGPT forecasts with rainfall",
+      "caption": "The rainfall inputs give the model an additional signal about water that may soon reach the gauge.",
       "source": "https://www.e-sciencecentral.org/upload/ijfis/pdf/ijfis-26-1-10.pdf#page=7",
       "image": "/figures/timegpt-gamcheon-water-level/figure-9.webp",
       "width": 3220,

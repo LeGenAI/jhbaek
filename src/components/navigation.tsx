@@ -1,4 +1,5 @@
 'use client';
+import { SiteLink } from '@/components/site-link';
 
 import { useState } from 'react';
 import Link from 'next/link';
@@ -28,9 +29,9 @@ export function Navigation() {
     </Link>
   ));
   const socials = profiles.map(({ label, href, icon: Icon }) => (
-    <a key={href} href={href} aria-label={label} className="grid h-11 w-11 place-items-center rounded hover:bg-white/10">
+    <SiteLink key={href} href={href} aria-label={label} className="grid h-11 w-11 place-items-center rounded hover:bg-white/10">
       <Icon size={18} aria-hidden="true" />
-    </a>
+    </SiteLink>
   ));
 
   return (

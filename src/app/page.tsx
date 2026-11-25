@@ -1,3 +1,4 @@
+import { SiteLink } from '@/components/site-link';
 import { Equation } from '@/components/math';
 import type { Metadata } from 'next';
 import { Portrait } from '@/components/portrait';
@@ -44,8 +45,8 @@ export default function Home() {
               <p className="meta-text mt-3">Jae-Hyun Baek and Byung-Sun Won (equal contribution), Jon-Lark Kim · {singletonPaper.venue} · {singletonPaper.status}</p>
               <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-1">
                 <Link href={singletonPaperPath} className="inline-flex min-h-11 items-center gap-2 rounded bg-[#173f35] px-4 text-sm font-semibold text-white hover:bg-[#245848]">Explore the proof <ArrowRight size={16} aria-hidden="true" /></Link>
-                <a href={singletonPaper.links.paper} className="source-link">arXiv preprint</a>
-                <a href={singletonPaper.links.artifact} className="source-link">Lean proof archive</a>
+                <SiteLink href={singletonPaper.links.paper} className="source-link">arXiv preprint</SiteLink>
+                <SiteLink href={singletonPaper.links.artifact} className="source-link">Lean proof archive</SiteLink>
               </div>
             </div>
           </section>
@@ -71,8 +72,8 @@ export default function Home() {
             <h2 id="october-construction" className="section-title">Searching for quantum codes</h2>
             <p className="page-intro">Our search programs found finite qubit constructions. We used their structure to derive a family of quantum codes. Lean checks the dimension, radical, and weight results. The paper applies the stabilizer correspondence to obtain the code parameters.</p>
             <div className="mt-2 flex flex-wrap gap-x-5">
-              <a href="https://arxiv.org/abs/2610.41183v1" className="source-link">EAQECC paper <ArrowUpRight size={16} aria-hidden="true" /></a>
-              <a href="https://github.com/LeGenAI/llm_guided_EAQECC_search/blob/3e7b2e8d42487f1f117f0ab9b457c50701588068/formal/eaqecc/README.md" className="source-link">Lean certificate</a>
+              <SiteLink href="https://arxiv.org/abs/2610.41183v1" className="source-link">EAQECC paper <ArrowUpRight size={16} aria-hidden="true" /></SiteLink>
+              <SiteLink href="https://github.com/LeGenAI/llm_guided_EAQECC_search/blob/3e7b2e8d42487f1f117f0ab9b457c50701588068/formal/eaqecc/README.md" className="source-link">Lean certificate</SiteLink>
             </div>
           </div>
           <EaqeccProof />

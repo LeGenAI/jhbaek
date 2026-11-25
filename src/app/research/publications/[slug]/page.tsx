@@ -1,8 +1,10 @@
+import { SiteLink } from '@/components/site-link';
 import type { Metadata } from 'next';
 import { Equation, MathText } from '@/components/math';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FigureViewer } from '@/components/paper-figure';
+import { paperStories } from '@/data/paper-stories';
 import { figuresByPaper } from '@/data/paper-figures';
 import { notFound } from 'next/navigation';
 import { ResearchDetail, DetailSection, DetailList } from '@/components/research-detail';
@@ -27,23 +29,35 @@ const linkLabels: Record<PublicationLinkKey, string> = {
   data: 'Data',
 };
 
-function PaperGallery({ slug }: { slug: string }) {
+function IllustratedPaper({ slug }: { slug: string }) {
+  const sections = paperStories[slug];
   const figures = figuresByPaper[slug];
-  if (!figures?.length) return null;
+  if (!sections || !figures) return null;
   return (
-    <section id="figures" aria-labelledby="figures-title" className="section-rule scroll-mt-20">
-      <h2 id="figures-title" className="section-title">Figures from the paper</h2>
-      {slug === sudokuCitation.slug && <p className="meta-text mt-2">IEEE Transactions on Games · June 2026 · © 2026 IEEE</p>}
-      {(['timegpt-gamcheon-water-level', 'hybrid-multimodal-genai-math-figures', 'regulatory-rag-llm-understanding'].includes(slug)) &&
-        <p className="meta-text mt-2">© The Korean Institute of Intelligent Systems · <a className="underline" href="https://creativecommons.org/licenses/by-nc/3.0/">CC BY-NC 3.0</a></p>}
-      <div className="mt-5 grid gap-x-8 gap-y-6 md:grid-cols-2">
-        {figures.map((figure, index) => (
-          <FigureViewer key={figure.image} figure={figure} number={index + 1}>
-            <p><MathText>{figure.caption}</MathText></p>
-          </FigureViewer>
-        ))}
-      </div>
-    </section>
+    <article id="figures" aria-label="Illustrated explanation" className="paper-story">
+      {sections.map(section => (
+        <section key={section.heading} className="story-section">
+          <h2>{section.heading}</h2>
+          <p><MathText>{section.text}</MathText></p>
+          {section.figures.length > 0 && (
+            <div className={section.figures.length === 1 ? 'story-illustration' : 'story-comparison'}>
+              {section.figures.map(number => {
+                const figure = figures[number - 1];
+                return (
+                  <FigureViewer key={number} figure={figure} number={number}>
+                    <p><MathText>{figure.caption}</MathText></p>
+                  </FigureViewer>
+                );
+              })}
+            </div>
+          )}
+          {section.after && <p><MathText>{section.after}</MathText></p>}
+        </section>
+      ))}
+      {slug === sudokuCitation.slug && <p className="meta-text">Figures from IEEE Transactions on Games · © 2026 IEEE</p>}
+      {['timegpt-gamcheon-water-level', 'hybrid-multimodal-genai-math-figures', 'regulatory-rag-llm-understanding'].includes(slug) &&
+        <p className="meta-text">Figures © The Korean Institute of Intelligent Systems · <SiteLink className="underline" href="https://creativecommons.org/licenses/by-nc/3.0/">CC BY-NC 3.0</SiteLink></p>}
+    </article>
   );
 }
 
@@ -73,15 +87,17 @@ export default async function PublicationDetailPage({ params }: { params: Promis
         <h1 className="page-title mt-4">{sudokuCitation.title}</h1>
         <p className="mt-4">{sudokuCitation.authors}</p>
         <p className="meta-text mt-2"><cite>{sudokuCitation.venue}</cite> · {sudokuCitation.issue}</p>
-        <section className="section-rule grid items-center gap-6 md:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
+        <div className="mt-3 flex flex-wrap gap-x-6">
+          <SiteLink href={sudokuCitation.href} className="source-link">Read on IEEE Xplore</SiteLink>
+          <a href="#play" className="source-link">Try a puzzle</a>
+        </div>
+        <IllustratedPaper slug={slug} />
+        <section id="play" className="scroll-mt-20 section-rule grid items-center gap-6 md:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
           <div>
             <h2 className="section-title">Play Perfect Sudoku</h2>
-            <p className="page-intro">In our paper, we use perfect codes to divide a Sudoku board into regions. On the 5 × 5 board, each region is a cross that can wrap around the edges. Each row, column, and colored region must contain the numbers 1 through 5 exactly once.</p>
             <p className="mt-3 max-w-prose leading-relaxed">I built Perfect Sudoku so you can try these puzzles in your browser. Start with the 5 × 5 board or challenge a friend to an online match.</p>
             <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2">
-              <a href={sudokuCitation.gameUrl} className="inline-flex min-h-11 items-center rounded bg-[#173f35] px-4 text-sm font-semibold text-white hover:bg-[#245848]">Play Perfect Sudoku</a>
-              <a href={sudokuCitation.href} className="source-link">Read on IEEE Xplore</a>
-              <a href="#figures" className="source-link">Figures ({figuresByPaper[slug]?.length})</a>
+              <SiteLink href={sudokuCitation.gameUrl} className="inline-flex min-h-11 items-center rounded bg-[#173f35] px-4 text-sm font-semibold text-white hover:bg-[#245848]">Play Perfect Sudoku</SiteLink>
             </div>
           </div>
           <figure className="max-w-[17.5rem]">
@@ -89,7 +105,6 @@ export default async function PublicationDetailPage({ params }: { params: Promis
             <figcaption className="meta-text mt-2">A puzzle from Perfect Sudoku. Each color marks one region.</figcaption>
           </figure>
         </section>
-        <PaperGallery slug={slug} />
       </main>
     );
   }
@@ -105,14 +120,13 @@ export default async function PublicationDetailPage({ params }: { params: Promis
   const links = Object.entries(publication.links ?? {}).map(([key, href]) => ({ label: linkLabels[key as PublicationLinkKey], href }));
 
   const figures = figuresByPaper[slug];
-  if (figures) links.push({ label: `Figures (${figures.length})`, href: '#figures' });
 
   return (
     <ResearchDetail back={{ href: '/research', label: 'Back to research' }} title={publication.title}
       metadata={publication.status + ' · ' + publication.area} byline={publication.authors}
-      venue={publication.venue + ' · ' + publication.year} summary={publication.summary} image={publication.image} figure={publication.figure} gallery={figures && <PaperGallery slug={slug} />} links={links}>
-      <div>
-        <DetailSection title="Research question"><p><MathText>{publication.problem}</MathText></p></DetailSection>
+      venue={publication.venue + ' · ' + publication.year} summary={publication.summary} image={publication.image} figure={publication.figure} explanation={figures && <IllustratedPaper slug={slug} />} links={links}>
+      {(!figures || publication.topic === 'coding-theory') && <div>
+        {!figures && <DetailSection title="Research question"><p><MathText>{publication.problem}</MathText></p></DetailSection>}
         {publication.slug === singletonPaper.slug && (
           <DetailSection title="The bound and its violation">
             <p><MathText>{String.raw`A code $[\![n,k,d;c]\!]_q$ encodes $k$ logical qudits into $n$ physical qudits of dimension $q$, has distance $d$, and uses $c$ shared entangled pairs. The BDH bound is`}</MathText></p>
@@ -122,10 +136,10 @@ export default async function PublicationDetailPage({ params }: { params: Promis
             <p><MathText>{String.raw`When $\Delta>0$, the code uses $\Delta$ fewer pairs than the bound predicts.`}</MathText></p>
           </DetailSection>
         )}
-        <DetailSection title="Approach"><p><MathText>{publication.keyIdea}</MathText></p></DetailSection>
-        <DetailList title="Methods" items={publication.methods} />
-        {publication.results.length > 0 && <DetailList title="Results" items={publication.results} />}
-      </div>
+        {!figures && <DetailSection title="Approach"><p><MathText>{publication.keyIdea}</MathText></p></DetailSection>}
+        {!figures && <DetailList title="Methods" items={publication.methods} />}
+        {(!figures || publication.topic === 'coding-theory') && publication.results.length > 0 && <DetailList title="Results" items={publication.results} />}
+      </div>}
       <aside>
         <DetailSection title="My role"><p>{publication.role}</p></DetailSection>
         {publication.verificationNote && <DetailSection title="Lean verification"><p>{publication.verificationNote}</p></DetailSection>}

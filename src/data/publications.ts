@@ -1,6 +1,6 @@
 export const solEvolveThesisUrl = 'https://dcollection.sogang.ac.kr/dcollection/srch/srchDetail/000000082888?localeParam=en';
 
-export type PublicationStatus = 'Published' | 'Accepted' | 'Under Review' | 'With editors' | 'Revision requested' | 'Revision submitted' | 'Submitted' | 'In Preparation' | 'Unpublished manuscript' | 'Preprint';
+export type PublicationStatus = 'Published' | 'Accepted' | 'Under Review' | 'Submitted' | 'In Preparation' | 'Unpublished manuscript' | 'Preprint';
 
 export type PublicationLinkKey = 'doi' | 'paper' | 'project' | 'code' | 'source' | 'googleScholar' | 'researchGate' | 'artifact' | 'slides' | 'data' | 'thesis' | 'certificate' | 'specification' | 'openReview' | 'leanArchive';
 
@@ -58,7 +58,7 @@ export const singletonPaper = {
   authors: 'Jae-Hyun Baek, Byung-Sun Won, Jon-Lark Kim',
   venue: 'Physical Review A',
   year: '2026',
-  status: 'With editors',
+  status: 'Submitted',
   area: 'Quantum coding theory · Lean 4',
   summary: 'A six-qubit code corrects four erasures with two shared entangled pairs. The Brun–Devetak–Hsieh bound predicts at least three. We determine when the bound holds for linear entanglement-assisted stabilizer codes and how large the gap can be.',
   tldr: 'The Singleton defect determines when shared entanglement can beat the usual bound.',
@@ -71,7 +71,7 @@ export const singletonPaper = {
     String.raw`For $k=\sigma$, Theorem 2 gives $\Delta\le M_q(2k)-2k$. Here $M_q(2k)$ is the longest classical MDS code length in dimension $2k$ over $\mathbb{F}_q$. When $2k\le q$ and $M_q(2k)=q+1$, the constructions attain $\Delta=q+1-2k$ (Corollary 4).`,
     String.raw`For $k<\sigma$, classical codes of larger defect bound the violation. For one logical qudit, the exact maximum is $\Delta_{\max}=(q-1)\sigma$ (Corollary 18).`,
   ],
-  statusNote: 'Physical Review A received the manuscript on 23 November 2026 as a Regular Article in its Quantum information science section. The manuscript is with the editors. The public preprint, arXiv:2611.32126v1, appeared on 24 November 2026.',
+  statusNote: 'Physical Review A received the manuscript on 23 November 2026 as a Regular Article in its Quantum information science section. The public preprint, arXiv:2611.32126v1, appeared on 24 November 2026.',
   verificationNote: 'Appendix D.4 gives the scope of each Lean statement. Some classical MDS lengths enter as literature assumptions. The numerical code evaluations in Tables 3–4 are separate computations.',
   topic: 'coding-theory',
   relatedProjects: [],
@@ -100,7 +100,7 @@ export const publications: Publication[] = [
     authors: 'Jae-Hyun Baek, Jon-Lark Kim',
     venue: 'AMC',
     year: '2026',
-    status: 'Revision requested',
+    status: 'Submitted',
     area: 'Algebraic coding theory',
     summary: 'Why must the length of a binary doubly-even self-dual code be a multiple of eight? We give an elementary proof using the determinant of an integer Gram matrix. The same argument also explains the weight congruence for vectors in the shadow of a binary self-dual code.',
     tldr: 'One determinant congruence gives elementary proofs of two classical results on binary self-dual codes.',
@@ -109,7 +109,7 @@ export const publications: Publication[] = [
     keyIdea: 'Write a generator matrix in the form [I | A] and view the binary orthogonal matrix A as an integer matrix with entries 0 and 1. Expanding the determinant of its Gram matrix modulo 8 gives a short proof of Janusz’s row-count theorem. Applying that count yields both coding-theoretic congruences.',
     methods: ['Leibniz expansion of the Gram determinant modulo 8', 'Gauss sums', 'Evaluation of the MacWilliams identity at a single point'],
     results: ['The length of every binary Type II code is divisible by 8.', 'For a binary self-dual code of length n, every vector in its shadow has weight congruent to n/2 modulo 4.'],
-    statusNote: 'AMC has requested a revision. The public preprint is arXiv:2610.30809v1, posted on 22 October 2026.',
+    statusNote: 'Submitted to AMC. The public preprint is arXiv:2610.30809v1, posted on 22 October 2026.',
     topic: 'coding-theory',
     relatedProjects: [],
     tags: ['Type II codes', 'self-dual codes', 'shadows', 'integer determinants'],
@@ -149,7 +149,7 @@ export const publications: Publication[] = [
     authors: 'Jae-Hyun Baek, Jon-Lark Kim',
     venue: 'AFM',
     year: '2026',
-    status: 'Revision submitted',
+    status: 'Under Review',
     area: 'Coding theory and formal verification',
     summary: 'Building up a self-dual code adds two coordinates. We studied when removing two coordinates recovers the parent code and how the construction extends to other finite fields. For a fixed ordered pairing, the intersection with a product of isotropic lines determines the rank in the normal form.',
     tldr: 'Isotropic lines explain how to reduce and extend a self-dual code.',
@@ -158,7 +158,7 @@ export const publications: Publication[] = [
     keyIdea: String.raw`For $q\equiv 1\pmod{4}$, a square root of $-1$ determines the split isotropic line. Fixing an ordered pairing then gives the rank-r normal form of Theorem 3.15.`,
     methods: ['Binary reduction up to permutation equivalence', 'Finite-field matrix constructions', 'Lean 4 formalization of the algebraic core'],
     results: ['The paper gives explicit self-dual codes over the fields of 5 and 13 elements.', 'Listing 9 states the forward self-duality and normalization goals. The pinned Comparator file is their specification.'],
-    statusNote: 'We submitted the revised manuscript to AFM. The public preprint is arXiv:2604.08485v2.',
+    statusNote: 'The manuscript is under review at AFM. The public preprint is arXiv:2604.08485v2.',
     topic: 'coding-theory',
     relatedProjects: ['codingtheorylib-mcp'],
     tags: ['self-dual codes', 'Lean'],
@@ -274,7 +274,7 @@ export const publications: Publication[] = [
     keyIdea: 'Let evolutionary search propose constructions and retain explicit witnesses. The reviewer command checks the saved artifacts and produces a report without making a model call.',
     methods: ['Evolutionary search', 'SAT-seeded candidate generation', 'LLM-guided operators', 'Verification loops'],
     results: ['The public reviewer command checks seven claims, including three self-orthogonal embeddings and three Lucas-cube constructions.'],
-    statusNote: 'The manuscript is under review at Neurocomputing. A minor revision was requested in mid-2026.',
+    statusNote: 'The manuscript is under review at Neurocomputing.',
     links: { thesis: solEvolveThesisUrl, code: 'https://github.com/LeGenAI/sol_evolve#reviewer-reproduction' },
     topic: 'coding-theory',
     relatedProjects: ['solevolve', 'codingtheorylib-mcp'],

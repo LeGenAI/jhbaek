@@ -108,7 +108,7 @@ export const projectArtifacts: ProjectArtifact[] = [
       'The same search-and-verify pattern appears in coding theory, benchmark generation, and formal proof workflows.',
     whatIBuilt: ['LLM-guided evolutionary search pipeline', 'SAT-seeded candidate generation direction', 'Verification-oriented research traces'],
     evidence: ['Master’s thesis/manuscript track', 'Connects to coding-theory construction search and EntropyMath-style lineage'],
-    currentStatus: 'The SolEvolve manuscript is under review at Neurocomputing. A minor revision was requested in mid-2026.',
+    currentStatus: 'The SolEvolve manuscript is under review at Neurocomputing.',
     nextStep: 'Clarify what part of the trajectory can become reusable data for specialized mathematical agents.',
     role: 'Lead researcher and system builder.',
     researchAxis: 'formalized-math-ai',

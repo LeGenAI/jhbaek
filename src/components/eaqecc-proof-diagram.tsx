@@ -1,4 +1,5 @@
 'use client';
+import { SiteLink } from '@/components/site-link';
 
 import { useState, type ReactNode } from 'react';
 import { ArrowUpRight } from 'lucide-react';
@@ -21,7 +22,7 @@ export function EaqeccProofDiagram({ branches, coordinateMap, parameters, scope 
     <figure className={styles.figure} aria-labelledby="proof-title" aria-describedby="proof-structure">
       <figcaption className={styles.caption}>
         <h2 id="proof-title">Theorem 1 · Proof dependencies</h2>
-        <a href="https://arxiv.org/html/2610.41183v1#A4.F6">Fig. 6 <ArrowUpRight size={14} aria-hidden="true" /></a>
+        <SiteLink href="https://arxiv.org/html/2610.41183v1#A4.F6">Fig. 6 <ArrowUpRight size={14} aria-hidden="true" /></SiteLink>
       </figcaption>
       <p id="proof-structure" className="sr-only">The coordinate map feeds three results on dimension, radical, and weight. Together they establish the Lean algebraic certificate. The paper uses the stabilizer correspondence to derive the quantum code parameters.</p>
       <div className={styles.graph}>
@@ -41,7 +42,7 @@ export function EaqeccProofDiagram({ branches, coordinateMap, parameters, scope 
         <p className={styles.scope}>{scope}</p>
       </div>
       <div id="branch-detail" className={styles.detail} aria-live="polite">
-        <div><b>{selected.name}</b><a href={`${proofFile}#L${selected.line}`}>{selected.field} <ArrowUpRight size={13} aria-hidden="true" /></a></div>
+        <div><b>{selected.name}</b><SiteLink href={`${proofFile}#L${selected.line}`}>{selected.field} <ArrowUpRight size={13} aria-hidden="true" /></SiteLink></div>
         <p>{selected.detail}</p>
       </div>
     </figure>

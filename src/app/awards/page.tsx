@@ -1,3 +1,4 @@
+import { SiteLink } from '@/components/site-link';
 import { AwardImageLightbox } from '@/components/award-image-lightbox';
 import { recognitions } from '@/data/recognitions';
 
@@ -16,7 +17,7 @@ export default function AwardsPage() {
               <h2 className="font-serif text-2xl sm:text-3xl">{award.title}</h2>
               <p className="mt-2 max-w-2xl leading-relaxed">{award.recognizedWork}</p>
               <p className="meta-text mt-1">{award.venue}</p>
-              {award.sourceUrl && <a className="source-link" href={award.sourceUrl}>Sogang University announcement</a>}
+              {award.sourceUrl && <SiteLink className="source-link" href={award.sourceUrl}>Sogang University announcement</SiteLink>}
             </div>
             {award.image && (
               <div className="mt-2 h-28 w-40 bg-[#eeeee5] sm:mt-0">

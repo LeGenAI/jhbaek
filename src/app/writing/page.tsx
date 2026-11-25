@@ -1,3 +1,4 @@
+import { SiteLink } from '@/components/site-link';
 import Link from 'next/link';
 import { solEvolveThesisUrl } from '@/data/publications';
 
@@ -18,7 +19,7 @@ export default function WritingPage() {
         <div className="max-w-prose">
           <h3 className="text-xl font-semibold">SolEvolve</h3>
           <p className="mt-2 leading-relaxed">My thesis at Sogang University describes a search system for finding combinatorial constructions.</p>
-          <a href={solEvolveThesisUrl} className="source-link">Read the thesis at Sogang</a>
+          <SiteLink href={solEvolveThesisUrl} className="source-link">Read the thesis at Sogang</SiteLink>
         </div>
       </section>
       <section className="section-rule">

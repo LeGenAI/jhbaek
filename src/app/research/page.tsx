@@ -1,3 +1,4 @@
+import { SiteLink } from '@/components/site-link';
 import { figuresByPaper } from '@/data/paper-figures';
 import { academicProfiles } from '@/data/profiles';
 import type { Metadata } from 'next';
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
 const selectedResearch = [
   {
     id: 'singleton-bound',
+    slug: 'entanglement-assisted-quantum-singleton-bound',
     title: 'When does the entanglement-assisted Singleton bound hold?',
     credit: `Jae-Hyun Baek and Byung-Sun Won (equal contribution), Jon-Lark Kim · ${singletonPaper.venue} · ${singletonPaper.status}`,
     finding: singletonPaper.summary,
@@ -24,6 +26,7 @@ const selectedResearch = [
   },
   {
     id: 'eaqecc',
+    slug: 'eaqecc-evolutionary-discovery',
     title: 'Entanglement-assisted quantum codes',
     credit: 'Jae-Hyun Baek, Byung-Sun Won, Jon-Lark Kim · 2026 preprint',
     finding: 'We derived a family of quantum codes from finite constructions found by program search. Lean checks the algebraic certificate for Theorem 1. The family and entanglement lifting close 54 gaps in archived code tables.',
@@ -34,8 +37,9 @@ const selectedResearch = [
   },
   {
     id: 'self-dual-codes',
+    slug: 'self-dual-codes-building-up',
     title: 'Building up self-dual codes in Lean',
-    credit: 'Jae-Hyun Baek, Jon-Lark Kim · AFM · Revision submitted',
+    credit: 'Jae-Hyun Baek, Jon-Lark Kim · AFM · Under review',
     finding: 'We studied when removing two coordinates reverses a building-up construction. Theorem 3.15 in v2 fixes the pairing of the coordinates and gives a rank-r normal form. The pinned Comparator file states the two Lean goals in Listing 9.',
     links: [
       { label: 'Comparator specification (v2)', href: 'https://github.com/LeGenAI/intersection-coding-theory-cohomology/blob/9c2c4a2ce24552dd57b69fbb5a7f0c071d120d5b/Formalization/Verification/Comparator/QaryRankBoxedNormalizationChallenge.lean' },
@@ -44,8 +48,9 @@ const selectedResearch = [
   },
   {
     id: 'solevolve',
+    slug: 'solevolve-evolutionary-discovery',
     title: 'SolEvolve',
-    credit: 'Lead developer · Under review at Neurocomputing (minor revision requested)',
+    credit: 'Lead developer · Under review at Neurocomputing',
     finding: 'I built an LLM-guided system for searching combinatorial constructions. The reviewer command checks bundled witnesses, including Lucas-cube center sets, and writes a report without calling an LLM.',
     links: [
       { label: 'Reviewer reproduction', href: 'https://github.com/LeGenAI/sol_evolve#reviewer-reproduction' },
@@ -58,8 +63,8 @@ const selectedResearch = [
 const textLink = 'source-link';
 
 const statusOrder: Record<PublicationStatus, number> = {
-  Published: 0, Accepted: 1, Preprint: 2, 'Revision submitted': 3, 'Revision requested': 4,
-  'Under Review': 5, 'With editors': 6, Submitted: 6, 'In Preparation': 7, 'Unpublished manuscript': 8,
+  Published: 0, Accepted: 1, Preprint: 2,
+  'Under Review': 5, Submitted: 6, 'In Preparation': 7, 'Unpublished manuscript': 8,
 };
 
 export default function ResearchPage() {
@@ -86,12 +91,12 @@ export default function ResearchPage() {
         {selectedResearch.map((work) => (
           <article id={work.id} key={work.id} className="scroll-mt-20 py-5 sm:grid sm:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] sm:gap-10 sm:py-7">
             <header>
-              <h2 className="text-xl font-semibold leading-tight sm:text-2xl">{work.title}</h2>
+              <h2 className="text-xl font-semibold leading-tight sm:text-2xl"><Link className="underline decoration-[#8aa795] decoration-1 underline-offset-4 hover:text-[#225441]" href={`/research/publications/${work.slug}`}>{work.title}</Link></h2>
               <p className="mt-2 text-sm leading-relaxed text-[#4a6258]">{work.credit}</p>
             </header>
             <div className="mt-3 sm:mt-0">
               <div className="flex flex-wrap gap-x-5">
-                {work.links.map(({ href, label }) => <Link key={href} href={href} className={textLink}>{label}</Link>)}
+                {work.links.map(({ href, label }) => <SiteLink key={href} href={href} className={textLink}>{label}</SiteLink>)}
               </div>
               <p className="mt-1 leading-relaxed">{work.finding}</p>
             </div>
@@ -103,13 +108,13 @@ export default function ResearchPage() {
         <p className="mt-3 leading-relaxed">I refined the harness to return Lean errors for another proof attempt and replay accepted proofs against the original goal. I set up experiments with two Nemotron models. EntropyMath reports benchmark scores separately.</p>
         <div className="flex flex-wrap gap-x-5">
           <Link className={textLink} href="/research/projects/entropymath-entropymag-entropymalean">Harness and benchmark details</Link>
-          <a className={textLink} href="https://entropymath.com/">EntropyMath leaderboard</a>
+          <SiteLink className={textLink} href="https://entropymath.com/">EntropyMath leaderboard</SiteLink>
         </div>
       </section>
       <section id="publications" className="mt-12 scroll-mt-24">
         <h2 className="section-title">Publications and manuscripts</h2>
         <nav aria-label="Academic profiles" className="flex flex-wrap gap-x-6">
-          {academicProfiles.map(({ label, href }) => <a key={href} className={textLink} href={href}>{label}</a>)}
+          {academicProfiles.map(({ label, href }) => <SiteLink key={href} className={textLink} href={href}>{label}</SiteLink>)}
         </nav>
         <nav aria-label="Publication topics" className="mt-3 grid gap-x-8 border-y border-[#c8d1c6] py-2 sm:grid-cols-2">
           {topics.map(({ id, title }) => (
@@ -131,7 +136,7 @@ export default function ResearchPage() {
                       <p className="mt-2 max-w-prose leading-relaxed">{paper.summary}</p>
                       {figuresByPaper[paper.slug] && (
                         <Link className={textLink} href={`/research/publications/${paper.slug}#figures`}>
-                          View figures ({figuresByPaper[paper.slug]?.length})
+                          Read the illustrated explanation
                         </Link>
                       )}
                     </li>

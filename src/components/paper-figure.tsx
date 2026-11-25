@@ -1,4 +1,5 @@
 'use client';
+import { SiteLink } from '@/components/site-link';
 
 import Image from 'next/image';
 import { Minus, Plus, X } from 'lucide-react';
@@ -56,17 +57,17 @@ export function FigureViewer({ figure, number, compact = false, children }: {
 
   return (
     <>
-      <figure aria-label={label} className={compact ? 'order-3 mt-2 min-w-0 border-y border-[#c8d1c6] bg-white px-3 py-2 sm:px-5' : 'min-w-0 border-t border-[#c8d1c6] pt-4'}>
+      <figure aria-label={label} className={compact ? 'order-3 mt-2 min-w-0 border-y border-[#c8d1c6] bg-white px-3 py-2 sm:px-5' : 'story-figure min-w-0'}>
         <a className="block cursor-zoom-in" href={viewerHash} onClick={rememberOpener} aria-label={`Enlarge ${label}`} aria-haspopup="dialog">
           <Image src={figure.image} alt={alt} width={figure.width} height={figure.height} sizes="(min-width: 768px) 32rem, 92vw" unoptimized={figure.image.endsWith('.svg')}
-            className={compact ? 'mx-auto h-auto w-full max-w-[29rem]' : 'h-48 w-full object-contain sm:h-64'} />
+            className={compact ? 'mx-auto h-auto w-full max-w-[29rem]' : 'block h-auto max-h-[30rem] w-full object-contain'} />
         </a>
-        <figcaption className={compact ? 'mt-2 flex flex-wrap items-baseline justify-between gap-x-3 border-t border-[#c8d1c6] text-sm' : 'mt-2 max-w-prose text-sm leading-relaxed'}>
+        <figcaption className={compact ? 'mt-2 flex flex-wrap items-baseline justify-between gap-x-3 border-t border-[#c8d1c6] text-sm' : 'mt-2 text-sm leading-relaxed'}>
           <strong className="block py-2">{label}</strong>
           {children}
           <span className="flex flex-wrap gap-x-5">
             <a href={viewerHash} onClick={rememberOpener} className="source-link" aria-haspopup="dialog">Open full-size figure</a>
-            {!compact && <a href={figure.source} className="source-link">{figure.source.includes('#') ? 'Figure in the paper' : 'Published paper'}</a>}
+            {!compact && <SiteLink href={figure.source} className="source-link">{figure.sourceLabel ?? (figure.source.includes('#') ? 'Figure in the paper' : 'Published paper')}</SiteLink>}
           </span>
         </figcaption>
       </figure>

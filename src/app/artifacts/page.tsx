@@ -1,3 +1,4 @@
+import { SiteLink } from '@/components/site-link';
 import Link from 'next/link';
 import { ArtifactCard } from '@/components/artifact-card';
 import { sudokuCitation } from '@/data/publications';
@@ -18,9 +19,9 @@ export default function ArtifactsPage() {
       <h1 className="page-title">Research artifacts</h1>
       <p className="page-intro">Code, benchmarks, and deployed systems from my research and engineering work.</p>
       <div className="flex flex-wrap gap-x-6">
-        <a className="source-link" href="https://github.com/LeGenAI">GitHub repositories</a>
+        <SiteLink className="source-link" href="https://github.com/LeGenAI">GitHub repositories</SiteLink>
         <Link className="source-link" href="/research/projects/entropymath-entropymag-entropymalean">EntropyMaLean harness</Link>
-        <a className="source-link" href={sudokuCitation.gameUrl}>Play Perfect Sudoku</a>
+        <SiteLink className="source-link" href={sudokuCitation.gameUrl}>Play Perfect Sudoku</SiteLink>
       </div>
       <nav aria-label="Artifact groups" className="section-rule flex flex-wrap gap-x-6 pt-1 sm:pt-1">
         {groups.map(([id, label]) => <a href={'#' + id} className="source-link" key={id}>{label}</a>)}

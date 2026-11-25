@@ -1,3 +1,4 @@
+import { SiteLink } from '@/components/site-link';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ExternalLink } from 'lucide-react';
@@ -9,10 +10,7 @@ const statusStyles: Record<Publication['status'], string> = {
   Preprint: 'bg-slate-100 text-slate-700 border-slate-200',
   Published: 'bg-emerald-100 text-emerald-800 border-emerald-200',
   Accepted: 'bg-blue-100 text-blue-800 border-blue-200',
-  'Revision requested': 'bg-amber-100 text-amber-800 border-amber-200',
-  'Revision submitted': 'bg-amber-100 text-amber-800 border-amber-200',
   'Under Review': 'bg-amber-100 text-amber-800 border-amber-200',
-  'With editors': 'bg-slate-100 text-slate-700 border-slate-200',
   Submitted: 'bg-slate-100 text-slate-700 border-slate-200',
   'Unpublished manuscript': 'bg-zinc-100 text-zinc-700 border-zinc-200',
   'In Preparation': 'bg-zinc-100 text-zinc-700 border-zinc-200',
@@ -100,16 +98,14 @@ export function PublicationCard({ publication }: { publication: Publication }) {
           {publication.links
             ? Object.entries(publication.links).map(([label, href]) =>
                 href ? (
-                  <a
+                  <SiteLink
                     key={label}
                     href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
                     className="inline-flex items-center gap-1 font-medium text-blue-600 hover:text-blue-800"
                   >
                     {linkLabels[label as PublicationLinkKey] ?? label}
                     <ExternalLink className="h-3 w-3" />
-                  </a>
+                  </SiteLink>
                 ) : null,
               )
             : null}

@@ -1,3 +1,4 @@
+import { SiteLink } from '@/components/site-link';
 import Image from 'next/image';
 import Link from 'next/link';
 import { artifactLinkLabels, type ArtifactLinkKey, type ProjectArtifact } from '@/data/projects';
@@ -18,8 +19,8 @@ export function ArtifactCard({ artifact }: { artifact: ProjectArtifact }) {
         <p className="mt-2 leading-relaxed">{artifact.summary}</p>
         <div className="flex flex-wrap gap-x-5">
           {artifact.artifactLinks ? Object.entries(artifact.artifactLinks).map(([key, href]) => (
-            <a key={key} className="source-link" href={href}>{artifactLinkLabels[key as ArtifactLinkKey]}</a>
-          )) : artifact.link && <a className="source-link" href={artifact.link}>Visit project</a>}
+            <SiteLink key={key} className="source-link" href={href}>{artifactLinkLabels[key as ArtifactLinkKey]}</SiteLink>
+          )) : artifact.link && <SiteLink className="source-link" href={artifact.link}>Visit project</SiteLink>}
         </div>
       </div>
     </article>
