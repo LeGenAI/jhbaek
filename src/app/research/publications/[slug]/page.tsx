@@ -124,7 +124,17 @@ export default async function PublicationDetailPage({ params }: { params: Promis
   return (
     <ResearchDetail back={{ href: '/research', label: 'Back to research' }} title={publication.title}
       metadata={publication.status + ' · ' + publication.area} byline={publication.authors}
-      venue={publication.venue + ' · ' + publication.year} summary={publication.summary} image={publication.image} figure={publication.figure} explanation={figures && <IllustratedPaper slug={slug} />} links={links}>
+      venue={publication.venue + ' · ' + publication.year} summary={publication.summary} image={publication.image} figure={publication.figure} explanation={figures && <IllustratedPaper slug={slug} />} links={links}
+      notes={<>
+        <DetailSection title="My role"><p>{publication.role}</p></DetailSection>
+        {publication.verificationNote && <DetailSection title="Lean verification"><p>{publication.verificationNote}</p></DetailSection>}
+        <DetailSection title="Publication status"><p>{publication.statusNote}</p></DetailSection>
+        {relatedArtifacts.length > 0 && (
+          <DetailSection title="Related projects">
+            {relatedArtifacts.map((item) => <div key={item.slug}><Link className="source-link" href={`/research/projects/${item.slug}`}>{item.title}</Link></div>)}
+          </DetailSection>
+        )}
+      </>}>
       {(!figures || publication.topic === 'coding-theory') && <div>
         {!figures && <DetailSection title="Research question"><p><MathText>{publication.problem}</MathText></p></DetailSection>}
         {publication.slug === singletonPaper.slug && (
@@ -140,16 +150,6 @@ export default async function PublicationDetailPage({ params }: { params: Promis
         {!figures && <DetailList title="Methods" items={publication.methods} />}
         {(!figures || publication.topic === 'coding-theory') && publication.results.length > 0 && <DetailList title="Results" items={publication.results} />}
       </div>}
-      <aside>
-        <DetailSection title="My role"><p>{publication.role}</p></DetailSection>
-        {publication.verificationNote && <DetailSection title="Lean verification"><p>{publication.verificationNote}</p></DetailSection>}
-        <DetailSection title="Publication status"><p>{publication.statusNote}</p></DetailSection>
-        {relatedArtifacts.length > 0 && (
-          <DetailSection title="Related projects">
-            {relatedArtifacts.map((item) => <div key={item.slug}><Link className="source-link" href={`/research/projects/${item.slug}`}>{item.title}</Link></div>)}
-          </DetailSection>
-        )}
-      </aside>
     </ResearchDetail>
   );
 }

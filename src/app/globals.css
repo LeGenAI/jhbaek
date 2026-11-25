@@ -304,16 +304,16 @@ iframe {
   .detail-body {
     @apply grid items-start gap-x-14 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)];
   }
-  .detail-body section {
+  .detail-sections section {
     @apply mt-7 border-t border-[#c8d1c6] pt-4;
   }
-  .detail-body h2 {
+  .detail-sections h2 {
     @apply mb-3 font-serif text-2xl tracking-tight;
   }
-  .detail-body p, .detail-body li {
+  .detail-sections p, .detail-sections li {
     @apply max-w-prose leading-relaxed;
   }
-  .detail-body ul {
+  .detail-sections ul {
     @apply list-disc space-y-2 pl-5;
   }
 }
@@ -370,4 +370,29 @@ html:has(.proof-viewer[open]) {
 }
 .story-figure > a {
   @apply border border-[#d5ddd3] bg-white p-2 sm:p-4;
+}
+
+.paper-reading-layout {
+  @apply mt-8 grid items-start gap-y-6 lg:grid-cols-[minmax(0,1fr)_minmax(16rem,20rem)] lg:gap-x-10 xl:gap-x-14;
+}
+.paper-reading-layout .paper-story {
+  @apply mt-0;
+}
+.publication-notes {
+  @apply rounded-md border border-[#c8d1c6] bg-[#f0f3eb] lg:sticky lg:top-20 lg:col-start-2 lg:row-start-1 lg:max-h-[calc(100dvh-6rem)] lg:overflow-y-auto;
+}
+.publication-notes + div {
+  @apply lg:col-start-1 lg:row-start-1;
+}
+.publication-notes section {
+  @apply mx-4 border-t border-[#c8d1c6] py-4 lg:mx-5;
+}
+.publication-notes section:first-child {
+  @apply lg:border-t-0;
+}
+.publication-notes h2 {
+  @apply mb-1 font-serif text-xl;
+}
+.publication-notes p {
+  @apply text-sm leading-relaxed;
 }

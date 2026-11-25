@@ -174,6 +174,8 @@ test('home leads to the Singleton bound paper, original diagram and proof archiv
   await expectPageFits(page);
   await openPaper.click();
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Validity and maximum violation');
+  const toggle = page.getByRole('button', { name: 'Paper details' });
+  if (await toggle.isVisible()) await toggle.click();
   await expect(page.getByText(/contributed equally/)).toBeVisible();
   await expect(page.getByText('Submitted · Quantum coding theory · Lean 4')).toBeVisible();
   await expect(page.getByText(/Physical Review A received the manuscript on 23 November 2026/)).toBeVisible();
@@ -294,4 +296,41 @@ test('selected research titles open their own articles; external sources open an
     await popup.close();
     await expect(page).toHaveURL(/\/research$/);
   }
+});
+
+test('paper details follow the article on desktop and expand in place on smaller screens', async ({ page }) => {
+  await page.goto('/research/publications/entanglement-assisted-quantum-singleton-bound');
+  const notes = page.getByRole('complementary', { name: 'Paper details' });
+  const role = notes.getByRole('heading', { name: 'My role' });
+  const toggle = notes.getByRole('button', { name: 'Paper details' });
+  const story = page.getByRole('article', { name: 'Illustrated explanation' });
+
+  if (page.viewportSize()!.width < 1024) {
+    await expect(toggle).toHaveAttribute('aria-expanded', 'false');
+    await expect(role).toBeHidden();
+    await toggle.click();
+    await expect(role).toBeVisible();
+    await expect(notes.getByRole('heading', { name: 'Lean verification' })).toBeVisible();
+    await toggle.click();
+    await expect(role).toBeHidden();
+    await story.locator('section').nth(1).scrollIntoViewIfNeeded();
+    await expect(notes).not.toBeInViewport();
+  } else {
+    await expect(role).toBeVisible();
+    const nav = page.getByRole('navigation', { name: 'Main navigation' });
+    for (const heading of (await story.getByRole('heading', { level: 2 }).all()).slice(1)) {
+      await heading.evaluate(el => el.scrollIntoView({ block: 'start', behavior: 'instant' }));
+      const panel = (await notes.boundingBox())!;
+      const navbar = (await nav.boundingBox())!;
+      const article = (await story.boundingBox())!;
+      expect(panel.y).toBeGreaterThanOrEqual(navbar.y + navbar.height);
+      expect(panel.y).toBeLessThan(navbar.y + navbar.height + 32);
+      expect(panel.x).toBeGreaterThanOrEqual(article.x + article.width);
+    }
+    await page.evaluate(() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'instant' }));
+    const panel = (await notes.boundingBox())!;
+    const layout = (await page.locator('.paper-reading-layout').boundingBox())!;
+    expect(panel.y + panel.height).toBeLessThanOrEqual(layout.y + layout.height + 1);
+  }
+  await expectPageFits(page);
 });

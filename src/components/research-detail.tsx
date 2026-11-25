@@ -1,3 +1,4 @@
+import { PublicationNotes } from '@/components/publication-notes';
 import { SiteLink } from '@/components/site-link';
 import { MathText } from '@/components/math';
 import Image from 'next/image';
@@ -14,12 +15,13 @@ type DetailProps = {
   summary: string;
   image?: string;
   explanation?: ReactNode;
+  notes?: ReactNode;
   figure?: Publication['figure'];
   links: { label: string; href: string }[];
   children: ReactNode;
 };
 
-export function ResearchDetail({ back, title, metadata, byline, venue, summary, image, figure, explanation, links, children }: DetailProps) {
+export function ResearchDetail({ back, title, metadata, byline, venue, summary, image, figure, explanation, notes, links, children }: DetailProps) {
   return (
     <main className="portfolio-page">
       <Link href={back.href} className="source-link">{back.label}</Link>
@@ -35,28 +37,33 @@ export function ResearchDetail({ back, title, metadata, byline, venue, summary, 
           </div>
         )}
       </header>
-      {!explanation && image && figure && (
-        <figure className="mt-6 max-w-4xl">
-          <a href={image} aria-label="Open full-size diagram" className="block">
-            <Image src={image} width={figure.width} height={figure.height} alt={figure.alt}
-              sizes="(min-width: 1024px) 896px, 95vw" className="h-auto w-full" />
-          </a>
-          <figcaption className="mt-2 max-w-prose text-sm leading-relaxed">
-            {figure.caption}{' '}
-            <span className="flex flex-wrap gap-x-5">
-              <a href={image} className="source-link">Open full-size figure</a>
-              {figure.source && <SiteLink href={figure.source} className="source-link">Figure in the paper</SiteLink>}
-            </span>
-          </figcaption>
-        </figure>
-      )}
-      {!explanation && image && !figure && (
-        <div className="relative mt-6 h-48 border-y border-[#c8d1c6] bg-[#f2f2e9] sm:h-72">
-          <Image src={image} alt={title} fill sizes="(min-width: 1280px) 1184px, 95vw" className="object-contain p-3" />
+      <div className={notes ? 'paper-reading-layout' : undefined}>
+        {notes && <PublicationNotes>{notes}</PublicationNotes>}
+        <div className="min-w-0">
+          {!explanation && image && figure && (
+            <figure className="mt-6 max-w-4xl">
+              <a href={image} aria-label="Open full-size diagram" className="block">
+                <Image src={image} width={figure.width} height={figure.height} alt={figure.alt}
+                  sizes="(min-width: 1024px) 896px, 95vw" className="h-auto w-full" />
+              </a>
+              <figcaption className="mt-2 max-w-prose text-sm leading-relaxed">
+                {figure.caption}{' '}
+                <span className="flex flex-wrap gap-x-5">
+                  <a href={image} className="source-link">Open full-size figure</a>
+                  {figure.source && <SiteLink href={figure.source} className="source-link">Figure in the paper</SiteLink>}
+                </span>
+              </figcaption>
+            </figure>
+          )}
+          {!explanation && image && !figure && (
+            <div className="relative mt-6 h-48 border-y border-[#c8d1c6] bg-[#f2f2e9] sm:h-72">
+              <Image src={image} alt={title} fill sizes="(min-width: 1280px) 1184px, 95vw" className="object-contain p-3" />
+            </div>
+          )}
+          {explanation}
+          <div className={notes ? 'detail-sections' : 'detail-sections detail-body'}>{children}</div>
         </div>
-      )}
-      {explanation}
-      <div className="detail-body">{children}</div>
+      </div>
     </main>
   );
 }
