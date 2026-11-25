@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Equation, MathText } from '@/components/math';
 import Image from 'next/image';
 import Link from 'next/link';
 import { SingletonProofFigure } from '@/components/singleton-proof-figure';
@@ -85,13 +86,23 @@ export default async function PublicationDetailPage({ params }: { params: Promis
       metadata={publication.status + ' · ' + publication.area} byline={publication.authors}
       venue={publication.venue + ' · ' + publication.year} summary={publication.summary} image={publication.image} figure={publication.figure} expandedFigure={publication.slug === singletonPaper.slug ? <SingletonProofFigure /> : undefined} links={links}>
       <div>
-        <DetailSection title="Research question"><p>{publication.problem}</p></DetailSection>
-        <DetailSection title="Approach"><p>{publication.keyIdea}</p></DetailSection>
+        <DetailSection title="Research question"><p><MathText>{publication.problem}</MathText></p></DetailSection>
+        {publication.slug === singletonPaper.slug && (
+          <DetailSection title="The bound and its violation">
+            <p><MathText>{String.raw`A code $[\![n,k,d;c]\!]_q$ encodes $k$ logical qudits into $n$ physical qudits of dimension $q$, has distance $d$, and uses $c$ shared entangled pairs. The BDH bound is`}</MathText></p>
+            <Equation display tex={String.raw`2(d-1)\le n-k+c.`} />
+            <p><MathText>{String.raw`Define the Singleton defect $\sigma$ and the violation $\Delta$ by`}</MathText></p>
+            <Equation display tex={String.raw`\begin{aligned}\sigma &= n-k-d+1,\\ \Delta &= 2(d-1)-(n-k+c).\end{aligned}`} />
+            <p><MathText>{String.raw`When $\Delta>0$, the code uses $\Delta$ fewer pairs than the bound predicts.`}</MathText></p>
+          </DetailSection>
+        )}
+        <DetailSection title="Approach"><p><MathText>{publication.keyIdea}</MathText></p></DetailSection>
         <DetailList title="Methods" items={publication.methods} />
         {publication.results.length > 0 && <DetailList title="Results" items={publication.results} />}
       </div>
       <aside>
         <DetailSection title="My role"><p>{publication.role}</p></DetailSection>
+        {publication.verificationNote && <DetailSection title="Lean verification"><p>{publication.verificationNote}</p></DetailSection>}
         <DetailSection title="Publication status"><p>{publication.statusNote}</p></DetailSection>
         {relatedArtifacts.length > 0 && (
           <DetailSection title="Related projects">

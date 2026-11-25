@@ -1,3 +1,4 @@
+import { MathText } from '@/components/math';
 import Image from 'next/image';
 import Link from 'next/link';
 import type { Publication } from '@/data/publications';
@@ -63,5 +64,5 @@ export function DetailSection({ title, children }: { title: string; children: Re
 }
 
 export function DetailList({ title, items }: { title: string; items: string[] }) {
-  return <DetailSection title={title}><ul>{items.map((text) => <li key={text}>{text}</li>)}</ul></DetailSection>;
+  return <DetailSection title={title}><ul>{items.map((text) => <li key={text}><MathText>{text}</MathText></li>)}</ul></DetailSection>;
 }

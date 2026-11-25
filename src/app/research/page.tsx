@@ -13,7 +13,7 @@ const selectedResearch = [
   {
     id: 'singleton-bound',
     title: 'When does the entanglement-assisted Singleton bound hold?',
-    credit: 'Jae-Hyun Baek and Byung-Sun Won (equal contribution), Jon-Lark Kim · November 2026',
+    credit: `Jae-Hyun Baek and Byung-Sun Won (equal contribution), Jon-Lark Kim · ${singletonPaper.venue} · ${singletonPaper.status}`,
     finding: singletonPaper.summary,
     links: [
       { label: 'Proof map and results', href: singletonPaperPath },
@@ -58,7 +58,7 @@ const textLink = 'source-link';
 
 const statusOrder: Record<PublicationStatus, number> = {
   Published: 0, Accepted: 1, Preprint: 2, 'Revision submitted': 3, 'Revision requested': 4,
-  'Under Review': 5, Submitted: 6, 'In Preparation': 7, 'Unpublished manuscript': 8,
+  'Under Review': 5, 'With editors': 6, Submitted: 6, 'In Preparation': 7, 'Unpublished manuscript': 8,
 };
 
 export default function ResearchPage() {

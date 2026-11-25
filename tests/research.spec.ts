@@ -100,7 +100,7 @@ test('homepage lets readers inspect the EAQECC proof and reach its sources', asy
   await expect(page.getByRole('link', { name: 'EAQECC paper' })).toHaveAttribute('href', 'https://arxiv.org/abs/2610.41183v1');
   await expect(page.getByRole('link', { name: 'Lean certificate' })).toHaveAttribute('href', /formal\/eaqecc\/README\.md$/);
   await expect(graph.getByRole('link', { name: 'Fig. 6' })).toHaveAttribute('href', 'https://arxiv.org/html/2610.41183v1#A4.F6');
-  await expect(graph.getByText(/For prime powers/)).toHaveText('For prime powers q ≥ 3, n ≥ 2q + 1. For q = 2, n is odd and n ≥ 5.');
+  await expect(graph.getByText(/For prime powers/).locator('annotation')).toHaveText([String.raw`q\ge 3`, String.raw`n\ge 2q+1`, 'q=2', 'n', String.raw`n\ge 5`]);
   const firstWork = page.locator('section[aria-labelledby="selected-work"] li a').first();
   await expect(firstWork).toHaveText('EntropyMaLean');
   await expect(firstWork).toHaveAttribute('href', '/research/projects/entropymath-entropymag-entropymalean');
@@ -174,6 +174,11 @@ test('home leads to the Singleton bound paper, original diagram and proof archiv
   await openPaper.click();
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Validity and maximum violation');
   await expect(page.getByText(/contributed equally/)).toBeVisible();
+  await expect(page.getByText('With editors · Quantum coding theory · Lean 4')).toBeVisible();
+  await expect(page.getByText(/Physical Review A received the manuscript on 23 November 2026/)).toBeVisible();
+  const bound = page.locator('.katex-display').filter({ has: page.locator('annotation', { hasText: String.raw`2(d-1)\le n-k+c` }) });
+  await expect(bound).toBeVisible();
+  await expect(page.locator('math msub').first()).toBeAttached();
   await expect(page.getByRole('link', { name: 'Paper', exact: true })).toHaveAttribute('href', 'https://arxiv.org/abs/2611.32126v1');
   await expect(page.getByRole('link', { name: /Lean proofs and Comparator/ })).toHaveAttribute('href', 'https://zenodo.org/records/24488547/files/lean.zip');
   await expectPageFits(page);

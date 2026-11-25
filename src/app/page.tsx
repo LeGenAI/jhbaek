@@ -1,3 +1,4 @@
+import { Equation } from '@/components/math';
 import type { Metadata } from 'next';
 import { Portrait } from '@/components/portrait';
 import Link from 'next/link';
@@ -35,7 +36,11 @@ export default function Home() {
             </header>
             <div className="order-2 lg:mt-5">
               <p className="max-w-lg text-base leading-relaxed sm:text-lg">A six-qubit code can recover from four erasures using two shared entangled pairs. The usual entanglement-assisted bound predicts at least three. We prove when the bound holds for linear stabilizer codes and how far it can fail.</p>
-              <p className="meta-text mt-3">Jae-Hyun Baek and Byung-Sun Won (equal contribution), Jon-Lark Kim · November 2026</p>
+              <div className="mt-3 flex flex-wrap items-baseline gap-x-5 gap-y-1 text-lg">
+                <Equation tex={String.raw`[\![6,1,5;2]\!]_2`} />
+                <Equation tex={String.raw`\Delta=2(5-1)-(6-1+2)=1`} />
+              </div>
+              <p className="meta-text mt-3">Jae-Hyun Baek and Byung-Sun Won (equal contribution), Jon-Lark Kim · {singletonPaper.venue} · {singletonPaper.status}</p>
               <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-1">
                 <Link href={singletonPaperPath} className="inline-flex min-h-11 items-center gap-2 rounded bg-[#173f35] px-4 text-sm font-semibold text-white hover:bg-[#245848]">Explore the proof <ArrowRight size={16} aria-hidden="true" /></Link>
                 <a href={singletonPaper.links.paper} className="source-link">arXiv preprint</a>

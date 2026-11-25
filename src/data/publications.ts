@@ -1,6 +1,6 @@
 export const solEvolveThesisUrl = 'https://dcollection.sogang.ac.kr/dcollection/srch/srchDetail/000000082888?localeParam=en';
 
-export type PublicationStatus = 'Published' | 'Accepted' | 'Under Review' | 'Revision requested' | 'Revision submitted' | 'Submitted' | 'In Preparation' | 'Unpublished manuscript' | 'Preprint';
+export type PublicationStatus = 'Published' | 'Accepted' | 'Under Review' | 'With editors' | 'Revision requested' | 'Revision submitted' | 'Submitted' | 'In Preparation' | 'Unpublished manuscript' | 'Preprint';
 
 export type PublicationLinkKey = 'doi' | 'paper' | 'project' | 'code' | 'source' | 'googleScholar' | 'researchGate' | 'artifact' | 'slides' | 'data' | 'thesis' | 'certificate' | 'specification' | 'openReview' | 'leanArchive';
 
@@ -28,6 +28,7 @@ export type Publication = {
   methods: string[];
   results: string[];
   statusNote: string;
+  verificationNote?: string;
   topic: keyof typeof publicationTopics;
   relatedProjects: string[];
   tags: string[];
@@ -55,22 +56,23 @@ export const singletonPaper = {
   title: 'Validity and maximum violation of the entanglement-assisted quantum Singleton bound for linear stabilizer codes',
   slug: 'entanglement-assisted-quantum-singleton-bound',
   authors: 'Jae-Hyun Baek, Byung-Sun Won, Jon-Lark Kim',
-  venue: 'arXiv:2611.32126v1',
+  venue: 'Physical Review A',
   year: '2026',
-  status: 'Preprint',
+  status: 'With editors',
   area: 'Quantum coding theory · Lean 4',
   summary: 'A six-qubit code corrects four erasures with two shared entangled pairs. The Brun–Devetak–Hsieh bound predicts at least three. We determine when the bound holds for linear entanglement-assisted stabilizer codes and how large the gap can be.',
   tldr: 'The Singleton defect determines when shared entanglement can beat the usual bound.',
   role: 'Byung-Sun Won and I contributed equally to this work, with Jon-Lark Kim as corresponding author.',
-  problem: 'How many entangled pairs must sender and receiver share to protect k logical qudits? The usual lower bound can overestimate the cost when the code corrects many erasures.',
-  keyIdea: 'After d − 1 erasures, the remaining n − d + 1 qudits and the receiver’s halves of the shared pairs recover the message. Comparing that number with 2k splits the proof into three cases. Write σ = n − k − d + 1 for the Singleton defect.',
+  problem: 'How many entangled pairs must sender and receiver share to protect $k$ logical qudits? The usual lower bound can overestimate the cost when the code corrects many erasures.',
+  keyIdea: String.raw`After $d-1$ erasures, the remaining $n-d+1$ qudits and the receiver’s halves of the shared pairs recover the message. Comparing $n-d+1$ with $2k$ splits the proof into three cases.`,
   methods: ['Restrict logical operators to surviving coordinates and count dimensions (Lemma 6).', 'Relate a violation to a classical maximum distance separable (MDS) code inside the hull (Theorem 2).', 'Use Lean 4 and Comparator to check proofs against separately stated theorems. Each challenge includes a changed statement that Comparator must reject.'],
   results: [
-    'For k > σ, the bound holds even for degenerate codes (Theorem 1).',
-    'For k = σ, the violation is at most Mq(2k) − 2k, where Mq(2k) is the longest classical MDS code length in dimension 2k over the field of size q. When 2k ≤ q and Mq(2k) = q + 1, the constructions attain q + 1 − 2k (Corollary 4).',
-    'For k < σ, classical codes of larger defect bound the violation. For one logical qudit, the exact maximum is (q − 1)σ (Corollary 18).',
+    String.raw`For $k>\sigma$, the bound holds even for degenerate codes, so $\Delta\le 0$ (Theorem 1).`,
+    String.raw`For $k=\sigma$, Theorem 2 gives $\Delta\le M_q(2k)-2k$. Here $M_q(2k)$ is the longest classical MDS code length in dimension $2k$ over $\mathbb{F}_q$. When $2k\le q$ and $M_q(2k)=q+1$, the constructions attain $\Delta=q+1-2k$ (Corollary 4).`,
+    String.raw`For $k<\sigma$, classical codes of larger defect bound the violation. For one logical qudit, the exact maximum is $\Delta_{\max}=(q-1)\sigma$ (Corollary 18).`,
   ],
-  statusNote: 'Preprint posted on 24 November 2026. Appendix D.4 gives the scope of each Lean statement. Some classical MDS lengths enter as literature assumptions. The numerical code evaluations in Tables 3–4 are separate computations.',
+  statusNote: 'Physical Review A received the manuscript on 23 November 2026 as a Regular Article in its Quantum information science section. The manuscript is with the editors. The public preprint, arXiv:2611.32126v1, appeared on 24 November 2026.',
+  verificationNote: 'Appendix D.4 gives the scope of each Lean statement. Some classical MDS lengths enter as literature assumptions. The numerical code evaluations in Tables 3–4 are separate computations.',
   topic: 'coding-theory',
   relatedProjects: [],
   tags: ['Quantum codes', 'Singleton bound', 'Lean 4', 'Comparator'],
@@ -130,7 +132,7 @@ export const publications: Publication[] = [
     problem: 'When do isolated constructions found by program search belong to a family that works at other lengths and field sizes?',
     keyIdea: 'Describe the candidate family by a coordinate map. Its dimension, radical, and minimum weight supply the algebraic certificate. The stabilizer correspondence then gives the quantum code parameters.',
     methods: ['Program evolution and exact evaluation', 'Algebraic generalization', 'Lean verification of the certificate'],
-    results: ['Theorem 1 applies to prime powers q ≥ 3 at n ≥ 2q + 1, and to q = 2 at odd n ≥ 5.', 'The family and entanglement lifting together close 54 gaps in the archived tables.'],
+    results: [String.raw`Theorem 1 applies to prime powers $q\ge 3$ at $n\ge 2q+1$, and to $q=2$ at odd $n\ge 5$.`, 'The family and entanglement lifting together close 54 gaps in the archived tables.'],
     statusNote: 'Public preprint, version 1.',
     topic: 'coding-theory',
     relatedProjects: [],
@@ -153,7 +155,7 @@ export const publications: Publication[] = [
     tldr: 'Isotropic lines explain how to reduce and extend a self-dual code.',
     role: 'First author, working with Jon-Lark Kim.',
     problem: 'When can a two-coordinate reduction reverse a building-up construction, and what does the choice of coordinate pairing determine?',
-    keyIdea: 'For q congruent to 1 modulo 4, a square root of −1 determines the split isotropic line. Fixing an ordered pairing then gives the rank-r normal form of Theorem 3.15.',
+    keyIdea: String.raw`For $q\equiv 1\pmod{4}$, a square root of $-1$ determines the split isotropic line. Fixing an ordered pairing then gives the rank-r normal form of Theorem 3.15.`,
     methods: ['Binary reduction up to permutation equivalence', 'Finite-field matrix constructions', 'Lean 4 formalization of the algebraic core'],
     results: ['The paper gives explicit self-dual codes over the fields of 5 and 13 elements.', 'Listing 9 states the forward self-duality and normalization goals. The pinned Comparator file is their specification.'],
     statusNote: 'We submitted the revised manuscript to AFM. The public preprint is arXiv:2604.08485v2.',

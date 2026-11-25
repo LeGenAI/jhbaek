@@ -29,7 +29,7 @@
 }
 .map, .certificate { padding: 9px 16px; font-size: .88rem; font-weight: 600; text-align: center; }
 .map { display: flex; align-items: center; gap: 9px; }
-.map i { font: italic 1.3rem Georgia, serif; color: #efdbad; }
+.map > span:first-child { font: italic 1.3rem Georgia, serif; color: #efdbad; }
 .fork, .merge { position: relative; width: 100%; height: 25px; display: grid; grid-template-columns: repeat(3, 1fr); }
 .fork::before, .merge::before { content: ''; position: absolute; left: 16.6667%; right: 16.6667%; top: 50%; border-top: 1px solid var(--edge); }
 .fork i, .merge i { position: relative; justify-self: center; border-left: 1px solid var(--edge); }
@@ -41,15 +41,14 @@
 .merge i { height: 50%; }
 .branches { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); width: 100%; }
 .branches button { margin: 0 3px; min-height: 54px; padding: 5px 1px; line-height: 1.2; }
-.branches button span { display: block; font-size: .8rem; font-weight: 600; }
-.branches i { display: block; margin-top: 3px; font: italic 1rem Georgia, serif; }
+.branchName { display: block; font-size: .8rem; font-weight: 600; }
 .branches button:hover { border-color: #efdbad; }
 .branches button[aria-pressed=true] { color: #172f28; background: #eedbb0; border-color: #eedbb0; }
 .figure :is(button, a):focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
 .certificate { background: #dce9d8; border-color: #dce9d8; color: #193d32; }
 .correspondence { position: relative; align-self: flex-start; margin-left: 50%; border-left: 1px dashed var(--edge); padding: 3px 0 3px 7px; }
 .correspondence span { display: block; max-width: 100%; font-size: .67rem; line-height: 1.15; color: #d0dfd4; }
-.formula { margin-top: 6px; font: italic clamp(1.22rem, 3vw, 1.7rem) Georgia, serif; }
+.formula { margin-top: 6px; font-size: clamp(.95rem, 3vw, 1.35rem); }
 .scope { margin-top: 6px; color: #d4e3d9; text-align: center; font-size: .875rem; line-height: 1.45; }
 .detail { background: #10332e; border-top: 1px solid #426159; }
 .detail b { font-size: .9rem; }
