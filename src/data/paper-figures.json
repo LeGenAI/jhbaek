@@ -1,4 +1,40 @@
 {
+  "solevolve-evolutionary-discovery": [
+    {
+      "title": "What goes back to the search?",
+      "caption": "The horizontal axis records how each system checks a candidate. The vertical axis records what the next search step learns from that check. Table 1 of the manuscript gives the criteria for each placement.",
+      "alt": "SolEvolve sits in the upper right of a comparison of search systems by evaluator strength and feedback granularity.",
+      "image": "/figures/solevolve-evolutionary-discovery/figure-1.svg",
+      "width": 441,
+      "height": 220
+    },
+    {
+      "title": "From target to checked construction",
+      "caption": "Follow the red branch from Verification to see a failed candidate return for repair. The blue branch leads from a passing candidate to a comparison with known code bounds.",
+      "alt": "Flowchart connecting the target code, SAT encoding, solver, verification, repair, and comparison with code tables.",
+      "image": "/figures/solevolve-evolutionary-discovery/figure-2.webp",
+      "width": 3532,
+      "height": 1838
+    },
+    {
+      "title": "Where SAT repair enters the genetic search",
+      "caption": "The first solver call supplies starting codes. The final call has a different job: repair a candidate after the genetic search has stopped improving.",
+      "alt": "Four phases of hybrid search, from solver-generated seeds through population evolution to a bounded SAT repair.",
+      "image": "/figures/solevolve-evolutionary-discovery/figure-3.webp",
+      "width": 2816,
+      "height": 1536
+    },
+    {
+      "title": "A perfect partition of 99 binary strings",
+      "caption": "Each color groups a center with the legal strings one bit away from it. All 99 vertices belong to exactly one of the 15 groups.",
+      "alt": "Circular drawing of the generalized Lucas cube with vertices colored by their radius-one neighborhoods.",
+      "image": "/figures/solevolve-evolutionary-discovery/figure-c1.webp",
+      "width": 2038,
+      "height": 1964,
+      "labelNumber": "C.1",
+      "fragment": "figure-c1"
+    }
+  ],
   "entanglement-assisted-quantum-singleton-bound": [
     {
       "title": "Violation of the BDH bound",

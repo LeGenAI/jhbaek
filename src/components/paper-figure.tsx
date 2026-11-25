@@ -16,7 +16,7 @@ export function FigureViewer({ figure, number, compact = false, children }: {
 }) {
   const fragment = figure.fragment ?? `figure-${number}`;
   const viewerHash = '#' + fragment;
-  const label = `Figure ${number} · ${figure.title}`;
+  const label = `Figure ${figure.labelNumber ?? number} · ${figure.title}`;
   const alt = figure.alt ?? figure.title;
   const dialog = useRef<HTMLDialogElement>(null);
   const openedHere = useRef(false);
@@ -67,7 +67,7 @@ export function FigureViewer({ figure, number, compact = false, children }: {
           {children}
           <span className="flex flex-wrap gap-x-5">
             <a href={viewerHash} onClick={rememberOpener} className="source-link" aria-haspopup="dialog">Open full-size figure</a>
-            {!compact && <SiteLink href={figure.source} className="source-link">{figure.sourceLabel ?? (figure.source.includes('#') ? 'Figure in the paper' : 'Published paper')}</SiteLink>}
+            {!compact && figure.source && <SiteLink href={figure.source} className="source-link">{figure.source.includes('#') ? 'Figure in the paper' : 'Published paper'}</SiteLink>}
           </span>
         </figcaption>
       </figure>

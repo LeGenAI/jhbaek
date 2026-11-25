@@ -113,7 +113,7 @@ export const projectArtifacts: ProjectArtifact[] = [
     role: 'Lead researcher and system builder.',
     researchAxis: 'formalized-math-ai',
     tags: ['evolutionary search', 'SAT', 'coding theory', 'LLM agents'],
-    image: '/thesis/graphical_abstract.png',
+    image: '/figures/solevolve-evolutionary-discovery/figure-2.webp',
     artifactLinks: {
       reproduce: 'https://github.com/LeGenAI/sol_evolve#reviewer-reproduction',
       thesis: solEvolveThesisUrl,

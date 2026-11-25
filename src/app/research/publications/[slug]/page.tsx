@@ -54,6 +54,7 @@ function IllustratedPaper({ slug }: { slug: string }) {
           {section.after && <p><MathText>{section.after}</MathText></p>}
         </section>
       ))}
+      {slug === 'solevolve-evolutionary-discovery' && <p className="meta-text">Figures from the manuscript submitted to Neurocomputing.</p>}
       {slug === sudokuCitation.slug && <p className="meta-text">Figures from IEEE Transactions on Games · © 2026 IEEE</p>}
       {['timegpt-gamcheon-water-level', 'hybrid-multimodal-genai-math-figures', 'regulatory-rag-llm-understanding'].includes(slug) &&
         <p className="meta-text">Figures © The Korean Institute of Intelligent Systems · <SiteLink className="underline" href="https://creativecommons.org/licenses/by-nc/3.0/">CC BY-NC 3.0</SiteLink></p>}

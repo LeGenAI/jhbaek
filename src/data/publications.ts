@@ -262,7 +262,7 @@ export const publications: Publication[] = [
   {
     title: 'SolEvolve: LLM-Driven Evolutionary Search for SAT-Verified Constructions in Combinatorics',
     slug: 'solevolve-evolutionary-discovery',
-    authors: 'Jon-Lark Kim, Jae-Hyun Baek',
+    authors: 'Jae-Hyun Baek, Jon-Lark Kim',
     venue: 'Neurocomputing',
     year: '2026',
     status: 'Under Review',
@@ -279,7 +279,7 @@ export const publications: Publication[] = [
     topic: 'coding-theory',
     relatedProjects: ['solevolve', 'codingtheorylib-mcp'],
     tags: ['evolutionary search', 'SAT', 'coding theory', 'algorithm discovery'],
-    image: '/thesis/graphical_abstract.png',
+    image: '/figures/solevolve-evolutionary-discovery/figure-2.webp',
     featured: true,
   },
   {

@@ -227,7 +227,7 @@ test('old proof image link opens a viewer with a way home', async ({ page }) => 
 });
 
 const storyCounts = {
-  'solevolve-evolutionary-discovery': 1,
+  'solevolve-evolutionary-discovery': 4,
   'entanglement-assisted-quantum-singleton-bound': 3,
   'eaqecc-evolutionary-discovery': 6,
   'self-dual-codes-building-up': 1,
@@ -250,13 +250,18 @@ for (const [slug, count] of Object.entries(storyCounts)) {
     const figures = story.getByRole('figure');
     await expect(figures).toHaveCount(count);
     for (let index = 0; index < count; index++) {
-      const figure = story.getByRole('figure', { name: new RegExp(`^Figure ${index + 1} ·`) });
+      const number = slug === 'solevolve-evolutionary-discovery' && index === 3 ? 'C[.]1' : index + 1;
+      const figure = story.getByRole('figure', { name: new RegExp(`^Figure ${number} ·`) });
       await figure.scrollIntoViewIfNeeded();
       const preview = figure.getByRole('img');
       await expect.poll(() => preview.evaluate((img: HTMLImageElement) => img.naturalWidth)).toBeGreaterThan(0);
     }
     const trigger = figures.last().getByRole('link', { name: 'Open full-size figure' });
     await trigger.click();
+    if (slug === 'solevolve-evolutionary-discovery') {
+      await expect(page).toHaveURL(/#figure-c1$/);
+      await expect(story.getByText('Figures from the manuscript submitted to Neurocomputing.')).toBeVisible();
+    }
     const viewer = page.getByRole('dialog');
     await expect(viewer).toBeVisible();
     await expect.poll(() => viewer.getByRole('img').evaluate((img: HTMLImageElement) => img.naturalWidth)).toBeGreaterThan(0);

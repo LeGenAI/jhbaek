@@ -139,14 +139,24 @@ export const paperStories: Record<string, StorySection[] | undefined> = {
   ],
   'solevolve-evolutionary-discovery': [
     {
-      heading: 'When does a proposed solution become a result?',
-      text: 'Start in the lower right of the diagram with a target, such as a code of a specified length and distance. SolEvolve lets a language model change the program that searches for a solution. In the upper right, a SAT solver looks for an assignment that satisfies the encoded constraints. The check on the upper left tests the resulting candidate against the original target. A failure gives the search something specific to repair.',
+      heading: 'What can a failed candidate teach the search?',
+      text: 'Suppose a proposed code contains two words that are too close together. A score can tell us the code missed its target. Knowing which positions those words differ in gives the solver somewhere to try a repair. Figure 1 places SolEvolve and SolSearch near each other on the horizontal axis because both use solver checks. They sit apart vertically because SolSearch returns solver performance, while SolEvolve can return details about the code itself.',
       figures: [1],
+    },
+    {
+      heading: 'Follow a candidate around the loop',
+      text: 'Start at the research goal in the lower right of Figure 2. The researchers specify a target, such as a binary code whose words stay a certain distance apart. The system encodes that target as constraints and asks a SAT solver to find a candidate. A separate check measures what the candidate actually achieves. If it passes, the next question is how it compares with known codes. If it falls short, the search can use the failed check to revise the encoding.',
+      figures: [2],
+    },
+    {
+      heading: 'How far can one repair move a code?',
+      text: 'In the experiment behind Figure 3, the search started with 20 solver-generated codes and 80 mutated variants. After 50 generations, the best minimum distance was still 6: some pair of codewords differed in only six positions. A single bounded SAT repair produced a verified $[22,11,7]$ code. Its length stayed at 22 bits and its dimension at 11, but now every pair differed in at least seven positions.',
+      figures: [3],
     },
     {
       heading: 'A result small enough to check again',
       text: 'Arrange seven binary digits in a circle and rule out any string containing four consecutive ones, even across the join. That leaves 99 legal strings. One saved construction consists of just 15 strings called centers. For each center, mark the center itself and every legal string one digit change away. A perfect partition means that every one of the 99 strings is marked exactly once. A reader can repeat that count from the saved centers.',
-      figures: [],
+      figures: [4],
       after: 'The reviewer command checks three such partitions alongside three code embeddings and one claim about codeword weights. It reads the saved constructions and writes a verification report without making a language-model call.',
     },
   ],
