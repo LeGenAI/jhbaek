@@ -1,0 +1,336 @@
+{
+  "entanglement-assisted-quantum-singleton-bound": [
+    {
+      "title": "Violation of the BDH bound",
+      "caption": "At $q=8$ and $k=2$, the starred code uses seven shared pairs. The BDH bound predicts at least twelve. The right panel shows how the largest violation depends on the field size and the number of logical qudits.",
+      "source": "https://arxiv.org/html/2611.32126v1#S3.F1",
+      "image": "/previews/ea-singleton-bound-violation.svg",
+      "width": 1890,
+      "height": 700
+    },
+    {
+      "title": "Entanglement and distance",
+      "caption": "The stars mark three codes that save one, two, and six shared pairs compared with the fewest pairs previously listed at the same distance.",
+      "source": "https://arxiv.org/html/2611.32126v1#S3.F2",
+      "image": "/previews/ea-singleton-entanglement-distance.svg",
+      "width": 1901,
+      "height": 678
+    }
+  ],
+  "eaqecc-evolutionary-discovery": [
+    {
+      "title": "Researcher-in-the-loop discovery",
+      "caption": "The researcher sets targets and inspects candidate codes. The search program proposes generators, and a separate evaluator checks the parameters.",
+      "source": "https://arxiv.org/html/2610.41183v1#S3.F1",
+      "image": "/figures/eaqecc-evolutionary-discovery/figure-1.svg",
+      "width": 1653,
+      "height": 819
+    },
+    {
+      "title": "Changes to the search program",
+      "caption": "The diagram compares the seed and evolved programs for target selection, search initialization, and generator mutation.",
+      "source": "https://arxiv.org/html/2610.41183v1#S4.F2",
+      "image": "/figures/eaqecc-evolutionary-discovery/figure-2.svg",
+      "width": 1591,
+      "height": 550
+    },
+    {
+      "title": "Code families across four fields",
+      "caption": "Each panel maps code length against entanglement cost for one logical qudit and target distance $n-1$. The legend distinguishes constructions, exclusions, and open cells.",
+      "source": "https://arxiv.org/html/2610.41183v1#S4.F3",
+      "image": "/figures/eaqecc-evolutionary-discovery/figure-3.svg",
+      "width": 1604,
+      "height": 1206
+    },
+    {
+      "title": "Prospective replication",
+      "caption": "Success rates are plotted against the number of exact evaluations, first at lengths 9 and 11, then at lengths 13 and 15.",
+      "source": "https://arxiv.org/html/2610.41183v1#S5.F4",
+      "image": "/figures/eaqecc-evolutionary-discovery/figure-4.svg",
+      "width": 1524,
+      "height": 692
+    },
+    {
+      "title": "Longer-code replay",
+      "caption": "Fresh execution seeds test how often the different search procedures recover codes of lengths 13 and 15.",
+      "source": "https://arxiv.org/html/2610.41183v1#A3.F5",
+      "image": "/figures/eaqecc-evolutionary-discovery/figure-5.svg",
+      "width": 1514,
+      "height": 556
+    },
+    {
+      "title": "Algebraic certificate dependencies",
+      "caption": "The diagram traces the coordinate map through the dimension, radical, and weight arguments to the Lean certificate and the stabilizer correspondence.",
+      "source": "https://arxiv.org/html/2610.41183v1#A4.F6",
+      "image": "/figures/eaqecc-evolutionary-discovery/figure-6.svg",
+      "width": 1452,
+      "height": 526
+    }
+  ],
+  "self-dual-codes-building-up": [
+    {
+      "title": "Repeated boxed realization",
+      "caption": "The matrix records the coordinate pairs retained when passing between the length-18 and length-20 self-dual codes over the field of 13 elements.",
+      "source": "https://arxiv.org/html/2604.08485v2#S4.F1",
+      "image": "/figures/self-dual-codes-building-up/figure-1.svg",
+      "width": 1883,
+      "height": 573
+    }
+  ],
+  "hybrid-multimodal-genai-math-figures": [
+    {
+      "title": "Transformer architecture",
+      "caption": "The paper reproduces the transformer diagram from Vaswani et al. (2017), cited as reference 4.",
+      "source": "https://www.e-sciencecentral.org/upload/ijfis/pdf/ijfis-26-1-1.pdf#page=2",
+      "image": "/figures/hybrid-multimodal-genai-math-figures/figure-1.png",
+      "width": 745,
+      "height": 1064
+    },
+    {
+      "title": "OCR-based retrieval",
+      "caption": "Pages are converted to text for indexing and retrieval in response to a question.",
+      "source": "https://www.e-sciencecentral.org/upload/ijfis/pdf/ijfis-26-1-1.pdf#page=3",
+      "image": "/figures/hybrid-multimodal-genai-math-figures/figure-2.png",
+      "width": 2390,
+      "height": 794
+    },
+    {
+      "title": "ColPali retrieval",
+      "caption": "The visual retrieval workflow embeds document pages and matches a query against those page representations.",
+      "source": "https://www.e-sciencecentral.org/upload/ijfis/pdf/ijfis-26-1-1.pdf#page=3",
+      "image": "/figures/hybrid-multimodal-genai-math-figures/figure-3.png",
+      "width": 2410,
+      "height": 708
+    },
+    {
+      "title": "Gasoline prices",
+      "caption": "A bar chart provides the values needed for the gas-price question in the evaluation.",
+      "source": "https://www.e-sciencecentral.org/upload/ijfis/pdf/ijfis-26-1-1.pdf#page=4",
+      "image": "/figures/hybrid-multimodal-genai-math-figures/figure-4.jpeg",
+      "width": 1237,
+      "height": 557
+    },
+    {
+      "title": "Color preferences",
+      "caption": "Each bar shows how many of the 250 respondents chose a color.",
+      "source": "https://www.e-sciencecentral.org/upload/ijfis/pdf/ijfis-26-1-1.pdf#page=5",
+      "image": "/figures/hybrid-multimodal-genai-math-figures/figure-5.jpeg",
+      "width": 545,
+      "height": 397
+    },
+    {
+      "title": "Grade distribution",
+      "caption": "The bars show the number of students who received each letter grade.",
+      "source": "https://www.e-sciencecentral.org/upload/ijfis/pdf/ijfis-26-1-1.pdf#page=5",
+      "image": "/figures/hybrid-multimodal-genai-math-figures/figure-6.jpeg",
+      "width": 653,
+      "height": 432
+    },
+    {
+      "title": "Population distribution",
+      "caption": "Two bars represent the female and male populations in the final visual reasoning example.",
+      "source": "https://www.e-sciencecentral.org/upload/ijfis/pdf/ijfis-26-1-1.pdf#page=6",
+      "image": "/figures/hybrid-multimodal-genai-math-figures/figure-7.jpeg",
+      "width": 545,
+      "height": 410
+    }
+  ],
+  "timegpt-gamcheon-water-level": [
+    {
+      "title": "The Gamcheon watershed",
+      "caption": "The map locates the observation stations and dams used in the study.",
+      "source": "https://www.e-sciencecentral.org/upload/ijfis/pdf/ijfis-26-1-10.pdf#page=2",
+      "image": "/figures/timegpt-gamcheon-water-level/figure-1.webp",
+      "width": 2658,
+      "height": 1832
+    },
+    {
+      "title": "Linear forecasting models",
+      "caption": "The diagram shows the LTSF-Linear architectures used as forecasting baselines.",
+      "source": "https://www.e-sciencecentral.org/upload/ijfis/pdf/ijfis-26-1-10.pdf#page=3",
+      "image": "/figures/timegpt-gamcheon-water-level/figure-2.webp",
+      "width": 3300,
+      "height": 1738
+    },
+    {
+      "title": "SARIMAX forecasts",
+      "caption": "Observed and predicted water levels across the forecast windows.",
+      "source": "https://www.e-sciencecentral.org/upload/ijfis/pdf/ijfis-26-1-10.pdf#page=6",
+      "image": "/figures/timegpt-gamcheon-water-level/figure-3.webp",
+      "width": 3254,
+      "height": 1618
+    },
+    {
+      "title": "Prophet forecasts",
+      "caption": "Observed and predicted water levels across the forecast windows.",
+      "source": "https://www.e-sciencecentral.org/upload/ijfis/pdf/ijfis-26-1-10.pdf#page=6",
+      "image": "/figures/timegpt-gamcheon-water-level/figure-4.webp",
+      "width": 3282,
+      "height": 1622
+    },
+    {
+      "title": "Linear forecasts",
+      "caption": "Observed and predicted water levels across the forecast windows.",
+      "source": "https://www.e-sciencecentral.org/upload/ijfis/pdf/ijfis-26-1-10.pdf#page=6",
+      "image": "/figures/timegpt-gamcheon-water-level/figure-5.webp",
+      "width": 3236,
+      "height": 1620
+    },
+    {
+      "title": "DLinear forecasts",
+      "caption": "Observed and predicted water levels across the forecast windows.",
+      "source": "https://www.e-sciencecentral.org/upload/ijfis/pdf/ijfis-26-1-10.pdf#page=6",
+      "image": "/figures/timegpt-gamcheon-water-level/figure-6.webp",
+      "width": 3200,
+      "height": 1586
+    },
+    {
+      "title": "NLinear forecasts",
+      "caption": "Observed and predicted water levels across the forecast windows.",
+      "source": "https://www.e-sciencecentral.org/upload/ijfis/pdf/ijfis-26-1-10.pdf#page=6",
+      "image": "/figures/timegpt-gamcheon-water-level/figure-7.webp",
+      "width": 3266,
+      "height": 1624
+    },
+    {
+      "title": "TimeGPT forecasts",
+      "caption": "Observed and predicted water levels across the forecast windows.",
+      "source": "https://www.e-sciencecentral.org/upload/ijfis/pdf/ijfis-26-1-10.pdf#page=7",
+      "image": "/figures/timegpt-gamcheon-water-level/figure-8.webp",
+      "width": 3232,
+      "height": 1634
+    },
+    {
+      "title": "TimeGPT with rainfall inputs forecasts",
+      "caption": "Observed and predicted water levels across the forecast windows.",
+      "source": "https://www.e-sciencecentral.org/upload/ijfis/pdf/ijfis-26-1-10.pdf#page=7",
+      "image": "/figures/timegpt-gamcheon-water-level/figure-9.webp",
+      "width": 3220,
+      "height": 1632
+    },
+    {
+      "title": "TimeGPT over the evaluation period",
+      "caption": "Observed river levels and predictions from the base TimeGPT model.",
+      "source": "https://www.e-sciencecentral.org/upload/ijfis/pdf/ijfis-26-1-10.pdf#page=7",
+      "image": "/figures/timegpt-gamcheon-water-level/figure-10.webp",
+      "width": 3236,
+      "height": 1632
+    },
+    {
+      "title": "TimeGPT with rainfall over the evaluation period",
+      "caption": "Observed river levels and predictions after adding rainfall as an external input.",
+      "source": "https://www.e-sciencecentral.org/upload/ijfis/pdf/ijfis-26-1-10.pdf#page=7",
+      "image": "/figures/timegpt-gamcheon-water-level/figure-11.webp",
+      "width": 3170,
+      "height": 1568
+    }
+  ],
+  "symmetric-sudoku-perfect-codes": [
+    {
+      "title": "Symmetries on the five-by-five grid",
+      "caption": "Rotations and translations act on a perfect Sudoku grid.",
+      "source": "https://doi.org/10.1109/TG.2026.3683305",
+      "image": "/figures/symmetric-sudoku-perfect-codes/figure-1.webp",
+      "width": 2050,
+      "height": 695
+    },
+    {
+      "title": "Symmetries on the eight-by-eight grid",
+      "caption": "The same operations act on a diameter-perfect Sudoku grid.",
+      "source": "https://doi.org/10.1109/TG.2026.3683305",
+      "image": "/figures/symmetric-sudoku-perfect-codes/figure-2.webp",
+      "width": 2050,
+      "height": 1346
+    },
+    {
+      "title": "Equivalence classes",
+      "caption": "The grids are grouped by the rotations and translations specified in the paper.",
+      "source": "https://doi.org/10.1109/TG.2026.3683305",
+      "image": "/figures/symmetric-sudoku-perfect-codes/figure-3.webp",
+      "width": 2050,
+      "height": 1562
+    },
+    {
+      "title": "Minimal five-by-five puzzles",
+      "caption": "Two examples have four and seven given entries.",
+      "source": "https://doi.org/10.1109/TG.2026.3683305",
+      "image": "/figures/symmetric-sudoku-perfect-codes/figure-4.webp",
+      "width": 2050,
+      "height": 902
+    },
+    {
+      "title": "Palette grids",
+      "caption": "Colors identify the regions defined by two diameter-perfect codes.",
+      "source": "https://doi.org/10.1109/TG.2026.3683305",
+      "image": "/figures/symmetric-sudoku-perfect-codes/figure-5.webp",
+      "width": 2050,
+      "height": 919
+    },
+    {
+      "title": "Minimal eight-by-eight puzzles",
+      "caption": "Two examples have ten and eighteen given entries.",
+      "source": "https://doi.org/10.1109/TG.2026.3683305",
+      "image": "/figures/symmetric-sudoku-perfect-codes/figure-6.webp",
+      "width": 2050,
+      "height": 920
+    },
+    {
+      "title": "Difficulty scores",
+      "caption": "The plot compares the scores assigned to minimal five-by-five puzzles.",
+      "source": "https://doi.org/10.1109/TG.2026.3683305",
+      "image": "/figures/symmetric-sudoku-perfect-codes/figure-7.webp",
+      "width": 2050,
+      "height": 1466
+    }
+  ],
+  "regulatory-rag-llm-understanding": [
+    {
+      "title": "Conversation without retrieval",
+      "caption": "A user question goes directly to the language model. Its answer uses the information already available to the model.",
+      "source": "https://doi.org/10.5391/jkiis.2025.35.1.65",
+      "image": "/figures/regulatory-rag-llm-understanding/figure-1.webp",
+      "width": 1617,
+      "height": 518
+    },
+    {
+      "title": "Naive RAG algorithm",
+      "caption": "Algorithm 1 shows both halves of the baseline, from indexing document chunks to retrieving context for a question.",
+      "source": "https://doi.org/10.5391/jkiis.2025.35.1.65",
+      "image": "/figures/regulatory-rag-llm-understanding/figure-2.webp",
+      "width": 1603,
+      "height": 1309
+    },
+    {
+      "title": "Naive RAG pipeline",
+      "caption": "The query retrieves document chunks from the vector database before the model generates an answer.",
+      "source": "https://doi.org/10.5391/jkiis.2025.35.1.65",
+      "image": "/figures/regulatory-rag-llm-understanding/figure-3.webp",
+      "width": 1624,
+      "height": 609
+    },
+    {
+      "title": "Graph-based RAG algorithm",
+      "caption": "Algorithm 2 extracts entities from the question, searches the graph, and merges that evidence with retrieved chunks.",
+      "source": "https://doi.org/10.5391/jkiis.2025.35.1.65",
+      "image": "/figures/regulatory-rag-llm-understanding/figure-4.webp",
+      "width": 1624,
+      "height": 1610
+    },
+    {
+      "title": "Knowledge-graph RAG pipeline",
+      "caption": "The graph lookup and chunk retrieval supply the context used to answer a question.",
+      "source": "https://doi.org/10.5391/jkiis.2025.35.1.65",
+      "image": "/figures/regulatory-rag-llm-understanding/figure-5.webp",
+      "width": 1708,
+      "height": 637
+    },
+    {
+      "title": "University regulations as a graph",
+      "caption": "The diagram encodes relationships in Sogang University’s regulations and implementing rules.",
+      "source": "https://doi.org/10.5391/jkiis.2025.35.1.65",
+      "image": "/figures/regulatory-rag-llm-understanding/figure-6.webp",
+      "width": 1407,
+      "height": 1351
+    }
+  ]
+}

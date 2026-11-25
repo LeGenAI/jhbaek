@@ -52,6 +52,7 @@ test('CV entry exposes the papers, proofs and reviewer instructions', async ({ p
   await expect(page.getByRole('link', { name: 'Play Perfect Sudoku' })).toHaveAttribute('href', 'https://perfect-sudoku.up.railway.app/');
   await expect(page.getByText('Junmin An, Jae-Hyun Baek, Keon-Hwi Kim, Haeun Lim, Jon-Lark Kim')).toBeVisible();
   await expect(page.getByRole('link', { name: 'Read on IEEE Xplore' })).toHaveAttribute('href', ieeeUrl);
+  await expect(page.locator('#figures a[href="' + ieeeUrl + '"]')).toHaveCount(7);
   await expect(page.locator('main a[href*="arxiv"]')).toHaveCount(0);
   await expectPageFits(page);
   await page.getByRole('link', { name: 'Back to research' }).click();
@@ -184,7 +185,7 @@ test('home leads to the Singleton bound paper, original diagram and proof archiv
   await expectPageFits(page);
   for (const path of [new URL(page.url()).pathname, '/']) {
     await page.goto(path);
-    const trigger = page.getByRole('link', { name: 'Open full-size figure' });
+    const trigger = page.getByRole('figure', { name: /Figure 3 · Lean proof/ }).getByRole('link', { name: 'Open full-size figure' });
     await trigger.scrollIntoViewIfNeeded();
     const position = await page.evaluate(() => window.scrollY);
     await trigger.click();
@@ -203,7 +204,7 @@ test('home leads to the Singleton bound paper, original diagram and proof archiv
     await expect(viewer).toHaveCount(0);
     await expect(trigger).toBeFocused();
     expect(Math.abs(await page.evaluate(() => window.scrollY) - position)).toBeLessThan(4);
-    await page.getByRole('link', { name: 'Enlarge the Singleton bound proof diagram' }).click();
+    await page.getByRole('link', { name: 'Enlarge Figure 3 · Lean proof dependencies' }).click();
     await expect(viewer.locator('output')).toHaveText('1×');
     await viewer.getByRole('button', { name: 'Close' }).click();
     await expect(viewer).toHaveCount(0);
@@ -217,8 +218,46 @@ test('old proof image link opens a viewer with a way home', async ({ page }) => 
   await expect(viewer).toBeVisible();
   await viewer.getByRole('button', { name: 'Close' }).click();
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Validity and maximum violation');
-  await page.getByRole('link', { name: 'Open full-size figure' }).click();
+  await page.getByRole('figure', { name: /Figure 3 · Lean proof/ }).getByRole('link', { name: 'Open full-size figure' }).click();
   await viewer.getByRole('link', { name: 'Home' }).click();
   expect(new URL(page.url()).pathname).toBe('/');
   await expect(viewer).toHaveCount(0);
 });
+
+const galleryCounts = {
+  'entanglement-assisted-quantum-singleton-bound': 3,
+  'eaqecc-evolutionary-discovery': 6,
+  'self-dual-codes-building-up': 1,
+  'symmetric-sudoku-perfect-codes': 7,
+  'timegpt-gamcheon-water-level': 11,
+  'hybrid-multimodal-genai-math-figures': 7,
+  'regulatory-rag-llm-understanding': 6,
+};
+
+for (const [slug, count] of Object.entries(galleryCounts)) {
+  test(`paper figures load and enlarge in print order: ${slug}`, async ({ page }) => {
+    await page.goto('/research/publications/' + slug);
+    await page.getByRole('link', { name: `Figures (${count})`, exact: true }).click();
+    const gallery = page.getByRole('region', { name: 'Figures from the paper' });
+    const figures = gallery.getByRole('figure');
+    await expect(figures).toHaveCount(count);
+    for (let index = 0; index < count; index++) {
+      const figure = figures.nth(index);
+      await expect(figure).toHaveAccessibleName(new RegExp(`^Figure ${index + 1} ·`));
+      await figure.scrollIntoViewIfNeeded();
+      const preview = figure.getByRole('img');
+      await expect.poll(() => preview.evaluate((img: HTMLImageElement) => img.naturalWidth)).toBeGreaterThan(0);
+    }
+    const trigger = figures.last().getByRole('link', { name: 'Open full-size figure' });
+    await trigger.click();
+    const viewer = page.getByRole('dialog');
+    await expect(viewer).toBeVisible();
+    await expect.poll(() => viewer.getByRole('img').evaluate((img: HTMLImageElement) => img.naturalWidth)).toBeGreaterThan(0);
+    await viewer.getByRole('button', { name: 'Zoom in' }).click();
+    await expect(viewer.locator('output')).toHaveText('2×');
+    await viewer.getByRole('button', { name: 'Close' }).click();
+    await expect(viewer).toHaveCount(0);
+    await expect(trigger).toBeFocused();
+    await expectPageFits(page);
+  });
+}

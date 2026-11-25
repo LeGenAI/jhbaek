@@ -2,7 +2,8 @@ import type { Metadata } from 'next';
 import { Equation, MathText } from '@/components/math';
 import Image from 'next/image';
 import Link from 'next/link';
-import { SingletonProofFigure } from '@/components/singleton-proof-figure';
+import { FigureViewer } from '@/components/paper-figure';
+import { figuresByPaper } from '@/data/paper-figures';
 import { notFound } from 'next/navigation';
 import { ResearchDetail, DetailSection, DetailList } from '@/components/research-detail';
 import { publications, singletonPaper, singletonPaperPath, sudokuCitation, type PublicationLinkKey } from '@/data/publications';
@@ -25,6 +26,26 @@ const linkLabels: Record<PublicationLinkKey, string> = {
   slides: 'Slides',
   data: 'Data',
 };
+
+function PaperGallery({ slug }: { slug: string }) {
+  const figures = figuresByPaper[slug];
+  if (!figures?.length) return null;
+  return (
+    <section id="figures" aria-labelledby="figures-title" className="section-rule scroll-mt-20">
+      <h2 id="figures-title" className="section-title">Figures from the paper</h2>
+      {slug === sudokuCitation.slug && <p className="meta-text mt-2">IEEE Transactions on Games · June 2026 · © 2026 IEEE</p>}
+      {(['timegpt-gamcheon-water-level', 'hybrid-multimodal-genai-math-figures', 'regulatory-rag-llm-understanding'].includes(slug)) &&
+        <p className="meta-text mt-2">© The Korean Institute of Intelligent Systems · <a className="underline" href="https://creativecommons.org/licenses/by-nc/3.0/">CC BY-NC 3.0</a></p>}
+      <div className="mt-5 grid gap-x-8 gap-y-6 md:grid-cols-2">
+        {figures.map((figure, index) => (
+          <FigureViewer key={figure.image} figure={figure} number={index + 1}>
+            <p><MathText>{figure.caption}</MathText></p>
+          </FigureViewer>
+        ))}
+      </div>
+    </section>
+  );
+}
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
@@ -60,6 +81,7 @@ export default async function PublicationDetailPage({ params }: { params: Promis
             <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2">
               <a href={sudokuCitation.gameUrl} className="inline-flex min-h-11 items-center rounded bg-[#173f35] px-4 text-sm font-semibold text-white hover:bg-[#245848]">Play Perfect Sudoku</a>
               <a href={sudokuCitation.href} className="source-link">Read on IEEE Xplore</a>
+              <a href="#figures" className="source-link">Figures ({figuresByPaper[slug]?.length})</a>
             </div>
           </div>
           <figure className="max-w-[17.5rem]">
@@ -67,6 +89,7 @@ export default async function PublicationDetailPage({ params }: { params: Promis
             <figcaption className="meta-text mt-2">A puzzle from Perfect Sudoku. Each color marks one region.</figcaption>
           </figure>
         </section>
+        <PaperGallery slug={slug} />
       </main>
     );
   }
@@ -81,10 +104,13 @@ export default async function PublicationDetailPage({ params }: { params: Promis
 
   const links = Object.entries(publication.links ?? {}).map(([key, href]) => ({ label: linkLabels[key as PublicationLinkKey], href }));
 
+  const figures = figuresByPaper[slug];
+  if (figures) links.push({ label: `Figures (${figures.length})`, href: '#figures' });
+
   return (
     <ResearchDetail back={{ href: '/research', label: 'Back to research' }} title={publication.title}
       metadata={publication.status + ' · ' + publication.area} byline={publication.authors}
-      venue={publication.venue + ' · ' + publication.year} summary={publication.summary} image={publication.image} figure={publication.figure} expandedFigure={publication.slug === singletonPaper.slug ? <SingletonProofFigure /> : undefined} links={links}>
+      venue={publication.venue + ' · ' + publication.year} summary={publication.summary} image={publication.image} figure={publication.figure} gallery={figures && <PaperGallery slug={slug} />} links={links}>
       <div>
         <DetailSection title="Research question"><p><MathText>{publication.problem}</MathText></p></DetailSection>
         {publication.slug === singletonPaper.slug && (

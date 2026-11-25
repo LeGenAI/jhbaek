@@ -1,3 +1,4 @@
+import { figuresByPaper } from '@/data/paper-figures';
 import { academicProfiles } from '@/data/profiles';
 import type { Metadata } from 'next';
 import Link from 'next/link';
@@ -128,6 +129,11 @@ export default function ResearchPage() {
                       <Link className="block py-1 text-base font-semibold leading-snug hover:text-[#225441] hover:underline" href={`/research/publications/${paper.slug}`}>{paper.title}</Link>
                       <p className="meta-text">{paper.venue} · {paper.status}</p>
                       <p className="mt-2 max-w-prose leading-relaxed">{paper.summary}</p>
+                      {figuresByPaper[paper.slug] && (
+                        <Link className={textLink} href={`/research/publications/${paper.slug}#figures`}>
+                          View figures ({figuresByPaper[paper.slug]?.length})
+                        </Link>
+                      )}
                     </li>
                   ))}
                 </ul>

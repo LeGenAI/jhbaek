@@ -2,14 +2,21 @@
 
 import Image from 'next/image';
 import { Minus, Plus, X } from 'lucide-react';
-import { useEffect, useRef, useState, type MouseEvent } from 'react';
-import { singletonPaper } from '@/data/publications';
+import { useEffect, useRef, useState, type MouseEvent, type ReactNode } from 'react';
+import type { PaperFigure } from '@/data/paper-figures';
 
-const viewerHash = '#proof-map';
 const zoomLevels = [1, 2, 3, 4, 6, 8];
-const { image, figure } = singletonPaper;
 
-export function SingletonProofFigure({ compact = false }: { compact?: boolean }) {
+export function FigureViewer({ figure, number, compact = false, children }: {
+  figure: PaperFigure;
+  number: number;
+  compact?: boolean;
+  children?: ReactNode;
+}) {
+  const fragment = figure.fragment ?? `figure-${number}`;
+  const viewerHash = '#' + fragment;
+  const label = `Figure ${number} · ${figure.title}`;
+  const alt = figure.alt ?? figure.title;
   const dialog = useRef<HTMLDialogElement>(null);
   const openedHere = useRef(false);
   const [zoom, setZoom] = useState(0);
@@ -29,7 +36,7 @@ export function SingletonProofFigure({ compact = false }: { compact?: boolean })
     syncWithAddress();
     window.addEventListener('hashchange', syncWithAddress);
     return () => window.removeEventListener('hashchange', syncWithAddress);
-  }, []);
+  }, [viewerHash]);
 
   function rememberOpener(event: MouseEvent<HTMLAnchorElement>) {
     openedHere.current = true;
@@ -49,29 +56,30 @@ export function SingletonProofFigure({ compact = false }: { compact?: boolean })
 
   return (
     <>
-      <figure className={compact ? 'order-3 mt-2 min-w-0 border-y border-[#c8d1c6] bg-white px-3 py-2 sm:px-5' : 'mt-6 max-w-4xl'}>
-        <a className="block cursor-zoom-in" href={viewerHash} onClick={rememberOpener} aria-label="Enlarge the Singleton bound proof diagram" aria-haspopup="dialog">
-          <Image src={image} alt={figure.alt} width={figure.width} height={figure.height} unoptimized
-            className={compact ? 'mx-auto h-auto w-full max-w-[29rem]' : 'h-auto w-full'} />
+      <figure aria-label={label} className={compact ? 'order-3 mt-2 min-w-0 border-y border-[#c8d1c6] bg-white px-3 py-2 sm:px-5' : 'min-w-0 border-t border-[#c8d1c6] pt-4'}>
+        <a className="block cursor-zoom-in" href={viewerHash} onClick={rememberOpener} aria-label={`Enlarge ${label}`} aria-haspopup="dialog">
+          <Image src={figure.image} alt={alt} width={figure.width} height={figure.height} sizes="(min-width: 768px) 32rem, 92vw" unoptimized={figure.image.endsWith('.svg')}
+            className={compact ? 'mx-auto h-auto w-full max-w-[29rem]' : 'h-48 w-full object-contain sm:h-64'} />
         </a>
         <figcaption className={compact ? 'mt-2 flex flex-wrap items-baseline justify-between gap-x-3 border-t border-[#c8d1c6] text-sm' : 'mt-2 max-w-prose text-sm leading-relaxed'}>
-          {compact ? <span className="py-2 font-semibold">Figure 3 · Lean proof dependencies</span> : figure.caption}
+          <strong className="block py-2">{label}</strong>
+          {children}
           <span className="flex flex-wrap gap-x-5">
             <a href={viewerHash} onClick={rememberOpener} className="source-link" aria-haspopup="dialog">Open full-size figure</a>
-            {!compact && <a href={figure.source} className="source-link">Figure in the paper</a>}
+            {!compact && <a href={figure.source} className="source-link">{figure.source.includes('#') ? 'Figure in the paper' : 'Published paper'}</a>}
           </span>
         </figcaption>
       </figure>
-      <dialog ref={dialog} aria-labelledby="proof-viewer-title" className="proof-viewer" onCancel={event => { event.preventDefault(); closeViewer(); }}>
+      <dialog ref={dialog} aria-labelledby={fragment + '-title'} className="proof-viewer" onCancel={event => { event.preventDefault(); closeViewer(); }}>
         <header className="flex flex-wrap items-center justify-between gap-x-4 border-b border-[#c8d1c6] px-3 py-1 sm:px-5">
-          <h2 id="proof-viewer-title" className="text-sm font-semibold">Lean proof dependencies</h2>
+          <h2 id={fragment + '-title'} className="text-sm font-semibold">{figure.title}</h2>
           <div className="ml-auto flex items-center gap-3">
             <a className="source-link" href="/">Home</a>
             <button type="button" autoFocus onClick={closeViewer} className="flex min-h-11 items-center gap-1 px-1 font-semibold"><X size={18} aria-hidden="true" />Close</button>
           </div>
         </header>
-        <div className="proof-canvas" role="region" aria-label="Scrollable proof diagram" tabIndex={0}>
-          <Image src={image} alt={figure.alt} width={figure.width} height={figure.height} unoptimized
+        <div className="proof-canvas" role="region" aria-label={`Scrollable figure: ${figure.title}`} tabIndex={0}>
+          <Image src={figure.image} alt={alt} width={figure.width} height={figure.height} unoptimized
             className="mx-auto block h-auto max-w-none"
             style={{ width: `min(${100 * zoomLevels[zoom]}cqw, ${100 * zoomLevels[zoom] * figure.width / figure.height}cqh)` }} />
         </div>

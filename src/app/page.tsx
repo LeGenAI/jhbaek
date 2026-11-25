@@ -2,7 +2,8 @@ import { Equation } from '@/components/math';
 import type { Metadata } from 'next';
 import { Portrait } from '@/components/portrait';
 import Link from 'next/link';
-import { SingletonProofFigure } from '@/components/singleton-proof-figure';
+import { FigureViewer } from '@/components/paper-figure';
+import { proofDiagram } from '@/data/paper-figures';
 import { singletonPaper, singletonPaperPath } from '@/data/publications';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { EaqeccProof } from '@/components/eaqecc-proof';
@@ -48,7 +49,7 @@ export default function Home() {
               </div>
             </div>
           </section>
-          <SingletonProofFigure compact />
+          <FigureViewer figure={proofDiagram} number={3} compact />
         </div>
         <section aria-labelledby="selected-work" className="pt-7 lg:pt-10">
           <div className="flex flex-wrap items-center justify-between gap-x-4">

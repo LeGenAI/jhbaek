@@ -54,7 +54,7 @@ export const sudokuCitation = {
 
 export const singletonPaper = {
   title: 'Validity and maximum violation of the entanglement-assisted quantum Singleton bound for linear stabilizer codes',
-  slug: 'entanglement-assisted-quantum-singleton-bound',
+  slug: 'entanglement-assisted-quantum-singleton-bound' as const,
   authors: 'Jae-Hyun Baek, Byung-Sun Won, Jon-Lark Kim',
   venue: 'Physical Review A',
   year: '2026',
@@ -81,7 +81,7 @@ export const singletonPaper = {
     source: 'https://arxiv.org/html/2611.32126v1#A2.F3',
     width: 1805, height: 1987,
     alt: 'Proof dependencies for the three Singleton-defect regimes. Lemma 6 leads to Theorem 1. Theorem 2 and classical MDS lengths feed Corollary 9, which combines with constructed codes to give Corollary 4.',
-    caption: 'Figure 3, p. 12. Start with Lemma 6. Its projection bound is the dimension count that makes Theorem 1 work even for degenerate codes. Each arrow points to a result that uses the preceding proof. Green dots mark certified results. The dashed box identifies MDS lengths taken from the literature, and the blue table box identifies numerical computations.',
+    caption: 'Start with Lemma 6. Its projection bound is the dimension count that makes Theorem 1 work even for degenerate codes. Each arrow points to a result that uses the preceding proof. Green dots mark certified results. The dashed box identifies MDS lengths taken from the literature, and the blue table box identifies numerical computations.',
   },
   links: {
     paper: 'https://arxiv.org/abs/2611.32126v1',
