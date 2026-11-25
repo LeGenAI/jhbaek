@@ -11,7 +11,7 @@ test('CV entry exposes the papers, proofs and reviewer instructions', async ({ p
   const response = await page.goto('/research');
   expect(response?.status()).toBe(200);
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Selected Research in Formal Verification');
-  await expect(page.getByRole('link', { name: 'Lean certificate', exact: true })).toBeInViewport({ ratio: 1 });
+  await expect(page.getByRole('link', { name: 'Proof map and results' })).toBeInViewport({ ratio: 1 });
   const links = {
     'Lean certificate': 'https://github.com/LeGenAI/llm_guided_EAQECC_search/blob/3e7b2e8d42487f1f117f0ab9b457c50701588068/formal/eaqecc/README.md',
     'EAQECC preprint': 'https://arxiv.org/abs/2610.41183v1',
@@ -95,6 +95,7 @@ test('main navigation reaches Research and the mobile menu closes', async ({ pag
 test('homepage lets readers inspect the EAQECC proof and reach its sources', async ({ page }) => {
   await page.goto('/');
   const graph = page.getByRole('figure', { name: 'Theorem 1 · Proof dependencies' });
+  await graph.getByRole('button', { name: /Dimension/ }).scrollIntoViewIfNeeded();
   await expect(graph.getByRole('button', { name: /Dimension/ })).toBeInViewport({ ratio: 1 });
   await expect(page.getByRole('link', { name: 'EAQECC paper' })).toHaveAttribute('href', 'https://arxiv.org/abs/2610.41183v1');
   await expect(page.getByRole('link', { name: 'Lean certificate' })).toHaveAttribute('href', /formal\/eaqecc\/README\.md$/);
@@ -163,4 +164,19 @@ test('EntropyMaG-1 opens the validation diagram extracted from the manuscript', 
   await expect.poll(() => page.locator('img').evaluate((img: HTMLImageElement) =>
     [img.naturalWidth, img.naturalHeight]
   )).toEqual([1531, 938]);
+});
+
+test('home leads to the Singleton bound paper, original diagram and proof archive', async ({ page }) => {
+  await page.goto('/');
+  const openPaper = page.getByRole('link', { name: 'Explore the proof' });
+  await expect(openPaper).toBeVisible();
+  await expectPageFits(page);
+  await openPaper.click();
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('Validity and maximum violation');
+  await expect(page.getByText(/contributed equally/)).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Paper', exact: true })).toHaveAttribute('href', 'https://arxiv.org/abs/2611.32126v1');
+  await expect(page.getByRole('link', { name: /Lean proofs and Comparator/ })).toHaveAttribute('href', 'https://zenodo.org/records/24488547/files/lean.zip');
+  await expectPageFits(page);
+  await page.getByRole('link', { name: 'Open full-size figure' }).click();
+  await expect.poll(() => page.locator('img').evaluate((img: HTMLImageElement) => [img.naturalWidth, img.naturalHeight])).toEqual([1805, 1987]);
 });

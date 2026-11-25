@@ -2,7 +2,7 @@ export const solEvolveThesisUrl = 'https://dcollection.sogang.ac.kr/dcollection/
 
 export type PublicationStatus = 'Published' | 'Accepted' | 'Under Review' | 'Revision requested' | 'Revision submitted' | 'Submitted' | 'In Preparation' | 'Unpublished manuscript' | 'Preprint';
 
-export type PublicationLinkKey = 'doi' | 'paper' | 'project' | 'code' | 'source' | 'googleScholar' | 'researchGate' | 'artifact' | 'slides' | 'data' | 'thesis' | 'certificate' | 'specification' | 'openReview';
+export type PublicationLinkKey = 'doi' | 'paper' | 'project' | 'code' | 'source' | 'googleScholar' | 'researchGate' | 'artifact' | 'slides' | 'data' | 'thesis' | 'certificate' | 'specification' | 'openReview' | 'leanArchive';
 
 export const publicationTopics = {
   'coding-theory': 'Coding theory and combinatorial constructions',
@@ -32,7 +32,7 @@ export type Publication = {
   relatedProjects: string[];
   tags: string[];
   image?: string;
-  figure?: { width: number; height: number; alt: string; caption: string };
+  figure?: { width: number; height: number; alt: string; caption: string; source?: string };
   links?: Partial<Record<PublicationLinkKey, string>>;
   featured?: boolean;
 };
@@ -51,7 +51,47 @@ export const sudokuCitation = {
   href: 'https://doi.org/10.1109/TG.2026.3683305',
 };
 
+export const singletonPaper = {
+  title: 'Validity and maximum violation of the entanglement-assisted quantum Singleton bound for linear stabilizer codes',
+  slug: 'entanglement-assisted-quantum-singleton-bound',
+  authors: 'Jae-Hyun Baek, Byung-Sun Won, Jon-Lark Kim',
+  venue: 'arXiv:2611.32126v1',
+  year: '2026',
+  status: 'Preprint',
+  area: 'Quantum coding theory · Lean 4',
+  summary: 'A six-qubit code corrects four erasures with two shared entangled pairs. The Brun–Devetak–Hsieh bound predicts at least three. We determine when the bound holds for linear entanglement-assisted stabilizer codes and how large the gap can be.',
+  tldr: 'The Singleton defect determines when shared entanglement can beat the usual bound.',
+  role: 'Byung-Sun Won and I contributed equally to this work, with Jon-Lark Kim as corresponding author.',
+  problem: 'How many entangled pairs must sender and receiver share to protect k logical qudits? The usual lower bound can overestimate the cost when the code corrects many erasures.',
+  keyIdea: 'After d − 1 erasures, the remaining n − d + 1 qudits and the receiver’s halves of the shared pairs recover the message. Comparing that number with 2k splits the proof into three cases. Write σ = n − k − d + 1 for the Singleton defect.',
+  methods: ['Restrict logical operators to surviving coordinates and count dimensions (Lemma 6).', 'Relate a violation to a classical maximum distance separable (MDS) code inside the hull (Theorem 2).', 'Use Lean 4 and Comparator to check proofs against separately stated theorems. Each challenge includes a changed statement that Comparator must reject.'],
+  results: [
+    'For k > σ, the bound holds even for degenerate codes (Theorem 1).',
+    'For k = σ, the violation is at most Mq(2k) − 2k, where Mq(2k) is the longest classical MDS code length in dimension 2k over the field of size q. When 2k ≤ q and Mq(2k) = q + 1, the constructions attain q + 1 − 2k (Corollary 4).',
+    'For k < σ, classical codes of larger defect bound the violation. For one logical qudit, the exact maximum is (q − 1)σ (Corollary 18).',
+  ],
+  statusNote: 'Preprint posted on 24 November 2026. Appendix D.4 gives the scope of each Lean statement. Some classical MDS lengths enter as literature assumptions. The numerical code evaluations in Tables 3–4 are separate computations.',
+  topic: 'coding-theory',
+  relatedProjects: [],
+  tags: ['Quantum codes', 'Singleton bound', 'Lean 4', 'Comparator'],
+  image: '/previews/ea-singleton-proof-dag.png',
+  figure: {
+    source: 'https://arxiv.org/html/2611.32126v1#A2.F3',
+    width: 1805, height: 1987,
+    alt: 'Proof dependencies for the three Singleton-defect regimes. Lemma 6 leads to Theorem 1. Theorem 2 and classical MDS lengths feed Corollary 9, which combines with constructed codes to give Corollary 4.',
+    caption: 'Figure 3, p. 12. Start with Lemma 6. Its projection bound is the dimension count that makes Theorem 1 work even for degenerate codes. Each arrow points to a result that uses the preceding proof. Green dots mark certified results. The dashed box identifies MDS lengths taken from the literature, and the blue table box identifies numerical computations.',
+  },
+  links: {
+    paper: 'https://arxiv.org/abs/2611.32126v1',
+    leanArchive: 'https://zenodo.org/records/24488547/files/lean.zip',
+    artifact: 'https://doi.org/10.5281/zenodo.24488547',
+  },
+} satisfies Publication;
+
+export const singletonPaperPath = `/research/publications/${singletonPaper.slug}`;
+
 export const publications: Publication[] = [
+  singletonPaper,
   {
     title: 'An integer determinant approach to the length of Type II codes and the weights of shadows',
     slug: 'type-ii-codes-and-shadow-weights',

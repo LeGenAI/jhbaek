@@ -1,12 +1,14 @@
 import type { Metadata } from 'next';
 import { Portrait } from '@/components/portrait';
 import Link from 'next/link';
+import Image from 'next/image';
+import { singletonPaper, singletonPaperPath } from '@/data/publications';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { EaqeccProof } from '@/components/eaqecc-proof';
 
 export const metadata: Metadata = {
   title: { absolute: 'Jae-Hyun Baek · Coding theory and formal verification' },
-  description: 'Research by Jae-Hyun Baek at Sogang University. Explore a Lean-checked quantum code construction, self-dual codes, and reproducible experiments in combinatorial search.',
+  description: 'Research by Jae-Hyun Baek at Sogang University. Explore when the entanglement-assisted quantum Singleton bound holds, its Lean proof map, and quantum codes that attain the largest violation.',
 };
 
 const selectedWork = [
@@ -23,26 +25,33 @@ export default function Home() {
           <section className="contents lg:block">
             <header className="order-1">
               <div className="grid grid-cols-[1fr_auto] items-center gap-x-3 gap-y-2 sm:block">
-                <Portrait className="col-start-2 row-span-2 row-start-1 w-[4.75rem] min-[375px]:w-24 sm:float-left sm:mr-5 sm:w-28" />
+                <Portrait className="col-start-2 row-start-1 w-[4.75rem] min-[375px]:w-24 sm:float-left sm:mr-5 sm:w-28" />
                 <div className="col-start-1 row-start-1 sm:min-h-36 sm:pt-8">
                   <p className="font-semibold">Jae-Hyun Baek <span lang="ko" className="pl-1 font-normal text-[#4a6258]">백재현</span></p>
                   <p className="meta-text">AI PhD student · Sogang University</p>
                 </div>
-                <h1 className="col-start-1 row-start-2 max-w-xl font-serif text-[2rem] leading-[1.02] tracking-[-0.045em] min-[375px]:text-[2.55rem] sm:mt-5 sm:clear-both sm:text-6xl xl:text-7xl">Searching for quantum codes</h1>
+                <h1 className="col-span-2 mt-3 max-w-xl font-serif text-[2.15rem] leading-[1.03] tracking-[-0.04em] sm:clear-both sm:text-5xl lg:text-6xl">How much entanglement does a quantum code need?</h1>
               </div>
             </header>
-            <div className="order-4 lg:mt-4">
-              <p className="max-w-lg text-base leading-relaxed sm:text-lg">
-                Our search programs found finite qubit constructions. We used their structure to derive a family of quantum codes. Lean checks the dimension, radical, and weight results. In the paper we apply the stabilizer correspondence to obtain the code parameters.
-              </p>
-              <p className="mt-4 text-xs leading-relaxed text-[#52665d] sm:text-sm">Jae-Hyun Baek, Byung-Sun Won, Jon-Lark Kim · October 2026</p>
-            </div>
-            <div className="order-2 flex flex-wrap items-center gap-x-4 gap-y-1 lg:mt-3">
-              <a href="https://arxiv.org/abs/2610.41183v1" className="inline-flex min-h-11 items-center gap-2 rounded bg-[#173f35] px-4 text-sm font-semibold text-white hover:bg-[#245848]">EAQECC paper <ArrowUpRight size={16} aria-hidden="true" /></a>
-              <a href="https://github.com/LeGenAI/llm_guided_EAQECC_search/blob/3e7b2e8d42487f1f117f0ab9b457c50701588068/formal/eaqecc/README.md" className="inline-flex min-h-11 items-center gap-1 text-sm font-semibold underline underline-offset-4">Lean certificate <ArrowUpRight size={16} aria-hidden="true" /></a>
+            <div className="order-2 lg:mt-5">
+              <p className="max-w-lg text-base leading-relaxed sm:text-lg">A six-qubit code can recover from four erasures using two shared entangled pairs. The usual entanglement-assisted bound predicts at least three. We prove when the bound holds for linear stabilizer codes and how far it can fail.</p>
+              <p className="meta-text mt-3">Jae-Hyun Baek and Byung-Sun Won (equal contribution), Jon-Lark Kim · November 2026</p>
+              <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-1">
+                <Link href={singletonPaperPath} className="inline-flex min-h-11 items-center gap-2 rounded bg-[#173f35] px-4 text-sm font-semibold text-white hover:bg-[#245848]">Explore the proof <ArrowRight size={16} aria-hidden="true" /></Link>
+                <a href={singletonPaper.links.paper} className="source-link">arXiv preprint</a>
+                <a href={singletonPaper.links.artifact} className="source-link">Lean proof archive</a>
+              </div>
             </div>
           </section>
-          <div className="order-3 min-w-0"><EaqeccProof /></div>
+          <figure className="order-3 mt-2 min-w-0 border-y border-[#c8d1c6] bg-white px-3 py-2 sm:px-5">
+            <a className="block" href={singletonPaper.image} aria-label="Enlarge the Singleton bound proof diagram">
+              <Image src={singletonPaper.image} alt={singletonPaper.figure.alt} width={singletonPaper.figure.width} height={singletonPaper.figure.height} sizes="(min-width: 1024px) 580px, 95vw" className="mx-auto h-auto w-full max-w-[29rem]" />
+            </a>
+            <figcaption className="mt-2 flex flex-wrap items-baseline justify-between gap-x-3 border-t border-[#c8d1c6] text-sm">
+              <span className="py-2 font-semibold">Figure 3 · Lean proof dependencies</span>
+              <a href={singletonPaper.image} className="source-link">Open full-size figure</a>
+            </figcaption>
+          </figure>
         </div>
         <section aria-labelledby="selected-work" className="pt-7 lg:pt-10">
           <div className="flex flex-wrap items-center justify-between gap-x-4">
@@ -57,6 +66,18 @@ export default function Home() {
               </li>
             ))}
           </ul>
+        </section>
+        <section aria-labelledby="october-construction" className="mt-10 grid items-center gap-6 border-t border-[#c8d1c6] pt-7 lg:grid-cols-2 lg:gap-14">
+          <div>
+            <p className="meta-text">October 2026</p>
+            <h2 id="october-construction" className="section-title">Searching for quantum codes</h2>
+            <p className="page-intro">Our search programs found finite qubit constructions. We used their structure to derive a family of quantum codes. Lean checks the dimension, radical, and weight results. The paper applies the stabilizer correspondence to obtain the code parameters.</p>
+            <div className="mt-2 flex flex-wrap gap-x-5">
+              <a href="https://arxiv.org/abs/2610.41183v1" className="source-link">EAQECC paper <ArrowUpRight size={16} aria-hidden="true" /></a>
+              <a href="https://github.com/LeGenAI/llm_guided_EAQECC_search/blob/3e7b2e8d42487f1f117f0ab9b457c50701588068/formal/eaqecc/README.md" className="source-link">Lean certificate</a>
+            </div>
+          </div>
+          <EaqeccProof />
         </section>
       </main>
     </div>

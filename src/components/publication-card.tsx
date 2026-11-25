@@ -19,6 +19,7 @@ const statusStyles: Record<Publication['status'], string> = {
 
 const linkLabels: Record<PublicationLinkKey, string> = {
   openReview: 'OpenReview',
+  leanArchive: 'Lean proofs and Comparator verdicts (ZIP)',
   googleScholar: 'Google Scholar',
   researchGate: 'ResearchGate',
   paper: 'Paper',

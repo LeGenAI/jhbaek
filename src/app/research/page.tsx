@@ -1,7 +1,7 @@
 import { academicProfiles } from '@/data/profiles';
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { publicationTopics, publications, solEvolveThesisUrl, sudokuCitation, type PublicationStatus } from '@/data/publications';
+import { publicationTopics, publications, singletonPaper, singletonPaperPath, solEvolveThesisUrl, sudokuCitation, type PublicationStatus } from '@/data/publications';
 
 export const metadata: Metadata = {
   title: 'Research',
@@ -10,6 +10,17 @@ export const metadata: Metadata = {
 };
 
 const selectedResearch = [
+  {
+    id: 'singleton-bound',
+    title: 'When does the entanglement-assisted Singleton bound hold?',
+    credit: 'Jae-Hyun Baek and Byung-Sun Won (equal contribution), Jon-Lark Kim · November 2026',
+    finding: singletonPaper.summary,
+    links: [
+      { label: 'Proof map and results', href: singletonPaperPath },
+      { label: 'Singleton bound preprint', href: singletonPaper.links.paper },
+      { label: 'Lean proof archive', href: singletonPaper.links.artifact },
+    ],
+  },
   {
     id: 'eaqecc',
     title: 'Entanglement-assisted quantum codes',

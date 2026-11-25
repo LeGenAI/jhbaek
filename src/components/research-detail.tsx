@@ -40,7 +40,10 @@ export function ResearchDetail({ back, title, metadata, byline, venue, summary, 
           </a>
           <figcaption className="mt-2 max-w-prose text-sm leading-relaxed">
             {figure.caption}{' '}
-            <a href={image} className="source-link">Open full-size figure</a>
+            <span className="flex flex-wrap gap-x-5">
+              <a href={image} className="source-link">Open full-size figure</a>
+              {figure.source && <a href={figure.source} className="source-link">Figure in the paper</a>}
+            </span>
           </figcaption>
         </figure>
       )}

@@ -1,13 +1,15 @@
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ResearchDetail, DetailSection, DetailList } from '@/components/research-detail';
-import { publications, sudokuCitation, type PublicationLinkKey } from '@/data/publications';
+import { publications, singletonPaper, singletonPaperPath, sudokuCitation, type PublicationLinkKey } from '@/data/publications';
 import { projectArtifacts } from '@/data/projects';
 
 const linkLabels: Record<PublicationLinkKey, string> = {
   doi: 'DOI',
   openReview: 'OpenReview',
+  leanArchive: 'Lean proofs and Comparator verdicts (ZIP)',
   certificate: 'Lean certificate',
   specification: 'Comparator specification (v2)',
   paper: 'Paper',
@@ -21,6 +23,18 @@ const linkLabels: Record<PublicationLinkKey, string> = {
   slides: 'Slides',
   data: 'Data',
 };
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  if (slug !== singletonPaper.slug) return {};
+  const { title, summary: description, image, figure } = singletonPaper;
+  return {
+    title, description,
+    alternates: { canonical: singletonPaperPath },
+    openGraph: { type: 'article', title, description, url: singletonPaperPath, images: [{ url: image, alt: figure.alt, width: figure.width, height: figure.height }] },
+    twitter: { card: 'summary_large_image', title, description, images: [image] },
+  };
+}
 
 export function generateStaticParams() {
   return [...publications, sudokuCitation].map(({ slug }) => ({ slug }));
